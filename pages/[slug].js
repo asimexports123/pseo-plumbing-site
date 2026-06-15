@@ -13,7 +13,7 @@ export async function getStaticProps({ params }) {
     .from('cities_data')
     .select('*')
     .eq('slug', params.slug)
-    .single()
+    .maybeSingle()
   return { props: { cityData }, revalidate: 3600 }
 }
 
