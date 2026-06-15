@@ -4,7 +4,7 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 
 export async function getStaticPaths() {
   const { data: cities } = await supabase.from('cities_data').select('slug')
-  const paths = cities.map((city) => ({ params: { slug: city.slug } }))
+  const paths = cities?.map((city) => ({ params: { slug: city.slug } })) || []
   return { paths, fallback: 'blocking' }
 }
 
