@@ -6,16 +6,9 @@ const supabase = createClient(
 );
 
 export async function getStaticPaths() {
-  // Sirf pehle 500 records pre-render karo, baaki 'blocking' mode mein handle honge
-  const { data: cities } = await supabase
-    .from('cities_data')
-    .select('slug')
-    .range(0, 500);
-
-  const paths = cities?.map((city) => ({ params: { slug: city.slug } })) || [];
-
+  // Hum abhi paths pre-render nahi kar rahe taaki build fast ho
   return { 
-    paths, 
+    paths: [], 
     fallback: 'blocking' 
   };
 }
@@ -27,13 +20,21 @@ export async function getStaticProps({ params }) {
     .eq('slug', params.slug)
     .maybeSingle();
 
+  if (!data) {
+    return { notFound: true };
+  }
+
   return { 
-    props: { data: data || null },
-    revalidate: 60 // 60 seconds baad data refresh hoga
+    props: { data },
+    revalidate: 60
   };
 }
 
 export default function Page({ data }) {
-  if (!data) return <h1>Data nahi mila</h1>;
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <div>
+      <h1>{data.slug}</h1>
+      {/* Yahan apna baaki content dikhao */}
+    </div>
+  );
 }
