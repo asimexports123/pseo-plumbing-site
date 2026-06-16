@@ -13,16 +13,19 @@ export async function getServerSideProps({ params }) {
 export default function Page({ data }) {
   if (!data) return <div style={{textAlign:'center', marginTop:'100px'}}>Loading...</div>;
 
-  // Slug se sirf pehla part lene ka logic (Adjuntas-107 -> Adjuntas)
   const rawName = data.slug.split('-')[0];
   const cityName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", backgroundColor: '#ffffff', maxWidth: '800px', margin: '0 auto' }}>
-      {/* 1. Header */}
+    <div style={{ fontFamily: "'Inter', sans-serif", backgroundColor: '#ffffff', maxWidth: '800px', margin: '0 auto', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* 1. Header with About Us */}
       <nav style={{ padding: '20px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h2 style={{ margin: 0, fontSize: '1.2rem', color: '#1a365d' }}>Apex Plumbing</h2>
-        <a href="tel:+18005550199" style={{ background: '#3182ce', color: 'white', padding: '8px 16px', borderRadius: '5px', textDecoration: 'none', fontWeight: 'bold' }}>Call Now</a>
+        <div>
+          <a href="/about" style={{ marginRight: '15px', textDecoration: 'none', color: '#4a5568' }}>About Us</a>
+          <a href="tel:+18005550199" style={{ background: '#3182ce', color: 'white', padding: '8px 16px', borderRadius: '5px', textDecoration: 'none', fontWeight: 'bold' }}>Call Now</a>
+        </div>
       </nav>
 
       {/* 2. Hero Section */}
@@ -34,21 +37,24 @@ export default function Page({ data }) {
       </section>
 
       {/* 3. Main Content */}
-      <main style={{ padding: '20px', lineHeight: '1.8' }}>
+      <main style={{ padding: '20px', lineHeight: '1.8', flex: '1' }}>
         <h2>Emergency Plumbers in {cityName}</h2>
-        <p>Looking for a reliable plumber? We serve the <strong>{cityName}</strong> area with 24/7 expert services. Whether it's a small leak or a major pipe burst, our team is ready to arrive quickly.</p>
-        
+        <p>Looking for a reliable plumber? We serve the <strong>{cityName}</strong> area with 24/7 expert services.</p>
         <h3>Our Primary Services:</h3>
-        <ul style={{ paddingLeft: '20px' }}>
-          <li><strong>Drain Cleaning:</strong> Clearing stubborn clogs using professional tools.</li>
-          <li><strong>Water Heater Repair:</strong> Ensuring your home has hot water round the clock.</li>
-          <li><strong>Pipe Leak Detection:</strong> Identifying hidden leaks before they cause damage.</li>
-          <li><strong>Emergency Repairs:</strong> Rapid response for any plumbing crisis in {cityName}.</li>
+        <ul>
+          <li>Drain Cleaning</li>
+          <li>Water Heater Repair</li>
+          <li>Pipe Leak Detection</li>
+          <li>Emergency Repairs</li>
         </ul>
       </main>
 
-      {/* 4. Footer */}
-      <footer style={{ padding: '30px', background: '#2d3748', color: 'white', textAlign: 'center' }}>
+      {/* 4. Footer with Legal Links */}
+      <footer style={{ padding: '30px', background: '#2d3748', color: '#cbd5e0', textAlign: 'center' }}>
+        <div style={{ marginBottom: '15px' }}>
+          <a href="/privacy-policy" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Privacy Policy</a> | 
+          <a href="/terms" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Terms & Conditions</a>
+        </div>
         <p>© 2026 Apex Plumbing. Serving {cityName}.</p>
       </footer>
     </div>
