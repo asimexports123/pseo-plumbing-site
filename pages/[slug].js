@@ -15,47 +15,44 @@ export default function Page({ data }) {
   if (!data) return <h1>Loading...</h1>;
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+    <div style={{ fontFamily: 'sans-serif', maxWidth: '700px', margin: '0 auto', padding: '20px', lineHeight: '1.6' }}>
       {/* Header */}
-      <nav style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '20px', borderBottom: '1px solid #ddd' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: '#666' }}>
         <strong>Apex Plumbing</strong>
-        <div>Service | Location | Contact</div>
-      </nav>
+        <span>Services | Locations | Contact</span>
+      </div>
 
-      {/* Hero Section */}
-      <header style={{ textAlign: 'center', padding: '40px 0' }}>
-        <h1 style={{ fontSize: '2.5rem' }}>Premium Plumbing in {data.slug.replace(/-/g, ' ')}</h1>
-        <p>Your local experts for all plumbing needs. Same-day service available.</p>
-      </header>
+      {/* Title */}
+      <h1 style={{ textAlign: 'center', fontSize: '2.2rem', marginTop: '30px' }}>
+        Expert Plumbing in {data.slug.replace(/-/g, ' ')}
+      </h1>
 
-      {/* Zip Code Search Section */}
-      <section style={{ background: '#f4f4f4', padding: '30px', borderRadius: '10px', textAlign: 'center' }}>
-        <h2>Check Availability</h2>
-        <input type="text" placeholder="Enter ZIP Code..." style={{ padding: '15px', width: '60%', borderRadius: '5px', border: '1px solid #ccc' }} />
-        <button style={{ padding: '15px 30px', background: '#333', color: '#fff', border: 'none', marginLeft: '10px', borderRadius: '5px' }}>Find Plumbers</button>
-      </section>
-
-      {/* Call to Action Section */}
-      <section style={{ textAlign: 'center', padding: '50px 0' }}>
-        <h2 style={{ fontSize: '1.8rem', marginBottom: '20px' }}>Need an Emergency Plumber?</h2>
+      {/* Main CTA */}
+      <div style={{ textAlign: 'center', margin: '40px 0' }}>
         <a href="tel:+18005550199" style={{ 
-          display: 'inline-block', background: '#d32f2f', color: 'white', 
-          padding: '25px 60px', fontSize: '1.8rem', textDecoration: 'none', 
-          borderRadius: '50px', fontWeight: 'bold' 
+          background: '#d32f2f', color: 'white', padding: '20px 50px', 
+          fontSize: '1.8rem', textDecoration: 'none', borderRadius: '50px', fontWeight: 'bold' 
         }}>
           CALL NOW
         </a>
-      </section>
+      </div>
 
-      {/* Content Section */}
-      <section style={{ marginTop: '40px' }}>
-        <h3>Why Choose Us?</h3>
+      {/* Features */}
+      <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '10px' }}>
+        <h3>Why Choose Our Local Pros?</h3>
         <ul>
           <li>24/7 Emergency Support</li>
-          <li>Licensed and Insured Professionals</li>
-          <li>Upfront Pricing - No Hidden Fees</li>
+          <li>Licensed & Insured Technicians</li>
+          <li>Transparent Upfront Pricing</li>
         </ul>
-      </section>
+      </div>
+
+      {/* Zip Search */}
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <p>Check if we serve your area:</p>
+        <input type="text" placeholder="Enter ZIP Code" style={{ padding: '10px', width: '200px' }} />
+        <button style={{ padding: '10px 20px', background: '#333', color: 'white', border: 'none' }}>Search</button>
+      </div>
     </div>
   );
 }
