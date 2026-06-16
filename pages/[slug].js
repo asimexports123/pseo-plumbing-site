@@ -54,10 +54,10 @@ export default function Page({ data }) {
       <footer style={{ padding: '40px 20px', background: '#2d3748', color: '#cbd5e0', textAlign: 'center' }}>
         <div style={{ marginBottom: '15px' }}>
           <a href="/faq" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>FAQ</a> | 
-          <a href="/privacy-policy" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Privacy Policy</a> | 
-          <a href="/terms" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Terms & Conditions</a>
+          <a href="/disclaimer" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Disclaimer</a> | 
+          <a href="/privacy-policy" style={{ color: '#cbd5e0', textDecoration: 'none', margin: '0 10px' }}>Privacy Policy</a>
         </div>
-        <p style={{ fontSize: '0.8rem' }}>Apex Plumbing is a lead generation service. © 2026</p>
+        <p style={{ fontSize: '0.8rem' }}>© 2026 Apex Plumbing.</p>
       </footer>
     </div>
   );
