@@ -6,18 +6,18 @@ const supabase = createClient(
 );
 
 export async function getStaticPaths() {
-  const { data: cities, error } = await supabase
+  // Sirf pehle 500 records pre-render karo, baaki 'blocking' mode mein handle honge
+  const { data: cities } = await supabase
     .from('cities_data')
     .select('slug')
     .range(0, 500);
 
-  if (error) {
-    console.error(error);
-    return { paths: [], fallback: 'blocking' };
-  }
-
   const paths = cities?.map((city) => ({ params: { slug: city.slug } })) || [];
-  return { paths, fallback: 'blocking' };
+
+  return { 
+    paths, 
+    fallback: 'blocking' 
+  };
 }
 
 export async function getStaticProps({ params }) {
@@ -27,7 +27,10 @@ export async function getStaticProps({ params }) {
     .eq('slug', params.slug)
     .maybeSingle();
 
-  return { props: { data: data || null } };
+  return { 
+    props: { data: data || null },
+    revalidate: 60 // 60 seconds baad data refresh hoga
+  };
 }
 
 export default function Page({ data }) {
