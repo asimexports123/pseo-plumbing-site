@@ -15,33 +15,34 @@ export default function Page({ data }) {
   if (!data) return <h1 style={{textAlign: 'center', marginTop: '50px'}}>Loading...</h1>;
 
   return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: '500px', margin: '40px auto', padding: '20px', textAlign: 'center' }}>
+    <div style={{ fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif", maxWidth: '500px', margin: '40px auto', padding: '20px', textAlign: 'center' }}>
       
-      {/* Direct Heading */}
-      <h1 style={{ fontSize: '2rem', color: '#1a202c', marginBottom: '30px' }}>
+      {/* Heading with Blue Theme */}
+      <h1 style={{ fontSize: '2.2rem', color: '#1e40af', marginBottom: '30px', fontWeight: '800' }}>
         Emergency Plumber in {data.slug.replace(/-/g, ' ')}
       </h1>
 
-      {/* Hero CTA - Sabse Important */}
+      {/* Blue "Call Now" Button */}
       <a href="tel:+18005550199" style={{ 
         display: 'block', 
-        padding: '30px', 
-        background: '#e53e3e', 
+        padding: '25px', 
+        background: '#1d4ed8', 
         color: '#fff', 
-        fontSize: '2rem', 
+        fontSize: '1.8rem', 
         textDecoration: 'none', 
-        borderRadius: '15px',
-        fontWeight: '900',
-        boxShadow: '0 10px 20px rgba(229, 62, 62, 0.4)'
+        borderRadius: '12px',
+        fontWeight: '700',
+        boxShadow: '0 8px 20px rgba(29, 78, 216, 0.3)',
+        transition: 'transform 0.2s'
       }}>
-        TAP TO CALL NOW
+        📞 TAP TO CALL NOW
       </a>
 
-      {/* Trust Points */}
-      <div style={{ marginTop: '40px', textAlign: 'left', fontSize: '1.2rem', color: '#4a5568' }}>
-        <p>✅ 24/7 Emergency Service</p>
-        <p>✅ Fast Arrival (Local Pros)</p>
-        <p>✅ Licensed & Insured</p>
+      {/* Trust Section */}
+      <div style={{ marginTop: '40px', textAlign: 'left', background: '#eff6ff', padding: '20px', borderRadius: '12px', border: '1px solid #bfdbfe' }}>
+        <p style={{ margin: '10px 0', color: '#1e3a8a', fontWeight: '600' }}>✅ 24/7 Emergency Service</p>
+        <p style={{ margin: '10px 0', color: '#1e3a8a', fontWeight: '600' }}>✅ Fast Arrival (Local Pros)</p>
+        <p style={{ margin: '10px 0', color: '#1e3a8a', fontWeight: '600' }}>✅ Licensed & Insured</p>
       </div>
 
     </div>
