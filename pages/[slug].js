@@ -12,28 +12,39 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ data }) {
-  if (!data) return <h1>Loading...</h1>;
+  if (!data) return <h1 style={{textAlign: 'center', marginTop: '50px'}}>Loading...</h1>;
+
+  // Yahan apna Tracking Number daal do
+  const phoneNumber = "tel:+18005550199"; 
 
   return (
-    <div style={{ textAlign: 'center', padding: '50px 20px', fontFamily: 'Arial, sans-serif' }}>
-      {/* Heading */}
-      <h1 style={{ fontSize: '3rem', marginBottom: '40px', color: '#1f2937' }}>
-        Expert Plumbing Services in {data.slug.replace(/-/g, ' ')}
+    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto', padding: '20px', textAlign: 'center' }}>
+      <h1 style={{ fontSize: '2.5rem', color: '#111', marginBottom: '15px' }}>
+        Plumbing Services in {data.slug.replace(/-/g, ' ')}
       </h1>
       
-      {/* The Image you liked */}
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        <img 
-          src="https://images.unsplash.com/photo-1585704032915-c3400ca199e8?auto=format&fit=crop&w=1200&q=80" 
-          alt="Professional Plumbing" 
-          style={{ width: '100%', borderRadius: '15px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }} 
-        />
-      </div>
+      {/* Wohi Image jo tumne approve ki thi */}
+      <img 
+        src="https://images.unsplash.com/photo-1585704032915-c3400ca199e8?auto=format&fit=crop&w=800&q=80" 
+        alt="Professional Plumber" 
+        style={{ width: '100%', borderRadius: '15px', marginBottom: '30px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }} 
+      />
 
-      {/* Simple Subtext */}
-      <p style={{ marginTop: '30px', fontSize: '1.4rem', color: '#4b5563' }}>
-        Reliable, fast, and professional service you can trust.
-      </p>
+      {/* Conversion Focused CTA */}
+      <a href={phoneNumber} style={{ 
+        display: 'block', 
+        padding: '25px', 
+        background: '#d32f2f', 
+        color: 'white', 
+        fontSize: '2rem', 
+        textDecoration: 'none', 
+        borderRadius: '10px',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        boxShadow: '0 5px 15px rgba(211, 47, 47, 0.4)'
+      }}>
+        Call Now
+      </a>
     </div>
   );
 }
