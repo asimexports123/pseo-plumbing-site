@@ -15,27 +15,20 @@ export default function Page({ data }) {
   if (!data) return <h1>Loading...</h1>;
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center' }}>Expert Plumbing in {data.slug.replace(/-/g, ' ')}</h1>
+    <div style={{ textAlign: 'center', padding: '40px 20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1 style={{ fontSize: '2.5rem', marginBottom: '30px', color: '#333' }}>
+        Expert Plumbing Services in {data.slug.replace(/-/g, ' ')}
+      </h1>
       
-      {/* Bina container ke, direct image aur form */}
       <img 
-        src="https://images.unsplash.com/photo-1581244277943-fe4a9c7d717a?auto=format&fit=crop&w=1200&q=80" 
-        alt="Plumbing" 
-        style={{ width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '20px' }} 
+        src="https://images.unsplash.com/photo-1585704032915-c3400ca199e8?auto=format&fit=crop&w=1200&q=80" 
+        alt="Professional Plumbing" 
+        style={{ width: '100%', maxWidth: '900px', borderRadius: '15px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} 
       />
-
-      <div style={{ background: '#f4f4f4', padding: '20px', borderRadius: '10px' }}>
-        <h3>Get a Free Quote</h3>
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <input type="text" placeholder="Name" style={{ padding: '10px' }} />
-          <input type="email" placeholder="Email" style={{ padding: '10px' }} />
-          <textarea placeholder="Problem Description" style={{ padding: '10px', height: '80px' }}></textarea>
-          <button style={{ padding: '15px', background: 'green', color: 'white', border: 'none', cursor: 'pointer' }}>
-            Send Request
-          </button>
-        </form>
-      </div>
+      
+      <p style={{ marginTop: '30px', fontSize: '1.2rem', color: '#666' }}>
+        Providing top-notch plumbing solutions in your area.
+      </p>
     </div>
   );
 }
