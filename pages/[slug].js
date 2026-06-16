@@ -5,52 +5,43 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_KEY
 );
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: 'blocking' };
-}
-
+export async function getStaticPaths() { return { paths: [], fallback: 'blocking' }; }
 export async function getStaticProps({ params }) {
-  const { data } = await supabase
-    .from('cities_data')
-    .select('*')
-    .eq('slug', params.slug)
-    .maybeSingle();
-
+  const { data } = await supabase.from('cities_data').select('*').eq('slug', params.slug).maybeSingle();
   return { props: { data: data || null }, revalidate: 60 };
 }
 
 export default function Page({ data }) {
-  if (!data) return <h1>Loading...</h1>;
+  if (!data) return <div style={{height:'100vh', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'20px'}}>Loading Premium Experience...</div>;
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Expert Plumbing Services in {data.slug}</h1>
-      
-      {/* Container for Image and Form */}
-      <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-        
-        {/* Left Side: Image */}
-        <div style={{ flex: '1', minWidth: '400px' }}>
-          <img 
-            src="https://images.unsplash.com/photo-1585704032915-c3400ca199e8?auto=format&fit=crop&w=800&q=80" 
-            alt="Plumbing" 
-            style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} 
-          />
-        </div>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: '#f8fafc', minHeight: '100vh', padding: '40px 20px' }}>
+      <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        {/* Header Section */}
+        <header style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <h1 style={{ fontSize: '3rem', color: '#0f172a', marginBottom: '10px' }}>Plumbing Masters in <span style={{ color: '#2563eb' }}>{data.slug.replace(/-/g, ' ')}</span></h1>
+          <p style={{ fontSize: '1.2rem', color: '#64748b' }}>Fast, Reliable, and Professional Plumbing Solutions at Your Doorstep.</p>
+        </header>
 
-        {/* Right Side: Form */}
-        <div style={{ flex: '1', minWidth: '350px', background: '#f8f9fa', padding: '30px', borderRadius: '15px', border: '1px solid #ddd' }}>
-          <h3>Get a Free Quote</h3>
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <input type="text" placeholder="Your Name" style={{ padding: '12px', borderRadius: '5px', border: '1px solid #ccc' }} />
-            <input type="email" placeholder="Your Email" style={{ padding: '12px', borderRadius: '5px', border: '1px solid #ccc' }} />
-            <textarea placeholder="Describe your plumbing problem" style={{ padding: '12px', borderRadius: '5px', border: '1px solid #ccc', height: '100px' }}></textarea>
-            <button style={{ padding: '15px', background: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '16px' }}>
-              Send Request
-            </button>
-          </form>
+        {/* Hero Section */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', alignItems: 'center', background: '#ffffff', padding: '40px', borderRadius: '24px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
+          <div>
+            <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c7d717a?auto=format&fit=crop&w=800&q=80" alt="Professional Plumber" style={{ width: '100%', borderRadius: '16px', objectFit: 'cover' }} />
+          </div>
+          
+          <div style={{ background: '#0f172a', padding: '40px', borderRadius: '20px', color: '#fff' }}>
+            <h2 style={{ fontSize: '1.8rem', marginBottom: '20px' }}>Request a Free Quote</h2>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <input type="text" placeholder="Full Name" style={{ padding: '15px', borderRadius: '8px', border: 'none' }} />
+              <input type="email" placeholder="Email Address" style={{ padding: '15px', borderRadius: '8px', border: 'none' }} />
+              <textarea placeholder="Tell us about your plumbing issue..." style={{ padding: '15px', borderRadius: '8px', border: 'none', height: '100px' }}></textarea>
+              <button style={{ padding: '15px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '1rem', fontWeight: 'bold', cursor: 'pointer', marginTop: '10px' }}>
+                Get Your Quote
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
