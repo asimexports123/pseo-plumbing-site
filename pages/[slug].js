@@ -27,7 +27,7 @@ export default function Page({ data }) {
 
       {/* Hero Section */}
       <header style={{ padding: '40px 20px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.8rem', color: '#1a365d', marginBottom: '20px' }}>Expert Plumbing Solutions in {cityName}</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#1a365d', marginBottom: '20px' }}>24/7 Emergency Plumbing in {cityName}</h1>
         
         <div style={{ margin: '30px 0' }}>
             <a href="tel:+18005550199" style={{ display: 'inline-block', background: '#e53e3e', color: 'white', padding: '20px 40px', fontSize: '1.5rem', borderRadius: '50px', textDecoration: 'none', fontWeight: '800' }}>
@@ -39,14 +39,14 @@ export default function Page({ data }) {
       {/* Blog Content */}
       <article style={{ padding: '0 20px', lineHeight: '1.8', fontSize: '1.1rem', color: '#2d3748' }}>
         <p style={{ marginBottom: '20px' }}>
-            {data.content || "Plumbing issues in " + cityName + " can be stressful. Whether you are dealing with a sudden pipe burst or a clogged drain, finding a reliable expert is key to preventing further damage to your property."}
+            {data.content || "Plumbing issues in " + cityName + " can happen at any time. When you face an urgent plumbing emergency, finding a reliable expert fast is key to preventing major water damage to your property."}
         </p>
 
-        <h2 style={{ color: '#1a365d' }}>Why Quality Plumbing Matters in {cityName}</h2>
-        <p>A professional plumber does more than just fix leaks; they ensure your home's infrastructure is safe and efficient. From water heater installations to sewer line inspections, our network connects you with the best local talent.</p>
+        <h2 style={{ color: '#1a365d' }}>Why You Need an Emergency Plumber in {cityName}</h2>
+        <p>A burst pipe or a backed-up sewer line is more than an inconvenience; it is an <strong>emergency</strong>. Our network connects you with verified local experts who provide rapid-response services to resolve your plumbing crisis safely and professionally.</p>
 
-        <div style={{ background: '#f7fafc', padding: '20px', borderRadius: '10px', margin: '30px 0', borderLeft: '5px solid #3182ce' }}>
-          <strong>Pro Tip:</strong> Don't wait for a small leak to become a massive flood. Immediate action saves thousands in potential repairs!
+        <div style={{ background: '#f7fafc', padding: '20px', borderRadius: '10px', margin: '30px 0', borderLeft: '5px solid #e53e3e' }}>
+          <strong>Emergency Tip:</strong> If you have a major leak, shut off your main water valve immediately while waiting for our professional to arrive.
         </div>
       </article>
 
