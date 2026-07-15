@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block internal/admin pages from indexing
+Disallow: /dashboard
+Disallow: /api/
+
+Sitemap: https://yohomefix.com/sitemap.xml
+Sitemap: https://yohomefix.com/sitemap-static.xml
+Sitemap: https://yohomefix.com/sitemap-cities.xml

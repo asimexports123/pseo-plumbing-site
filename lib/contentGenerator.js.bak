@@ -1,0 +1,591 @@
+﻿import { getCityData } from './cities';
+import {
+  pick, pickNum,
+  DISPATCH_INTROS, HOW_WE_WORK_INTROS, TRUST_PHRASES, PRICING_PHRASES, RESPONSE_PHRASES,
+  H_SERVICE_OVERVIEW, H_WHY_US, H_HOW_IT_WORKS, H_INFRA, H_LOCAL_CONTEXT, H_WARNING_SIGNS,
+} from './contentPhrases';
+
+export function generatePageContent(cityName, stateCode, service) {
+  const fn = {
+    'emergency':          genEmergency,
+    'leak-repair':        genLeakRepair,
+    'drain-cleaning':     genDrainCleaning,
+    'pipe-burst-repair':  genPipeBurst,
+    'water-heater-repair':genWaterHeater,
+  }[service?.slug] || genEmergency;
+  return fn(cityName, stateCode, service);
+}
+
+// ─── 5-TIER PPM CLASSIFIER ──────────────────────────────────────
+// Splits on 5 distinct thresholds so cities with similar but different
+// ppm values never share the same branch label.
+// very-soft:<25  soft:25-99  moderate:100-174  hard:175-249  extreme:250+
+function ppmTier(ppm) {
+  if (ppm < 25)  return 'very soft';
+  if (ppm < 100) return 'soft';
+  if (ppm < 175) return 'moderately hard';
+  if (ppm < 250) return 'hard';
+  return 'extremely hard';
+}
+
+// ─── PER-CITY WATER IMPACT SENTENCE ────────────────────────────
+// Generates a sentence unique to each city by combining its exact ppm
+// value, utility name, and dominant failure mode. No two cities share
+// the same sentence because all three inputs vary per city.
+function waterImpactSentence(cityName, d) {
+  const tier = ppmTier(d.hardnessPpm);
+  const ppm = d.hardnessPpm;
+  if (tier === 'very soft') {
+    return `At only ${ppm} mg/L, ${cityName}'s water from the ${d.waterUtility} is among the softest in the country — but this very low mineral content gives the water a mildly aggressive pH toward metal pipes, and the ${d.dominantFailure} pattern seen locally is partly a consequence of that chemistry acting on ${d.pipeMaterial} installed during the ${d.pipeEra}.`;
+  }
+  if (tier === 'soft') {
+    return `${cityName}'s water from the ${d.waterUtility} measures ${ppm} mg/L — soft enough that scale accumulation is slow, but the water's residual acidity still causes gradual internal corrosion of ${d.pipeMaterial} systems from the ${d.pipeEra}, contributing to the ${d.dominantFailure} failure pattern that local plumbers encounter most frequently.`;
+  }
+  if (tier === 'moderately hard') {
+    return `At ${ppm} mg/L, ${cityName}'s ${d.waterUtility} supply sits in the moderately hard range — enough to deposit scale on heating elements and at valve seats over 2–3 years, and a contributing factor in the ${d.dominantFailure} issues that are most common in ${d.pipeMaterial} homes from the ${d.pipeEra}.`;
+  }
+  if (tier === 'hard') {
+    return `${cityName}'s ${d.waterUtility} delivers water at ${ppm} mg/L — solidly in the hard range — and homeowners with ${d.pipeMaterial} from the ${d.pipeEra} routinely find that scale buildup is accelerating the ${d.dominantFailure} problem that defines plumbing service calls in this market.`;
+  }
+  // extreme
+  return `At ${ppm} mg/L, ${cityName}'s water from the ${d.waterUtility} is among the hardest in the US, and the calcium deposits it leaves inside ${d.pipeMaterial} systems from the ${d.pipeEra} are the primary driver of the ${d.dominantFailure} pattern that makes water treatment and annual maintenance especially important here.`;
+}
+
+// ─── INFRA-CLASS SENTENCE ───────────────────────────────────────
+// Generates a structurally different sentence per infraClass tier,
+// incorporating city-specific soil and sewer data to prevent shared output.
+function infraClassSentence(cityName, d) {
+  if (d.infraClass === 'aging') {
+    return `${cityName}'s plumbing infrastructure skews toward the aging end of the spectrum — the ${d.sewerSystem} serves neighborhoods where ${d.pipeMaterial} was the standard from the ${d.pipeEra}, and the ${d.soilType} that underlies much of the city creates persistent ground movement that stresses these older joints and connections year after year.`;
+  }
+  if (d.infraClass === 'modern') {
+    return `${cityName}'s plumbing infrastructure is relatively modern — most residential systems use ${d.pipeMaterial} installed from the ${d.pipeEra} era — but the ${d.soilType} and the demands placed on the ${d.sewerSystem} mean that even newer systems require professional attention when local conditions push them past design limits.`;
+  }
+  // mixed / transitional
+  return `${cityName} has a split infrastructure profile: established neighborhoods retain ${d.pipeMaterial} from the ${d.pipeEra}, while newer developments use current-standard materials — and that mix, combined with ${d.soilType} and the ${d.sewerSystem}, means plumbing conditions and common failure modes vary significantly by address across the city.`;
+}
+
+// ─── LAYER B+C builder ──────────────────────────────────────────
+function buildInfraSection(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = service?.slug || 'emergency';
+  const tier = ppmTier(d.hardnessPpm);
+  const ppmLabel = `${d.hardnessPpm} mg/L`;
+
+  const infraHeading = pick(H_INFRA, cityName, svc, 'h-infra')(cityName);
+  const localHeading = pick(H_LOCAL_CONTEXT, cityName, svc, 'h-local')(cityName);
+
+  // Layer B — unique 2-sentence infraNarrative per city (already fully unique)
+  const infraBody = `${d.infraNarrative} ${infraClassSentence(cityName, d)}`;
+
+  // Layer C water body — water supply context without repeating the impact sentence
+  // (waterImpactSentence is already embedded in each service's intro paragraph)
+  const waterBody = [
+    `${cityName}'s water is supplied by the ${d.waterUtility} and registers ${ppmLabel} calcium carbonate — classified as ${tier} water.`,
+    ` ${d.soilType ? `The underlying geology — ${d.soilType} — directly affects buried supply and drain lines in ${cityName}, particularly during seasonal moisture and temperature changes.` : ''}`,
+  ].join('');
+
+  const zipText = d.zipCodes && d.zipCodes.length > 0
+    ? `We dispatch to all ${cityName} zip codes including ${d.zipCodes.slice(0, 4).join(', ')}${d.zipCodes.length > 4 ? ', and surrounding areas' : ''}.`
+    : `We dispatch throughout the ${cityName} metro and surrounding communities.`;
+
+  return [
+    { heading: infraHeading, body: infraBody, list: null },
+    {
+      heading: localHeading,
+      body: waterBody,
+      list: [
+        `Water supplier: ${d.waterUtility}`,
+        `Water hardness: ${ppmLabel} (${tier})`,
+        `Primary pipe era: ${d.pipeEra}`,
+        `Dominant pipe material: ${d.pipeMaterial}`,
+        `Infrastructure class: ${d.infraClass}`,
+        zipText,
+      ],
+    },
+  ];
+}
+
+// ─── PER-CITY DOMINANT FAILURE INJECTOR ─────────────────────────
+// Called by every Layer C service generator to append a city-specific
+// sentence that cannot be shared — it embeds dominantFailure + pipeEra
+// + summerRiskNote which are all unique per city.
+function dominantFailureSentence(cityName, d, svc) {
+  const tier = ppmTier(d.hardnessPpm);
+  const climateDetail = d.winterRisk === 'high'
+    ? `winter lows averaging ${d.avgWinterTempF}°F`
+    : d.winterRisk === 'med'
+    ? `mild winters that can still drop unexpectedly and ${d.summerRiskNote}`
+    : d.summerRiskNote;
+  return `In ${cityName}, the combination of ${tier} water at ${d.hardnessPpm} mg/L from the ${d.waterUtility}, ${d.pipeMaterial} systems installed during the ${d.pipeEra}, ${d.soilType}, and ${climateDetail} creates conditions where ${d.dominantFailure} is the most commonly diagnosed plumbing failure — a pattern that shapes how our technicians approach every service call in this city.`;
+}
+
+// ─── RICH LOCAL SIGNAL BUILDER ─────────────────────────────────
+// Shared across all 5 service generators.
+// Returns a structured object with full per-city intelligence so
+// PlumberPage can render a rich, unique local context block.
+function buildLocalSignal(cityName, d) {
+  return {
+    localFact:      d.infraNarrative.split('.')[0] + '.',
+    climate:        d.climate,
+    winterRisk:     d.winterRisk,
+    avgWinterTempF: d.avgWinterTempF,
+    summerRiskNote: d.summerRiskNote,
+    dominantFailure:d.dominantFailure,
+    pipeMaterial:   d.pipeMaterial,
+    pipeEra:        d.pipeEra,
+    waterUtility:   d.waterUtility,
+    hardnessPpm:    d.hardnessPpm,
+    zipCodes:       d.zipCodes || [],
+    pop:            d.pop,
+    infraClass:     d.infraClass,
+  };
+}
+
+// ─── LAYER D: FAQ pool ──────────────────────────────────────────
+// 10-question pool per service; pick() selects 5 per city deterministically
+// so different cities get a different subset of 5 from the 10.
+function pickFaqs(pool, cityName, stateCode, service) {
+  const svc = service?.slug || 'emergency';
+  const indices = [];
+  for (let slot = 0; slot < pool.length; slot++) {
+    let h = 5381;
+    const key = `${cityName}|${svc}|faq${slot}`;
+    for (let i = 0; i < key.length; i++) { h = ((h << 5) + h) ^ key.charCodeAt(i); h = h >>> 0; }
+    indices.push({ slot, score: h });
+  }
+  indices.sort((a, b) => a.score - b.score);
+  return indices.slice(0, 5).map(x => {
+    const faq = pool[x.slot];
+    return { q: faq.q(cityName, stateCode), a: faq.a(cityName, stateCode) };
+  });
+}
+
+// ================================================================
+// EMERGENCY SERVICE GENERATOR
+// ================================================================
+const EMERGENCY_FAQ_POOL = [
+  { q: (c,s) => `Do you charge extra for emergency calls in ${c} after midnight?`,
+    a: (c,s) => `No. Pricing is flat-rate regardless of the time your call comes in. Your technician provides an upfront quote before any work begins, and that quote doesn't change because it's 2 AM.` },
+  { q: (c,s) => `How fast can a licensed plumber reach my ${c} address?`,
+    a: (c,s) => `Our target response time in ${c} is under 60 minutes for emergency calls. A dispatcher confirms your address and sends the nearest available technician immediately after your call.` },
+  { q: (c,s) => `Are your plumbers licensed to work in ${s || 'my state'}?`,
+    a: (c,s) => `Yes. Every technician dispatched to ${c} holds an active ${s || 'state'} plumbing license and carries liability insurance. You can request to see credentials when they arrive.` },
+  { q: (c,s) => `What should I do while waiting for the emergency plumber in ${c}?`,
+    a: (c,s) => `If you have an active water leak, locate and shut your main water supply valve. For gas concerns, leave the building and call from outside. Our dispatcher will walk you through any immediate safety steps.` },
+  { q: (c,s) => `Can you handle sewer backups in ${c}, not just pipe failures?`,
+    a: (c,s) => `Yes. Sewer backups are one of the most common emergency calls we receive in ${c}. We dispatch technicians equipped for sewer line clearing and camera inspection.` },
+  { q: (c,s) => `Do you handle gas line emergencies in ${c}?`,
+    a: (c,s) => `Yes. Licensed plumbers dispatched to ${c} are trained to respond to gas line concerns. If you smell gas, leave your home immediately and call from outside before contacting us.` },
+  { q: (c,s) => `Is same-day emergency plumbing service available throughout ${c}?`,
+    a: (c,s) => `Yes. We cover the full ${c} metro area with same-day emergency dispatch, including weekends and holidays.` },
+  { q: (c,s) => `What types of emergencies do you handle in ${c}?`,
+    a: (c,s) => `We handle burst pipes, frozen pipes, sewer backups, gas line issues, water heater failures, flooding, sump pump failures, and any other plumbing situation that requires immediate attention in ${c}.` },
+  { q: (c,s) => `Will a real plumber answer if I call at 3 AM from ${c}?`,
+    a: (c,s) => `Yes. Our dispatch line is staffed 24 hours a day, 7 days a week. A live dispatcher — not an answering machine — takes your call and initiates dispatch immediately.` },
+  { q: (c,s) => `How do I know the plumber dispatched to my ${c} home is trustworthy?`,
+    a: (c,s) => `Every technician we dispatch in ${c} is licensed, insured, and background-checked. You're welcome to request license number verification when they arrive.` },
+];
+
+const EMERGENCY_LISTS = [
+  ['Burst and frozen pipe repair', 'Sewer line backups and overflows', 'Gas line leak response', 'Water heater emergencies', 'Sump pump failures', 'Toilet overflow and sewage backup'],
+  ['Active water leak stoppage', 'Pipe rupture repair', 'Main line sewer clearing', 'Flooding response and shutoff', 'Gas line inspection', 'After-hours water heater repair'],
+  ['24/7 burst pipe response', 'Sewer backup clearing', 'Frozen pipe thawing and repair', 'Emergency fixture shutoff', 'Basement flooding response', 'Utility shutoff assistance'],
+];
+
+const HOW_STEPS = [
+  ['Call our 24/7 emergency line', 'Dispatcher confirms your location and issue', 'Nearest licensed technician dispatched immediately', 'Technician provides upfront quote on arrival', 'Repair completed — area left clean', 'Follow-up available if any concerns arise'],
+  ['You call — a live person answers', 'We identify the problem and dispatch within minutes', 'Technician arrives with a stocked service vehicle', 'Diagnosis explained before any work begins', 'Repair carried out with your approval', 'Job documented for your records'],
+  ['Live dispatcher takes your call immediately', 'Technician routed to your address in real time', 'On-site arrival — assessment begins', 'Written quote provided before any work starts', 'Repair performed and tested', 'You confirm satisfaction before technician leaves'],
+];
+
+function genEmergency(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = 'emergency';
+
+  const winterContext = d.winterRisk === 'high'
+    ? `With average winter lows reaching ${d.avgWinterTempF}°F, ${cityName} faces real frozen and burst pipe risk each year — particularly in homes with uninsulated crawl spaces, exterior walls, or older ${d.pipeMaterial} systems installed during the ${d.pipeEra}. The ${d.soilType} underlying ${cityName} further stresses buried supply lines as ground frost penetrates during cold snaps.`
+    : d.winterRisk === 'med'
+    ? `While ${cityName}'s winters are moderate, temperatures can drop unexpectedly — and ${d.pipeMaterial} systems installed during the ${d.pipeEra} in homes across ${cityName} may not have been insulated to handle sudden cold snaps. ${d.summerRiskNote} adds a warm-weather dimension to the city's plumbing risk profile.`
+    : `${cityName}'s mild climate means frozen pipes are uncommon, but ${d.summerRiskNote} — creating plumbing stress that makes emergencies a year-round reality. The ${d.soilType} in ${cityName} contributes to pressure on buried supply lines operated by the ${d.waterUtility} system.`;
+
+  const dfSentence = dominantFailureSentence(cityName, d, svc);
+
+  const dispatchIntro = pick(DISPATCH_INTROS, cityName, svc, 'di')(cityName);
+  const trustPhrase = pick(TRUST_PHRASES, cityName, svc, 'tp')(stateCode || 'your state');
+  const pricingPhrase = pick(PRICING_PHRASES, cityName, svc, 'pp');
+  const responsePhrase = pick(RESPONSE_PHRASES, cityName, svc, 'rp')(cityName);
+  const howIntro = pick(HOW_WE_WORK_INTROS, cityName, svc, 'hwi')(cityName);
+
+  const h1 = pick(H_SERVICE_OVERVIEW, cityName, svc, 'h1')('Emergency Plumbing', cityName);
+  const h2 = pick(H_WHY_US, cityName, svc, 'h2')(cityName);
+  const h3 = pick(H_HOW_IT_WORKS, cityName, svc, 'h3')(cityName);
+
+  const serviceList = pick(EMERGENCY_LISTS, cityName, svc, 'sl');
+  const howSteps = pick(HOW_STEPS, cityName, svc, 'hs');
+
+  const infraSections = buildInfraSection(cityName, stateCode, service);
+
+  return {
+    localSignal: buildLocalSignal(cityName, d),
+    intro: `${dispatchIntro} ${winterContext} ${dfSentence} ${responsePhrase} ${pricingPhrase}`,
+    sections: [
+      {
+        heading: h1,
+        body: `Our ${cityName} emergency plumbing team is dispatched around the clock to handle every crisis — from burst pipes and sewer backups to gas line concerns and failed water heaters. Technicians arrive in fully stocked service vehicles carrying the parts needed for most common repairs on the first visit. ${trustPhrase}`,
+        list: serviceList,
+      },
+      infraSections[0],
+      infraSections[1],
+      {
+        heading: h2,
+        body: `${trustPhrase} ${pricingPhrase} ${responsePhrase}`,
+        list: [
+          `Licensed and insured in ${stateCode || 'your state'}`,
+          `Upfront pricing — no hidden charges`,
+          `Fast response — we aim for under 60 minutes`,
+          `Fully stocked service vehicles`,
+          `Available 24/7 including weekends and holidays`,
+          `Clear communication from dispatch to completion`,
+        ],
+      },
+      {
+        heading: h3,
+        body: howIntro,
+        list: howSteps,
+      },
+    ],
+    faqs: pickFaqs(EMERGENCY_FAQ_POOL, cityName, stateCode, service),
+  };
+}
+
+// ================================================================
+// LEAK REPAIR GENERATOR
+// ================================================================
+const LEAK_FAQ_POOL = [
+  { q: (c,s) => `How do I know if I have a hidden pipe leak in my ${c} home?`,
+    a: (c,s) => `Common indicators include an unexplained increase in your water bill, the sound of running water when all fixtures are off, damp or discolored patches on walls or ceilings, and reduced water pressure. A professional leak detection assessment can confirm whether a hidden leak is present.` },
+  { q: (c,s) => `Can you fix a slab leak without breaking my entire floor in ${c}?`,
+    a: (c,s) => `In many cases, yes. We use trenchless pipe lining and epoxy injection techniques that allow slab leaks to be repaired with minimal floor disruption. The appropriate method depends on the leak location and pipe condition, which we assess before recommending a repair approach.` },
+  { q: (c,s) => `How much does leak detection and repair cost in ${c}?`,
+    a: (c,s) => `Cost depends on the leak type and location. A simple faucet or fixture repair is typically a few hundred dollars. Slab leaks or wall leaks requiring pipe rerouting can range from several hundred to a few thousand dollars. We provide a full written estimate before any work begins.` },
+  { q: (c,s) => `How quickly can you respond to a suspected leak in ${c}?`,
+    a: (c,s) => `For active leaks causing water damage, we dispatch within the same response window as any emergency. For suspected hidden leaks without active flooding, we offer same-day and next-day assessment appointments throughout ${c}.` },
+  { q: (c,s) => `Do you fix leaks in commercial properties in ${c}?`,
+    a: (c,s) => `Yes. We service both residential and commercial properties in ${c}, including office buildings, retail spaces, restaurants, and multi-unit residential buildings.` },
+  { q: (c,s) => `What technology do you use to find hidden leaks in ${c} homes?`,
+    a: (c,s) => `We use acoustic listening devices, thermal imaging cameras, and pressure testing to locate leaks precisely without unnecessary demolition. The goal is to find the source before opening any walls or floors.` },
+  { q: (c,s) => `Can a small leak wait, or should I call immediately?`,
+    a: (c,s) => `Even a slow drip inside a wall can cause mold growth, structural wood rot, and ceiling damage within weeks. In ${c}'s climate conditions, moisture-related damage progresses faster than many homeowners expect. Early detection saves significantly on repair costs.` },
+  { q: (c,s) => `Will you repair the wall or floor after fixing a pipe leak in ${c}?`,
+    a: (c,s) => `Our plumbers complete the pipe repair and seal any access points. Drywall patching and finish work are typically handled by a separate contractor, which we can refer you to. We'll discuss what's needed during the assessment.` },
+  { q: (c,s) => `Can hard or soft water in ${c} cause pipe leaks?`,
+    a: (c,s) => `Yes. Hard water deposits scale that can eventually block and stress pipes, while soft water with low mineral content can be corrosive to copper and galvanized steel. The water chemistry in ${c} directly influences how and where leaks develop in your plumbing system.` },
+  { q: (c,s) => `Is leak repair covered by homeowners insurance in ${c}?`,
+    a: (c,s) => `Coverage depends on your specific policy and the cause of the leak. Sudden accidental damage is often covered; gradual leaks due to aging pipes typically are not. We provide detailed repair documentation that you can submit to your insurer.` },
+];
+
+const LEAK_SERVICE_LISTS = [
+  ['Pipe leak detection and repair', 'Faucet and fixture leak repair', 'Slab leak detection and repair', 'Hidden wall and ceiling leak repair', 'Shower pan and bathtub leak repair', 'Outdoor and irrigation line leak repair'],
+  ['Acoustic and thermal leak detection', 'Pinhole pipe leak repair', 'Slab leak trenchless repair', 'Supply line leak repair', 'Drain leak sealing', 'Pressure testing and diagnosis'],
+  ['Non-invasive leak location', 'Copper and PEX pipe leak repair', 'Foundation slab leak repair', 'Sink and toilet base leak repair', 'Underground supply line repair', 'Water meter leak investigation'],
+];
+
+const LEAK_PROCESS_LISTS = [
+  ['Non-invasive detection using acoustic and thermal tools', 'Precise leak location — no guesswork', 'Written quote provided before any repair work', 'Repair completed with quality materials', 'Pressure test performed after repair', 'Area cleaned and restored before departure'],
+  ['Thorough inspection of water meter, fixtures, and visible pipes', 'Acoustic listening for hidden pipe movement', 'Exact leak source identified and confirmed', 'Repair options explained with transparent pricing', 'Pipe repaired and flow tested', 'Follow-up check available on request'],
+  ['Camera and pressure test to rule out multiple leak points', 'Single source identified — reduces unnecessary access cuts', 'Repair method selected based on pipe material and age', 'Work approved by homeowner before starting', 'Completed repair pressure-verified', 'Documentation provided for insurance or records'],
+];
+
+function genLeakRepair(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = 'leak-repair';
+  const waterContext = `${waterImpactSentence(cityName, d)} The ${d.soilType} in ${cityName} adds a geological dimension to leak risk — ground movement during seasonal moisture cycles places repeated stress on ${d.pipeMaterial} connections at depths where visual inspection is impossible without camera equipment.`;
+  const dfSentence = dominantFailureSentence(cityName, d, svc);
+
+  const dispatchIntro = pick(DISPATCH_INTROS, cityName, svc, 'di')(cityName);
+  const trustPhrase = pick(TRUST_PHRASES, cityName, svc, 'tp')(stateCode || 'your state');
+  const pricingPhrase = pick(PRICING_PHRASES, cityName, svc, 'pp');
+  const responsePhrase = pick(RESPONSE_PHRASES, cityName, svc, 'rp')(cityName);
+
+  const h1 = pick(H_SERVICE_OVERVIEW, cityName, svc, 'h1')('Leak Repair', cityName);
+  const h2 = pick(H_WARNING_SIGNS, cityName, svc, 'h2')(cityName);
+  const h3 = pick(H_WHY_US, cityName, svc, 'h3')(cityName);
+
+  const serviceList = pick(LEAK_SERVICE_LISTS, cityName, svc, 'sl');
+  const processList = pick(LEAK_PROCESS_LISTS, cityName, svc, 'pl');
+  const infraSections = buildInfraSection(cityName, stateCode, service);
+
+  return {
+    localSignal: buildLocalSignal(cityName, d),
+    intro: `${dispatchIntro} ${waterContext} ${dfSentence} ${pricingPhrase}`,
+    sections: [
+      {
+        heading: h1,
+        body: `Whether the problem is a dripping faucet, a pinhole leak inside your walls, or a slab leak under your foundation, our ${cityName} leak repair plumbers use acoustic detection and thermal imaging to find the source precisely — without unnecessary demolition. ${trustPhrase}`,
+        list: serviceList,
+      },
+      {
+        heading: h2,
+        body: `Many leaks in ${cityName} homes go undetected for months, quietly raising water bills and damaging structural materials. Given the ${d.pipeMaterial} systems common in ${cityName} homes — most installed during the ${d.pipeEra} — these warning signs deserve immediate attention:`,
+        list: ['Unexplained increase in your water bill', 'Sound of running water when all taps and fixtures are off', 'Wet spots, staining, bubbling, or warped walls and ceilings', 'Reduced water pressure throughout the home', 'Mold, mildew smell, or discoloration near walls or floors', 'Warm patches on the floor (possible slab leak indicator)'],
+      },
+      infraSections[0],
+      infraSections[1],
+      {
+        heading: h3,
+        body: `${trustPhrase} ${pricingPhrase} ${responsePhrase}`,
+        list: processList,
+      },
+    ],
+    faqs: pickFaqs(LEAK_FAQ_POOL, cityName, stateCode, service),
+  };
+}
+
+// ================================================================
+// DRAIN CLEANING GENERATOR
+// ================================================================
+const DRAIN_FAQ_POOL = [
+  { q: (c,s) => `How often should drains be professionally cleaned in ${c}?`,
+    a: (c,s) => `For most ${c} homes, annual professional drain cleaning is a practical maintenance interval. Homes with older cast iron or clay drain lines, mature trees near the sewer lateral, or households that produce significant cooking grease or hair buildup may benefit from cleaning every six months.` },
+  { q: (c,s) => `Can you clear a completely blocked main sewer line in ${c}?`,
+    a: (c,s) => `Yes. Main sewer line blockages are a routine service call in ${c}. We use hydro-jetting and video camera inspection to clear the line fully and identify the underlying cause — whether it's root intrusion, scale buildup, grease accumulation, or pipe damage.` },
+  { q: (c,s) => `Why does my drain keep clogging again after I clear it in ${c}?`,
+    a: (c,s) => `Recurring clogs almost always indicate a deeper problem — a partial blockage in the main line, significant scale buildup on pipe walls, active root intrusion, or a damaged pipe section that traps debris. Camera inspection reveals the true cause so it can be permanently resolved.` },
+  { q: (c,s) => `Do you use chemicals to clean drains in ${c}?`,
+    a: (c,s) => `No. We rely on hydro-jetting and professional drain snaking, not harsh chemicals. Chemical drain cleaners are corrosive to pipe materials and rarely clear the full blockage — they create a temporary hole through the clog without removing the surrounding buildup.` },
+  { q: (c,s) => `How fast can you respond for drain cleaning in ${c}?`,
+    a: (c,s) => `For emergencies where water is actively backing up, we dispatch with the same urgency as any plumbing emergency. For routine drain cleaning appointments in ${c}, we offer same-day and next-day scheduling.` },
+  { q: (c,s) => `What is hydro-jetting and is it safe for my ${c} home's pipes?`,
+    a: (c,s) => `Hydro-jetting uses a high-pressure water stream — typically 1,500 to 4,000 PSI — to scour the interior pipe walls and flush all debris, grease, roots, and scale completely out of the line. It's safe for cast iron, PVC, CPVC, and clay pipes when performed by a trained technician who assesses pipe condition first.` },
+  { q: (c,s) => `Can tree roots really grow into my sewer line in ${c}?`,
+    a: (c,s) => `Yes. Tree roots naturally seek moisture and will infiltrate sewer pipes through even hairline cracks at joints. This is particularly common in ${c} neighborhoods with mature street trees and older clay or cast iron sewer laterals. Camera inspection confirms root presence before we recommend the appropriate clearing method.` },
+  { q: (c,s) => `Do you offer preventive drain maintenance plans in ${c}?`,
+    a: (c,s) => `Yes. Scheduled maintenance agreements for ${c} homes and businesses are available. Preventive cleaning on a fixed schedule reduces emergency drain calls and extends the life of your drain system.` },
+  { q: (c,s) => `What causes sewage smell from drains in a ${c} home?`,
+    a: (c,s) => `Sewage odor from drains usually indicates a dry P-trap, a partial blockage fermenting organic material, a cracked sewer lateral, or a ventilation issue in the drain-waste-vent system. A plumber can identify the source and eliminate it during an inspection.` },
+  { q: (c,s) => `Can you clean drains in commercial kitchens and restaurants in ${c}?`,
+    a: (c,s) => `Yes. Grease trap cleaning and commercial kitchen drain clearing are services we provide throughout ${c}. Commercial kitchens produce grease accumulation at a much higher rate than residential drains and typically require more frequent cleaning intervals.` },
+];
+
+const DRAIN_SERVICE_LISTS = [
+  ['Kitchen drain cleaning and degreasing', 'Bathroom sink, tub, and shower drain clearing', 'Main sewer line hydro-jetting', 'Video camera sewer inspection', 'Floor drain cleaning', 'Grease trap cleaning'],
+  ['Drain snaking for standard blockages', 'Hydro-jetting for root intrusion and scale', 'Sewer lateral inspection and clearing', 'Laundry drain and utility sink clearing', 'Commercial drain cleaning', 'Preventive maintenance scheduling'],
+  ['Clogged toilet and sewer backup clearing', 'Kitchen grease blockage removal', 'Tree root cutting in sewer lines', 'Multi-drain simultaneous blockage diagnosis', 'Camera inspection before and after clearing', 'Floor drain and catch basin cleaning'],
+];
+
+function genDrainCleaning(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = 'drain-cleaning';
+
+  const infraContext = d.infraClass === 'aging'
+    ? `${cityName}'s drain infrastructure is predominantly aging — the ${d.sewerSystem} serves neighborhoods where original ${d.pipeMaterial} drain lines from the ${d.pipeEra} are still in active use. The ${d.soilType} in ${cityName} exerts ongoing stress on these older joints, and the ${d.dominantFailure} pattern is directly tied to how the city's water from the ${d.waterUtility} interacts with decades-old pipe materials.`
+    : d.infraClass === 'modern'
+    ? `While much of ${cityName}'s plumbing infrastructure is relatively modern, the ${d.soilType} and the ${d.waterUtility} water supply at ${d.hardnessPpm} mg/L create conditions that challenge even newer PVC and ABS drain systems — particularly at underground joints where ${d.dominantFailure} begins to manifest over time.`
+    : `${cityName} has a split drain infrastructure — established neighborhoods served by the ${d.sewerSystem} carry original ${d.pipeMaterial} drain lines from the ${d.pipeEra}, while newer areas use modern materials. The ${d.soilType} means failure modes and drain conditions vary significantly by address, and the ${d.dominantFailure} tendency in this market reflects that structural complexity.`;
+
+  const dfSentence = dominantFailureSentence(cityName, d, svc);
+
+  const dispatchIntro = pick(DISPATCH_INTROS, cityName, svc, 'di')(cityName);
+  const trustPhrase = pick(TRUST_PHRASES, cityName, svc, 'tp')(stateCode || 'your state');
+  const pricingPhrase = pick(PRICING_PHRASES, cityName, svc, 'pp');
+  const responsePhrase = pick(RESPONSE_PHRASES, cityName, svc, 'rp')(cityName);
+
+  const h1 = pick(H_SERVICE_OVERVIEW, cityName, svc, 'h1')('Drain Cleaning', cityName);
+  const h2 = pick(H_WARNING_SIGNS, cityName, svc, 'h2')(cityName);
+  const h3 = pick(H_HOW_IT_WORKS, cityName, svc, 'h3')(cityName);
+
+  const serviceList = pick(DRAIN_SERVICE_LISTS, cityName, svc, 'sl');
+  const infraSections = buildInfraSection(cityName, stateCode, service);
+
+  return {
+    localSignal: buildLocalSignal(cityName, d),
+    intro: `${dispatchIntro} Slow drains and recurring blockages are rarely just a surface inconvenience — they often signal a developing problem deeper in your ${cityName} drain system. ${infraContext} ${dfSentence} ${pricingPhrase}`,
+
+    sections: [
+      {
+        heading: h1,
+        body: `Our ${cityName} drain cleaning team uses video camera inspection to diagnose the exact cause of blockages before clearing them — ensuring a complete fix rather than a temporary solution. We use hydro-jetting for thorough line clearing and drain snaking for targeted blockage removal. ${trustPhrase}`,
+        list: serviceList,
+      },
+      {
+        heading: h2,
+        body: `${cityName} homeowners sometimes wait too long before calling for professional drain cleaning. These early signals indicate your drain system needs attention before a full backup occurs:`,
+        list: ['Slow-draining sinks, tubs, or showers throughout the home', 'Gurgling sounds from drains or the toilet base', 'Multiple drains sluggish at the same time — often a main line issue', 'Sewage smell rising from floor drains or clean-outs', 'Water backing up in the shower when the toilet flushes', 'Recurring clogs that return within days of clearing'],
+      },
+      infraSections[0],
+      infraSections[1],
+      {
+        heading: h3,
+        body: `${responsePhrase} ${pricingPhrase}`,
+        list: ['You call — a live dispatcher assesses the situation', 'Technician dispatched with camera and hydro-jet equipment', 'Camera inspection performed before any clearing begins', 'Blockage cause identified — root, grease, scale, or damage', 'Appropriate clearing method selected and approved by you', 'Post-clearing camera confirms the line is fully open'],
+      },
+    ],
+    faqs: pickFaqs(DRAIN_FAQ_POOL, cityName, stateCode, service),
+  };
+}
+
+// ================================================================
+// PIPE BURST REPAIR GENERATOR
+// ================================================================
+const BURST_FAQ_POOL = [
+  { q: (c,s) => `Where is the main water shut-off valve in my ${c} home?`,
+    a: (c,s) => `In most ${c} homes, the main shut-off is located where the water supply line enters the structure — typically in the basement, utility room, crawl space, or near the exterior water meter. If you're unsure, our dispatcher can help you locate it over the phone while a technician is en route.` },
+  { q: (c,s) => `How fast can you respond to a burst pipe in ${c}?`,
+    a: (c,s) => `Burst pipe calls in ${c} receive emergency priority dispatch. Our target is to have a technician at your door within 60 minutes. We operate 24 hours a day, 7 days a week, and there are no additional charges for after-hours response.` },
+  { q: (c,s) => `Will my homeowners insurance cover a burst pipe repair in ${c}?`,
+    a: (c,s) => `Most standard homeowners insurance policies cover sudden and accidental water damage from burst pipes. Gradual leaks or pipes that failed due to lack of maintenance may not be covered. We provide detailed repair documentation to support your claim — contact your insurer to verify your specific coverage.` },
+  { q: (c,s) => `Can you repair just the burst section, or does the whole pipe need replacing?`,
+    a: (c,s) => `In many cases, only the damaged section needs replacement. We use pipe couplings, clamps, and epoxy repairs for localized bursts. For extensive damage or pipe systems beyond their service life, a full section replacement is recommended. We explain the options and let you decide.` },
+  { q: (c,s) => `Are my pipes at risk of bursting during ${c} winters?`,
+    a: (c,s) => `That depends on your home's construction and insulation. Pipes in exterior walls, unheated garages, crawl spaces, and attics face the highest risk during cold snaps. We offer pre-winter pipe inspection and insulation services throughout ${c}.` },
+  { q: (c,s) => `What should I do immediately when a pipe bursts in ${c}?`,
+    a: (c,s) => `Shut off your main water supply immediately to stop the flow. Turn off electricity in flooded areas if it's safe to do so. Open faucets to drain remaining water from pipes. Move valuables away from the water and document the damage with photos for insurance. Then call us — our dispatcher will guide you through any additional steps.` },
+  { q: (c,s) => `How do I prevent pipes from bursting in my ${c} home?`,
+    a: (c,s) => `Key preventive measures include insulating pipes in unheated spaces, maintaining interior heat above 55°F during cold periods, knowing where your main shutoff is, and scheduling a pre-winter pipe inspection. We offer preventive insulation and inspection services throughout ${c}.` },
+  { q: (c,s) => `Can water damage from a burst pipe be restored on the same visit?`,
+    a: (c,s) => `The pipe repair is completed on the visit. Water extraction and structural drying typically require a separate water damage restoration contractor. We can advise on next steps and documentation after completing the pipe repair.` },
+  { q: (c,s) => `Do older homes in ${c} have a higher risk of burst pipes?`,
+    a: (c,s) => `Generally yes. Older pipe materials like galvanized steel and cast iron are more brittle and more likely to fail under freeze-thaw stress or pressure spikes. If your ${c} home was built during the ${c} area's earlier development periods, a plumbing inspection is a worthwhile investment.` },
+  { q: (c,s) => `Is pipe burst repair available on weekends and holidays in ${c}?`,
+    a: (c,s) => `Yes. Burst pipe response is available 24/7 in ${c}, including weekends, public holidays, and overnight hours. Emergency pricing is not applied — you receive the same upfront quote regardless of when you call.` },
+];
+
+const BURST_SERVICE_LISTS = [
+  ['Emergency pipe burst repair — 24/7', 'Copper, PVC, PEX, and galvanized pipe repair', 'Frozen pipe thawing and repair', 'Water main break response', 'Whole-house inspection after burst event', 'Post-burst pressure testing'],
+  ['Active burst pipe water shutoff assistance', 'Localized pipe section replacement', 'Pipe clamp and coupling repair', 'Freeze event pipe assessment', 'Crawl space and exterior wall pipe inspection', 'Insurance documentation support'],
+  ['Emergency water shutoff and pipe repair', 'PEX, copper, and CPVC burst repair', 'Attic and crawl space frozen pipe thawing', 'Burst water line rerouting', 'Pressure test after all repairs', 'Pre-winter pipe insulation service'],
+];
+
+function genPipeBurst(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = 'pipe-burst-repair';
+
+  const riskContext = d.winterRisk === 'high'
+    ? `${cityName} winters regularly push temperatures to ${d.avgWinterTempF}°F and below — cold enough to freeze ${d.pipeMaterial} pipes in exterior walls, crawl spaces, and unheated garages within hours of sustained exposure. The ${d.soilType} in ${cityName} penetrates frost deeply, and the ${d.waterUtility} system serves neighborhoods where insulation standards during the ${d.pipeEra} were far lower than modern requirements.`
+    : d.winterRisk === 'med'
+    ? `While ${cityName} is not known for extreme winters, temperatures can drop unexpectedly — and when they do, ${d.pipeMaterial} systems from the ${d.pipeEra} in homes across the city can freeze quickly. ${d.summerRiskNote} adds a secondary stress layer, and the ${d.soilType} means ground movement is a year-round factor in ${cityName} pipe failures.`
+    : `${cityName}'s climate means frozen pipes are uncommon, but burst pipes still occur — ${d.summerRiskNote} is the more common trigger. Pressure spikes, ${d.pipeMaterial} systems from the ${d.pipeEra}, and soil movement from ${d.soilType} are the primary causes of pipe failures, with the ${d.waterUtility} system infrastructure adding additional context.`;
+
+  const dfSentence = dominantFailureSentence(cityName, d, svc);
+
+  const dispatchIntro = pick(DISPATCH_INTROS, cityName, svc, 'di')(cityName);
+  const trustPhrase = pick(TRUST_PHRASES, cityName, svc, 'tp')(stateCode || 'your state');
+  const pricingPhrase = pick(PRICING_PHRASES, cityName, svc, 'pp');
+  const responsePhrase = pick(RESPONSE_PHRASES, cityName, svc, 'rp')(cityName);
+
+  const h1 = pick(H_SERVICE_OVERVIEW, cityName, svc, 'h1')('Pipe Burst Repair', cityName);
+  const h2 = pick(H_HOW_IT_WORKS, cityName, svc, 'h2')(cityName);
+  const h3 = pick(H_WHY_US, cityName, svc, 'h3')(cityName);
+
+  const serviceList = pick(BURST_SERVICE_LISTS, cityName, svc, 'sl');
+  const infraSections = buildInfraSection(cityName, stateCode, service);
+
+  return {
+    localSignal: buildLocalSignal(cityName, d),
+    intro: `${dispatchIntro} ${riskContext} ${dfSentence} ${responsePhrase} ${pricingPhrase}`,
+    sections: [
+      {
+        heading: h1,
+        body: `A burst pipe releases water at a rate that can cause significant structural damage within minutes. Our ${cityName} burst pipe specialists arrive fully equipped to stop the water flow, assess the extent of damage, and complete permanent repairs in a single visit in most cases. ${trustPhrase}`,
+        list: serviceList,
+      },
+      {
+        heading: h2,
+        body: `Fast action in the first few minutes after a pipe burst significantly limits the water damage. While our ${cityName} team is en route, follow these steps:`,
+        list: ['Locate and shut off your main water supply valve immediately', 'Turn off electricity to any rooms where water is present, if safe', 'Open faucets throughout the home to drain remaining water from pipes', 'Move furniture, rugs, and valuables out of the affected area', 'Photograph all visible damage for insurance documentation', 'Stay on the line with our dispatcher for additional guidance'],
+      },
+      infraSections[0],
+      infraSections[1],
+      {
+        heading: h3,
+        body: `${trustPhrase} ${pricingPhrase} ${responsePhrase}`,
+        list: ['Licensed and insured technicians in ' + (stateCode || 'your state'), 'Emergency dispatch available at any hour', 'Stocked vehicles carry most common pipe materials and fittings', 'Upfront written quote before work begins', 'Post-repair pressure test confirms complete fix', 'Insurance documentation provided on request'],
+      },
+    ],
+    faqs: pickFaqs(BURST_FAQ_POOL, cityName, stateCode, service),
+  };
+}
+
+// ================================================================
+// WATER HEATER REPAIR GENERATOR
+// ================================================================
+const WATER_HEATER_FAQ_POOL = [
+  { q: (c,s) => `How long should a water heater last in ${c}'s water conditions?`,
+    a: (c,s) => `Standard tank water heaters typically last 8 to 12 years, though water hardness significantly affects this. In ${c}, where water hardness is a factor, units without annual maintenance often show performance decline earlier. Tankless units generally last 15 to 20 years with proper servicing.` },
+  { q: (c,s) => `Can you replace my water heater the same day in ${c}?`,
+    a: (c,s) => `In most cases, yes. We stock commonly used tank and tankless models and can complete same-day installation across ${c}. Call in the morning and you'll typically have restored hot water by evening.` },
+  { q: (c,s) => `Should I repair or replace my water heater?`,
+    a: (c,s) => `If the unit is under six years old and the repair cost is less than half the replacement cost, repair is generally the better option. For units older than ten years showing signs of failure, replacement is usually more cost-effective and reliable over the next decade.` },
+  { q: (c,s) => `Are tankless water heaters a good choice for ${c} homes?`,
+    a: (c,s) => `For most ${c} homeowners, tankless units offer meaningful advantages: continuous hot water on demand, 20 to 30 percent lower energy consumption than tank units, and a longer service life. The higher upfront cost is typically recovered in energy savings over five to seven years.` },
+  { q: (c,s) => `What brands of water heaters do you install in ${c}?`,
+    a: (c,s) => `We install and service all major brands, including Rheem, Bradford White, A.O. Smith, Navien, Rinnai, Noritz, and State. We recommend specific models based on your household size, water hardness, and energy goals rather than brand preference alone.` },
+  { q: (c,s) => `What causes the rumbling and popping sounds from my water heater in ${c}?`,
+    a: (c,s) => `Those sounds are almost always sediment — mineral scale that has settled on the bottom of the tank and is being heated unevenly by the burner. In ${c}, where water mineral content varies, this buildup can occur within 18 to 24 months without regular flushing. Annual tank flushing prevents this.` },
+  { q: (c,s) => `Is rusty or discolored hot water dangerous in a ${c} home?`,
+    a: (c,s) => `Discolored hot water typically indicates an aging anode rod that has failed, allowing the tank lining to corrode. This is a sign the unit is nearing end of life. Have the unit assessed — if the tank itself is rusting internally, replacement is necessary rather than repair.` },
+  { q: (c,s) => `Can you service commercial water heaters in ${c}?`,
+    a: (c,s) => `Yes. We service commercial tank and tankless water heater systems in ${c}, including high-capacity units in restaurants, hotels, office buildings, and multi-unit residential properties.` },
+  { q: (c,s) => `How much does water heater replacement cost in ${c}?`,
+    a: (c,s) => `Cost depends on unit type, capacity, and installation requirements. A standard tank replacement typically ranges from several hundred to over a thousand dollars including installation. Tankless units have a higher upfront cost but lower operating costs. We provide a full written estimate before any work begins.` },
+  { q: (c,s) => `Do I need a permit for water heater replacement in ${c}?`,
+    a: (c,s) => `Most jurisdictions in ${c} require a permit for water heater replacement, particularly for gas units. We handle permit pulling where required as part of the installation service.` },
+];
+
+const WH_SERVICE_LISTS = [
+  ['Water heater repair — all brands and types', 'Tankless water heater repair and installation', 'Emergency same-day water heater replacement', 'Anode rod inspection and replacement', 'Thermostat and heating element repair', 'Commercial water heater service'],
+  ['Tank flushing and sediment removal', 'Gas and electric water heater repair', 'Tankless unit descaling and maintenance', 'Pressure relief valve inspection and replacement', 'Water heater installation with permit', 'Energy-efficient upgrade consultation'],
+  ['Emergency water heater diagnosis', 'All-brand water heater service', 'Hybrid heat pump water heater installation', 'Expansion tank installation', 'Gas line connection for water heaters', 'Old unit removal and proper disposal'],
+];
+
+const WH_REPLACEMENT_LISTS = [
+  ['Same-day water heater installation available', 'Tank and tankless models in stock', 'Correct sizing assessment for your home', 'Old unit removed and disposed of properly', 'Permit pulled where required', 'Post-installation pressure and temperature check'],
+  ['Gas and electric installation — all fuel types', 'Tankless conversion available', 'Energy Star models available', 'Expansion tank installation if required by code', 'All connections tested and verified', 'Documentation provided for permits and warranty'],
+  ['In-stock units for immediate installation', 'Proper sizing based on household demand', 'Manufacturer warranty preserved with professional install', 'Gas shutoff and reconnection handled safely', 'Code-compliant installation throughout', 'Final inspection and operational confirmation'],
+];
+
+function genWaterHeater(cityName, stateCode, service) {
+  const d = getCityData(cityName);
+  const svc = 'water-heater-repair';
+  const waterHeaterContext = `${waterImpactSentence(cityName, d)} For ${cityName} homes with ${d.pipeMaterial} systems from the ${d.pipeEra}, water heater maintenance schedules should account for how local ${d.soilType} affects water line pressure, which in turn influences sediment accumulation rates in tank units.`;
+  const dfSentence = dominantFailureSentence(cityName, d, svc);
+
+  const dispatchIntro = pick(DISPATCH_INTROS, cityName, svc, 'di')(cityName);
+  const trustPhrase = pick(TRUST_PHRASES, cityName, svc, 'tp')(stateCode || 'your state');
+  const pricingPhrase = pick(PRICING_PHRASES, cityName, svc, 'pp');
+  const responsePhrase = pick(RESPONSE_PHRASES, cityName, svc, 'rp')(cityName);
+
+  const h1 = pick(H_SERVICE_OVERVIEW, cityName, svc, 'h1')('Water Heater Repair', cityName);
+  const h2 = pick(H_WARNING_SIGNS, cityName, svc, 'h2')(cityName);
+  const h3 = pick(H_WHY_US, cityName, svc, 'h3')(cityName);
+
+  const serviceList = pick(WH_SERVICE_LISTS, cityName, svc, 'sl');
+  const replacementList = pick(WH_REPLACEMENT_LISTS, cityName, svc, 'rl');
+  const infraSections = buildInfraSection(cityName, stateCode, service);
+
+  return {
+    localSignal: buildLocalSignal(cityName, d),
+    intro: `${dispatchIntro} ${waterHeaterContext} ${dfSentence} ${responsePhrase} ${pricingPhrase}`,
+    sections: [
+      {
+        heading: h1,
+        body: `Our ${cityName} water heater technicians service all brands and types — traditional tank units, tankless on-demand systems, heat pump models, and commercial water heaters. We carry the most common replacement parts and units in our service vehicles, allowing most repairs and replacements to be completed in a single visit. ${trustPhrase}`,
+        list: serviceList,
+      },
+      {
+        heading: h2,
+        body: `${cityName} homeowners often wait until a complete failure before calling — but these warning signs indicate your water heater needs attention before you lose hot water entirely:`,
+        list: ['No hot water, or water that doesn\'t reach the expected temperature', 'Rusty, discolored, or metallic-smelling water from hot taps only', 'Rumbling, popping, or banging sounds during heating cycles', 'Water pooling around the base of the tank', 'Unit is 10 or more years old and showing performance decline', 'Energy bills increasing without changes in usage patterns'],
+      },
+      infraSections[0],
+      infraSections[1],
+      {
+        heading: h3,
+        body: `When repair is not cost-effective, we offer same-day water heater replacement throughout ${cityName}. ${pricingPhrase}`,
+        list: replacementList,
+      },
+    ],
+    faqs: pickFaqs(WATER_HEATER_FAQ_POOL, cityName, stateCode, service),
+  };
+}

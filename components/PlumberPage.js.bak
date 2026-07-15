@@ -1,0 +1,558 @@
+import Head from 'next/head';
+import Link from 'next/link';
+import { useCallback } from 'react';
+import {
+  PHONE_NUMBER, PHONE_DISPLAY, SERVICES, SEED_CITIES,
+  cityToSlug, buildSlug, getStateSlug,
+} from '../lib/cities';
+
+function trackCall(label) {
+  try {
+    const key = 'yhf_call_clicks';
+    const existing = JSON.parse(localStorage.getItem(key) || '{}');
+    existing[label] = (existing[label] || 0) + 1;
+    existing['__total'] = (existing['__total'] || 0) + 1;
+    existing['__last'] = new Date().toISOString();
+    localStorage.setItem(key, JSON.stringify(existing));
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'call_click', { event_label: label });
+    }
+  } catch (_) {}
+}
+
+const CTA_TEXT = {
+  'hero':       'Get Emergency Help',
+  'mid-page':   'Call Now — 24/7',
+  'bottom':     'Call Today',
+  'nav-desktop':'Call Now',
+};
+
+function CallButton({ label, size = 'lg', className = '' }) {
+  const handleClick = useCallback(() => trackCall(label), [label]);
+  const base = size === 'lg'
+    ? 'inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white rounded-full font-extrabold shadow-xl transition-transform hover:scale-105 px-8 py-5 text-xl'
+    : 'inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold transition-colors px-5 py-2';
+  const text = CTA_TEXT[label] || 'Call Now';
+  return (
+    <a
+      href={`tel:${PHONE_NUMBER}`}
+      onClick={handleClick}
+      data-track={label}
+      className={`${base} ${className}`}
+    >
+      📞 {text}
+    </a>
+  );
+}
+
+
+const SERVICE_INTROS = {
+  'emergency':          (city) => `When a plumbing emergency strikes in ${city}, knowing what's covered helps you act faster.`,
+  'leak-repair':        (city) => `Leak repair in ${city} can range from a minor drip to a pressurized supply failure — here's the full scope of what our network handles.`,
+  'drain-cleaning':     (city) => `Drain issues in ${city} vary by pipe age, soil type, and usage — our network covers the full range of cleaning and clearing needs.`,
+  'pipe-burst-repair':  (city) => `Burst pipe situations in ${city} often require immediate triage followed by longer-term repair — here's what's included.`,
+  'water-heater-repair':(city) => `Water heater problems in ${city} span from sediment buildup to full unit failure — our network covers all of it.`,
+};
+
+const SERVICES_COVERED = [
+  { icon: '🚨', text: 'Emergency plumbing services for urgent issues like leaks and burst pipes' },
+  { icon: '🔧', text: 'Repairs and maintenance for long-term system reliability' },
+  { icon: '🌀', text: 'Drain cleaning to remove blockages and buildup' },
+  { icon: '🔩', text: 'Replacement of damaged or failed plumbing components' },
+  { icon: '🏗️', text: 'New plumbing installations for upgrades and renovations' },
+];
+
+const WHY_CHOOSE_US = [
+  {
+    icon: '🚨',
+    title: 'Fast Response',
+    desc: 'Our dispatch network is available around the clock. When you call, a live operator connects you to the nearest available technician — no hold queues, no callbacks.',
+  },
+  {
+    icon: '🏅',
+    title: 'Experienced Plumbing Professionals',
+    desc: 'Every technician in our network holds a valid state plumbing license and carries liability insurance. Credentials are required before any contractor joins our dispatch network.',
+  },
+  {
+    icon: '💬',
+    title: 'Upfront Communication',
+    desc: 'You receive a written quote before any work begins. Our network technicians are required to explain the scope and cost clearly — no surprise charges after the job.',
+  },
+  {
+    icon: '🔧',
+    title: 'Comprehensive Leak & Plumbing Solutions',
+    desc: 'From pinhole leaks and burst pipes to drain blockages and water heater failures — our network covers the full range of residential plumbing needs in a single call.',
+  },
+  {
+    icon: '📍',
+    title: 'Local Service Coverage',
+    desc: 'We dispatch locally. Your call routes to a technician who operates in your area — not a distant contractor unfamiliar with local infrastructure, codes, or conditions.',
+  },
+  {
+    icon: '🤝',
+    title: 'Customer-First Approach',
+    desc: 'Our dispatchers are trained to listen, assess urgency, and connect you with the right technician quickly. You are kept informed at every step — from dispatch to arrival.',
+  },
+];
+
+function WhyChooseUs() {
+  return (
+    <div className="mb-10">
+      <h2 className="text-2xl font-bold text-blue-900 mb-1">Why Homeowners Choose Us</h2>
+      <p className="text-gray-500 text-sm mb-6">What sets our dispatch network apart from a standard plumbing call center.</p>
+      <div className="grid md:grid-cols-2 gap-4">
+        {WHY_CHOOSE_US.map((item) => (
+          <div key={item.title} className="flex gap-4 p-5 border border-gray-200 rounded-xl">
+            <div className="flex-shrink-0 w-11 h-11 bg-blue-50 rounded-full flex items-center justify-center text-2xl">{item.icon}</div>
+            <div>
+              <p className="font-bold text-gray-900 mb-1 text-sm">{item.title}</p>
+              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const TRUST_QUOTES = [
+  { quote: 'The technician arrived within the hour. Diagnosed the burst pipe immediately and had the repair done before it caused further damage.', label: 'Emergency Pipe Repair' },
+  { quote: 'Called at midnight for a flooding issue. A live person answered right away and had someone at our door faster than I expected.', label: 'After-Hours Dispatch' },
+  { quote: 'Was given a clear price before any work started. No hidden fees, no pressure. Exactly what I needed during a stressful situation.', label: 'Upfront Pricing' },
+  { quote: 'The drain had been slow for weeks. One call and the problem was resolved same day. Simple, professional, no upselling.', label: 'Drain Cleaning' },
+  { quote: 'Water heater stopped working on a cold morning. The network found a local technician quickly and the fix was straightforward.', label: 'Water Heater Service' },
+  { quote: 'Appreciated that the dispatcher asked the right questions upfront. The technician who arrived already knew what to bring.', label: 'Leak Repair' },
+];
+
+function TrustQuotes() {
+  return (
+    <div className="mb-10">
+      <h2 className="text-2xl font-bold text-blue-900 mb-1">What Homeowners Experience</h2>
+      <p className="text-gray-500 text-sm mb-6">Representative experiences from homeowners who used our dispatch network. Individual results may vary.</p>
+      <div className="grid md:grid-cols-2 gap-4">
+        {TRUST_QUOTES.map((item) => (
+          <div key={item.label} className="bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <p className="text-gray-700 text-sm leading-relaxed mb-3">&ldquo;{item.quote}&rdquo;</p>
+            <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">{item.label}</span>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-gray-400 mt-4 text-center">These are representative experiences based on common service outcomes. They do not represent specific individuals or guaranteed results.</p>
+    </div>
+  );
+}
+
+function ServicesCovered({ serviceSlug, cityName }) {
+  const intro = (SERVICE_INTROS[serviceSlug] || SERVICE_INTROS['emergency'])(cityName);
+  return (
+    <div className="mb-10 border border-gray-200 rounded-2xl p-6">
+      <h2 className="text-xl font-bold text-blue-900 mb-2">Services We Cover</h2>
+      <p className="text-gray-600 text-sm mb-4">{intro}</p>
+      <ul className="space-y-2">
+        {SERVICES_COVERED.map((item, i) => (
+          <li key={i} className="flex items-start gap-3 text-gray-700 text-sm">
+            <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
+            <span>{item.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities }) {
+  const location = stateCode ? `${cityName}, ${stateCode}` : cityName;
+  const serviceName = service?.name || 'Emergency Plumbing';
+  const serviceSlug = service?.slug || 'emergency';
+  const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
+  const canonical = `${domain}/${pageSlug}`;
+  const stateHubSlug = stateCode ? `plumber-${getStateSlug(stateCode)}` : null;
+  const cityBaseSlug = buildSlug(cityToSlug(cityName), 'emergency');
+
+  const pageTitle = serviceSlug === 'emergency'
+    ? `Emergency Plumber in ${location}`
+    : serviceSlug === 'pipe-burst-repair'
+    ? `Burst Pipe Repair in ${location}`
+    : serviceName;
+  const title = `${pageTitle} | Licensed • 60-Min Response | YoHomeFix`;
+
+  const description = serviceSlug === 'emergency'
+    ? `Burst pipe, flooding, or plumbing emergency in ${location}? YoHomeFix connects you with a licensed local plumber in under 60 min — available 24/7, no overtime charges.`
+    : serviceSlug === 'pipe-burst-repair'
+    ? `Burst pipe in ${location}? Stop water damage fast. Licensed plumber dispatched in under 60 minutes. Available 24/7. Upfront pricing before any work begins. Call now.`
+    : serviceSlug === 'leak-repair'
+    ? `Water leak in ${location}? Pinhole, slab, or supply line — YoHomeFix connects you with a licensed local plumber fast. 24/7 dispatch. Upfront pricing. Call now.`
+    : serviceSlug === 'drain-cleaning'
+    ? `Clogged drain in ${location}? YoHomeFix dispatches a licensed local plumber for same-day drain cleaning. 24/7 availability. Upfront pricing before any work begins.`
+    : `Need ${serviceName.toLowerCase()} in ${location}? YoHomeFix connects you with licensed local plumbers — fast 60-min dispatch, available 24/7, upfront pricing guaranteed.`;
+
+  // Breadcrumb items
+  const breadcrumbs = [
+    { name: 'Home', url: `${domain}/` },
+    ...(stateHubSlug ? [{ name: `Plumber ${stateCode}`, url: `${domain}/${stateHubSlug}` }] : []),
+    { name: `Plumber ${cityName}`, url: `${domain}/${cityBaseSlug}` },
+    ...(serviceSlug !== 'emergency' ? [{ name: serviceName, url: canonical }] : []),
+  ];
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: b.name,
+          item: b.url,
+        })),
+      },
+      {
+        '@type': 'PlumbingService',
+        '@id': canonical,
+        name: 'YoHomeFix',
+        description,
+        telephone: PHONE_NUMBER,
+        url: canonical,
+        priceRange: '$$',
+        areaServed: {
+          '@type': 'City',
+          name: cityName,
+          containedInPlace: { '@type': 'State', name: stateCode },
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: serviceName,
+          itemListElement: [{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: serviceName } }],
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: (content?.faqs || []).map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a },
+        })),
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        {/* CWV: preconnect for fonts if added later */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      </Head>
+
+      {/* Sticky mobile CTA — no layout shift (fixed height reserved via pb-16) */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
+        <a
+          href={`tel:${PHONE_NUMBER}`}
+          onClick={() => trackCall('sticky-mobile')}
+          data-track="sticky-mobile"
+          className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full"
+        >
+          📞 CALL NOW — 24/7
+        </a>
+      </div>
+
+      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+
+        {/* Header */}
+        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
+          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
+          <CallButton label="nav-desktop" size="sm" className="hidden md:inline-flex" />
+          <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('nav-mobile')} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm">Call Now</a>
+        </nav>
+
+        {/* Breadcrumb */}
+        <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
+          <ol className="flex flex-wrap items-center gap-1">
+            {breadcrumbs.map((b, i) => (
+              <li key={b.url} className="flex items-center gap-1">
+                {i > 0 && <span className="text-gray-300">›</span>}
+                {i < breadcrumbs.length - 1
+                  ? <Link href={b.url.replace(domain, '')} className="text-blue-600 hover:underline no-underline">{b.name}</Link>
+                  : <span className="text-gray-700 font-medium">{b.name}</span>}
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-10 text-center">
+          <div className="max-w-3xl mx-auto">
+            <div className="inline-block bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+              ⚡ Emergency Available — 24/7
+            </div>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-5 leading-tight">
+              {serviceSlug === 'emergency' ? `Emergency Plumber in ${location}` : `${serviceName} in ${location}`}
+            </h1>
+            <CallButton label="hero" />
+            <p className="text-blue-300 text-sm mt-3 mb-5">Tap to call — answered by a live dispatcher</p>
+            <p className="text-lg md:text-xl text-blue-200 mb-6 max-w-2xl mx-auto">
+              Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-sm">
+              {['✅ Licensed & Insured', '⏱️ Fast Response', '💰 Upfront Pricing', '🔧 All Plumbing Jobs'].map((badge) => (
+                <span key={badge} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{badge}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <main className="max-w-4xl mx-auto w-full px-4 py-10">
+
+          {/* Rich local context block — unique per city */}
+          {content?.localSignal && (() => {
+            const ls = content.localSignal;
+            const winterBadge = ls.winterRisk === 'high' ? { label: `Cold-Weather Risk: High (avg ${ls.avgWinterTempF}°F)`, color: 'bg-blue-100 text-blue-800' }
+              : ls.winterRisk === 'med' ? { label: `Cold-Weather Risk: Moderate (avg ${ls.avgWinterTempF}°F)`, color: 'bg-yellow-100 text-yellow-800' }
+              : { label: `Mild Winter Climate (avg ${ls.avgWinterTempF}°F)`, color: 'bg-green-100 text-green-800' };
+            return (
+              <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 mb-8">
+                <h2 className="text-lg font-bold text-blue-900 mb-3">📍 Plumbing Conditions in {cityName}</h2>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${winterBadge.color}`}>{winterBadge.label}</span>
+                  {ls.climate && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-700">{ls.climate} climate</span>}
+                  {ls.pop && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-700">Pop. {ls.pop}</span>}
+                  {ls.infraClass && <span className={`text-xs font-semibold px-3 py-1 rounded-full ${ls.infraClass === 'aging' ? 'bg-red-100 text-red-700' : ls.infraClass === 'modern' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-800'}`}>Infrastructure: {ls.infraClass}</span>}
+                </div>
+                <div className="grid md:grid-cols-2 gap-3 text-sm text-blue-800">
+                  <div><span className="font-semibold">Most common failure:</span> {ls.dominantFailure}</div>
+                  <div><span className="font-semibold">Pipe era:</span> {ls.pipeMaterial}, {ls.pipeEra}</div>
+                  <div className="md:col-span-2"><span className="font-semibold">Local risk note:</span> {ls.summerRiskNote}</div>
+                  {ls.zipCodes && ls.zipCodes.length > 0 && (
+                    <div className="md:col-span-2"><span className="font-semibold">Service zip codes:</span> {ls.zipCodes.join(', ')}</div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Intro */}
+          {content?.intro && (
+            <p className="text-lg text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-600 pl-4">
+              {content.intro}
+            </p>
+          )}
+
+          {/* Content Sections */}
+          {(content?.sections || []).map((section, i) => (
+            <div key={i} className="mb-10">
+              <h2 className="text-2xl font-bold text-blue-900 mb-3">{section.heading}</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">{section.body}</p>
+              {section.list && (
+                <ul className="grid md:grid-cols-2 gap-2">
+                  {section.list.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-gray-700">
+                      <span className="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+
+          {/* Mid-page CTA */}
+          <div className="bg-red-50 border-2 border-red-600 rounded-2xl p-6 text-center my-10">
+            <p className="text-red-700 font-bold text-xl mb-2">🚨 Need Help Right Now?</p>
+            <p className="text-gray-600 mb-4">Our {cityName} dispatchers are standing by 24/7</p>
+            <CallButton label="mid-page" size="sm" />
+          </div>
+
+          {/* Trust signals — informational only, no fabricated reviews */}
+          <div className="mb-10 bg-blue-50 border border-blue-100 rounded-2xl p-6">
+            <h2 className="text-xl font-bold text-blue-900 mb-4">How We Work in {cityName}</h2>
+            <div className="grid md:grid-cols-3 gap-4 text-sm text-blue-800">
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold">✅ Licensed &amp; Insured</span>
+                <span>Every technician dispatched holds a valid state license and carries liability insurance.</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold">💰 Upfront Pricing</span>
+                <span>You receive a written quote before any work begins. The price doesn't change mid-job.</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold">⏱️ Fast Dispatch</span>
+                <span>We aim to have a technician at your {cityName} address within 60 minutes of your call.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Services Navigation */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold text-blue-900 mb-4">All Plumbing Services in {cityName}</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {SERVICES.map((s) => {
+                const href = `/${buildSlug(cityToSlug(cityName), s.slug)}`;
+                const isActive = s.slug === serviceSlug;
+                return (
+                  <Link
+                    key={s.slug}
+                    href={href}
+                    className={`p-3 rounded-lg text-center text-sm font-semibold border transition-colors ${
+                      isActive
+                        ? 'bg-blue-900 text-white border-blue-900'
+                        : 'bg-white text-blue-800 border-blue-200 hover:border-blue-600'
+                    }`}
+                  >
+                    {s.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Services Covered — conversion support layer */}
+          <ServicesCovered serviceSlug={serviceSlug} cityName={cityName} />
+
+          {/* FAQ Section */}
+          {content?.faqs && content.faqs.length > 0 && (
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-blue-900 mb-6">
+                Frequently Asked Questions — {serviceName} in {cityName}
+              </h2>
+              <div className="space-y-4">
+                {content.faqs.map((faq, i) => (
+                  <details key={i} className="border border-gray-200 rounded-xl p-4 group">
+                    <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+                      <h3 className="text-base m-0 font-semibold">{faq.q}</h3>
+                      <span className="text-blue-600 ml-2 flex-shrink-0">▼</span>
+                    </summary>
+                    <p className="text-gray-600 mt-3 leading-relaxed">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Nearby Cities — internal linking */}
+          {nearbyCities && nearbyCities.length > 0 && (
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-blue-900 mb-2">Also Serving Nearby Cities</h2>
+              <p className="text-gray-500 text-sm mb-4">YoHomeFix dispatches licensed plumbers across the wider region.</p>
+              <div className="grid md:grid-cols-2 gap-3">
+                {nearbyCities.map((nearbyCity) => (
+                  <div key={nearbyCity.slug} className="border border-gray-200 rounded-xl p-3">
+                    <p className="font-semibold text-gray-800 text-sm mb-2">{nearbyCity.name}, {nearbyCity.stateCode}</p>
+                    <div className="flex flex-wrap gap-1">
+                      <Link
+                        href={`/${buildSlug(nearbyCity.slug, serviceSlug)}`}
+                        className="px-2 py-1 bg-blue-600 text-white rounded text-xs font-semibold no-underline hover:bg-blue-700 transition-colors"
+                      >
+                        {serviceName}
+                      </Link>
+                      {serviceSlug !== 'emergency' && (
+                        <Link
+                          href={`/${buildSlug(nearbyCity.slug, 'emergency')}`}
+                          className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-xs no-underline transition-colors"
+                        >
+                          Emergency Plumber
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* State Hub Link */}
+          {stateHubSlug && (
+            <div className="mb-10 bg-gray-50 border border-gray-200 rounded-xl p-5">
+              <p className="text-gray-700 text-sm">
+                Looking for plumbers across {stateCode}?{' '}
+                <Link href={`/${stateHubSlug}`} className="text-blue-700 font-semibold hover:underline">
+                  View all {stateCode} plumbing services →
+                </Link>
+              </p>
+            </div>
+          )}
+
+          {/* Why Homeowners Choose Us */}
+          <WhyChooseUs />
+
+          {/* What Homeowners Experience */}
+          <TrustQuotes />
+
+          {/* Final CTA */}
+          <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
+            <h2 className="text-2xl font-extrabold mb-2">Ready for Fast, Reliable Help in {cityName}?</h2>
+            <p className="text-blue-200 mb-6">Licensed plumbers available right now. Upfront pricing before any work begins.</p>
+            <CallButton label="bottom" />
+          </div>
+
+          {/* Availability disclaimer */}
+          <p className="text-xs text-gray-400 text-center mt-6 leading-relaxed">
+            Same-day and 24/7 emergency services are subject to provider participation, location, technician availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.
+          </p>
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gray-900 text-gray-400 px-4 py-10 mt-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-between gap-6 mb-6">
+              <div>
+                <p className="text-white font-bold text-lg mb-1">YoHomeFix</p>
+                <p className="text-sm mb-1">24/7 Emergency Plumbing</p>
+                <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer')} data-track="footer" className="text-red-400 font-bold">Call Now — 24/7</a>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-2">Services</p>
+                <ul className="space-y-1 text-sm">
+                  {SERVICES.map((s) => (
+                    <li key={s.slug}>
+                      <Link href={`/${buildSlug(cityToSlug(cityName), s.slug)}`} className="text-gray-400 hover:text-white no-underline">
+                        {s.name} in {cityName}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-2">Plumber by State</p>
+                <ul className="space-y-1 text-sm">
+                  {stateHubSlug && <li><Link href={`/${stateHubSlug}`} className="text-gray-400 hover:text-white no-underline">Plumber {stateCode}</Link></li>}
+                  <li><Link href="/plumber-usa" className="text-gray-400 hover:text-white no-underline">All Cities</Link></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-2">Legal</p>
+                <ul className="space-y-1 text-sm">
+                  <li><Link href="/faq" className="text-gray-400 hover:text-white no-underline">FAQ</Link></li>
+                  <li><Link href="/about" className="text-gray-400 hover:text-white no-underline">About</Link></li>
+                  <li><Link href="/contact" className="text-gray-400 hover:text-white no-underline">Contact</Link></li>
+                  <li><Link href="/disclaimer" className="text-gray-400 hover:text-white no-underline">Disclaimer</Link></li>
+                  <li><Link href="/privacy-policy" className="text-gray-400 hover:text-white no-underline">Privacy Policy</Link></li>
+                  <li><Link href="/terms-of-service" className="text-gray-400 hover:text-white no-underline">Terms</Link></li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-gray-800 pt-4 text-center text-sm">
+              <p>© {new Date().getFullYear()} YoHomeFix. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
+}

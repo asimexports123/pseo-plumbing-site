@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="36" fill="#1e3a8a"/>
+  <rect x="0" y="126" width="180" height="54" rx="20" fill="#dc2626"/>
+  <rect x="0" y="106" width="180" height="30" rx="0" fill="#dc2626"/>
+  <text x="90" y="112" font-family="Arial Black,Arial,sans-serif" font-weight="900"
+        font-size="78" fill="white" text-anchor="middle" letter-spacing="2">YH</text>
+  <text x="90" y="158" font-family="Arial,sans-serif" font-weight="700"
+        font-size="38" fill="white" text-anchor="middle" letter-spacing="3">FIX</text>
+</svg>
