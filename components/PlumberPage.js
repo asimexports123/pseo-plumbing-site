@@ -246,6 +246,8 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Emergency Plumber in ${location} — Water Line Repair`
     : serviceSlug === 'faucet-repair'
     ? `Emergency Plumber in ${location} — Faucet Repair`
+    : serviceSlug === 'garbage-disposal-repair'
+    ? `Emergency Plumber in ${location} — Garbage Disposal Repair`
     : `Emergency Plumber in ${location}`;
   const title = `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
 
@@ -268,8 +270,10 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'water-line-repair'
     ? `Water line problems in ${location}? Licensed emergency plumber handles leak detection, section repair, and line replacement. 24/7 dispatch, upfront pricing. Call now.`
     : serviceSlug === 'faucet-repair'
-    ? `Faucet problems in ${location}? Licensed emergency plumber handles dripping faucets, cartridge replacement, and new installation. 24/7 dispatch, upfront pricing. Call now.`
-    : `Need water heater repair in ${location}? Licensed emergency plumber dispatched in under 60 min — 24/7 live dispatch, no hot water crisis handled fast. Upfront pricing. Call now.`;
+    ? `Faucet problems in ${location}? Licensed emergency plumber handles dripping faucets, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    : serviceSlug === 'garbage-disposal-repair'
+    ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    : `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`;
 
   // Breadcrumb items
   const breadcrumbs = [
