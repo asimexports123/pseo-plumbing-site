@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER } from '../lib/cities';
+import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -9,7 +9,7 @@ import { buildPageSchema } from '../lib/schemas';
 export default function PlumberUSA() {
   const title = 'Plumber USA — Emergency Plumbing Services in Every US City | YoHomeFix';
   const description =
-    'Find local emergency plumbers in 200+ US cities. YoHomeFix connects you with licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.';
+    `Find local emergency plumbers in ${SEED_CITIES.length} US cities. YoHomeFix connects you with licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
   const canonical = `${domain}/plumber-usa`;
@@ -102,7 +102,7 @@ export default function PlumberUSA() {
                 <h2 className="text-xl font-bold text-blue-900">{service.name} — All Cities</h2>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                {SEED_CITIES.map((city) => {
+                {SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug)).map((city) => {
                   const href = `/${buildSlug(cityToSlug(city.name), service.slug)}`;
                   return (
                     <Link key={`${service.slug}-${city.name}`} href={href}
@@ -165,7 +165,7 @@ export default function PlumberUSA() {
                     </Link>
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {SERVICES.map((s) => {
+                    {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug)).map((s) => {
                       const href = `/${buildSlug(cityToSlug(city.name), s.slug)}`;
                       return (
                         <Link key={s.slug} href={href}

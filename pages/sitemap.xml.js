@@ -29,6 +29,7 @@ export function buildStaticUrlset() {
   const staticPages = [
     { loc: `${DOMAIN}/`,                  priority: '1.0', changefreq: 'weekly',  lastmod: today },
     { loc: `${DOMAIN}/plumber-usa`,       priority: '0.9', changefreq: 'weekly',  lastmod: today },
+    { loc: `${DOMAIN}/plumbing-cost-guide`, priority: '0.8', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/about`,             priority: '0.6', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/contact`,           priority: '0.6', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/faq`,               priority: '0.7', changefreq: 'monthly', lastmod: today },
