@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import {
   PHONE_NUMBER, SERVICES, SEED_CITIES,
   cityToSlug, buildSlug, getStateSlug, CITY_DATA,
+  isCityQualifiedForService,
 } from '../lib/cities';
 import { CITY_COORDS } from '../lib/cityCoords';
 import { getDeterministicLastReviewed } from '../lib/dateUtils';
@@ -216,6 +217,11 @@ function getCityDisplayName(cityName, stateCode) {
 }
 
 export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities }) {
+  // Check if city is qualified for selective services
+  if (service && !isCityQualifiedForService(cityName, service.slug)) {
+    return null; // Return null to trigger 404
+  }
+
   const cleanCityName = getCityDisplayName(cityName, stateCode);
   const location = stateCode ? `${cleanCityName}, ${stateCode}` : cityName;
   const serviceName = service?.name || 'Emergency Plumbing';
