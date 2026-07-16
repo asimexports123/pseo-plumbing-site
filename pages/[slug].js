@@ -4,6 +4,7 @@ import PlumberPage from '../components/PlumberPage';
 
 // Enumerate all valid city×service slug combinations at build time.
 // Selective services only generate pages for qualified cities.
+// Updated to respect isCityQualifiedForService filtering.
 export async function getStaticPaths() {
   const paths = [];
   for (const city of SEED_CITIES) {
