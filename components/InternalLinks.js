@@ -1,10 +1,5 @@
 import Link from 'next/link';
-import { SERVICES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
-
-const COST_CITIES = [
-  'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-  'Dallas', 'San Antonio', 'San Diego', 'Austin', 'Philadelphia',
-];
+import { SERVICES, COST_PAGE_CITIES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
 
 export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities = [] }) {
   const recommendations = [];
@@ -24,7 +19,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
   }
 
   // Cost guide for this city
-  if (COST_CITIES.includes(cityName)) {
+  if (COST_PAGE_CITIES.includes(cityName)) {
     recommendations.push({
       title: `Plumbing Cost Guide`,
       links: [{ href: `/cost/${cityToSlug(cityName)}`, label: `${cityName} plumbing costs` }],

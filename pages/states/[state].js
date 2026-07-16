@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import {
-  STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
-  cityToSlug, buildSlug, CITY_DATA,
+  STATES, SEED_CITIES, SERVICES, PHONE_NUMBER, COST_PAGE_CITIES,
+  cityToSlug, buildSlug, isCityQualifiedForService,
 } from '../../lib/cities';
 import { RelatedGuides } from '../../components/RelatedGuides';
 import { EditorialFooter } from '../../components/EditorialFooter';
@@ -266,7 +266,7 @@ export default function StatePage({ stateObj, stateCities }) {
               <div className="grid md:grid-cols-2 gap-4">
                 {stateCities.map((city) => {
                   const citySlug = cityToSlug(city.name);
-                  const hasCostPage = CITY_DATA[city.name]?.waterUtility;
+                  const hasCostPage = COST_PAGE_CITIES.includes(city.name);
                   return (
                     <div key={city.name} className="border border-gray-200 rounded-xl p-4 hover:border-blue-300 transition-colors">
                       <p className="font-bold text-blue-900 mb-3">
@@ -275,7 +275,7 @@ export default function StatePage({ stateObj, stateCities }) {
                         </Link>
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {SERVICES.map((s) => (
+                        {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug)).map((s) => (
                           <Link
                             key={s.slug}
                             href={`/${buildSlug(citySlug, s.slug)}`}

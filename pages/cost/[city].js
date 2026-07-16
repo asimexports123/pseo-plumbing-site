@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import {
-  PHONE_NUMBER, SERVICES, SEED_CITIES,
-  cityToSlug, buildSlug, getStateSlug, CITY_DATA,
+  PHONE_NUMBER, SERVICES, SEED_CITIES, COST_PAGE_CITIES,
+  cityToSlug, buildSlug, getStateSlug, CITY_DATA, isCityQualifiedForService,
 } from '../../lib/cities';
 import { CITY_COORDS } from '../../lib/cityCoords';
 import { RelatedGuides } from '../../components/RelatedGuides';
@@ -13,11 +13,6 @@ import { Trust } from '../../components/Trust';
 import { Sources } from '../../components/Sources';
 import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema } from '../../lib/schemas';
 import { getDeterministicLastReviewed } from '../../lib/dateUtils';
-
-const COST_PAGE_CITIES = [
-  'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-  'Dallas', 'San Antonio', 'San Diego', 'Austin', 'Philadelphia',
-];
 
 const CITY_COST_PROFILE = {
   'New York':      { multiplier: 1.45, tier: 'Premium Market', note: 'NYC labor costs run 40-50% above national average due to high cost of living, union labor prevalence, and parking/access surcharges in dense boroughs.' },
@@ -362,7 +357,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
           <div className="mb-10">
             <h2 className="text-xl font-bold text-blue-900 mb-4">Book a Plumber in {cityName}</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {SERVICES.map((s) => (
+              {SERVICES.filter((s) => isCityQualifiedForService(cityName, s.slug)).map((s) => (
                 <Link key={s.slug} href={`/${buildSlug(slug, s.slug)}`} className="block border border-gray-200 rounded-xl p-4 hover:border-blue-400 hover:shadow-sm transition-all no-underline group">
                   <p className="font-semibold text-blue-900 group-hover:text-blue-700 text-sm">{s.name} in {cityName}</p>
                   <p className="text-gray-700 text-xs mt-1">{s.description}</p>

@@ -1,13 +1,8 @@
 import Link from 'next/link';
-import { cityToSlug } from '../lib/cities';
-
-const COST_CITIES = [
-  'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-  'Dallas', 'San Antonio', 'San Diego', 'Austin', 'Philadelphia',
-];
+import { COST_PAGE_CITIES, cityToSlug } from '../lib/cities';
 
 export function RelatedCosts({ cityName }) {
-  if (!COST_CITIES.includes(cityName)) {
+  if (!COST_PAGE_CITIES.includes(cityName)) {
     return (
       <div className="mb-10 bg-yellow-50 border border-yellow-200 rounded-xl p-5">
         <p className="text-sm text-yellow-800">

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { PHONE_NUMBER, SERVICES, STATES, SEED_CITIES, cityToSlug, buildSlug } from '../../lib/cities';
+import { PHONE_NUMBER, SERVICES, STATES, SEED_CITIES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../lib/cities';
 import { EditorialFooter } from '../../components/EditorialFooter';
 import { Footer } from '../../components/Footer';
 import { Author } from '../../components/Author';
@@ -317,7 +317,7 @@ export default function GuidePage({ guide, slug }) {
                     <p className="font-bold text-blue-900 mb-1">{svc.name}</p>
                     <p className="text-gray-500 text-sm mb-3">{svc.description}</p>
                     <div className="flex flex-wrap gap-2">
-                      {sampleCities.map((city) => (
+                      {sampleCities.filter((city) => isCityQualifiedForService(city.name, svc.slug)).map((city) => (
                         <Link
                           key={city.name}
                           href={`/${buildSlug(cityToSlug(city.name), svc.slug)}`}
