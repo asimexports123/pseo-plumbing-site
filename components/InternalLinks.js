@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../lib/cities';
+import { SERVICES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
 
 const COST_CITIES = [
   'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
@@ -39,13 +39,18 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
   // Nearby cities
   if (nearbyCities.length > 0) {
-    recommendations.push({
-      title: `Nearby Cities`,
-      links: nearbyCities.slice(0, 3).map((c) => ({
-        href: `/${buildSlug(cityToSlug(c.name), serviceSlug)}`,
-        label: `${serviceSlug === 'emergency' ? 'Emergency plumber' : serviceSlug.replace(/-/g, ' ')} in ${c.name}`,
-      })),
-    });
+    const qualifiedNearbyCities = nearbyCities.filter(c => 
+      isCityQualifiedForService(c.name, serviceSlug)
+    );
+    if (qualifiedNearbyCities.length > 0) {
+      recommendations.push({
+        title: `Nearby Cities`,
+        links: qualifiedNearbyCities.slice(0, 3).map((c) => ({
+          href: `/${buildSlug(cityToSlug(c.name), serviceSlug)}`,
+          label: `${serviceSlug === 'emergency' ? 'Emergency plumber' : serviceSlug.replace(/-/g, ' ')} in ${c.name}`,
+        })),
+      });
+    }
   }
 
   // Trust and policy links
