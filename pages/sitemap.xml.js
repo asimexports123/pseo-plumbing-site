@@ -1,4 +1,4 @@
-import { SEED_CITIES, SERVICES, STATES, COST_PAGE_CITIES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
+import { SEED_CITIES, SERVICES, STATES, COST_PAGE_CITIES, cityToSlug, buildSlug, isCityQualifiedForService, isStateQualifiedForService } from '../lib/cities';
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -43,8 +43,8 @@ export function buildStaticUrlset() {
       lastmod: today,
     })),
     ...STATES.flatMap((s) =>
-      SERVICES.map((svc) => ({
-        loc: `${DOMAIN}/plumber/${s.slug}/${svc.slug}`,
+      SERVICES.filter((svc) => isStateQualifiedForService(s.code, svc.slug)).map((svc) => ({
+        loc: `${DOMAIN}/plumber/${s.slug}/${svc.slug}`, 
         priority: '0.8',
         changefreq: 'weekly',
         lastmod: today,

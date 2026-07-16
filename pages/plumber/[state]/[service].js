@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
-  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService,
+  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, isStateQualifiedForService,
 } from '../../../lib/cities';
 import { RelatedGuides } from '../../../components/RelatedGuides';
 import { EditorialFooter } from '../../../components/EditorialFooter';
@@ -99,7 +99,7 @@ function getCityCardData(city) {
 export async function getStaticPaths() {
   const paths = [];
   STATES.forEach((s) => {
-    SERVICES.forEach((svc) => {
+    SERVICES.filter((svc) => isStateQualifiedForService(s.code, svc.slug)).forEach((svc) => {
       paths.push({ params: { state: s.slug, service: svc.slug } });
     });
   });
@@ -380,7 +380,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">All Plumbing Services in {stateObj.name}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {SERVICES.map((s) => {
+              {SERVICES.filter((s) => isStateQualifiedForService(stateObj.code, s.slug)).map((s) => {
                 const isActive = s.slug === serviceObj.slug;
                 return (
                   <Link

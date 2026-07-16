@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER, COST_PAGE_CITIES,
-  cityToSlug, buildSlug, isCityQualifiedForService,
+  cityToSlug, buildSlug, isCityQualifiedForService, isStateQualifiedForService,
 } from '../../lib/cities';
 import { RelatedGuides } from '../../components/RelatedGuides';
 import { EditorialFooter } from '../../components/EditorialFooter';
@@ -226,7 +226,7 @@ export default function StatePage({ stateObj, stateCities }) {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-blue-900 mb-5">Plumbing Services in {stateObj.name}</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {SERVICES.map((s) => (
+              {SERVICES.filter((s) => isStateQualifiedForService(stateObj.code, s.slug)).map((s) => (
                 <Link
                   key={s.slug}
                   href={`/plumber/${stateObj.slug}/${s.slug}`}
