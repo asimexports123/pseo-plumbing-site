@@ -250,6 +250,8 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Emergency Plumber in ${location} — Garbage Disposal Repair`
     : serviceSlug === 'water-softener-repair'
     ? `Emergency Plumber in ${location} — Water Softener Repair`
+    : serviceSlug === 'sump-pump-repair'
+    ? `Emergency Plumber in ${location} — Sump Pump Repair`
     : `Emergency Plumber in ${location}`;
   const title = `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
 
@@ -277,6 +279,8 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
     : serviceSlug === 'water-softener-repair'
     ? `Water softener problems in ${location}? Licensed emergency plumber handles softener repair, resin replacement, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    : serviceSlug === 'sump-pump-repair'
+    ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 dispatch, upfront pricing. Call now.`
     : `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`;
 
   // Breadcrumb items
