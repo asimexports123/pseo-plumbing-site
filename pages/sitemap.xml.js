@@ -1,4 +1,4 @@
-import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug } from '../lib/cities';
+import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -91,12 +91,15 @@ export function buildCityUrlset() {
   SEED_CITIES.forEach((city) => {
     const cSlug = cityToSlug(city.name);
     SERVICES.forEach((service) => {
-      urls.push({
-        loc: `${DOMAIN}/${buildSlug(cSlug, service.slug)}`,
-        priority: service.slug === 'emergency' ? '0.9' : '0.8',
-        changefreq: 'weekly',
-        lastmod: today,
-      });
+      // Only include URLs for cities qualified for selective services
+      if (isCityQualifiedForService(city.name, service.slug)) {
+        urls.push({
+          loc: `${DOMAIN}/${buildSlug(cSlug, service.slug)}`,
+          priority: service.slug === 'emergency' ? '0.9' : '0.8',
+          changefreq: 'weekly',
+          lastmod: today,
+        });
+      }
     });
   });
   return buildUrlset(urls);
