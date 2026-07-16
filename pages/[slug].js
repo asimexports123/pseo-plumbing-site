@@ -1,15 +1,18 @@
-import { parseSlug, getCityBySlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug } from '../lib/cities';
+import { parseSlug, getCityBySlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { generatePageContent } from '../lib/contentGenerator';
 import PlumberPage from '../components/PlumberPage';
 
 // Enumerate all valid city×service slug combinations at build time.
-// 50 cities × 5 services = 250 static pages.
+// Selective services only generate pages for qualified cities.
 export async function getStaticPaths() {
   const paths = [];
   for (const city of SEED_CITIES) {
     const cSlug = cityToSlug(city.name);
     for (const service of SERVICES) {
-      paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
+      // Only generate paths for cities qualified for selective services
+      if (isCityQualifiedForService(city.name, service.slug)) {
+        paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
+      }
     }
   }
   return { paths, fallback: false };
