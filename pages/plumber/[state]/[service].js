@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
-  cityToSlug, buildSlug, CITY_DATA,
+  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService,
 } from '../../../lib/cities';
 import { RelatedGuides } from '../../../components/RelatedGuides';
 import { EditorialFooter } from '../../../components/EditorialFooter';
@@ -29,6 +29,12 @@ const SERVICE_STATE_INTROS = {
 
   'water-heater-repair': (s, cities) =>
     `Water heater failures in ${s.name} are concentrated in two failure modes shaped by the state's infrastructure profile. In areas with hard water, calcium scale builds up on heating elements and tank floors, reducing efficiency and accelerating wear. In older neighborhoods, aging anode rods and corroded tank linings lead to rust and sediment. Our water heater technicians serve ${cities.map(c => c.name).join(', ')}, and the wider ${s.name} metro, stocking both tank and tankless replacement units for same-day installation.`,
+
+  'whole-house-repiping': (s, cities) =>
+    `Whole-house repiping is a planned replacement project for homes where recurring leaks, corrosion, restricted flow, or aging pipe materials make continued spot repairs unreliable. Across ${s.name}, technicians assess the existing system, access routes, fixture count, and documented repair history before recommending a targeted reroute or full repipe for homeowners in ${cities.map(c => c.name).join(', ')}, and nearby communities.`,
+
+  'main-water-shutoff-valve-repair': (s, cities) =>
+    `A reliable main water shutoff valve limits damage when a pipe, appliance line, or fitting fails. Across ${s.name}, technicians inspect valves that leak, seize, or fail to close fully, confirm the proper water-isolation point, and safely repair or replace the component for homeowners in ${cities.map(c => c.name).join(', ')}, and surrounding areas.`,
 };
 
 // ── State × Service FAQs ───────────────────────────────────────
@@ -63,6 +69,18 @@ const SERVICE_STATE_FAQS = {
     { q: `Can I get same-day water heater replacement in ${s.name}?`, a: `Yes, in most cases. We stock the most commonly used 40- and 50-gallon gas and electric tank units, as well as popular tankless models, and can complete same-day replacement throughout ${s.name}.` },
     { q: `Is a tankless water heater a good choice for a ${s.name} home?`, a: `For most ${s.name} homeowners, a properly sized tankless unit offers meaningful advantages: continuous hot water on demand, 20–30% lower energy consumption than tank units, and a longer service life of 15–20 years. The higher upfront installation cost is typically recovered in energy savings over 5–7 years.` },
   ],
+  'whole-house-repiping': (s) => [
+    { q: `When does a ${s.name} home need whole-house repiping?`, a: `Recurring leaks on several pipe runs, poor flow at multiple fixtures, corroded piping, and mounting spot-repair costs are signals to schedule a full assessment. The appropriate scope depends on the home's verified pipe condition and access.` },
+    { q: `Can I repipe only part of my ${s.name} home?`, a: `Yes. A targeted reroute or branch replacement can be appropriate when failures are limited to part of the system. The recommendation should compare the remaining pipe condition with the cost of repeated repairs.` },
+    { q: `What affects repiping cost in ${s.name}?`, a: `Home size, fixture count, pipe material, access, routing, permits, and restoration requirements all affect cost. A written assessment is the reliable way to compare a targeted repair with a complete repipe.` },
+    { q: `Will repiping disrupt water service in ${s.name}?`, a: `The project plan should identify expected interruptions and sequence work to minimize disruption. Timing depends on the home's layout, routing options, and inspection requirements.` },
+  ],
+  'main-water-shutoff-valve-repair': (s) => [
+    { q: `What are signs that a main water shutoff valve needs replacement in ${s.name}?`, a: `A valve that leaks, will not turn, will not fully stop water flow, or has visible corrosion needs professional assessment. Reliable isolation is important during any active plumbing emergency.` },
+    { q: `Can a plumber replace a seized main water shutoff valve in ${s.name}?`, a: `Yes. The technician identifies the valve location, pipe material, ownership boundary, and safe isolation method before replacement. Corroded adjacent piping can increase the scope.` },
+    { q: `Should I test my main water shutoff valve in ${s.name}?`, a: `Periodic testing helps confirm that the valve can limit water damage during a burst pipe or major leak. Avoid forcing a valve that is seized or heavily corroded.` },
+    { q: `What affects main shutoff valve replacement cost in ${s.name}?`, a: `Valve location, pipe material, corrosion, access, and any utility coordination affect the scope. An accessible interior replacement is typically simpler than a meter-adjacent or heavily corroded valve.` },
+  ],
 };
 
 function getCityCardData(city) {
@@ -95,8 +113,9 @@ export async function getStaticProps({ params }) {
   const serviceObj = SERVICES.find((s) => s.slug === serviceSlug);
   if (!serviceObj) return { notFound: true };
   const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
-  const cityCards = stateCities.map(getCityCardData).filter(Boolean);
-  return { props: { stateObj, serviceObj, stateCities, cityCards } };
+  const qualifiedStateCities = stateCities.filter((c) => isCityQualifiedForService(c.name, serviceObj.slug));
+  const cityCards = qualifiedStateCities.map(getCityCardData).filter(Boolean);
+  return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards } };
 }
 
 export default function StateServiceHub({ stateObj, serviceObj, stateCities, cityCards }) {
@@ -113,6 +132,10 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
     ? `Water leak in ${stateObj.name}? Licensed emergency plumber dispatched in 60 min — slab, pinhole, or supply line. 24/7 availability across ${stateObj.name}. Upfront pricing. Call now.`
     : serviceObj.slug === 'drain-cleaning'
     ? `Clogged drain in ${stateObj.name}? Licensed emergency plumber dispatched same-day — 24/7 availability, 60-min response, upfront pricing across all of ${stateObj.name}. Dispatch now.`
+    : serviceObj.slug === 'whole-house-repiping'
+    ? `Recurring pipe leaks in ${stateObj.name}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
+    : serviceObj.slug === 'main-water-shutoff-valve-repair'
+    ? `Main water shutoff valve leaking or stuck in ${stateObj.name}? Licensed plumber provides safe valve repair and replacement with upfront pricing. Call now.`
     : `No hot water in ${stateObj.name}? Licensed emergency plumber dispatched in under 60 min — water heater repair and replacement, 24/7 live dispatch. Upfront pricing. Call now.`;
   const lastReviewed = getDeterministicLastReviewed(`plumber-${stateObj.slug}-${serviceObj.slug}`);
 

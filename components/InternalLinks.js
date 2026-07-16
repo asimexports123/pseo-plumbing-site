@@ -10,7 +10,9 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
   const recommendations = [];
 
   // Related services in the same city
-  const relatedServices = SERVICES.filter((s) => s.slug !== serviceSlug).slice(0, 3);
+  const relatedServices = SERVICES
+    .filter((s) => s.slug !== serviceSlug && isCityQualifiedForService(cityName, s.slug))
+    .slice(0, 3);
   if (relatedServices.length > 0) {
     recommendations.push({
       title: `Related Plumbing Services in ${cityName}`,

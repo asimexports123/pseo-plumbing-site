@@ -251,6 +251,10 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Emergency Plumber in ${location} — Garbage Disposal Repair`
     : serviceSlug === 'water-softener-repair'
     ? `Emergency Plumber in ${location} — Water Softener Repair`
+    : serviceSlug === 'whole-house-repiping'
+    ? `Emergency Plumber in ${location} — Whole-House Repiping`
+    : serviceSlug === 'main-water-shutoff-valve-repair'
+    ? `Emergency Plumber in ${location} — Main Water Shutoff Valve Repair`
     : serviceSlug === 'sump-pump-repair'
     ? `Emergency Plumber in ${location} — Sump Pump Repair`
     : `Emergency Plumber in ${location}`;
@@ -280,6 +284,10 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
     : serviceSlug === 'water-softener-repair'
     ? `Water softener problems in ${location}? Licensed emergency plumber handles softener repair, resin replacement, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    : serviceSlug === 'whole-house-repiping'
+    ? `Repeated pipe leaks in ${location}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
+    : serviceSlug === 'main-water-shutoff-valve-repair'
+    ? `Main water shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair and replacement. 24/7 dispatch and upfront pricing. Call now.`
     : serviceSlug === 'sump-pump-repair'
     ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 dispatch, upfront pricing. Call now.`
     : `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`;
@@ -364,14 +372,16 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: `${serviceName} in ${cityName}`,
-          itemListElement: SERVICES.map((s) => ({
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: s.name,
-              url: `${domain}/${buildSlug(cityToSlug(cityName), s.slug)}`,
-            },
-          })),
+          itemListElement: SERVICES
+            .filter((s) => isCityQualifiedForService(cityName, s.slug))
+            .map((s) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: s.name,
+                url: `${domain}/${buildSlug(cityToSlug(cityName), s.slug)}`,
+              },
+            })),
         },
       },
       {
