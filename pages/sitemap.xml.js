@@ -1,4 +1,4 @@
-import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
+import { SEED_CITIES, SERVICES, STATES, COST_PAGE_CITIES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -50,8 +50,8 @@ export function buildStaticUrlset() {
         lastmod: today,
       }))
     ),
-    ...['new-york','los-angeles','chicago','houston','phoenix','dallas','san-antonio','san-diego','austin','philadelphia'].map((slug) => ({
-      loc: `${DOMAIN}/cost/${slug}`,
+    ...COST_PAGE_CITIES.map((cityName) => ({
+      loc: `${DOMAIN}/cost/${cityToSlug(cityName)}`,
       priority: '0.8',
       changefreq: 'monthly',
       lastmod: today,

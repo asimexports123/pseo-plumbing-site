@@ -15,21 +15,21 @@ import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema } from '
 import { getDeterministicLastReviewed } from '../../lib/dateUtils';
 
 const CITY_COST_PROFILE = {
-  'New York':      { multiplier: 1.45, tier: 'Premium Market', note: 'NYC labor costs run 40-50% above national average due to high cost of living, union labor prevalence, and parking/access surcharges in dense boroughs.' },
-  'Los Angeles':   { multiplier: 1.35, tier: 'Premium Market', note: 'LA metro plumbing costs reflect high labor rates, traffic time costs between jobs, and elevated material costs due to California regulations.' },
-  'Chicago':       { multiplier: 1.20, tier: 'Above Average',  note: "Chicago's union plumber labor rates and older housing stock (requiring more complex repairs) push costs above the national midpoint." },
-  'Houston':       { multiplier: 0.95, tier: 'Near Average',   note: "Houston's competitive plumbing market and lower cost of living keep rates near or slightly below national averages despite high service volume." },
-  'Phoenix':       { multiplier: 1.05, tier: 'Near Average',   note: 'Phoenix costs are near the national average, though summer peak demand can affect scheduling premiums.' },
-  'Dallas':        { multiplier: 0.98, tier: 'Near Average',   note: "Dallas-Fort Worth's large contractor base creates competitive pricing — most residential plumbing rates fall within the national average range." },
-  'San Antonio':   { multiplier: 0.90, tier: 'Below Average',  note: 'San Antonio has one of the lower plumbing cost profiles among major US metros, reflecting lower overall cost of living and strong local contractor supply.' },
-  'San Diego':     { multiplier: 1.30, tier: 'Premium Market', note: 'San Diego labor and material costs track closely with other Southern California markets — elevated by state licensing requirements and high living costs.' },
-  'Austin':        { multiplier: 1.15, tier: 'Above Average',  note: "Austin's rapid growth has created high plumber demand relative to supply, pushing rates above Texas averages." },
-  'Philadelphia':  { multiplier: 1.25, tier: 'Above Average',  note: "Philadelphia's aging housing stock and union labor prevalence push rates above the national midpoint." },
+  'New York':      { factor: 1.45, tier: 'Premium Market', note: 'NYC labor costs run 40-50% above national average due to high cost of living, union labor prevalence, and parking/access surcharges in dense boroughs.' },
+  'Los Angeles':   { factor: 1.35, tier: 'Premium Market', note: 'LA metro plumbing costs reflect high labor rates, traffic time costs between jobs, and elevated material costs due to California regulations.' },
+  'Chicago':       { factor: 1.20, tier: 'Above Average',  note: "Chicago's union plumber labor rates and older housing stock (requiring more complex repairs) push costs above the national midpoint." },
+  'Houston':       { factor: 0.95, tier: 'Near Average',   note: "Houston's competitive plumbing market and lower cost of living keep rates near or slightly below national averages despite high service volume." },
+  'Phoenix':       { factor: 1.05, tier: 'Near Average',   note: 'Phoenix costs are near the national average, though summer peak demand can affect scheduling premiums.' },
+  'Dallas':        { factor: 0.98, tier: 'Near Average',   note: "Dallas-Fort Worth's large contractor base creates competitive pricing — most residential plumbing rates fall within the national average range." },
+  'San Antonio':   { factor: 0.90, tier: 'Below Average',  note: 'San Antonio has one of the lower plumbing cost profiles among major US metros, reflecting lower overall cost of living and strong local contractor supply.' },
+  'San Diego':     { factor: 1.30, tier: 'Premium Market', note: 'San Diego labor and material costs track closely with other Southern California markets — elevated by state licensing requirements and high living costs.' },
+  'Austin':        { factor: 1.15, tier: 'Above Average',  note: "Austin's rapid growth has created high plumber demand relative to supply, pushing rates above Texas averages." },
+  'Philadelphia':  { factor: 1.25, tier: 'Above Average',  note: "Philadelphia's aging housing stock and union labor prevalence push rates above the national midpoint." },
 };
 
 function getCostTable(cityName) {
-  const profile = CITY_COST_PROFILE[cityName] || { multiplier: 1.0 };
-  const m = profile.multiplier;
+  const profile = CITY_COST_PROFILE[cityName] || { factor: 1.0 };
+  const m = profile.factor;
   function adj(low, high) {
     return { low: `$${Math.round(low * m / 5) * 5}`, high: `$${Math.round(high * m / 5) * 5}` };
   }
@@ -84,15 +84,14 @@ function getCostTable(cityName) {
 }
 
 function getCostFaqs(cityName, profile) {
-  const p = CITY_COST_PROFILE[cityName] || { multiplier: 1.0 };
   return [
     {
-      q: `How much does a plumber cost in ${cityName}?`,
-      a: `Plumbing costs in ${cityName} are ${profile.tier === 'Premium Market' ? 'above the national average' : profile.tier === 'Above Average' ? 'somewhat above the national average' : 'near the national average'}. ${profile.note} A standard service call typically runs $${Math.round(75 * p.multiplier / 5) * 5}–$${Math.round(150 * p.multiplier / 5) * 5}. Emergency and after-hours rates do not carry a surcharge at YoHomeFix.`,
+      q: `How should I use the ${cityName} plumbing cost ranges?`,
+      a: `This guide applies a market-context factor to educational national benchmarks; it is not verified ${cityName} contractor rate data. ${profile.note} Your actual quote depends on diagnosis, access, materials, permits, and the approved scope of work.`,
     },
     {
       q: `Why do plumbing costs in ${cityName} differ from national averages?`,
-      a: `${profile.note} National average figures are useful benchmarks, but your actual quote reflects local labor markets, permit requirements, and the specific scope of your job. All pricing through YoHomeFix is provided upfront in writing before any work begins.`,
+      a: `${profile.note} The figures are illustrative benchmarks, not a verified survey of ${cityName} contractor rates. Your actual quote reflects the diagnosed issue, access, materials, permits, and the approved scope of work.`,
     },
     {
       q: `Does YoHomeFix charge extra for emergency plumbing in ${cityName}?`,
@@ -121,7 +120,7 @@ export async function getStaticProps({ params }) {
   if (!cityName) return { notFound: true };
   const cityEntry = SEED_CITIES.find((c) => c.name === cityName);
   if (!cityEntry) return { notFound: true };
-  const profile = CITY_COST_PROFILE[cityName] || { multiplier: 1.0, tier: 'Near Average', note: '' };
+  const profile = CITY_COST_PROFILE[cityName] || { factor: 1.0, tier: 'Near Average', note: '' };
   const costTable = getCostTable(cityName);
   const faqs = getCostFaqs(cityName, profile);
   const cityData = CITY_DATA[cityName] || {};
@@ -134,8 +133,8 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
   const canonical = `${domain}/cost/${slug}`;
   const coords = CITY_COORDS[cityName];
 
-  const title = `Plumber Cost in ${cityName}, ${stateCode} — 2025 Pricing Guide | YoHomeFix`;
-  const description = `How much does a plumber cost in ${cityName}? Local pricing data for emergency plumbing, drain cleaning, leak repair, pipe burst, and water heater service — upfront quotes guaranteed.`;
+  const title = `Plumber Cost in ${cityName}, ${stateCode} — Pricing Guide | YoHomeFix`;
+  const description = `Educational plumbing cost ranges for ${cityName}: national benchmarks, market-context factors, and pricing considerations for emergency plumbing, drains, leaks, pipes, and water heaters.`;
   const lastReviewed = getDeterministicLastReviewed(`cost-${slug}`);
 
   const breadcrumbs = [
@@ -243,11 +242,11 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
           <div className="max-w-3xl mx-auto">
             <div className="flex justify-center gap-2 mb-4">
               <span className={`text-xs font-bold px-3 py-1 rounded-full ${tierColor}`}>{profile.tier}</span>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-700 text-white">2025 Pricing Data</span>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-700 text-white">National benchmark ranges</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Plumber Cost in {cityName}, {stateCode}</h1>
             <p className="speakable-intro text-white text-lg mb-6 max-w-2xl mx-auto">
-              Local pricing data for every plumbing service in {cityName} — adjusted for the {cityName} labor market, with upfront quotes before any work begins.
+              Educational national plumbing cost benchmarks with {cityName} market context. Your technician provides an upfront written quote after diagnosis.
             </p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl">
               📞 Get a Free Quote
@@ -259,17 +258,17 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
         <main className="max-w-4xl mx-auto w-full px-4 py-10">
 
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-10">
-            <h2 className="text-xl font-bold text-blue-900 mb-3">{cityName} Plumbing Cost Overview</h2>
+            <h2 className="text-xl font-bold text-blue-900 mb-3">{cityName} Plumbing Cost Context</h2>
             <p className="text-gray-700 leading-relaxed mb-4">{profile.note}</p>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-4">
               <div className="bg-white rounded-xl border border-blue-100 p-4 text-center">
-                <p className="text-gray-500 mb-1">Market Tier</p>
+                <p className="text-gray-500 mb-1">Market context</p>
                 <p className={`font-bold text-sm px-2 py-1 rounded-full inline-block ${tierColor}`}>{profile.tier}</p>
               </div>
               <div className="bg-white rounded-xl border border-blue-100 p-4 text-center">
-                <p className="text-gray-500 mb-1">vs. National Avg</p>
+                <p className="text-gray-500 mb-1">Modeled factor</p>
                 <p className="font-bold text-blue-900 text-lg">
-                  {profile.multiplier > 1 ? `+${Math.round((profile.multiplier - 1) * 100)}%` : profile.multiplier < 1 ? `-${Math.round((1 - profile.multiplier) * 100)}%` : 'On par'}
+                  {profile.factor > 1 ? `+${Math.round((profile.factor - 1) * 100)}%` : profile.factor < 1 ? `-${Math.round((1 - profile.factor) * 100)}%` : 'Baseline'}
                 </p>
               </div>
               <div className="bg-white rounded-xl border border-blue-100 p-4 text-center">
@@ -283,10 +282,10 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
             </div>
             {cityData.waterUtility && (
               <p className="text-sm text-gray-600">
-                <strong>Water source:</strong> {cityData.waterUtility}.
+                <strong>Local infrastructure context:</strong> {cityData.waterUtility}.
                 {cityData.pipeMaterial && ` Common pipe materials in ${cityName}: ${cityData.pipeMaterial}.`}
-                {cityData.dominantFailure && ` The most frequently diagnosed issue is ${cityData.dominantFailure}.`}
-                {' '}These local factors influence labor time and materials, which is why costs differ from national averages.
+                {cityData.dominantFailure && ` A common local issue is ${cityData.dominantFailure}.`}
+                {' '}This context can affect repair scope, but it does not verify local contractor rates.
               </p>
             )}
           </div>
@@ -304,7 +303,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
                   <thead>
                     <tr className="bg-blue-50 text-blue-900">
                       <th className="text-left px-4 py-3 font-semibold">Service</th>
-                      <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">{cityName} Range</th>
+                      <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">Illustrative range</th>
                       <th className="text-left px-4 py-3 font-semibold hidden md:table-cell">Notes</th>
                     </tr>
                   </thead>
@@ -319,7 +318,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-gray-700 mt-2">* {cityName}-adjusted estimates. Actual cost depends on scope, access, and materials. Upfront written quote before work begins.</p>
+              <p className="text-xs text-gray-700 mt-2">* Educational national benchmarks adjusted by a market-context model, not verified local contractor rates. Actual cost depends on scope, access, materials, and local conditions. Upfront written quote before work begins.</p>
             </div>
           ))}
 
