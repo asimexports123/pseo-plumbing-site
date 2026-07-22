@@ -123,6 +123,8 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
   const canonical = `${domain}/plumber/${stateObj.slug}/${serviceObj.slug}`;
   const title = serviceObj.slug === 'emergency'
     ? `Emergency Plumbing Service in ${stateObj.name} | 24/7 Licensed Dispatch | YoHomeFix`
+    : serviceObj.slug === 'drain-cleaning'
+    ? `Emergency Drain Cleaning in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
     : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName} | 24/7 Licensed Service | YoHomeFix`;
   const description = serviceObj.slug === 'emergency'
     ? `24/7 emergency plumbing dispatch across all of ${stateObj.name}. YoHomeFix connects you with a licensed plumber for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing, no overtime charges. Call now.`
@@ -131,7 +133,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
     : serviceObj.slug === 'leak-repair'
     ? `Water leak in ${stateObj.name}? Licensed emergency plumber dispatched in 60 min — slab, pinhole, or supply line. 24/7 availability across ${stateObj.name}. Upfront pricing. Call now.`
     : serviceObj.slug === 'drain-cleaning'
-    ? `Clogged drain in ${stateObj.name}? Licensed emergency plumber dispatched same-day — 24/7 availability, 60-min response, upfront pricing across all of ${stateObj.name}. Dispatch now.`
+    ? `Emergency drain service across ${stateObj.name} — 24/7 drain cleaning, sewer clearing, and clog removal. Licensed plumbers dispatched fast. Upfront pricing. Call now.`
     : serviceObj.slug === 'whole-house-repiping'
     ? `Recurring pipe leaks in ${stateObj.name}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
     : serviceObj.slug === 'main-water-shutoff-valve-repair'
@@ -271,6 +273,8 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
               {serviceObj.slug === 'emergency'
                 ? `Emergency Plumber in ${stateObj.name}`
+                : serviceObj.slug === 'drain-cleaning'
+                ? `Emergency Drain Cleaning in ${stateObj.name}`
                 : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName}`}
             </h1>
             <p className="text-lg text-white mb-6 max-w-2xl mx-auto">

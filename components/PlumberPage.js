@@ -234,7 +234,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'leak-repair'
     ? `Emergency Plumber in ${location} — Leak Repair`
     : serviceSlug === 'drain-cleaning'
-    ? `Emergency Plumber in ${location} — Drain Cleaning`
+    ? `Emergency Drain Cleaning in ${location}`
     : serviceSlug === 'water-heater-repair'
     ? `Emergency Plumber in ${location} — Water Heater Repair`
     : serviceSlug === 'sewer-line-repair'
@@ -267,7 +267,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'leak-repair'
     ? `Water leak in ${location}? Pinhole, slab, or supply line — licensed emergency plumber dispatched in 60 min. 24/7 availability, upfront pricing before work begins. Call now.`
     : serviceSlug === 'drain-cleaning'
-    ? `Clogged drain in ${location}? Licensed emergency plumber dispatched same-day — 24/7 availability, 60-min response target, upfront pricing before any work begins. Dispatch now.`
+    ? `Emergency drain service in ${location}? 24/7 drain cleaning and sewer clearing — licensed plumber dispatched fast for clogged drains, backups, and blockages. Upfront pricing. Call now.`
     : serviceSlug === 'water-heater-repair'
     ? `Need water heater repair in ${location}? Licensed emergency plumber dispatched in under 60 min — 24/7 live dispatch, no hot water crisis handled fast. Upfront pricing. Call now.`
     : serviceSlug === 'sewer-line-repair'
@@ -481,10 +481,14 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
               {serviceSlug === 'emergency'
                 ? `Emergency Plumber in ${location}`
+                : serviceSlug === 'drain-cleaning'
+                ? `Emergency Drain Cleaning in ${location}`
                 : `Emergency Plumber in ${location} — ${service?.shortName || serviceName}`}
             </h1>
             <p className="speakable-intro text-lg md:text-xl text-white mb-5 max-w-2xl mx-auto">
-              Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.
+              {serviceSlug === 'drain-cleaning'
+                ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
+                : `Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
             </p>
             <CallButton label="hero" />
             <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live dispatcher, 24/7</p>
