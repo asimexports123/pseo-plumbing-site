@@ -48,7 +48,7 @@ const GUIDES = {
       { h2: '9. Gurgling Sounds from Toilets or Drains', body: 'Gurgling from a toilet when you run the washing machine, or bubbling in shower drains when the toilet flushes, indicates a drain venting problem or partial main line obstruction. Air is traveling through the wrong pathway in the drain-waste-vent system — left unaddressed, this causes drain failure throughout the house.' },
       { h2: '10. Visible Corrosion on Pipe Fittings', body: 'Green staining on copper joints, white calcium deposits on fittings, or orange rust on iron connections are signs of active corrosion at the weakest points in your supply system. Visible corrosion means the process is well advanced. A plumber can assess whether the section needs immediate replacement or targeted treatment.' },
     ],
-    relatedServices: ['emergency', 'leak-repair'],
+    relatedServices: ['emergency', 'leak-repair', 'drain-cleaning'],
     relatedGuides: ['how-to-prevent-frozen-pipes', 'how-to-shut-off-water-in-emergency'],
   },
 
@@ -84,7 +84,7 @@ const GUIDES = {
       { h2: 'Which Appliances Are Most Affected', body: 'Tank water heaters accumulate scale the fastest because they heat water repeatedly. Dishwashers develop scale on spray arms and heating elements. Ice makers and refrigerator water dispensers clog at inlet screens and valves. Washing machines accumulate scale on heating elements in heated cycles. In commercial settings — restaurants, hotels, apartment buildings — hard water descaling is a recurring operational cost.' },
       { h2: 'Solutions: From Maintenance to Water Treatment', body: 'Annual water heater tank flushing removes loose sediment and is the most cost-effective maintenance step. Magnetic descaling devices claim to alter scale crystallization with mixed evidence. Ion-exchange water softeners (salt-based) are the most effective whole-house solution — they replace calcium and magnesium ions with sodium, producing soft water throughout the house. Whole-house salt-free conditioners (template-assisted crystallization systems) are an alternative for homeowners who want to avoid sodium. Under-sink reverse osmosis systems address drinking water quality but do not protect appliances.' },
     ],
-    relatedServices: ['water-heater-repair', 'leak-repair'],
+    relatedServices: ['water-heater-repair', 'leak-repair', 'drain-cleaning'],
     relatedGuides: ['signs-you-need-a-plumber', 'how-to-prevent-frozen-pipes'],
   },
 

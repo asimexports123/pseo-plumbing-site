@@ -315,7 +315,7 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold text-blue-900 mb-3">Drain Cleaning by City</h3>
               <div className="grid grid-cols-2 gap-2">
-                {['Atlanta','Tampa','Nashville','Memphis','Louisville','Baltimore','Milwaukee','Portland','Las Vegas','Oklahoma City'].map((name) => {
+                {['Atlanta','Kansas City','Nashville','Memphis','Louisville','Baltimore','Milwaukee','Portland','Las Vegas','Oklahoma City'].map((name) => {
                   const city = SEED_CITIES.find((c) => c.name === name);
                   if (!city) return null;
                   return (

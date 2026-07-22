@@ -95,7 +95,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
       title: `Nearby Cities`,
 
-      links: nearbyCities.slice(0, 3).map((c) => ({
+      links: nearbyCities.slice(0, 5).map((c) => ({
 
         href: `/${buildSlug(cityToSlug(c.name), serviceSlug)}`,
 
