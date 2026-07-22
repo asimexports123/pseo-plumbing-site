@@ -5,7 +5,7 @@ import Script from 'next/script';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 
 const MC_SITE     = '3143';
-const MC_CAMPAIGN = '347338';
+const MC_CAMPAIGN = '348734';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
           window._mc = window._mc || {};
           window._mc.site     = '${MC_SITE}';
           window._mc.campaign = '${MC_CAMPAIGN}';
-          window._mc.phone    = '(844) 643-1136';
+          window._mc.phone    = '(844) 934-4386';
           window._mc.subid    = (new URLSearchParams(window.location.search)).get('subid') || '';
         `}
       </Script>
