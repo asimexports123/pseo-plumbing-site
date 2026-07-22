@@ -6,7 +6,7 @@ import {
 
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
 
-  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService,
+  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, COST_PAGE_CITIES,
 
 } from '../../lib/cities';
 
@@ -534,7 +534,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
                   const citySlug = cityToSlug(city.name);
 
-                  const hasCostPage = CITY_DATA[city.name]?.waterUtility;
+                  const hasCostPage = COST_PAGE_CITIES.includes(city.name);
 
                   return (
 
