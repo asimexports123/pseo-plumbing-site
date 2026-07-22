@@ -6,7 +6,7 @@ import {
 
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
 
-  cityToSlug, buildSlug, CITY_DATA,
+  cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService,
 
 } from '../../lib/cities';
 
@@ -552,7 +552,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
                       <div className="flex flex-wrap gap-2">
 
-                        {SERVICES.map((s) => (
+                        {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug)).map((s) => (
 
                           <Link
 
