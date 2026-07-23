@@ -124,7 +124,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
   const title = serviceObj.slug === 'emergency'
     ? `Emergency Plumbing Service in ${stateObj.name} | 24/7 Licensed Dispatch | YoHomeFix`
     : serviceObj.slug === 'drain-cleaning'
-    ? `Emergency Drain Cleaning in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
+    ? `Emergency Drain Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
     : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName} | 24/7 Licensed Service | YoHomeFix`;
   const description = serviceObj.slug === 'emergency'
     ? `24/7 emergency plumbing dispatch across all of ${stateObj.name}. YoHomeFix connects you with a licensed plumber for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing, no overtime charges. Call now.`
@@ -274,7 +274,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
               {serviceObj.slug === 'emergency'
                 ? `Emergency Plumber in ${stateObj.name}`
                 : serviceObj.slug === 'drain-cleaning'
-                ? `Emergency Drain Cleaning in ${stateObj.name}`
+                ? `Emergency Drain Service in ${stateObj.name}`
                 : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName}`}
             </h1>
             <p className="text-lg text-white mb-6 max-w-2xl mx-auto">

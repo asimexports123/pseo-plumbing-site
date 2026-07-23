@@ -66,7 +66,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
   const canonical = `${domain}/plumber-${stateObj.slug}`;
 
-  const title = `Emergency Plumber in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`;
+  const title = `Emergency Plumber in ${stateObj.name} | 24 Hour Plumbing Service | YoHomeFix`;
 
   const description = `Burst pipe or flooding in ${stateObj.name}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7 across all of ${stateObj.name}, no overtime charges. Call now.`;
 

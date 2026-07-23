@@ -202,6 +202,63 @@ function ServicesCovered({ serviceSlug, cityName }) {
   );
 }
 
+const SERVICE_CALLOUTS = {
+  'emergency': [
+    { slug: 'drain-cleaning', label: 'Emergency Drain Service', text: 'Clogged drain or sewer backup? Our drain service technicians clear blockages fast with hydro-jetting and camera inspection.' },
+    { slug: 'water-heater-repair', label: 'Water Heater Repair', text: 'No hot water? We repair and replace tank and tankless water heaters same day across the metro.' },
+  ],
+  'drain-cleaning': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Plumbing emergency beyond a clog? Our 24 hour plumbers handle burst pipes, leaks, and flooding — dispatched in under 60 minutes.' },
+    { slug: 'sewer-line-repair', label: 'Sewer Line Repair', text: 'Recurring backups may signal a damaged sewer line. We provide camera inspection and trenchless repair options.' },
+  ],
+  'water-heater-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active leak from your water heater? Our 24/7 emergency plumbers stop the leak and prevent water damage fast.' },
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Suspect a hidden leak near your water heater? We use acoustic and thermal detection to pinpoint it without demolition.' },
+  ],
+  'leak-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active flooding from a burst pipe? Our 24 hour plumbers are dispatched immediately — no overtime charges.' },
+    { slug: 'drain-cleaning', label: 'Drain Service', text: 'Slow drains alongside a leak? We clear blockages and inspect for related pipe damage in one visit.' },
+  ],
+  'pipe-burst-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Need a plumber right now? Our 24/7 dispatch handles all plumbing emergencies — burst pipes, leaks, backups.' },
+    { slug: 'leak-repair', label: 'Leak Detection', text: 'Hidden leak causing the burst? We use non-invasive detection to find and fix the source.' },
+  ],
+  'sewer-line-repair': [
+    { slug: 'drain-cleaning', label: 'Emergency Drain Service', text: 'Need immediate clearing? Our hydro-jetting and snaking service clears blocked sewer lines fast — 24/7.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Sewage backing up? Our emergency plumbers respond 24/7 to stop backups and protect your home.' },
+  ],
+};
+
+function RelatedServiceCallout({ cityName, serviceSlug }) {
+  const callouts = SERVICE_CALLOUTS[serviceSlug];
+  if (!callouts || callouts.length === 0) return null;
+  const citySlug = cityToSlug(cityName);
+
+  return (
+    <div className="mb-10 grid md:grid-cols-2 gap-4">
+      {callouts.map((c) => {
+        if (!isCityQualifiedForService(cityName, c.slug)) return null;
+        const href = `/${buildSlug(citySlug, c.slug)}`;
+        return (
+          <Link
+            key={c.slug}
+            href={href}
+            className="block p-5 bg-blue-50 border border-blue-200 rounded-2xl hover:border-blue-500 hover:shadow-md transition-all no-underline group"
+          >
+            <p className="font-bold text-blue-900 mb-1 group-hover:text-blue-700">
+              {c.label} in {cityName}
+            </p>
+            <p className="text-gray-600 text-sm leading-relaxed">{c.text}</p>
+            <span className="inline-block mt-2 text-blue-600 text-sm font-semibold group-hover:underline">
+              Learn more →
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
 // Helper function to extract clean city name for display
 // Removes state suffix from city names like "Arlington TX" → "Arlington"
 function getCityDisplayName(cityName, stateCode) {
@@ -234,9 +291,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'leak-repair'
     ? `Emergency Plumber in ${location} — Leak Repair`
     : serviceSlug === 'drain-cleaning'
-    ? `Emergency Drain Cleaning in ${location}`
+    ? `Emergency Drain Service in ${location}`
     : serviceSlug === 'water-heater-repair'
-    ? `Emergency Plumber in ${location} — Water Heater Repair`
+    ? `Water Heater Repair in ${location} — Emergency 24/7 Service`
     : serviceSlug === 'sewer-line-repair'
     ? `Emergency Plumber in ${location} — Sewer Line Repair`
     : serviceSlug === 'toilet-repair'
@@ -258,10 +315,14 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'sump-pump-repair'
     ? `Emergency Plumber in ${location} — Sump Pump Repair`
     : `Emergency Plumber in ${location}`;
-  const title = `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
+  const title = serviceSlug === 'drain-cleaning'
+    ? `${pageTitle} | 24/7 Clog & Backup Clearing | YoHomeFix`
+    : serviceSlug === 'emergency'
+    ? `${pageTitle} | 24 Hour Plumber & Plumbing Service | YoHomeFix`
+    : `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
 
   const description = serviceSlug === 'emergency'
-    ? `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`
+    ? `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed 24 hour plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`
     : serviceSlug === 'pipe-burst-repair'
     ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 dispatch, upfront pricing, no overtime charges. Get help now.`
     : serviceSlug === 'leak-repair'
@@ -269,7 +330,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : serviceSlug === 'drain-cleaning'
     ? `Emergency drain service in ${location}? 24/7 drain cleaning and sewer clearing — licensed plumber dispatched fast for clogged drains, backups, and blockages. Upfront pricing. Call now.`
     : serviceSlug === 'water-heater-repair'
-    ? `Need water heater repair in ${location}? Licensed emergency plumber dispatched in under 60 min — 24/7 live dispatch, no hot water crisis handled fast. Upfront pricing. Call now.`
+    ? `No hot water in ${location}? Emergency water heater repair 24/7 — licensed plumber dispatched in under 60 min. Tank & tankless repair, same-day replacement. Upfront pricing. Call now.`
     : serviceSlug === 'sewer-line-repair'
     ? `Sewer line problems in ${location}? Licensed emergency plumber handles main line repair, camera inspection, and trenchless repair. 24/7 dispatch, upfront pricing. Call now.`
     : serviceSlug === 'toilet-repair'
@@ -482,12 +543,16 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
               {serviceSlug === 'emergency'
                 ? `Emergency Plumber in ${location}`
                 : serviceSlug === 'drain-cleaning'
-                ? `Emergency Drain Cleaning in ${location}`
+                ? `Emergency Drain Service in ${location}`
+                : serviceSlug === 'water-heater-repair'
+                ? `Water Heater Repair in ${location} — Emergency 24/7`
                 : `Emergency Plumber in ${location} — ${service?.shortName || serviceName}`}
             </h1>
             <p className="speakable-intro text-lg md:text-xl text-white mb-5 max-w-2xl mx-auto">
               {serviceSlug === 'drain-cleaning'
                 ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
+                : serviceSlug === 'water-heater-repair'
+                ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber dispatched fast. Upfront pricing.`
                 : `Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
             </p>
             <CallButton label="hero" />
@@ -608,6 +673,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
               <div className="flex gap-2"><span className="font-bold">✓</span> Schedule inspections every 1–2 years.</div>
             </div>
           </div>
+
+          {/* Contextual cross-links to related services — authority concentration */}
+          <RelatedServiceCallout cityName={cityName} serviceSlug={serviceSlug} />
 
           {/* Mid-page CTA */}
           <MidPageCTA cityName={cityName} serviceName={serviceName} />

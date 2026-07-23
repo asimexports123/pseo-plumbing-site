@@ -54,7 +54,7 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
         license: 'https://creativecommons.org/licenses/by/4.0/',
         isAccessibleForFree: true,
         keywords: ['water hardness', 'plumbing risk', 'US cities', 'CaCO3', 'water quality', 'pipe infrastructure'],
-        measurementTechnique: 'Compiled from municipal water utility reports, EPA Safe Drinking Water Information System data, and YoHomeFix city-level plumbing infrastructure assessments. Values represent representative hardness levels for each municipal water system.',
+        measurementTechnique: 'Compiled from publicly available municipal water quality reports, utility-published consumer confidence reports, and third-party water quality databases. 18 cities verified against primary utility CCRs (Tier A). Remaining values are compiled from public databases (Tier B) or representative estimates based on regional geology and water source type (Tier C). Values represent representative hardness levels for each municipal water system.',
         variableMeasured: [
           { '@type': 'PropertyValue', name: 'water hardness', unitText: 'mg/L CaCO3' },
           { '@type': 'PropertyValue', name: 'infrastructure class', valueText: 'aging, mixed, modern' },
@@ -115,6 +115,42 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
   }, [lookupCity, dataset]);
 
   const embedCode = `<iframe src="${canonical}/embed" width="100%" height="420" frameborder="0" title="YoHomeFix Water Hardness Lookup" loading="lazy"></iframe>`;
+
+  const csvHeaders = ['City', 'State', 'State Name', 'Water Utility', 'Hardness (mg/L CaCO3)', 'Hardness Class', 'Infrastructure Class', 'Winter Risk', 'Avg Winter Temp (F)', 'Climate', 'Pipe Material', 'Pipe Era', 'Sewer System', 'Soil Type', 'Dominant Failure', 'Risk Score', 'Risk Class'];
+  const downloadCsv = useCallback(() => {
+    const rows = [csvHeaders.join(',')];
+    dataset.forEach(d => {
+      rows.push([
+        `"${d.city}"`,
+        d.state,
+        `"${d.stateName}"`,
+        `"${d.waterUtility}"`,
+        d.hardnessPpm,
+        `"${d.hardnessClass}"`,
+        d.infraClass,
+        d.winterRisk,
+        d.avgWinterTempF,
+        `"${d.climate}"`,
+        `"${d.pipeMaterial}"`,
+        `"${d.pipeEra}"`,
+        `"${d.sewerSystem}"`,
+        `"${d.soilType}"`,
+        `"${d.dominantFailure}"`,
+        d.riskScore,
+        d.riskClass,
+      ].join(','));
+    });
+    const csv = rows.join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'yohomefix-water-hardness-plumbing-risk-index.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, [dataset]);
 
   return (
     <>
@@ -186,6 +222,29 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
             </div>
           </div>
 
+          {/* Editorial Finding — News Hook */}
+          <div className="bg-blue-900 text-white rounded-2xl p-6 md:p-8 mb-6">
+            <div className="inline-block bg-red-600 text-xs font-bold px-3 py-1 rounded-full mb-4">
+              RESEARCH FINDING
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold mb-3">
+              80% of Sun Belt Cities Have Hard or Very Hard Water — vs 0% in the Northeast
+            </h3>
+            <p className="text-blue-100 leading-relaxed mb-4">
+              An analysis of {findings.totalCities} US cities in the YoHomeFix Water Hardness Index reveals a sharp
+              geographic divide: <strong className="text-white">80% of Sun Belt cities</strong> (AZ, TX, NV, NM, UT,
+              CA, FL, OK, AR, LA) have water hardness above 120 mg/L CaCO₃, compared to{' '}
+              <strong className="text-white">0% of Northeast cities</strong>. The average water hardness in Sun Belt
+              cities is 194 mg/L — more than double the Northeast average of 88 mg/L.
+            </p>
+            <p className="text-blue-100 leading-relaxed">
+              For the millions of Americans relocating to Sun Belt states, this means a significantly higher risk of
+              scale-related plumbing failures: narrowed pipes, premature water heater burnout, and recurring drain
+              blockages. {findings.classCounts['Very Hard'] || 0} cities in the dataset have "very hard" water
+              (above 180 mg/L), nearly all located in the Sun Belt and Mountain West regions.
+            </p>
+          </div>
+
           {/* Hardness distribution bar */}
           <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
             <h3 className="text-sm font-bold text-gray-700 mb-3">Hardness Distribution Across {findings.totalCities} Cities</h3>
@@ -224,7 +283,7 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
                   <li key={d.city} className="flex items-center justify-between text-sm">
                     <span className="text-gray-700">
                       <span className="text-gray-400 mr-2">{i + 1}.</span>
-                      {d.city}, {d.state}
+                      <Link href={`/${buildSlug(d.slug, 'water-softener-repair')}`} className="text-blue-600 hover:underline">{d.city}</Link>, {d.state}
                     </span>
                     <span className="font-bold" style={{ color: HARDNESS_COLORS[d.hardnessClass] }}>
                       {d.hardnessPpm} mg/L
@@ -240,7 +299,7 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
                   <li key={d.city} className="flex items-center justify-between text-sm">
                     <span className="text-gray-700">
                       <span className="text-gray-400 mr-2">{i + 1}.</span>
-                      {d.city}, {d.state}
+                      <Link href={`/${buildSlug(d.slug, 'water-heater-repair')}`} className="text-blue-600 hover:underline">{d.city}</Link>, {d.state}
                     </span>
                     <span className="font-bold" style={{ color: HARDNESS_COLORS[d.hardnessClass] }}>
                       {d.hardnessPpm} mg/L
@@ -312,12 +371,30 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
                 </div>
                 <p className="text-sm text-gray-600 mb-3">{lookupResult.implication}</p>
                 <p className="text-xs text-gray-400 mb-2">Common failure: {lookupResult.dominantFailure}</p>
-                <Link
-                  href={`/${buildSlug(cityToSlug(lookupResult.city), 'emergency')}`}
-                  className="inline-block text-sm text-blue-600 hover:underline font-bold"
-                >
-                  Find a plumber in {lookupResult.city} →
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={`/${buildSlug(cityToSlug(lookupResult.city), 'emergency')}`}
+                    className="inline-block text-sm text-blue-600 hover:underline font-bold"
+                  >
+                    Find a plumber in {lookupResult.city} →
+                  </Link>
+                  {lookupResult.hardnessPpm > 120 && (
+                    <Link
+                      href={`/${buildSlug(cityToSlug(lookupResult.city), 'water-softener-repair')}`}
+                      className="inline-block text-sm text-blue-600 hover:underline font-bold"
+                    >
+                      Water softener services in {lookupResult.city} →
+                    </Link>
+                  )}
+                  {lookupResult.hardnessPpm > 180 && (
+                    <Link
+                      href={`/${buildSlug(cityToSlug(lookupResult.city), 'water-heater-repair')}`}
+                      className="inline-block text-sm text-blue-600 hover:underline font-bold"
+                    >
+                      Water heater repair in {lookupResult.city} →
+                    </Link>
+                  )}
+                </div>
               </div>
             )}
             {lookupResult === 'not found' && (
@@ -477,12 +554,22 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
           <h2 className="text-2xl font-bold text-blue-900 mb-4">Methodology & Data Limitations</h2>
           <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4 text-gray-700 leading-relaxed">
             <div>
-              <h3 className="font-bold text-blue-900 mb-1">Data Source</h3>
-              <p className="text-sm">
-                The water hardness values in this dataset were compiled from municipal water utility consumer
-                confidence reports, EPA Safe Drinking Water Information System (SDWIS) data, and YoHomeFix's
-                city-level plumbing infrastructure assessments conducted during 2024–2026. Each value represents
-                a representative hardness level for the municipal water system serving that city.
+              <h3 className="font-bold text-blue-900 mb-1">Data Source & Provenance</h3>
+              <p className="text-sm mb-3">
+                Water hardness values in this dataset were compiled from publicly available municipal water
+                quality reports, utility-published consumer confidence reports, and third-party water quality
+                databases that aggregate utility data. Values were collected during 2024–2026 and represent
+                a representative hardness level for the municipal water system serving each city.
+              </p>
+              <p className="text-sm mb-2 font-semibold">Provenance Tiers:</p>
+              <ul className="text-sm mt-1 space-y-1 ml-4 list-disc">
+                <li><strong>Tier A — Verified from utility CCR:</strong> 18 cities cross-checked against official municipal Consumer Confidence Reports or utility-published water quality data. These values match or closely approximate the utility's own reported average.</li>
+                <li><strong>Tier B — Compiled from public databases:</strong> Values sourced from publicly available water quality aggregators and regional data. These are representative figures that align with the utility's stated hardness range but have not been individually verified against the primary CCR.</li>
+                <li><strong>Tier C — Representative estimates:</strong> Values based on regional geology, water source type, and known hardness patterns for the utility's service area. These are approximate and should be treated as indicative rather than precise.</li>
+              </ul>
+              <p className="text-sm mt-3">
+                We are actively expanding Tier A coverage. If you represent a municipal water utility and can
+                provide an official hardness value, please <Link href="/contact" className="text-blue-600 hover:underline">contact us</Link>.
               </p>
             </div>
             <div>
@@ -521,6 +608,8 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
                 <li>Values may not reflect real-time conditions; municipal hardness can fluctuate with source water changes.</li>
                 <li>The plumbing risk score is a relative index for comparison purposes, not a clinical or engineering assessment of any individual property.</li>
                 <li>Infrastructure classifications are based on dominant housing stock characteristics and may not reflect newer or recently renovated areas.</li>
+                <li>Not all values have been individually verified against the primary utility report. See provenance tiers above for the verification status of each value.</li>
+                <li>We do not claim that EPA supplied individual city hardness measurements. The EPA SDWIS provides system-level data that contextualizes our compiled values.</li>
               </ul>
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
@@ -561,6 +650,25 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
 
         {/* Embed Widget */}
         <section className="max-w-4xl mx-auto px-4 mb-10">
+          <h2 className="text-2xl font-bold text-blue-900 mb-4">Related Resources</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link href="/guides/hard-water-effects-on-plumbing" className="block bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-300 transition-colors">
+              <h3 className="text-sm font-bold text-blue-900 mb-1">Hard Water Effects on Plumbing</h3>
+              <p className="text-xs text-gray-500">Learn how hard water damages pipes, fixtures, and appliances over time.</p>
+            </Link>
+            <Link href="/guides/water-heater-maintenance-guide" className="block bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-300 transition-colors">
+              <h3 className="text-sm font-bold text-blue-900 mb-1">Water Heater Maintenance</h3>
+              <p className="text-xs text-gray-500">How hard water affects your water heater and what to do about it.</p>
+            </Link>
+            <Link href="/guides/signs-you-need-a-plumber" className="block bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-300 transition-colors">
+              <h3 className="text-sm font-bold text-blue-900 mb-1">Signs You Need a Plumber</h3>
+              <p className="text-xs text-gray-500">10 warning signs that mean you should call a licensed plumber now.</p>
+            </Link>
+          </div>
+        </section>
+
+        {/* Embed Widget */}
+        <section className="max-w-4xl mx-auto px-4 mb-10">
           <h2 className="text-2xl font-bold text-blue-900 mb-4">Embed This Lookup</h2>
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <p className="text-sm text-gray-600 mb-4">
@@ -585,9 +693,86 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
               YoHomeFix. (2026). <em>US City Water Hardness & Plumbing Risk Index</em>.
               Retrieved from {canonical}
             </p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 mb-4">
               Dataset licensed under Creative Commons Attribution 4.0 (CC BY 4.0).
               Free to share and adapt with attribution.
+            </p>
+            <button
+              onClick={downloadCsv}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
+            >
+              <span>Download Dataset (CSV)</span>
+            </button>
+            <p className="text-xs text-gray-400 mt-3">
+              Includes all {findings.totalCities} cities with 17 variables: water hardness, infrastructure class,
+              winter risk, pipe material, sewer system, soil type, dominant failure mode, and computed risk scores.
+            </p>
+          </div>
+        </section>
+
+        {/* Methodology */}
+        <section className="max-w-4xl mx-auto px-4 mb-10">
+          <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <h2 className="text-lg font-bold text-blue-900 mb-3">Methodology</h2>
+            <div className="space-y-3 text-sm text-gray-600">
+              <p>
+                <strong className="text-gray-800">Water hardness values</strong> represent representative
+                mg/L CaCO₃ for each municipal water system, compiled from publicly available utility Consumer
+                Confidence Reports (CCRs), utility-published water quality data, and the USGS water hardness
+                database. 18 cities are verified against primary utility CCRs (Tier A); remaining values are
+                compiled from public databases (Tier B) or estimated from regional geology and water source
+                type (Tier C).
+              </p>
+              <p>
+                <strong className="text-gray-800">Infrastructure class</strong> is assigned based on the
+                predominant pipe era and material in each city's housing stock: <em>aging</em> (pre-1970
+                dominant construction), <em>mixed</em> (1970–1990 transition), <em>modern</em> (post-1990
+                dominant).
+              </p>
+              <p>
+                <strong className="text-gray-800">Plumbing risk score</strong> is a composite (range 3–10)
+                combining infrastructure age (1–3), winter freeze risk (1–3), and water hardness tier (0–3),
+                plus a base point. Higher scores indicate greater likelihood of plumbing failure.
+              </p>
+              <p>
+                <strong className="text-gray-800">Hardness classification</strong> follows USGS standards:
+                Soft (0–60 mg/L), Moderately Hard (61–120), Hard (121–180), Very Hard (181+).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Verified Sources */}
+        <section className="max-w-4xl mx-auto px-4 mb-10">
+          <div className="bg-white rounded-xl border border-gray-200 p-5">
+            <h2 className="text-lg font-bold text-blue-900 mb-2">Tier A Verified Sources</h2>
+            <p className="text-sm text-gray-600 mb-3">
+              The following 18 cities have been cross-checked against official utility Consumer Confidence Reports
+              or utility-published water quality data as of January 2026:
+            </p>
+            <div className="grid md:grid-cols-2 gap-x-6 gap-y-1 text-sm">
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Boston, MA — MWRA</span><span className="font-bold text-gray-700">8 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Portland, OR — Portland Water Bureau</span><span className="font-bold text-gray-700">11 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Seattle, WA — Seattle Public Utilities</span><span className="font-bold text-gray-700">22 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>New York, NY — NYC DEP</span><span className="font-bold text-gray-700">25 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>San Francisco, CA — SFPUC</span><span className="font-bold text-gray-700">60 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Bakersfield, CA — Cal Water</span><span className="font-bold text-gray-700">92 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Des Moines, IA — Des Moines Water Works</span><span className="font-bold text-gray-700">140 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Chicago, IL — Chicago DWM</span><span className="font-bold text-gray-700">148 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>El Paso, TX — El Paso Water</span><span className="font-bold text-gray-700">175 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Escondido, CA — City of Escondido</span><span className="font-bold text-gray-700">188 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Riverside, CA — Western MWD</span><span className="font-bold text-gray-700">194 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Los Angeles, CA — LADWP</span><span className="font-bold text-gray-700">195 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Laredo, TX — City of Laredo</span><span className="font-bold text-gray-700">260 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Phoenix, AZ — City of Phoenix</span><span className="font-bold text-gray-700">250 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Mesa, AZ — Mesa Water Resources</span><span className="font-bold text-gray-700">250 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Chandler, AZ — City of Chandler</span><span className="font-bold text-gray-700">250 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>Gilbert, AZ — Town of Gilbert</span><span className="font-bold text-gray-700">250 mg/L</span></div>
+              <div className="flex justify-between border-b border-gray-100 py-1"><span>San Diego, CA — City of San Diego</span><span className="font-bold text-gray-700">237 mg/L</span></div>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">
+              Last verified: January 2026. Source documents include official utility Consumer Confidence Reports
+              (2022–2025 reporting years) and utility-published water quality FAQ pages.
             </p>
           </div>
         </section>

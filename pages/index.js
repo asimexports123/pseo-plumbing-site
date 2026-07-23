@@ -20,16 +20,16 @@ function trackCall(label) {
 // Top 10 cities for authority hub links (emergency + leak-repair clusters)
 const TOP_CITIES = [
   'New York','Los Angeles','Chicago','Houston','Phoenix',
-  'Philadelphia','San Antonio','Dallas','San Jose','Austin',
+  'Philadelphia','San Antonio','Dallas','San Diego','Austin',
 ];
 const LEAK_CITIES = [
-  'San Diego','Fort Worth','Columbus','Charlotte','Indianapolis',
+  'San Jose','Fort Worth','Columbus','Charlotte','Indianapolis',
   'San Francisco','Seattle','Denver','Nashville','Jacksonville',
 ];
 
 export default function Home() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
-  const title = 'Emergency Plumber | 24/7 Local Plumbing Service | YoHomeFix';
+  const title = 'Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix';
   const description =
     'Burst pipe, flooding, or no hot water? YoHomeFix connects you with a licensed local plumber in under 60 min — available 24/7, no hold queues, upfront pricing. Call now.';
 
@@ -313,16 +313,17 @@ export default function Home() {
           {/* Drain + Water Heater city clusters */}
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold text-blue-900 mb-3">Drain Cleaning by City</h3>
+              <h3 className="text-xl font-bold text-blue-900 mb-3">Emergency Drain Service by City</h3>
               <div className="grid grid-cols-2 gap-2">
                 {['Atlanta','Kansas City','Nashville','Memphis','Louisville','Baltimore','Milwaukee','Portland','Las Vegas','Oklahoma City'].map((name) => {
                   const city = SEED_CITIES.find((c) => c.name === name);
                   if (!city) return null;
                   return (
                     <Link key={name} href={`/${buildSlug(cityToSlug(name), 'drain-cleaning')}`}
-                      className="p-2 bg-green-50 border border-green-200 rounded-lg hover:border-green-500 text-center no-underline transition-all">
+                      className="p-2 bg-green-50 border border-green-200 rounded-lg hover:border-green-500 text-center no-underline transition-all"
+                      title={`Emergency drain service in ${name}`}>
                       <p className="font-semibold text-green-800 text-xs">{name}</p>
-                      <p className="text-green-400 text-xs">{city.stateCode}</p>
+                      <p className="text-green-400 text-xs">Drain Service</p>
                     </Link>
                   );
                 })}
