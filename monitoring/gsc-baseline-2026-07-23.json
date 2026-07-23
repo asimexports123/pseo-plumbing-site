@@ -1,0 +1,80 @@
+{
+  "baselineDate": "2026-07-23",
+  "gscDateRange": "Last 3 months (approx 2026-04-24 to 2026-07-20)",
+  "gscFilter": "Web search type",
+  "exportPath": "C:\\Users\\91998\\Downloads\\yohomefix-gsc-export",
+  "targetPages": [
+    {
+      "page": "https://yohomefix.com/plumber-oklahoma-city-drain-cleaning",
+      "label": "Oklahoma City Emergency Drain Service",
+      "primaryCommercialQuery": "emergency drain service",
+      "clicks": 0,
+      "impressions": 19292,
+      "ctr": "0%",
+      "pageAveragePosition": 29.48,
+      "relatedQueries": [
+        { "query": "emergency drain service", "impressions": 16300, "clicks": 0, "position": 26.69 },
+        { "query": "drain cleaning okc", "impressions": 19, "clicks": 0, "position": 81.26 },
+        { "query": "oklahoma city drain cleaning", "impressions": 18, "clicks": 0, "position": 87.61 },
+        { "query": "drain cleaning oklahoma city", "impressions": 9, "clicks": 0, "position": 83.11 },
+        { "query": "drain clearing service oklahoma city ok", "impressions": 8, "clicks": 0, "position": 72.38 },
+        { "query": "okc drain cleaning", "impressions": 4, "clicks": 0, "position": 81.25 }
+      ]
+    },
+    {
+      "page": "https://yohomefix.com/plumber-baltimore-drain-cleaning",
+      "label": "Baltimore Emergency Drain Service",
+      "primaryCommercialQuery": "emergency drain service",
+      "clicks": 0,
+      "impressions": 5405,
+      "ctr": "0%",
+      "pageAveragePosition": 35.55,
+      "relatedQueries": [
+        { "query": "drain clearing baltimore md", "impressions": 6, "clicks": 0, "position": 89.17 },
+        { "query": "emergency plumbing baltimore", "impressions": 19, "clicks": 0, "position": 65.53 },
+        { "query": "emergency plumber baltimore", "impressions": 10, "clicks": 0, "position": 50.6 },
+        { "query": "emergency plumber baltimore md", "impressions": 8, "clicks": 0, "position": 68.12 },
+        { "query": "emergency plumbing services baltimore md", "impressions": 5, "clicks": 0, "position": 82.4 }
+      ]
+    },
+    {
+      "page": "https://yohomefix.com/plumber-new-orleans-water-heater-repair",
+      "label": "New Orleans Water Heater Repair",
+      "primaryCommercialQuery": "water heater repair new orleans",
+      "clicks": 1,
+      "impressions": 627,
+      "ctr": "0.16%",
+      "pageAveragePosition": 40.57,
+      "relatedQueries": [
+        { "query": "water heater repair new orleans", "impressions": 13, "clicks": 0, "position": 72 },
+        { "query": "water heater installation in new orleans louisiana", "impressions": 24, "clicks": 0, "position": 93.92 },
+        { "query": "heater replacement new orleans la", "impressions": 8, "clicks": 0, "position": 48.25 },
+        { "query": "tankless water heater repair new orleans", "impressions": 4, "clicks": 0, "position": 67.25 }
+      ]
+    },
+    {
+      "page": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "label": "Oklahoma City Emergency Plumber",
+      "primaryCommercialQuery": "emergency plumber okc",
+      "clicks": 0,
+      "impressions": 124,
+      "ctr": "0%",
+      "pageAveragePosition": 49.47,
+      "relatedQueries": [
+        { "query": "emergency plumber okc", "impressions": 22, "clicks": 0, "position": 76.5 },
+        { "query": "oklahoma city emergency plumber", "impressions": 14, "clicks": 0, "position": 80.93 },
+        { "query": "emergency plumber oklahoma city", "impressions": 10, "clicks": 0, "position": 78 },
+        { "query": "okc emergency plumber", "impressions": 9, "clicks": 0, "position": 77.78 },
+        { "query": "emergency plumbing services oklahoma city ok", "impressions": 6, "clicks": 0, "position": 57.5 }
+      ]
+    }
+  ],
+  "aggregateBaseline": {
+    "totalQueries": 780,
+    "totalPages": 370,
+    "totalClicks": 14,
+    "totalImpressions": 85543,
+    "averageCtr": "0.016%",
+    "averagePosition": 51.2
+  }
+}
