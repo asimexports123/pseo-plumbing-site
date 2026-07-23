@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useMemo } from 'react';
-import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, PHONE_DISPLAY, STATES } from '../lib/cities';
+import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, STATES } from '../lib/cities';
 import { Footer } from '../components/Footer';
 
 const SYMPTOMS = [
@@ -312,7 +312,7 @@ export default function PlumbingDiagnosticTool() {
                     className="inline-flex items-center gap-3 bg-white text-red-600 px-8 py-4 rounded-full text-xl font-extrabold hover:bg-gray-100 transition-colors"
                     aria-label="Call emergency dispatch"
                   >
-                    📞 Call {PHONE_DISPLAY}
+                    📞 Call Now
                   </a>
                 </div>
               )}
@@ -328,7 +328,7 @@ export default function PlumbingDiagnosticTool() {
                     className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-full text-xl font-extrabold hover:bg-red-500 transition-colors"
                     aria-label="Call to schedule service"
                   >
-                    📞 Call {PHONE_DISPLAY}
+                    📞 Call Now
                   </a>
                 </div>
               )}

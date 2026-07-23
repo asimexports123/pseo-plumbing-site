@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import { PHONE_NUMBER, PHONE_DISPLAY, SERVICES } from '../lib/cities';
+import { PHONE_NUMBER, SERVICES } from '../lib/cities';
 
 // ── Call tracking helper ─────────────────────────────────────
 function trackEvent(action, label, extra) {
@@ -155,7 +155,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
             className="bg-red-600 hover:bg-red-500 text-white px-6 py-4 rounded-xl font-extrabold text-lg transition-colors"
             aria-label="Call emergency dispatch"
           >
-            📞 Call {PHONE_DISPLAY}
+            📞 Call Now
           </a>
           <button
             onClick={handleDismiss}
