@@ -1,0 +1,58 @@
+# YoHomeFix
+
+> YoHomeFix is a 24/7 emergency plumbing dispatch service connecting US homeowners with licensed local plumbers. We serve 155 cities across 46 states with upfront pricing, no overtime charges, and 60-minute response targets. Our phone number is +1 (844) 934-4386, available 24 hours a day, 7 days a week.
+
+## What We Do
+
+YoHomeFix connects homeowners experiencing plumbing emergencies — burst pipes, drain backups, water heater failures, sewer line problems, slab leaks, and more — with licensed local plumbing technicians. We operate a nationwide dispatch network covering 155 US cities across 46 states.
+
+## Services We Offer
+
+- Emergency Plumbing (24/7 urgent response)
+- Leak Repair (pipe leaks, water leaks)
+- Drain Cleaning (clogged drains, sewer backups)
+- Water Heater Repair (no hot water, leaking tanks)
+- Sewer Line Repair (sewer backups, line replacement)
+- Toilet Repair (overflowing, running, clogged toilets)
+- Slab Leak Repair (foundation leaks, under-slab pipe issues)
+- Water Line Repair (main water line, supply line issues)
+- Faucet Repair (leaky faucets, fixture repair)
+- Garbage Disposal Repair (jammed, humming, leaking disposals)
+- Water Softener Repair (regeneration failures, salt bridges)
+- Main Water Shutoff Valve Repair (stuck, leaking, broken valves)
+- Sump Pump Repair (pump failures, float switch issues)
+- Pipe Burst Repair (frozen pipes, burst pipes, emergency pipe repair)
+- Gas Line Repair (gas leaks, gas pipe repair)
+
+## How to Contact Us
+
+- Phone: +1 (844) 934-4386 (24/7 emergency dispatch)
+- Website: https://yohomefix.com
+- Emergency diagnostic tool: https://yohomefix.com/whats-wrong-with-my-plumbing
+
+## Key Pages
+
+- Homepage: https://yohomefix.com/
+- Emergency plumbing diagnostic tool: https://yohomefix.com/whats-wrong-with-my-plumbing
+- US water hardness and plumbing risk research: https://yohomefix.com/research/us-water-hardness-plumbing-risk
+- State-service hub pages: https://yohomefix.com/plumber/{state}/{service}
+- City-service pages: https://yohomefix.com/plumber-{city}-{service}
+
+## Coverage Area
+
+We serve 155 cities across 46 US states including: New York, Los Angeles, Chicago, Houston, Phoenix, Philadelphia, San Antonio, San Diego, Dallas, San Jose, Austin, Jacksonville, Fort Worth, Columbus, Charlotte, Indianapolis, San Francisco, Seattle, Denver, Nashville, El Paso, Memphis, Louisville, Baltimore, Milwaukee, Portland, Las Vegas, Oklahoma City, Albuquerque, Tucson, Atlanta, Kansas City, Omaha, Raleigh, Minneapolis, Virginia Beach, New Orleans, Tampa, St. Louis, Richmond, Sacramento, and 115+ more cities.
+
+## Research and Data
+
+YoHomeFix publishes original plumbing infrastructure research including:
+- US water hardness data and plumbing risk assessment by city
+- City-specific plumbing infrastructure profiles (pipe materials, pipe eras, water utility information, dominant failure patterns)
+- Seasonal plumbing risk analysis by region
+
+## Important Notes
+
+- All plumbers in our network are licensed and insured
+- We offer upfront pricing with no overtime charges
+- 60-minute response target for emergency calls
+- Available 24 hours, 7 days a week, including holidays
+- We do not provide DIY repair advice — always consult a licensed plumber for safety

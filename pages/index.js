@@ -228,6 +228,23 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── DIAGNOSTIC TOOL CTA ────────────────────────────────── */}
+        <section className="bg-blue-50 px-4 py-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-block bg-blue-900 text-white text-sm font-bold px-3 py-1 rounded-full mb-3">🔧 Free Tool</div>
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-3">Not Sure What's Wrong?</h2>
+            <p className="text-gray-600 mb-6 max-w-lg mx-auto">
+              Use our free plumbing symptom checker. Select your symptom to get immediate safety guidance, likely problem category, and urgency level.
+            </p>
+            <Link
+              href="/whats-wrong-with-my-plumbing"
+              className="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-full font-bold transition-colors no-underline"
+            >
+              🔧 Try the Diagnostic Tool
+            </Link>
+          </div>
+        </section>
+
         {/* ── SERVICE AUTHORITY GRID (Phase 2 — crawlable links) ── */}
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
