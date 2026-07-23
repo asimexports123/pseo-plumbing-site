@@ -15,6 +15,7 @@ function trackCall(label) {
       window.gtag('event', 'call_click', {
         cta_location: label,
         page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+        page_location: typeof window !== 'undefined' ? window.location.href : '',
       });
     }
   } catch (_) {}

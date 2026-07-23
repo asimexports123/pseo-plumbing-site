@@ -10,6 +10,7 @@ function trackEvent(action, label, extra) {
       if (action === 'call_click' || action.includes('_call')) {
         params.cta_location = label;
         params.page_path = window.location.pathname;
+        params.page_location = window.location.href;
         if (extra?.city) params.city = extra.city;
         if (extra?.service) params.service = extra.service;
       }

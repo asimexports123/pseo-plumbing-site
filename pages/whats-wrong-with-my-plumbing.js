@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, STATES } from '../lib/cities';
 import { Footer } from '../components/Footer';
 
@@ -104,15 +104,22 @@ export default function PlumbingDiagnosticTool() {
     } catch (_) {}
   }
 
+  // diagnostic_tool_start — fires when the tool page loads
+  useEffect(() => {
+    trackDiagnostic('diagnostic_tool_start', {
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  }, []);
+
   function handleSymptomSelect(symptomId) {
     setSelectedSymptom(symptomId);
     const symptom = SYMPTOMS.find(s => s.id === symptomId);
-    trackDiagnostic('diagnostic_symptom_selected', {
+    trackDiagnostic('symptom_selected', {
       symptom_id: symptomId,
       symptom_label: symptom?.label || '',
       urgency: symptom?.urgency || '',
       service: symptom?.service || '',
-      page_path: window.location.pathname,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
     });
   }
 
@@ -126,9 +133,11 @@ export default function PlumbingDiagnosticTool() {
   }
 
   function handleDiagnosticCall(urgency, symptom) {
-    trackDiagnostic('call_click', {
-      cta_location: urgency === 'emergency' || urgency === 'high' ? 'diagnostic-urgent-call' : 'diagnostic-schedule-call',
-      page_path: window.location.pathname,
+    const ctaLocation = urgency === 'emergency' || urgency === 'high' ? 'diagnostic-urgent-call' : 'diagnostic-schedule-call';
+    trackDiagnostic('diagnostic_call_click', {
+      cta_location: ctaLocation,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+      page_location: typeof window !== 'undefined' ? window.location.href : '',
       symptom_id: symptom?.id || '',
       urgency: urgency || '',
       service: symptom?.service || '',
@@ -156,6 +165,19 @@ export default function PlumbingDiagnosticTool() {
 
     return { symptom, cityLink };
   }, [selectedSymptom, selectedCity, domain]);
+
+  // result_viewed — fires when diagnostic result becomes visible
+  useEffect(() => {
+    if (!result) return;
+    trackDiagnostic('result_viewed', {
+      symptom_id: result.symptom?.id || '',
+      symptom_label: result.symptom?.label || '',
+      urgency: result.symptom?.urgency || '',
+      service: result.symptom?.service || '',
+      city: selectedCity || '',
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  }, [result]);
 
   const schema = {
     '@context': 'https://schema.org',
