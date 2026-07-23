@@ -35,7 +35,7 @@ export default function Home() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const title = 'Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix';
   const description =
-    'Burst pipe, flooding, or no hot water? YoHomeFix connects you with a licensed local plumber in under 60 min — available 24/7, no hold queues, upfront pricing. Call now.';
+    'Burst pipe, flooding, or no hot water? YoHomeFix provides 24/7 emergency plumbing service across the United States — licensed local plumbers, upfront pricing, 60-minute response target. Call now.';
 
   const orgSchema = {
     '@context': 'https://schema.org',
@@ -52,7 +52,7 @@ export default function Home() {
           height: 630,
         },
         telephone: PHONE_NUMBER,
-        description: 'An emergency plumbing call connection platform routing homeowners to verified local plumbing technicians, available 24/7 across the United States.',
+        description: 'YoHomeFix provides 24/7 emergency plumbing services across the United States. Licensed, insured plumbers — upfront pricing, 60-minute response target.',
         areaServed: { '@type': 'Country', name: 'United States' },
         contactPoint: {
           '@type': 'ContactPoint',
@@ -168,10 +168,10 @@ export default function Home() {
               ⚡ 24/7 Emergency Dispatch — Live Operators Standing By
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-              24/7 Emergency Plumbing Dispatch
+              24/7 Emergency Plumbing Service
             </h1>
             <p className="speakable-intro text-xl text-white mb-2 max-w-2xl mx-auto">
-              Burst pipe? Flooding? No hot water? We connect you with a licensed local plumber in under 60 minutes — no hold queues, no automated menus.
+              Burst pipe? Flooding? No hot water? Get a licensed local plumber to your door in under 60 minutes — no hold queues, no automated menus.
             </p>
             <p className="text-white text-base mb-8 max-w-xl mx-auto">
               Licensed &amp; insured technicians. Upfront pricing before any work begins.
@@ -185,7 +185,7 @@ export default function Home() {
             >
               📞 Get Emergency Help Now
             </a>
-            <p className="text-white text-sm mt-3">Tap to call — live dispatcher answers 24/7</p>
+            <p className="text-white text-sm mt-3">Tap to call — live operator answers 24/7</p>
             <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
               {['✅ Licensed & Insured', '⏱️ 60-Min Response Target', '💰 Upfront Pricing', '📞 No Hold Queues', '🏅 Verified Technicians'].map((b) => (
                 <span key={b} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{b}</span>
@@ -199,7 +199,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
               { stat: '50+', label: 'Cities Served' },
-              { stat: '24/7', label: 'Live Dispatch' },
+              { stat: '24/7', label: 'Live Service' },
               { stat: '60 min', label: 'Response Target' },
               { stat: 'US', label: 'Nationwide Coverage' },
             ].map((item) => (
@@ -215,13 +215,13 @@ export default function Home() {
         <section className="max-w-4xl mx-auto w-full px-4 py-12">
           <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">How YoHomeFix Works</h2>
           <p className="text-gray-500 text-center mb-10 max-w-xl mx-auto">
-            We are a call connection platform — not a plumbing company. When you call, we route you to the nearest available verified technician in your area.
+            Call YoHomeFix and a live operator will send a licensed, insured plumber to your door — fast. Available 24/7 with upfront pricing and no overtime charges.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { step: '1', icon: '📞', title: 'You Call', desc: 'Call our 24/7 dispatch line. A live operator answers immediately — no automated menus, no hold queues.' },
-              { step: '2', icon: '🔗', title: 'We Connect', desc: 'We route your call to the nearest available, licensed plumbing technician in your city or zip code.' },
-              { step: '3', icon: '🔧', title: 'Tech Arrives', desc: 'Your local technician arrives, diagnoses the issue, and provides a written quote before any work begins.' },
+              { step: '1', icon: '📞', title: 'You Call', desc: 'Call our 24/7 line. A live operator answers immediately — no automated menus, no hold queues.' },
+              { step: '2', icon: '🔗', title: 'We Respond', desc: 'We send the nearest available licensed plumbing technician to your city or zip code.' },
+              { step: '3', icon: '🔧', title: 'Tech Arrives', desc: 'Your local plumber arrives, diagnoses the issue, and provides a written quote before any work begins.' },
             ].map((item) => (
               <div key={item.step} className="p-6 border border-gray-200 rounded-2xl text-center">
                 <div className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center font-extrabold text-lg mx-auto mb-3">{item.step}</div>
@@ -253,11 +253,11 @@ export default function Home() {
         {/* ── SERVICE AUTHORITY GRID (Phase 2 — crawlable links) ── */}
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">Plumbing Services We Dispatch</h2>
-            <p className="text-gray-500 text-center mb-8">Every service dispatched 24/7 — licensed technicians, upfront pricing, no overtime surcharges</p>
+            <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">Plumbing Services We Provide</h2>
+            <p className="text-gray-500 text-center mb-8">Every service available 24/7 — licensed plumbers, upfront pricing, no overtime surcharges</p>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
-                { icon: '🚨', slug: 'emergency',           name: 'Emergency Plumbing',    urgency: 'Burst pipe, flooding, gas shutoff — dispatched in under 60 min',   city: 'New York' },
+                { icon: '🚨', slug: 'emergency',           name: 'Emergency Plumbing',    urgency: 'Burst pipe, flooding, gas shutoff — plumber in under 60 min',   city: 'New York' },
                 { icon: '💧', slug: 'leak-repair',         name: 'Leak Repair',           urgency: 'Pinhole, slab, or supply line leak — stop damage before it spreads', city: 'Los Angeles' },
                 { icon: '🌀', slug: 'drain-cleaning',      name: 'Drain Cleaning',        urgency: 'Clogged sink, tub, or sewer line — same-day clearing available',     city: 'Chicago' },
                 { icon: '🔥', slug: 'water-heater-repair', name: 'Water Heater Repair',   urgency: 'No hot water or leaking tank — fast diagnosis and repair',           city: 'Houston' },
@@ -278,7 +278,7 @@ export default function Home() {
             <div className="bg-red-600 text-white rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="font-extrabold text-lg">Need a Plumber Right Now?</p>
-                <p className="text-white text-sm">Live dispatcher — 60-min response target — no overtime charges</p>
+                <p className="text-white text-sm">Live operator — 60-min response target — no overtime charges</p>
               </div>
               <a
                 href={`tel:${PHONE_NUMBER}`}
@@ -455,15 +455,15 @@ export default function Home() {
         <section className="bg-blue-900 text-white px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-extrabold text-center mb-2">Why Homeowners Trust YoHomeFix</h2>
-            <p className="text-white text-center mb-10 max-w-xl mx-auto">Every technician in our dispatch network is verified. Every job starts with an upfront written quote.</p>
+            <p className="text-white text-center mb-10 max-w-xl mx-auto">Every plumber is licensed and insured. Every job starts with an upfront written quote.</p>
             <div className="grid md:grid-cols-3 gap-6 mb-10">
               {[
                 { icon: '🏅', title: 'Licensed & Insured', desc: 'Every technician holds a valid state plumbing license and carries liability insurance. Credentials are verified before network admission.' },
-                { icon: '⏱️', title: '24/7 Dispatch — 60-Min Target', desc: 'Live operators available around the clock. We aim to have a technician at your door within 60 minutes. No overtime surcharges — ever.' },
+                { icon: '⏱️', title: '24/7 Service — 60-Min Target', desc: 'Live operators available around the clock. We aim to have a plumber at your door within 60 minutes. No overtime surcharges — ever.' },
                 { icon: '💰', title: 'Upfront Pricing Only', desc: 'Written quote before any work begins. The price you agree to is the price you pay — no hidden fees, no mid-job surprises.' },
-                { icon: '📞', title: 'Live Dispatcher — No Menus', desc: 'A real person answers your call. No automated phone trees, no callback lists. You are routed to a local technician in seconds.' },
-                { icon: '📍', title: 'Truly Local Technicians', desc: 'Your call routes to a contractor who works in your area — familiar with local codes, infrastructure, and permit requirements.' },
-                { icon: '🔧', title: 'Full-Scope Plumbing', desc: 'Emergency, leak repair, drain cleaning, pipe burst, water heater — our network handles the complete range of residential plumbing needs.' },
+                { icon: '📞', title: 'Live Operator — No Menus', desc: 'A real person answers your call. No automated phone trees, no callback lists. You get a local plumber in seconds.' },
+                { icon: '📍', title: 'Truly Local Plumbers', desc: 'Your call goes to a plumber who works in your area — familiar with local codes, infrastructure, and permit requirements.' },
+                { icon: '🔧', title: 'Full-Scope Plumbing', desc: 'Emergency, leak repair, drain cleaning, pipe burst, water heater — we handle the complete range of residential plumbing needs.' },
               ].map((item) => (
                 <div key={item.title} className="flex gap-4 p-5 bg-blue-800 rounded-2xl">
                   <div className="flex-shrink-0 w-11 h-11 bg-blue-700 rounded-full flex items-center justify-center text-2xl">{item.icon}</div>
@@ -476,9 +476,9 @@ export default function Home() {
             </div>
             {/* Bottom CTA */}
             <div className="text-center">
-              <h3 className="text-2xl font-extrabold mb-3">Plumbing Emergency? Call Now — We Route You Instantly.</h3>
-              <p className="text-white mb-2">Live dispatchers available 24/7. No hold queues. No automated menus.</p>
-              <p className="text-white text-sm mb-6">YoHomeFix is a call connection platform — your call goes directly to a verified local technician.</p>
+              <h3 className="text-2xl font-extrabold mb-3">Plumbing Emergency? Call Now — Fast Response.</h3>
+              <p className="text-white mb-2">Live operators available 24/7. No hold queues. No automated menus.</p>
+              <p className="text-white text-sm mb-6">Your call goes directly to a licensed local plumber ready to help.</p>
               <a
                 href={`tel:${PHONE_NUMBER}`}
                 onClick={() => trackCall('bottom-cta-home')}
@@ -495,15 +495,15 @@ export default function Home() {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">What Homeowners Experience</h2>
-            <p className="text-gray-500 text-center mb-8 max-w-xl mx-auto">Representative experiences from homeowners who used our dispatch network. Individual results may vary.</p>
+            <p className="text-gray-500 text-center mb-8 max-w-xl mx-auto">Representative experiences from homeowners who used YoHomeFix. Individual results may vary.</p>
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 { quote: 'The technician arrived within the hour. Diagnosed the burst pipe immediately and had the repair done before it caused further damage.', label: 'Emergency Pipe Repair' },
-                { quote: 'Called at midnight for a flooding issue. A live person answered right away and had someone at our door faster than I expected.', label: 'After-Hours Dispatch' },
+                { quote: 'Called at midnight for a flooding issue. A live person answered right away and had someone at our door faster than I expected.', label: 'After-Hours Service' },
                 { quote: 'Was given a clear price before any work started. No hidden fees, no pressure. Exactly what I needed during a stressful situation.', label: 'Upfront Pricing' },
                 { quote: 'The drain had been slow for weeks. One call and the problem was resolved same day. Simple, professional, no upselling.', label: 'Drain Cleaning' },
-                { quote: 'Water heater stopped working on a cold morning. The network found a local technician quickly and the fix was straightforward.', label: 'Water Heater Service' },
-                { quote: 'Appreciated that the dispatcher asked the right questions upfront. The technician who arrived already knew what to bring.', label: 'Leak Repair' },
+                { quote: 'Water heater stopped working on a cold morning. YoHomeFix found a local plumber quickly and the fix was straightforward.', label: 'Water Heater Service' },
+                { quote: 'Appreciated that the operator asked the right questions upfront. The plumber who arrived already knew what to bring.', label: 'Leak Repair' },
               ].map((item) => (
                 <div key={item.label} className="bg-white border border-gray-200 rounded-xl p-5">
                   <p className="text-gray-700 text-sm leading-relaxed mb-3">&ldquo;{item.quote}&rdquo;</p>
@@ -546,7 +546,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto flex flex-wrap justify-between gap-6 mb-6">
             <div>
               <p className="text-white font-bold text-lg mb-1">YoHomeFix</p>
-              <p className="text-gray-400 text-xs mb-2">Emergency plumbing call connection platform</p>
+              <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
               <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
                 Call Now — 24/7
               </a>
@@ -623,9 +623,8 @@ export default function Home() {
             </div>
           </div>
           <div className="max-w-4xl mx-auto border-t border-gray-800 pt-4 text-center text-sm">
-            <p className="mb-2">© {new Date().getFullYear()} YoHomeFix. All rights reserved. YoHomeFix is a call connection platform, not a licensed plumbing contractor.</p>
-            <p className="mb-2">YoHomeFix is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and YoHomeFix does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on YoHomeFix.</p>
-            <p>Same-day and 24/7 emergency services are subject to provider participation, location, technician availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.</p>
+            <p className="mb-2">© {new Date().getFullYear()} YoHomeFix. All rights reserved.</p>
+            <p>Same-day and 24/7 emergency services are subject to location, plumber availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.</p>
           </div>
         </footer>
       </div>

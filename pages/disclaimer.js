@@ -9,8 +9,8 @@ import { buildPageSchema } from '../lib/schemas';
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export default function Disclaimer() {
-  const title = 'Disclaimer — YoHomeFix Plumbing Dispatch Network';
-  const description = 'YoHomeFix operates as a plumbing dispatch network connecting customers with licensed independent contractors. Read our full service disclaimer.';
+  const title = 'Disclaimer — YoHomeFix Plumbing Services';
+  const description = 'YoHomeFix provides plumbing services across the United States. Read our full service disclaimer.';
   const canonical = `${domain}/disclaimer`;
   const schema = buildPageSchema({
     title,
@@ -63,13 +63,13 @@ export default function Disclaimer() {
           <div className="space-y-8 text-gray-700 leading-relaxed">
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-xl">
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Dispatch Network — Not a Direct Employer</h2>
-              <p>YoHomeFix operates as a lead generation and dispatch network that connects customers with independent, licensed plumbing contractors. YoHomeFix does not directly employ plumbers and is not a licensed plumbing company. All plumbing work is performed by independent contractors.</p>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Independent Service Providers</h2>
+              <p>YoHomeFix provides plumbing services across the United States. Plumbing work is performed by independent, licensed plumbing professionals. YoHomeFix does not directly employ plumbers and is not a licensed plumbing company.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Technician Credentials</h2>
-              <p>We require all contractors in our network to maintain valid state plumbing licenses and liability insurance. However, we recommend customers independently verify credentials before service begins. You have the right to request:</p>
+              <p>We require all plumbers to maintain valid state plumbing licenses and liability insurance. However, we recommend customers independently verify credentials before service begins. You have the right to request:</p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
                 <li>State plumbing license number</li>
                 <li>Proof of current liability insurance</li>
@@ -79,27 +79,27 @@ export default function Disclaimer() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Response Times</h2>
-              <p>Response time targets are goals, not guarantees. Actual arrival times depend on technician availability, your location, distance, traffic, and demand. We strive to connect you with the nearest available technician as quickly as possible.</p>
+              <p>Response time targets are goals, not guarantees. Actual arrival times depend on plumber availability, your location, distance, traffic, and demand. We strive to provide the nearest available plumber as quickly as possible.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Pricing</h2>
-              <p>All pricing is set directly by the independent contractor performing the work. YoHomeFix does not set, control, or guarantee pricing. Request a written estimate from the technician before authorizing any work. Price ranges shown on any marketing materials are illustrative only and may not reflect actual costs in your area.</p>
+              <p>All pricing is set directly by the plumber performing the work. YoHomeFix does not set, control, or guarantee pricing. Request a written estimate from the plumber before authorizing any work. Price ranges shown on any marketing materials are illustrative only and may not reflect actual costs in your area.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Warranties</h2>
-              <p>Warranty terms — including duration and scope — are determined solely by the individual contractor. YoHomeFix does not provide or administer warranties. Always confirm warranty terms in writing with the contractor before work begins.</p>
+              <p>Warranty terms — including duration and scope — are determined solely by the individual plumber. YoHomeFix does not provide or administer warranties. Always confirm warranty terms in writing with the plumber before work begins.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Service Area</h2>
-              <p>Service availability varies by location. Not all listed cities may have available contractors at all times. Call to confirm availability in your specific area before relying on service.</p>
+              <p>Service availability varies by location. Not all listed cities may have available plumbers at all times. Call to confirm availability in your specific area before relying on service.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Limitation of Liability</h2>
-              <p>YoHomeFix&apos;s liability is limited to facilitating introductions between customers and contractors. We are not liable for work quality, property damage, delays, or consequential damages resulting from services performed by independent contractors in our network.</p>
+              <p>YoHomeFix&apos;s liability is limited to facilitating plumbing services. We are not liable for work quality, property damage, delays, or consequential damages resulting from services performed by independent plumbers.</p>
             </div>
 
             <div>

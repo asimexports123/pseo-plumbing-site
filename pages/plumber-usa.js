@@ -28,7 +28,7 @@ const SERVICE_ICONS = {
 export default function PlumberUSA() {
   const title = 'Plumber USA — Emergency Plumbing Services in Every US City | YoHomeFix';
   const description =
-    `Find local emergency plumbers in ${SEED_CITIES.length} US cities. YoHomeFix connects you with licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
+    `Find local emergency plumbers in ${SEED_CITIES.length} US cities. YoHomeFix provides licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
   const canonical = `${domain}/plumber-usa`;
@@ -168,7 +168,7 @@ export default function PlumberUSA() {
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-12 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
-            <p className="text-lg text-blue-50 mb-6">Licensed plumbers dispatched in 60 minutes. Available 24/7 with no overtime charges.</p>
+            <p className="text-lg text-blue-50 mb-6">Licensed plumbers in 60 minutes. Available 24/7 with no overtime charges.</p>
             <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
@@ -343,7 +343,7 @@ export default function PlumberUSA() {
           {/* Bottom CTA */}
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need a Plumber Right Now?</h2>
-            <p className="text-blue-100 mb-5">Our dispatchers are standing by 24/7 across the USA</p>
+            <p className="text-blue-100 mb-5">Our team is standing by 24/7 across the USA</p>
             <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors no-underline" aria-label="Call emergency dispatch today">
               <span aria-hidden="true">📞</span> Call Today
             </a>

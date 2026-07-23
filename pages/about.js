@@ -8,8 +8,8 @@ import { Author } from '../components/Author';
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export default function About() {
-  const title = 'About YoHomeFix — Licensed Emergency Plumbing Dispatch Network';
-  const description = 'YoHomeFix connects US homeowners with licensed, insured plumbing contractors — 24/7, across 50+ US cities. Learn about our mission, dispatch network, and editorial standards.';
+  const title = 'About YoHomeFix — 24/7 Emergency Plumbing Services';
+  const description = 'YoHomeFix provides 24/7 emergency plumbing services across 50+ US cities. Licensed, insured plumbers, upfront pricing, 60-minute response target. Learn about our mission and editorial standards.';
   const canonical = `${domain}/about`;
   const schema = buildPageSchema({
     title,
@@ -60,14 +60,14 @@ export default function About() {
           <h1 className="text-3xl font-extrabold text-blue-900 mb-4">About YoHomeFix</h1>
 
           <p className="speakable-intro text-lg text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-600 pl-4">
-            YoHomeFix is an emergency plumbing dispatch network connecting US homeowners with licensed, insured plumbing contractors — 24 hours a day, 7 days a week, across {SEED_CITIES.length}+ cities in {STATES.length} states.
+            YoHomeFix provides 24/7 emergency plumbing services across {SEED_CITIES.length}+ cities in {STATES.length} states. Licensed, insured plumbers — upfront pricing, 60-minute response target.
           </p>
 
           {/* Trust stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             {[
               { stat: `${SEED_CITIES.length}+`, label: 'Cities Served' },
-              { stat: '24/7', label: 'Live Dispatch' },
+              { stat: '24/7', label: 'Live Service' },
               { stat: '60 min', label: 'Response Target' },
               { stat: `${STATES.length}`, label: 'States Covered' },
             ].map((item) => (
@@ -90,28 +90,28 @@ export default function About() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">How YoHomeFix Works</h2>
               <p>
-                When you call YoHomeFix, a live dispatcher confirms your location and plumbing issue, then identifies the nearest available licensed plumber in our network. We are not the plumber — we are the connection that gets a qualified professional to your door faster.
+                When you call YoHomeFix, a live operator confirms your location and plumbing issue, then sends the nearest available licensed plumber to your door. We are available 24/7 with upfront pricing and no overtime charges.
               </p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
-                <li>You call our 24/7 dispatch line.</li>
-                <li>A live dispatcher records your location and the problem.</li>
-                <li>The nearest available licensed contractor is notified.</li>
-                <li>The technician calls or arrives with a written upfront quote.</li>
+                <li>You call our 24/7 line.</li>
+                <li>A live operator records your location and the problem.</li>
+                <li>The nearest available licensed plumber is notified.</li>
+                <li>The plumber calls or arrives with a written upfront quote.</li>
                 <li>You approve the work before any repair begins.</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-blue-900 mb-2">How Dispatch Works</h2>
+              <h2 className="text-xl font-bold text-blue-900 mb-2">How Service Calls Work</h2>
               <p>
-                Our dispatch system routes calls based on service type and location. We do not guarantee a specific contractor; we connect you with the first available licensed professional who can respond to your emergency. Availability varies by time, location, and demand.
+                Our 24/7 line routes calls based on service type and location. We aim to have a licensed plumber at your door within 60 minutes. Availability varies by time, location, and demand.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-blue-900 mb-2">How Service Providers Are Selected</h2>
+              <h2 className="text-xl font-bold text-blue-900 mb-2">How Plumbers Are Selected</h2>
               <p>
-                Contractors in our network are independent businesses. We verify, to the best of our ability, that they meet the following standards before they are eligible to receive dispatches:
+                Plumbers who work with YoHomeFix are independent professionals. We verify, to the best of our ability, that they meet the following standards before they are eligible to receive service calls:
               </p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
                 <li>Active state plumbing license in the state where they operate.</li>
@@ -120,14 +120,14 @@ export default function About() {
                 <li>No active disciplinary actions or patterns of unresolved complaints on their state licensing board record.</li>
               </ul>
               <p className="text-sm text-gray-500 mt-3">
-                We do not directly employ, supervise, or warrant the work of any contractor. Licensing and insurance verification is performed at onboarding and periodically rechecked.
+                We do not directly employ, supervise, or warrant the work of any plumber. Licensing and insurance verification is performed at onboarding and periodically rechecked.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Quality Standards</h2>
               <p>
-                We expect every contractor in our network to treat homeowners professionally, communicate clearly, leave work areas clean, and honor the upfront quote provided. We track complaints and remove contractors from the network if they repeatedly fail to meet these standards.
+                We expect every plumber we work with to treat homeowners professionally, communicate clearly, leave work areas clean, and honor the upfront quote provided. We track complaints and stop working with plumbers who repeatedly fail to meet these standards.
               </p>
             </section>
 
@@ -141,11 +141,11 @@ export default function About() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Why Homeowners Choose YoHomeFix</h2>
               <p>
-                Homeowners turn to YoHomeFix because we remove the friction from emergency plumbing. Instead of searching through listings, waiting on callbacks, or guessing who is available, one call connects you to a licensed professional in your area.
+                Homeowners turn to YoHomeFix because we make emergency plumbing simple. Instead of searching through listings, waiting on callbacks, or guessing who is available, one call gets a licensed plumber to your door.
               </p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
-                <li>Live 24/7 dispatch — no automated phone menus.</li>
-                <li>Connection to licensed, insured plumbers in 50+ cities.</li>
+                <li>Live 24/7 service — no automated phone menus.</li>
+                <li>Licensed, insured plumbers in 50+ cities.</li>
                 <li>Written upfront pricing before any work begins.</li>
                 <li>Educational guides and transparent cost expectations.</li>
                 <li>Consumer-focused, no-pressure approach.</li>
@@ -160,9 +160,9 @@ export default function About() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-blue-900 mb-2">Platform Transparency</h2>
+              <h2 className="text-xl font-bold text-blue-900 mb-2">Service Transparency</h2>
               <p>
-                YoHomeFix is a call-connection platform. We do not perform plumbing work, set warranties, or control contractor pricing. We are the first point of contact that helps you find a licensed professional in your area. Every service is provided by an independent contractor, not by YoHomeFix employees.
+                YoHomeFix provides plumbing services across the United States. We do not set warranties or control pricing. Every job starts with a written upfront quote before any work begins.
               </p>
             </section>
 
@@ -181,7 +181,7 @@ export default function About() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-blue-900 mb-2">Services We Dispatch For</h2>
+              <h2 className="text-xl font-bold text-blue-900 mb-2">Services We Provide</h2>
               <div className="grid md:grid-cols-2 gap-3 mt-3">
                 {SERVICES.map((s) => (
                   <Link
@@ -246,11 +246,10 @@ export default function About() {
             <section className="bg-gray-50 rounded-xl p-6">
               <h2 className="text-xl font-bold text-blue-900 mb-3">Important Disclosures</h2>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li>YoHomeFix is a dispatch/call connection service, not a licensed plumbing company.</li>
+                <li>YoHomeFix provides plumbing services across the United States.</li>
                 <li>Response times are targets, not guarantees. Availability varies by location and demand.</li>
-                <li>All pricing is determined by the independent contractor you are connected with.</li>
-                <li>Warranty terms are set by individual contractors, not by YoHomeFix.</li>
-                <li>YoHomeFix does not employ or directly supervise any plumbing technicians.</li>
+                <li>All pricing is provided upfront in writing before any work begins.</li>
+                <li>Warranty terms vary by job and are confirmed in writing before work starts.</li>
               </ul>
             </section>
 
@@ -259,8 +258,8 @@ export default function About() {
           <Author pageType="about" />
 
           <div className="mt-10 bg-blue-900 text-white rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-extrabold mb-2">Ready to Connect With a Local Plumber?</h2>
-            <p className="text-white mb-5">Our dispatchers are standing by 24/7 across the USA — 60-minute response target, upfront pricing.</p>
+            <h2 className="text-2xl font-extrabold mb-2">Ready for a Local Plumber?</h2>
+            <p className="text-white mb-5">Our team is standing by 24/7 across the USA — 60-minute response target, upfront pricing.</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Get Emergency Help
             </a>

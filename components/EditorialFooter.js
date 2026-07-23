@@ -40,7 +40,7 @@ export function EditorialFooter({ pageType = 'page' }) {
           <p>
             Local data is sourced from verified municipal and geological records.
             Pricing shown is for educational purposes only; your technician provides a written upfront quote before any work begins.
-            YoHomeFix is a call connection platform, not a licensed plumbing contractor.
+            YoHomeFix provides plumbing services across the United States.
           </p>
         </div>
       </div>

@@ -68,7 +68,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
   const title = `Emergency Plumber in ${stateObj.name} | 24 Hour Plumbing Service | YoHomeFix`;
 
-  const description = `Burst pipe or flooding in ${stateObj.name}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7 across all of ${stateObj.name}, no overtime charges. Call now.`;
+  const description = `Burst pipe or flooding in ${stateObj.name}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7 across all of ${stateObj.name}, no overtime charges. Call now.`;
 
   const stateIntro = STATE_INTROS[stateObj.slug] || STATE_INTROS['new-york'];
 
@@ -316,7 +316,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
             <p className="speakable-intro text-lg text-white mb-6 max-w-2xl mx-auto">
 
-              In {stateObj.name}, {stateObj.fact}. YoHomeFix connects you with a licensed local plumber in under 60 minutes — 24/7, no overtime surcharges.
+              In {stateObj.name}, {stateObj.fact}. YoHomeFix provides a licensed local plumber in under 60 minutes — 24/7, no overtime surcharges.
 
             </p>
 
@@ -326,7 +326,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
             </a>
 
-            <p className="text-white text-sm mt-3">Live dispatcher — answered 24/7</p>
+            <p className="text-white text-sm mt-3">Live operator — answered 24/7</p>
 
             <div className="flex flex-wrap justify-center gap-3 mt-6 text-sm">
 
@@ -356,11 +356,11 @@ export default function StatePage({ stateObj, stateCities }) {
 
             <ul className="space-y-2 text-sm text-green-800">
 
-              <li className="flex gap-2"><span className="font-bold">✓</span> YoHomeFix dispatches licensed plumbers 24/7 across {stateObj.name}.</li>
+              <li className="flex gap-2"><span className="font-bold">✓</span> YoHomeFix provides licensed plumbers 24/7 across {stateObj.name}.</li>
 
               <li className="flex gap-2"><span className="font-bold">✓</span> Local conditions: {stateObj.fact}.</li>
 
-              <li className="flex gap-2"><span className="font-bold">✓</span> Call connects to a live dispatcher; a technician provides a written quote before any work begins.</li>
+              <li className="flex gap-2"><span className="font-bold">✓</span> Call connects to a live operator; a plumber provides a written quote before any work begins.</li>
 
             </ul>
 
@@ -496,7 +496,7 @@ export default function StatePage({ stateObj, stateCities }) {
 
               <p className="font-extrabold text-lg">Need a Plumber in {stateObj.name} Now?</p>
 
-              <p className="text-white text-sm">Live dispatcher — 60-min response — no overtime charges</p>
+              <p className="text-white text-sm">Live operator — 60-min response — no overtime charges</p>
 
             </div>
 

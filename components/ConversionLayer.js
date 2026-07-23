@@ -31,7 +31,7 @@ export function TrustBar({ cityName }) {
         <span>✅ Licensed & Insured</span>
         <span>⏱️ 60-Min Response Target</span>
         <span>💰 Upfront Pricing — No Surprises</span>
-        <span>📞 Live Dispatcher 24/7</span>
+        <span>📞 Live Operator 24/7</span>
         {cityName && <span>📍 Serving {cityName}</span>}
       </div>
     </div>
@@ -54,7 +54,7 @@ export function QuoteForm({ cityName, defaultService }) {
       <div className="bg-green-50 border border-green-200 rounded-2xl p-6 text-center mb-10">
         <div className="text-3xl mb-2">📞</div>
         <p className="font-bold text-green-800 text-lg">Connecting you now...</p>
-        <p className="text-green-700 text-sm mt-1">A live dispatcher will answer immediately.</p>
+        <p className="text-green-700 text-sm mt-1">A live operator will answer immediately.</p>
       </div>
     );
   }
@@ -62,7 +62,7 @@ export function QuoteForm({ cityName, defaultService }) {
   return (
     <div className="bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-2xl p-6 mb-10">
       <h2 className="text-xl font-extrabold mb-1">Get a Free Quote in {cityName || 'Your City'}</h2>
-      <p className="text-white text-sm mb-4">Select your service — a live dispatcher connects you in seconds</p>
+      <p className="text-white text-sm mb-4">Select your service — a live operator will help you in seconds</p>
       <div className="flex flex-col sm:flex-row gap-3">
         <label htmlFor="quote-service" className="sr-only">Select plumbing service</label>
         <select
@@ -161,7 +161,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
           Wait — Still Need a Plumber in {cityName || 'Your Area'}?
         </h2>
         <p className="text-gray-600 text-sm mb-5">
-          Our dispatchers are standing by right now. Call in the next 5 minutes and we&apos;ll prioritize your job for same-day service.
+          Our team is standing by right now. Call in the next 5 minutes and we&apos;ll prioritize your job for same-day service.
         </p>
         <div className="flex flex-col gap-3">
           <a
@@ -183,7 +183,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
         <div className="mt-4 flex justify-center gap-4 text-xs text-gray-500">
           <span>✅ Licensed</span>
           <span>⏱️ 60-min response</span>
-          <span>📞 Live dispatcher</span>
+          <span>📞 Live operator</span>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@ export function MidPageCTA({ cityName, serviceName }) {
     <div className="bg-red-600 text-white rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <p className="font-extrabold text-lg">{serviceName} Help Available Now in {cityName}</p>
-        <p className="text-white text-sm">Live dispatcher — no hold music — 60-min response target</p>
+        <p className="text-white text-sm">Live operator — no hold music — 60-min response target</p>
       </div>
       <a
         href={`tel:${PHONE_NUMBER}`}

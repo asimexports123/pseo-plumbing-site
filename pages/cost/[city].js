@@ -103,7 +103,7 @@ function getCostFaqs(cityName, profile) {
     },
     {
       q: `How can I get an accurate plumbing cost estimate in ${cityName}?`,
-      a: `The most reliable method is an on-site assessment. Call our ${cityName} dispatch line and a technician will provide a written upfront quote before starting any work.`,
+      a: `The most reliable method is an on-site assessment. Call our ${cityName} line and a plumber will provide a written upfront quote before starting any work.`,
     },
   ];
 }
@@ -216,7 +216,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
 
       <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
         <div className="bg-blue-950 text-white py-2 px-4 text-center text-xs font-semibold">
-          ✅ Licensed & Insured · ⏱️ 60-Min Response · 💰 Upfront Pricing · 📞 24/7 Live Dispatcher
+          ✅ Licensed & Insured · ⏱️ 60-Min Response · 💰 Upfront Pricing · 📞 24/7 Live Operator
         </div>
 
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
@@ -251,7 +251,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl">
               📞 Get a Free Quote
             </a>
-            <p className="text-white text-sm mt-3">Live dispatcher — no obligation — upfront pricing</p>
+            <p className="text-white text-sm mt-3">Live operator — no obligation — upfront pricing</p>
           </div>
         </section>
 
@@ -325,7 +325,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
           <div className="bg-red-600 text-white rounded-2xl p-6 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <p className="font-extrabold text-xl">Get Your Exact {cityName} Quote Now</p>
-              <p className="text-white text-sm">Live dispatcher — 60-min response — no obligation</p>
+              <p className="text-white text-sm">Live operator — 60-min response — no obligation</p>
             </div>
             <a href={`tel:${PHONE_NUMBER}`} className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap">📞 Call Now</a>
           </div>

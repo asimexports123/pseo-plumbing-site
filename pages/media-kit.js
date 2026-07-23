@@ -90,7 +90,7 @@ export default function MediaKit() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Brand Description</h2>
               <p>
-                YoHomeFix is an emergency plumbing dispatch network connecting U.S. homeowners with licensed, insured plumbing contractors. Available 24/7, the platform helps homeowners find fast, transparent plumbing help during emergencies and provides educational plumbing resources for maintenance and prevention.
+                YoHomeFix provides 24/7 emergency plumbing services across the United States. Available around the clock, YoHomeFix helps homeowners get fast, transparent plumbing help during emergencies and provides educational plumbing resources for maintenance and prevention.
               </p>
             </section>
 
@@ -98,7 +98,7 @@ export default function MediaKit() {
               <h2 className="text-xl font-bold text-blue-900 mb-2">Boilerplate</h2>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 text-sm">
                 <p>
-                  YoHomeFix is a call connection platform that helps U.S. homeowners reach licensed, insured plumbing contractors during emergencies. The platform operates 24/7 and emphasizes transparent, upfront pricing. YoHomeFix does not directly employ plumbing technicians; all work is performed by independent contractors in its network. For more information, visit yohomefix.com.
+                  YoHomeFix provides 24/7 emergency plumbing services across the United States. Available around the clock with transparent, upfront pricing. For more information, visit yohomefix.com.
                 </p>
               </div>
             </section>

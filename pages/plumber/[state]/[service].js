@@ -16,7 +16,7 @@ import { getDeterministicLastReviewed } from '../../../lib/dateUtils';
 // ── State × Service intro paragraphs ──────────────────────────
 const SERVICE_STATE_INTROS = {
   'emergency': (s, cities) =>
-    `Emergency plumbing calls in ${s.name} spike during two distinct periods: the freeze season — when pipes in crawl spaces, attics, and exterior walls fail under sustained cold — and storm season, when aging sewer infrastructure backs up under heavy rainfall. In ${s.name}, ${s.fact}. Our dispatchers connect homeowners in ${cities.map(c => c.name).join(', ')}, and surrounding communities with a licensed technician within 60 minutes, 24 hours a day.`,
+    `Emergency plumbing calls in ${s.name} spike during two distinct periods: the freeze season — when pipes in crawl spaces, attics, and exterior walls fail under sustained cold — and storm season, when aging sewer infrastructure backs up under heavy rainfall. In ${s.name}, ${s.fact}. We serve homeowners in ${cities.map(c => c.name).join(', ')}, and surrounding communities with a licensed plumber within 60 minutes, 24 hours a day.`,
 
   'leak-repair': (s, cities) =>
     `Hidden water leaks cause more cumulative property damage in ${s.name} than any other single plumbing failure category. The state's combination of ${s.fact} means that leaks often go undetected longer than in more temperate markets. Our leak detection technicians serve ${cities.map(c => c.name).join(', ')}, and surrounding metro areas using acoustic listening equipment and thermal imaging cameras — non-invasive methods that locate the source precisely before any wall or floor material is opened.`,
@@ -40,10 +40,10 @@ const SERVICE_STATE_INTROS = {
 // ── State × Service FAQs ───────────────────────────────────────
 const SERVICE_STATE_FAQS = {
   'emergency': (s) => [
-    { q: `How quickly can an emergency plumber reach me in ${s.name}?`, a: `Our target response time throughout ${s.name} is under 60 minutes from the time you call. A live dispatcher — not an answering service — confirms your exact address and dispatches the nearest available technician immediately.` },
+    { q: `How quickly can an emergency plumber reach me in ${s.name}?`, a: `Our target response time throughout ${s.name} is under 60 minutes from the time you call. A live operator — not an answering service — confirms your exact address and sends the nearest available plumber immediately.` },
     { q: `Do you charge extra for emergency calls in ${s.name} on weekends or holidays?`, a: `No. Pricing in ${s.name} is flat-rate regardless of when you call. Your technician provides a written upfront quote on arrival, and that quote does not change because it's a Sunday or a holiday.` },
     { q: `What are the most common plumbing emergencies in ${s.name}?`, a: `The most frequent emergency calls across ${s.name} involve burst or frozen pipes during cold weather, sewer line backups following heavy rain, water heater failures, and active supply line leaks that have reached the point of flooding. ${s.fact.charAt(0).toUpperCase() + s.fact.slice(1)}, which makes emergency preparedness particularly important for ${s.name} homeowners.` },
-    { q: `Is emergency plumbing service available in smaller ${s.name} cities and towns?`, a: `Yes. Our network covers major metros and surrounding communities throughout ${s.name}. When you call, the dispatcher confirms exact service availability at your address before sending a technician.` },
+    { q: `Is emergency plumbing service available in smaller ${s.name} cities and towns?`, a: `Yes. We cover major metros and surrounding communities throughout ${s.name}. When you call, our operator confirms exact service availability at your address before sending a plumber.` },
   ],
   'leak-repair': (s) => [
     { q: `How do you find hidden leaks in ${s.name} homes without tearing up walls?`, a: `We use acoustic listening devices and thermal imaging cameras to pinpoint leak locations without destructive access. These tools detect the sound signature and heat trace of active water movement through walls, floors, and slabs — letting us identify the precise location before opening any surface.` },
@@ -58,7 +58,7 @@ const SERVICE_STATE_FAQS = {
     { q: `What are the signs my main sewer line is blocked in ${s.name}?`, a: `Multiple slow drains in different rooms simultaneously, gurgling sounds from toilets when other fixtures are used, sewage odors from floor drains, and water backing up into the lowest fixtures in the house are all indicators of a main line obstruction.` },
   ],
   'pipe-burst-repair': (s) => [
-    { q: `What should I do immediately if a pipe bursts in my ${s.name} home?`, a: `Shut off your main water supply valve immediately — this stops all water flow from the burst pipe. Then move valuables away from the water, turn off electricity in flooded areas if safe, and call our emergency line. A dispatcher will guide you through additional steps while a technician is en route.` },
+    { q: `What should I do immediately if a pipe bursts in my ${s.name} home?`, a: `Shut off your main water supply valve immediately — this stops all water flow from the burst pipe. Then move valuables away from the water, turn off electricity in flooded areas if safe, and call our emergency line. An operator will guide you through additional steps while a plumber is en route.` },
     { q: `Which pipes are most likely to burst in ${s.name} homes?`, a: `In ${s.name}, the highest-risk pipes are those in unheated or poorly insulated spaces — crawl spaces, attics, exterior walls, and uninsulated garages. Older galvanized steel and copper pipes are more susceptible because age and corrosion thin the pipe wall.` },
     { q: `Is burst pipe repair covered by homeowners insurance in ${s.name}?`, a: `Sudden accidental pipe bursts — particularly freeze events — are frequently covered by standard homeowners insurance policies. Gradual leaks that were ignored are typically not covered. Document the damage with photos immediately and provide written repair documentation to your insurer.` },
     { q: `How can I prevent pipe bursts in my ${s.name} home before cold weather?`, a: `Insulate pipes in crawl spaces, attics, and exterior walls; locate and test your main shutoff valve before winter; keep interior heat above 55°F even when away; disconnect outdoor hoses; and schedule a pre-winter inspection for older homes with vulnerable pipe runs.` },
@@ -122,23 +122,23 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const canonical = `${domain}/plumber/${stateObj.slug}/${serviceObj.slug}`;
   const title = serviceObj.slug === 'emergency'
-    ? `Emergency Plumbing Service in ${stateObj.name} | 24/7 Licensed Dispatch | YoHomeFix`
+    ? `Emergency Plumbing Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
     : serviceObj.slug === 'drain-cleaning'
     ? `Emergency Drain Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
     : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName} | 24/7 Licensed Service | YoHomeFix`;
   const description = serviceObj.slug === 'emergency'
-    ? `24/7 emergency plumbing dispatch across all of ${stateObj.name}. YoHomeFix connects you with a licensed plumber for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing, no overtime charges. Call now.`
+    ? `24/7 emergency plumbing service across all of ${stateObj.name}. YoHomeFix provides licensed plumbers for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing, no overtime charges. Call now.`
     : serviceObj.slug === 'pipe-burst-repair'
-    ? `Burst pipe in ${stateObj.name}? Licensed emergency plumber dispatched in under 60 minutes — 24/7 live dispatch across all of ${stateObj.name}. Upfront pricing. Get help now.`
+    ? `Burst pipe in ${stateObj.name}? Licensed emergency plumber in under 60 minutes — 24/7 service across all of ${stateObj.name}. Upfront pricing. Get help now.`
     : serviceObj.slug === 'leak-repair'
-    ? `Water leak in ${stateObj.name}? Licensed emergency plumber dispatched in 60 min — slab, pinhole, or supply line. 24/7 availability across ${stateObj.name}. Upfront pricing. Call now.`
+    ? `Water leak in ${stateObj.name}? Licensed emergency plumber in 60 min — slab, pinhole, or supply line. 24/7 availability across ${stateObj.name}. Upfront pricing. Call now.`
     : serviceObj.slug === 'drain-cleaning'
-    ? `Emergency drain service across ${stateObj.name} — 24/7 drain cleaning, sewer clearing, and clog removal. Licensed plumbers dispatched fast. Upfront pricing. Call now.`
+    ? `Emergency drain service across ${stateObj.name} — 24/7 drain cleaning, sewer clearing, and clog removal. Licensed plumbers sent fast. Upfront pricing. Call now.`
     : serviceObj.slug === 'whole-house-repiping'
     ? `Recurring pipe leaks in ${stateObj.name}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
     : serviceObj.slug === 'main-water-shutoff-valve-repair'
     ? `Main water shutoff valve leaking or stuck in ${stateObj.name}? Licensed plumber provides safe valve repair and replacement with upfront pricing. Call now.`
-    : `No hot water in ${stateObj.name}? Licensed emergency plumber dispatched in under 60 min — water heater repair and replacement, 24/7 live dispatch. Upfront pricing. Call now.`;
+    : `No hot water in ${stateObj.name}? Licensed emergency plumber in under 60 min — water heater repair and replacement, 24/7 service. Upfront pricing. Call now.`;
   const lastReviewed = getDeterministicLastReviewed(`plumber-${stateObj.slug}-${serviceObj.slug}`);
 
   const breadcrumbs = [
@@ -283,7 +283,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
               📞 Get Help Now
             </a>
-            <p className="text-white text-sm mt-3">Live dispatcher — 60-minute response target — no overtime charges</p>
+            <p className="text-white text-sm mt-3">Live operator — 60-minute response target — no overtime charges</p>
           </div>
         </section>
 
@@ -455,7 +455,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
 
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need {serviceObj.name} in {stateObj.name} Right Now?</h2>
-            <p className="text-white mb-5">Our dispatchers cover all of {stateObj.name} — 24/7, no overtime charges, upfront pricing</p>
+            <p className="text-white mb-5">We cover all of {stateObj.name} — 24/7, no overtime charges, upfront pricing</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>

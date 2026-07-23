@@ -10,7 +10,7 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export default function TermsOfService() {
   const title = 'Terms of Service — YoHomeFix';
-  const description = 'Read the Terms of Service for YoHomeFix, a plumbing dispatch network. Understand your rights and our responsibilities before using our service.';
+  const description = 'Read the Terms of Service for YoHomeFix. Understand your rights and our responsibilities before using our service.';
   const canonical = `${domain}/terms-of-service`;
   const schema = buildPageSchema({
     title,
@@ -68,27 +68,27 @@ export default function TermsOfService() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">1. Nature of Service</h2>
-              <p>YoHomeFix is a lead generation and dispatch platform that connects consumers with independent, licensed plumbing contractors. YoHomeFix is not a licensed plumbing contractor and does not perform plumbing work. All work is performed by independent third-party contractors.</p>
+              <p>YoHomeFix provides plumbing services across the United States. YoHomeFix is not a licensed plumbing contractor and does not perform plumbing work. All work is performed by independent third-party plumbers.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">2. Use of Service</h2>
-              <p>You may use YoHomeFix to request connections with licensed plumbers for residential or commercial plumbing needs. You must be 18 years or older and provide accurate information about your location and plumbing issue. Misuse of the dispatch system is prohibited.</p>
+              <p>You may use YoHomeFix to request plumbing service for residential or commercial needs. You must be 18 years or older and provide accurate information about your location and plumbing issue.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">3. No Guarantees on Response Time or Availability</h2>
-              <p>We strive to connect you with a nearby plumber as quickly as possible. However, we do not guarantee specific response times, technician availability, or service in all locations at all times. Response time targets are goals only.</p>
+              <p>We strive to provide a nearby plumber as quickly as possible. However, we do not guarantee specific response times, plumber availability, or service in all locations at all times. Response time targets are goals only.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">4. Pricing and Payment</h2>
-              <p>Pricing is set by the independent contractor, not by YoHomeFix. You must obtain and agree to a written estimate before authorizing any work. YoHomeFix is not responsible for pricing disputes between you and a contractor.</p>
+              <p>Pricing is set by the independent plumber, not by YoHomeFix. You must obtain and agree to a written estimate before authorizing any work. YoHomeFix is not responsible for pricing disputes between you and a plumber.</p>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">5. Contractor Relationships</h2>
-              <p>Contractors connected through YoHomeFix are independent businesses, not employees or agents of YoHomeFix. YoHomeFix is not responsible for the quality, safety, legality, or outcome of any work performed by independent contractors.</p>
+              <p>Plumbers providing service through YoHomeFix are independent businesses, not employees or agents of YoHomeFix. YoHomeFix is not responsible for the quality, safety, legality, or outcome of any work performed by independent plumbers.</p>
             </div>
 
             <div>

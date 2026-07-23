@@ -10,7 +10,7 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export default function PrivacyPolicy() {
   const title = 'Privacy Policy — YoHomeFix';
-  const description = 'Learn how YoHomeFix collects, uses, and protects your personal information when you use our emergency plumbing dispatch service.';
+  const description = 'Learn how YoHomeFix collects, uses, and protects your personal information when you use our emergency plumbing service.';
   const canonical = `${domain}/privacy-policy`;
   const schema = buildPageSchema({
     title,
@@ -63,7 +63,7 @@ export default function PrivacyPolicy() {
           <div className="space-y-8 text-gray-700 leading-relaxed">
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-xl">
-              <p>YoHomeFix is committed to protecting your privacy. This policy explains what information we collect and how we use it when you contact us for emergency plumbing dispatch services.</p>
+              <p>YoHomeFix is committed to protecting your privacy. This policy explains what information we collect and how we use it when you contact us for emergency plumbing services.</p>
             </div>
 
             <div>
@@ -71,23 +71,23 @@ export default function PrivacyPolicy() {
               <ul className="list-disc ml-5 space-y-1 text-sm">
                 <li><strong>Contact details:</strong> Name, phone number, and service address when requesting plumbing services</li>
                 <li><strong>Technical data:</strong> IP address, browser type, and device information for security and analytics</li>
-                <li><strong>Call data:</strong> Records of calls made through our dispatch line for quality and training purposes</li>
+                <li><strong>Call data:</strong> Records of calls made through our 24/7 line for quality and training purposes</li>
               </ul>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">How We Use Your Information</h2>
               <ul className="list-disc ml-5 space-y-1 text-sm">
-                <li>To dispatch licensed plumbers to your location</li>
+                <li>To send licensed plumbers to your location</li>
                 <li>To communicate about your service request</li>
-                <li>To improve our dispatch system and service quality</li>
+                <li>To improve our service quality</li>
                 <li>To comply with legal obligations</li>
               </ul>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">Data Sharing</h2>
-              <p>We do not sell your personal information. We share your contact details only with the licensed contractor dispatched to serve you. We may disclose data when required by law.</p>
+              <p>We do not sell your personal information. We share your contact details only with the licensed plumber serving you. We may disclose data when required by law.</p>
             </div>
 
             <div>

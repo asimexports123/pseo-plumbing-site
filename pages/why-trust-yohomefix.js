@@ -60,7 +60,7 @@ export default function WhyTrust() {
           <h1 className="text-3xl font-extrabold text-blue-900 mb-4">Why Trust YoHomeFix</h1>
 
           <p className="speakable-intro text-lg text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-600 pl-4">
-            Trust matters in an emergency. YoHomeFix is built around transparency, independent editorial standards, and a strict consumer-first approach to connecting homeowners with licensed plumbers.
+            Trust matters in an emergency. YoHomeFix is built around transparency, independent editorial standards, and a strict consumer-first approach to providing plumbing services.
           </p>
 
           <div className="space-y-8 text-gray-700 leading-relaxed">
@@ -82,7 +82,7 @@ export default function WhyTrust() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">How We Vet Providers</h2>
               <p>
-                Plumbers in our dispatch network are independent contractors. Before they are eligible to receive calls, we verify:
+                Plumbers who work with YoHomeFix are independent professionals. Before they are eligible to receive service calls, we verify:
               </p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
                 <li>Active state plumbing license for every state they serve.</li>
@@ -91,7 +91,7 @@ export default function WhyTrust() {
                 <li>No unresolved pattern of disciplinary actions on state licensing records.</li>
               </ul>
               <p className="text-sm text-gray-500 mt-3">
-                We recheck credentials periodically, but we do not employ or directly supervise contractors. Homeowners should always confirm the technician&apos;s license and insurance before approving work.
+                We recheck credentials periodically. Homeowners should always confirm the plumber&apos;s license and insurance before approving work.
               </p>
             </section>
 
@@ -105,7 +105,7 @@ export default function WhyTrust() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Consumer Protection</h2>
               <p>
-                We are a call-connection platform, not the plumber. That means we do not control the warranty, scheduling, or final invoice. We do, however, track complaints, monitor contractor behavior, and remove providers from the network who repeatedly fail to meet our standards.
+                YoHomeFix provides plumbing services across the United States. We do not control the warranty, scheduling, or final invoice. We do, however, track complaints, monitor plumber performance, and take action when standards are not met.
               </p>
             </section>
 
@@ -130,7 +130,7 @@ export default function WhyTrust() {
               <h2 className="text-xl font-bold text-blue-900 mb-3">Our Commitments</h2>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>We never publish paid or sponsored contractor rankings.</li>
-                <li>We always disclose our dispatch and referral model.</li>
+                <li>We always disclose our service model clearly.</li>
                 <li>We correct factual errors when they are reported.</li>
                 <li>We do not sell personal information to contractors.</li>
                 <li>We prioritize homeowner safety over speed or convenience.</li>
@@ -143,7 +143,7 @@ export default function WhyTrust() {
 
           <div className="mt-10 bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need Help From a Licensed Plumber?</h2>
-            <p className="text-white mb-5">Our dispatch team is available 24/7 across the United States.</p>
+            <p className="text-white mb-5">Our team is available 24/7 across the United States.</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Get Emergency Help
             </a>

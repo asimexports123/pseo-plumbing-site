@@ -27,7 +27,7 @@ export function Footer() {
           <div>
             <Link href="/" className="text-white font-bold text-lg no-underline">YoHomeFix</Link>
             <p className="text-sm text-gray-400 mt-2 max-w-sm">
-              Emergency plumbing dispatch connecting homeowners with licensed, insured plumbers across the United States.
+              YoHomeFix provides 24/7 emergency plumbing services across the United States. Licensed, insured plumbers — upfront pricing, 60-minute response target.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
@@ -57,14 +57,8 @@ export function Footer() {
           <p className="mb-2">
             © {new Date().getFullYear()} YoHomeFix. All rights reserved. Content reviewed by the YoHomeFix Editorial Team.
           </p>
-          <p className="mb-2">
-            YoHomeFix is a call connection platform, not a licensed plumbing contractor. All work is performed by independent, state-licensed plumbing professionals.
-          </p>
-          <p className="mb-2">
-            YoHomeFix is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and YoHomeFix does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on YoHomeFix.
-          </p>
           <p>
-            Same-day and 24/7 emergency services are subject to provider participation, location, technician availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.
+            Same-day and 24/7 emergency services are subject to location, plumber availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.
           </p>
         </div>
       </div>

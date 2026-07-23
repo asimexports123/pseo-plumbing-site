@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: 'Are your plumbers licensed and insured?',
-    a: 'All plumbers in our network are required to hold valid state plumbing licenses and maintain liability insurance. We encourage customers to request proof of credentials before work begins.',
+    a: 'All plumbers we use are required to hold valid state plumbing licenses and maintain liability insurance. We encourage customers to request proof of credentials before work begins.',
   },
   {
     q: 'What types of plumbing emergencies do you handle?',
@@ -33,7 +33,7 @@ const FAQS = [
   },
   {
     q: 'Do technicians offer warranties on their work?',
-    a: 'Warranty terms vary by technician and the type of repair performed. Ask your technician about warranty coverage before work begins. We require all network members to stand behind their workmanship.',
+    a: 'Warranty terms vary by plumber and the type of repair performed. Ask your plumber about warranty coverage before work begins.',
   },
   {
     q: 'What should I do while waiting for the plumber to arrive?',
@@ -41,11 +41,11 @@ const FAQS = [
   },
   {
     q: 'Do you offer preventive maintenance services?',
-    a: 'Many technicians in our network offer annual plumbing inspections, drain cleaning, water heater maintenance, and pipe assessments. Ask your technician about maintenance plans when they visit.',
+    a: 'Many plumbers we work with offer annual plumbing inspections, drain cleaning, water heater maintenance, and pipe assessments. Ask your plumber about maintenance plans when they visit.',
   },
   {
     q: 'How do I schedule non-emergency plumbing service?',
-    a: 'Call our dispatch line and let us know your preferred timing. We can typically accommodate same-day or next-day appointments for non-emergency work across most service areas.',
+    a: 'Call our 24/7 line and let us know your preferred timing. We can typically accommodate same-day or next-day appointments for non-emergency work across most service areas.',
   },
   {
     q: 'How often should I schedule a plumbing inspection?',
@@ -60,15 +60,15 @@ const FAQS = [
     a: 'Yes. Hard water deposits calcium and magnesium scale inside pipes and water heaters, gradually restricting flow and reducing heating efficiency. In hard water areas, annual water heater flushing and periodic descaling significantly extend the life of your plumbing.',
   },
   {
-    q: 'How does YoHomeFix dispatch work?',
-    a: 'When you call our 24/7 line, a live dispatcher records your location and plumbing issue, then routes the request to the nearest available licensed plumber in our network. The contractor contacts you directly to confirm arrival time and provide a written quote before any work begins.',
+    q: 'How does YoHomeFix service work?',
+    a: 'When you call our 24/7 line, a live operator records your location and plumbing issue, then sends the nearest available licensed plumber. The plumber contacts you directly to confirm arrival time and provide a written quote before any work begins.',
   },
   {
     q: 'Is YoHomeFix a plumbing company?',
-    a: 'No. YoHomeFix is a call-connection platform that connects homeowners with independent, licensed plumbers. We do not perform repairs, set prices, or provide warranties. All work is done by the independent contractor you are connected with.',
+    a: 'YoHomeFix provides plumbing services across the United States. We do not set prices or provide warranties. All work is performed by licensed plumbers.',
   },
   {
-    q: 'How do you vet plumbers in your network?',
+    q: 'How do you vet plumbers?',
     a: 'We verify that each plumber holds an active state license, carries general liability insurance, agrees to upfront pricing, and has no pattern of unresolved disciplinary actions. We recheck credentials periodically and track homeowner feedback.',
   },
   {
@@ -77,11 +77,11 @@ const FAQS = [
   },
   {
     q: 'Can I request a specific plumber?',
-    a: 'No. We connect you with the nearest available licensed plumber who can respond to your service request. Availability depends on location, time, weather, and demand.',
+    a: 'No. We send the nearest available licensed plumber who can respond to your service request. Availability depends on location, time, weather, and demand.',
   },
   {
     q: 'What if I am not satisfied with the service?',
-    a: 'Service quality is the responsibility of the independent contractor. We track complaints and remove providers from the network who repeatedly fail to meet our standards. For disputes, contact the contractor directly and report the issue to us at hello@yohomefix.com.',
+    a: 'Service quality is the responsibility of the plumber performing the work. We track complaints and take action when standards are not met. For disputes, contact the plumber directly and report the issue to us at hello@yohomefix.com.',
   },
 ];
 
@@ -157,7 +157,7 @@ export default function FAQ() {
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
           <h1 className="text-3xl font-extrabold text-blue-900 mb-2">Frequently Asked Questions</h1>
-          <p className="text-gray-500 mb-10">Everything you need to know about our emergency plumbing dispatch service.</p>
+          <p className="text-gray-500 mb-10">Everything you need to know about our emergency plumbing service.</p>
 
           <div className="space-y-4">
             {FAQS.map((faq, i) => {
@@ -181,7 +181,7 @@ export default function FAQ() {
 
           <div className="mt-10 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
             <h2 className="text-xl font-bold text-blue-900 mb-2">Still Have Questions?</h2>
-            <p className="text-gray-600 mb-4">Our dispatchers are available 24/7 to answer any questions.</p>
+            <p className="text-gray-600 mb-4">Our team is available 24/7 to answer any questions.</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full font-bold no-underline" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>

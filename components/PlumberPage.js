@@ -73,10 +73,10 @@ function CallButton({ label, size = 'lg', className = '', city, service }) {
 
 const SERVICE_INTROS = {
   'emergency':          (city) => `When a plumbing emergency strikes in ${city}, knowing what's covered helps you act faster.`,
-  'leak-repair':        (city) => `Leak repair in ${city} can range from a minor drip to a pressurized supply failure — here's the full scope of what our network handles.`,
-  'drain-cleaning':     (city) => `Drain issues in ${city} vary by pipe age, soil type, and usage — our network covers the full range of cleaning and clearing needs.`,
+  'leak-repair':        (city) => `Leak repair in ${city} can range from a minor drip to a pressurized supply failure — here's the full scope of what we handle.`,
+  'drain-cleaning':     (city) => `Drain issues in ${city} vary by pipe age, soil type, and usage — we cover the full range of cleaning and clearing needs.`,
   'pipe-burst-repair':  (city) => `Burst pipe situations in ${city} often require immediate triage followed by longer-term repair — here's what's included.`,
-  'water-heater-repair':(city) => `Water heater problems in ${city} span from sediment buildup to full unit failure — our network covers all of it.`,
+  'water-heater-repair':(city) => `Water heater problems in ${city} span from sediment buildup to full unit failure — we cover all of it.`,
 };
 
 const SERVICES_COVERED = [
@@ -141,32 +141,32 @@ const WHY_CHOOSE_US = [
   {
     icon: '🚨',
     title: 'Fast Response',
-    desc: 'Our dispatch network is available around the clock. When you call, a live operator connects you to the nearest available technician — no hold queues, no callbacks.',
+    desc: 'Our service is available around the clock. When you call, a live operator sends the nearest available plumber — no hold queues, no callbacks.',
   },
   {
     icon: '🏅',
     title: 'Experienced Plumbing Professionals',
-    desc: 'Every technician in our network holds a valid state plumbing license and carries liability insurance. Credentials are required before any contractor joins our dispatch network.',
+    desc: 'Every plumber holds a valid state plumbing license and carries liability insurance. Credentials are verified before any plumber begins working with us.',
   },
   {
     icon: '💬',
     title: 'Upfront Communication',
-    desc: 'You receive a written quote before any work begins. Our network technicians are required to explain the scope and cost clearly — no surprise charges after the job.',
+    desc: 'You receive a written quote before any work begins. Plumbers are required to explain the scope and cost clearly — no surprise charges after the job.',
   },
   {
     icon: '🔧',
     title: 'Comprehensive Leak & Plumbing Solutions',
-    desc: 'From pinhole leaks and burst pipes to drain blockages and water heater failures — our network covers the full range of residential plumbing needs in a single call.',
+    desc: 'From pinhole leaks and burst pipes to drain blockages and water heater failures — we handle the full range of residential plumbing needs in a single call.',
   },
   {
     icon: '📍',
     title: 'Local Service Coverage',
-    desc: 'We dispatch locally. Your call routes to a technician who operates in your area — not a distant contractor unfamiliar with local infrastructure, codes, or conditions.',
+    desc: 'We provide local service. Your call goes to a plumber who operates in your area — not someone unfamiliar with local infrastructure, codes, or conditions.',
   },
   {
     icon: '🤝',
     title: 'Customer-First Approach',
-    desc: 'Our dispatchers are trained to listen, assess urgency, and connect you with the right technician quickly. You are kept informed at every step — from dispatch to arrival.',
+    desc: 'Our operators are trained to listen, assess urgency, and send the right plumber quickly. You are kept informed at every step — from call to arrival.',
   },
 ];
 
@@ -174,7 +174,7 @@ function WhyChooseUs() {
   return (
     <div className="mb-10">
       <h2 className="text-2xl font-bold text-blue-900 mb-1">Why Homeowners Choose Us</h2>
-      <p className="text-gray-500 text-sm mb-6">What sets our dispatch network apart from a standard plumbing call center.</p>
+      <p className="text-gray-500 text-sm mb-6">What sets YoHomeFix apart.</p>
       <div className="grid md:grid-cols-2 gap-4">
         {WHY_CHOOSE_US.map((item) => (
           <div key={item.title} className="flex gap-4 p-5 border border-gray-200 rounded-xl">
@@ -214,7 +214,7 @@ const SERVICE_CALLOUTS = {
     { slug: 'water-heater-repair', label: 'Water Heater Repair', text: 'No hot water? We repair and replace tank and tankless water heaters same day across the metro.' },
   ],
   'drain-cleaning': [
-    { slug: 'emergency', label: 'Emergency Plumber', text: 'Plumbing emergency beyond a clog? Our 24 hour plumbers handle burst pipes, leaks, and flooding — dispatched in under 60 minutes.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Plumbing emergency beyond a clog? Our 24 hour plumbers handle burst pipes, leaks, and flooding — on-site in under 60 minutes.' },
     { slug: 'sewer-line-repair', label: 'Sewer Line Repair', text: 'Recurring backups may signal a damaged sewer line. We provide camera inspection and trenchless repair options.' },
   ],
   'water-heater-repair': [
@@ -222,11 +222,11 @@ const SERVICE_CALLOUTS = {
     { slug: 'leak-repair', label: 'Leak Repair', text: 'Suspect a hidden leak near your water heater? We use acoustic and thermal detection to pinpoint it without demolition.' },
   ],
   'leak-repair': [
-    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active flooding from a burst pipe? Our 24 hour plumbers are dispatched immediately — no overtime charges.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active flooding from a burst pipe? Our 24 hour plumbers are on the way immediately — no overtime charges.' },
     { slug: 'drain-cleaning', label: 'Drain Service', text: 'Slow drains alongside a leak? We clear blockages and inspect for related pipe damage in one visit.' },
   ],
   'pipe-burst-repair': [
-    { slug: 'emergency', label: 'Emergency Plumber', text: 'Need a plumber right now? Our 24/7 dispatch handles all plumbing emergencies — burst pipes, leaks, backups.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Need a plumber right now? Our 24/7 service handles all plumbing emergencies — burst pipes, leaks, backups.' },
     { slug: 'leak-repair', label: 'Leak Detection', text: 'Hidden leak causing the burst? We use non-invasive detection to find and fix the source.' },
   ],
   'sewer-line-repair': [
@@ -328,36 +328,36 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
 
   const description = serviceSlug === 'emergency'
-    ? `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed 24 hour plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`
+    ? `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed 24 hour plumber in under 60 min — live operator answers 24/7, no overtime charges. Call now.`
     : serviceSlug === 'pipe-burst-repair'
-    ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 dispatch, upfront pricing, no overtime charges. Get help now.`
+    ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 service, upfront pricing, no overtime charges. Get help now.`
     : serviceSlug === 'leak-repair'
-    ? `Water leak in ${location}? Pinhole, slab, or supply line — licensed emergency plumber dispatched in 60 min. 24/7 availability, upfront pricing before work begins. Call now.`
+    ? `Water leak in ${location}? Pinhole, slab, or supply line — licensed emergency plumber in 60 min. 24/7 availability, upfront pricing before work begins. Call now.`
     : serviceSlug === 'drain-cleaning'
-    ? `Emergency drain service in ${location}? 24/7 drain cleaning and sewer clearing — licensed plumber dispatched fast for clogged drains, backups, and blockages. Upfront pricing. Call now.`
+    ? `Emergency drain service in ${location}? 24/7 drain cleaning and sewer clearing — licensed plumber sent fast for clogged drains, backups, and blockages. Upfront pricing. Call now.`
     : serviceSlug === 'water-heater-repair'
-    ? `No hot water in ${location}? Emergency water heater repair 24/7 — licensed plumber dispatched in under 60 min. Tank & tankless repair, same-day replacement. Upfront pricing. Call now.`
+    ? `No hot water in ${location}? Emergency water heater repair 24/7 — licensed plumber in under 60 min. Tank & tankless repair, same-day replacement. Upfront pricing. Call now.`
     : serviceSlug === 'sewer-line-repair'
-    ? `Sewer line problems in ${location}? Licensed emergency plumber handles main line repair, camera inspection, and trenchless repair. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Sewer line problems in ${location}? Licensed emergency plumber handles main line repair, camera inspection, and trenchless repair. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'toilet-repair'
-    ? `Toilet problems in ${location}? Licensed emergency plumber handles running toilets, clogs, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Toilet problems in ${location}? Licensed emergency plumber handles running toilets, clogs, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'slab-leak-repair'
-    ? `Slab leak in ${location}? Licensed emergency plumber provides detection, epoxy lining, and repair. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Slab leak in ${location}? Licensed emergency plumber provides detection, epoxy lining, and repair. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'water-line-repair'
-    ? `Water line problems in ${location}? Licensed emergency plumber handles leak detection, section repair, and line replacement. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Water line problems in ${location}? Licensed emergency plumber handles leak detection, section repair, and line replacement. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'faucet-repair'
-    ? `Faucet problems in ${location}? Licensed emergency plumber handles dripping faucets, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Faucet problems in ${location}? Licensed emergency plumber handles dripping faucets, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'garbage-disposal-repair'
-    ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'water-softener-repair'
-    ? `Water softener problems in ${location}? Licensed emergency plumber handles softener repair, resin replacement, and new installation. 24/7 dispatch, upfront pricing. Call now.`
+    ? `Water softener problems in ${location}? Licensed emergency plumber handles softener repair, resin replacement, and new installation. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'whole-house-repiping'
     ? `Repeated pipe leaks in ${location}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
     : serviceSlug === 'main-water-shutoff-valve-repair'
-    ? `Main water shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair and replacement. 24/7 dispatch and upfront pricing. Call now.`
+    ? `Main water shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair and replacement. 24/7 service and upfront pricing. Call now.`
     : serviceSlug === 'sump-pump-repair'
-    ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 dispatch, upfront pricing. Call now.`
-    : `Burst pipe or flooding in ${location}? YoHomeFix dispatches a licensed emergency plumber in under 60 min — live dispatcher answers 24/7, no overtime charges. Call now.`;
+    ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 service, upfront pricing. Call now.`
+    : `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7, no overtime charges. Call now.`;
 
   // Breadcrumb items
   const breadcrumbs = [
@@ -558,11 +558,11 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
               {serviceSlug === 'drain-cleaning'
                 ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
                 : serviceSlug === 'water-heater-repair'
-                ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber dispatched fast. Upfront pricing.`
-                : `Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
+                ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber on the way fast. Upfront pricing.`
+                : `Licensed plumber on the way fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
             </p>
             <CallButton label="hero" city={cityName} service={serviceName} />
-            <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live dispatcher, 24/7</p>
+            <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live operator, 24/7</p>
             <div className="flex flex-wrap justify-center gap-3 text-sm">
               {['✅ Licensed & Insured', '⏱️ Fast Response', '💰 Upfront Pricing', '🔧 All Plumbing Jobs'].map((badge) => (
                 <span key={badge} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{badge}</span>
@@ -575,7 +575,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         <div className="bg-white border-b border-gray-200 px-4 py-3">
           <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-gray-700 text-sm font-medium text-center sm:text-left">
-              🚨 Plumbing emergency? A live dispatcher is standing by right now.
+              🚨 Plumbing emergency? A live operator is standing by right now.
             </p>
             <div className="flex items-center gap-3 flex-shrink-0">
               <a
@@ -606,7 +606,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             <h2 className="text-lg font-bold text-green-900 mb-3">Key Takeaways — {serviceName} in {cityName}</h2>
             <ul className="space-y-2 text-sm text-green-800">
               <li className="flex gap-2"><span className="font-bold">✓</span> {serviceName} is available 24/7 in {cityName} through licensed, insured plumbers.</li>
-              <li className="flex gap-2"><span className="font-bold">✓</span> Target response time is under 60 minutes; a live dispatcher answers every call.</li>
+              <li className="flex gap-2"><span className="font-bold">✓</span> Target response time is under 60 minutes; a live operator answers every call.</li>
               <li className="flex gap-2"><span className="font-bold">✓</span> You receive a written upfront quote before any work begins.</li>
             </ul>
           </div>
@@ -697,7 +697,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">✅</div>
                 <div>
                   <p className="font-bold text-green-900 text-sm mb-1">Licensed &amp; Insured</p>
-                  <p className="text-green-800 text-sm leading-relaxed">Every technician dispatched holds a valid state license and carries liability insurance.</p>
+                  <p className="text-green-800 text-sm leading-relaxed">Every plumber holds a valid state license and carries liability insurance.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start p-5 bg-yellow-50 border-2 border-yellow-300 rounded-2xl">
@@ -710,7 +710,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
               <div className="flex gap-4 items-start p-5 bg-blue-50 border-2 border-blue-300 rounded-2xl">
                 <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">⏱️</div>
                 <div>
-                  <p className="font-bold text-blue-900 text-sm mb-1">Fast Dispatch</p>
+                  <p className="font-bold text-blue-900 text-sm mb-1">Fast Response</p>
                   <p className="text-blue-800 text-sm leading-relaxed">We aim to have a technician at your {cityName} address within 60 minutes of your call.</p>
                 </div>
               </div>
@@ -808,7 +808,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             <div className="mb-10">
               <h2 className="text-2xl font-bold text-blue-900 mb-2">Also Serving Nearby Cities</h2>
               <p className="text-gray-500 text-sm mb-4">
-                YoHomeFix dispatches licensed plumbers across the wider {stateCode} region. Select a nearby city for local service details.
+                YoHomeFix provides licensed plumbers across the wider {stateCode} region. Select a nearby city for local service details.
               </p>
               <div className="grid md:grid-cols-2 gap-3">
                 {nearbyCities.filter((nearbyCity) => isCityQualifiedForService(nearbyCity.name, serviceSlug)).map((nearbyCity) => (

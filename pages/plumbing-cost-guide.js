@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: 'Are emergency plumbing prices higher?',
-    a: 'Emergency work can involve urgent dispatch, water isolation, damage prevention, and more complex access. Ask for a written price before work begins. YoHomeFix communicates an upfront quote before approved work starts.',
+    a: 'Emergency work can involve urgent service calls, water isolation, damage prevention, and more complex access. Ask for a written price before work begins. YoHomeFix communicates an upfront quote before approved work starts.',
   },
   {
     q: 'When is replacement better than another repair?',

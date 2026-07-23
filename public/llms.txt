@@ -1,10 +1,10 @@
 # YoHomeFix
 
-> YoHomeFix is a 24/7 emergency plumbing dispatch service connecting US homeowners with licensed local plumbers. We serve 155 cities across 46 states with upfront pricing, no overtime charges, and 60-minute response targets. Our phone number is +1 (844) 934-4386, available 24 hours a day, 7 days a week.
+> YoHomeFix provides 24/7 emergency plumbing services across the United States. We serve 155 cities across 46 states with upfront pricing, no overtime charges, and 60-minute response targets. Our phone number is +1 (844) 934-4386, available 24 hours a day, 7 days a week.
 
 ## What We Do
 
-YoHomeFix connects homeowners experiencing plumbing emergencies — burst pipes, drain backups, water heater failures, sewer line problems, slab leaks, and more — with licensed local plumbing technicians. We operate a nationwide dispatch network covering 155 US cities across 46 states.
+YoHomeFix provides emergency plumbing services — burst pipes, drain backups, water heater failures, sewer line problems, slab leaks, and more — with licensed local plumbers. We serve 155 US cities across 46 states.
 
 ## Services We Offer
 
@@ -26,7 +26,7 @@ YoHomeFix connects homeowners experiencing plumbing emergencies — burst pipes,
 
 ## How to Contact Us
 
-- Phone: +1 (844) 934-4386 (24/7 emergency dispatch)
+- Phone: +1 (844) 934-4386 (24/7 emergency service)
 - Website: https://yohomefix.com
 - Emergency diagnostic tool: https://yohomefix.com/whats-wrong-with-my-plumbing
 
@@ -51,7 +51,7 @@ YoHomeFix publishes original plumbing infrastructure research including:
 
 ## Important Notes
 
-- All plumbers in our network are licensed and insured
+- All plumbers are licensed and insured
 - We offer upfront pricing with no overtime charges
 - 60-minute response target for emergency calls
 - Available 24 hours, 7 days a week, including holidays
