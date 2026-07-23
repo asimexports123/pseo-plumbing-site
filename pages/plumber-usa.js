@@ -43,6 +43,7 @@ export default function PlumberUSA() {
   });
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [expandedStates, setExpandedStates] = useState({});
   const searchRef = useRef(null);
 
   // Group cities by state for directory layout
@@ -105,6 +106,17 @@ export default function PlumberUSA() {
   const searchResultCount = useMemo(() => {
     if (!searchQuery.trim()) return SEED_CITIES.length;
     return filteredStates.reduce((sum, s) => sum + s.cities.length, 0);
+  }, [searchQuery, filteredStates]);
+
+  // Auto-expand matching states during search
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const expanded = {};
+      filteredStates.forEach(g => { expanded[g.stateCode] = true; });
+      setExpandedStates(expanded);
+    } else {
+      setExpandedStates({});
+    }
   }, [searchQuery, filteredStates]);
 
   // Keyboard shortcut: focus search on "/"
@@ -311,8 +323,16 @@ export default function PlumberUSA() {
             <p className="text-gray-600 text-center text-sm mb-6">All {SEED_CITIES.length} cities across {citiesByState.length} states — click a state to expand</p>
             <div className="space-y-2">
               {filteredStates.map((group) => (
-                <details key={group.stateCode} open={!!searchQuery.trim()} className="border border-gray-200 rounded-xl overflow-hidden group">
-                  <summary className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
+                <details
+                  key={group.stateCode}
+                  open={!!expandedStates[group.stateCode]}
+                  onToggle={(e) => {
+                    setExpandedStates(prev => ({ ...prev, [group.stateCode]: e.currentTarget.open }));
+                  }}
+                  className="border border-gray-200 rounded-xl overflow-hidden group">
+                  <summary
+                    className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden"
+                    aria-expanded={!!expandedStates[group.stateCode]}>
                     <span className="font-bold text-blue-900 text-sm flex-1">{group.stateName} ({group.stateCode})</span>
                     <span className="text-gray-600 text-xs">{group.cities.length} {group.cities.length === 1 ? 'city' : 'cities'}</span>
                     <span className="text-gray-500 text-sm group-open:rotate-90 transition-transform" aria-hidden="true">▸</span>
