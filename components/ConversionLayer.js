@@ -112,9 +112,23 @@ export function ExitIntentPopup({ cityName, serviceName }) {
       }
     }
 
+    // Mobile fallback: trigger when user tabs away or switches apps
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'hidden' && !visible) {
+        try {
+          if (sessionStorage.getItem('yhf_exit_shown')) return;
+        } catch (_) {}
+        setVisible(true);
+        trackEvent('exit_intent_shown', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
+        try { sessionStorage.setItem('yhf_exit_shown', '1'); } catch (_) {}
+      }
+    }
+
     document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       clearTimeout(timer);
     };
   }, [dismissed, visible, cityName, serviceName]);
@@ -153,6 +167,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
           <a
             href={`tel:${PHONE_NUMBER}`}
             onClick={handleCall}
+            data-track="exit-intent"
             className="bg-red-600 hover:bg-red-500 text-white px-6 py-4 rounded-xl font-extrabold text-lg transition-colors"
             aria-label="Call emergency dispatch"
           >
@@ -189,6 +204,7 @@ export function MidPageCTA({ cityName, serviceName }) {
       <a
         href={`tel:${PHONE_NUMBER}`}
         onClick={handleClick}
+        data-track="mid-page-cta"
         className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
         aria-label="Call emergency dispatch"
       >

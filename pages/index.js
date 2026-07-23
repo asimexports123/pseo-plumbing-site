@@ -151,6 +151,7 @@ export default function Home() {
           <a
             href={`tel:${PHONE_NUMBER}`}
             onClick={() => trackCall('nav-mobile-home')}
+            data-track="nav-mobile-home"
             className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm"
             aria-label="Call emergency dispatch"
           >

@@ -209,7 +209,7 @@ export default function PlumbingDiagnosticTool() {
       </Head>
 
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
+        <a href={`tel:${PHONE_NUMBER}`} data-track="diagnostic-sticky-mobile" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
           📞 CALL NOW — 24/7
         </a>
       </div>
@@ -217,10 +217,10 @@ export default function PlumbingDiagnosticTool() {
       <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">
+          <a href={`tel:${PHONE_NUMBER}`} data-track="diagnostic-nav-desktop" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">
             📞 Call Now
           </a>
-          <a href={`tel:${PHONE_NUMBER}`} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href={`tel:${PHONE_NUMBER}`} data-track="diagnostic-nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-10 text-center">

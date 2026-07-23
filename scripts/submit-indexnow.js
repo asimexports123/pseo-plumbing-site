@@ -7,7 +7,7 @@
  * Usage: node scripts/submit-indexnow.js
  */
 
-const { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, isCityQualifiedForService, isStateQualifiedForService } = require('../lib/cities');
+const { SEED_CITIES, SERVICES, STATES, COST_PAGE_CITIES, cityToSlug, buildSlug, isCityQualifiedForService, isStateQualifiedForService } = require('../lib/cities');
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 const INDEXNOW_KEY = 'yohomefixindexnow2025';
@@ -36,6 +36,11 @@ function buildAllUrls() {
   // Guide pages
   ['how-to-prevent-frozen-pipes', 'signs-you-need-a-plumber', 'how-to-shut-off-water-in-emergency', 'hard-water-effects-on-plumbing', 'water-heater-maintenance-guide'].forEach(s => {
     urls.push(`${DOMAIN}/guides/${s}`);
+  });
+
+  // Cost guide city pages
+  COST_PAGE_CITIES.forEach(cityName => {
+    urls.push(`${DOMAIN}/cost/${cityToSlug(cityName)}`);
   });
 
   // State pages
