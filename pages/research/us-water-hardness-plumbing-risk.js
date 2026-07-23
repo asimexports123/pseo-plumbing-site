@@ -48,7 +48,7 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
         '@type': 'Dataset',
         '@id': `${canonical}#dataset`,
         name: 'US City Water Hardness & Plumbing Risk Index',
-        description: `Water hardness measurements (mg/L CaCO₃) and plumbing infrastructure risk scores for ${findings.totalCities} US cities, compiled from YoHomeFix city plumbing intelligence data.`,
+        description: `Water hardness measurements (mg/L CaCO₃) and plumbing infrastructure risk scores for ${findings.totalCities} US cities, compiled from YoHomeFix city plumbing intelligence data. The CC BY 4.0 license covers YoHomeFix's compilation, classifications, and risk scoring. Underlying factual measurements are drawn from public municipal, state, and federal sources.`,
         url: canonical,
         creator: { '@id': `${domain}/#organization` },
         license: 'https://creativecommons.org/licenses/by/4.0/',
@@ -114,7 +114,7 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
     setLookupResult(match || 'not found');
   }, [lookupCity, dataset]);
 
-  const embedCode = `<iframe src="${canonical}/embed" width="100%" height="420" frameborder="0" title="YoHomeFix Water Hardness Lookup" loading="lazy"></iframe>`;
+  const embedCode = `<iframe src="${domain}/research/embed" width="100%" height="420" frameborder="0" title="YoHomeFix Water Hardness Lookup" loading="lazy"></iframe>`;
 
   const csvHeaders = ['City', 'State', 'State Name', 'Water Utility', 'Hardness (mg/L CaCO3)', 'Hardness Class', 'Infrastructure Class', 'Winter Risk', 'Avg Winter Temp (F)', 'Climate', 'Pipe Material', 'Pipe Era', 'Sewer System', 'Soil Type', 'Dominant Failure', 'Risk Score', 'Risk Class'];
   const downloadCsv = useCallback(() => {
@@ -694,8 +694,11 @@ export default function WaterHardnessResearch({ dataset, findings, lastReviewed 
               Retrieved from {canonical}
             </p>
             <p className="text-xs text-gray-400 mb-4">
-              Dataset licensed under Creative Commons Attribution 4.0 (CC BY 4.0).
-              Free to share and adapt with attribution.
+              This dataset is licensed under Creative Commons Attribution 4.0 (CC BY 4.0),
+              covering YoHomeFix's compilation, organization, classifications, risk scoring, and analysis.
+              Underlying water hardness measurements and utility data are drawn from public municipal,
+              state, and federal sources and are not subject to this license. Free to share and adapt
+              with attribution to YoHomeFix.
             </p>
             <button
               onClick={downloadCsv}
