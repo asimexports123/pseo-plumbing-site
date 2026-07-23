@@ -69,6 +69,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.svg?v=2" />
+        {/* Preconnect to third-party script origins for faster loading */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://js.marketcall.com" />
         {/* Theme color matches brand blue */}
         <meta name="theme-color" content="#1e3a8a" />
         {/* Prevent zoom on iOS input focus (stops layout shift) */}

@@ -1,10 +1,29 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { SEED_CITIES, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
+import { useState, useMemo } from 'react';
+import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
 import { buildPageSchema } from '../lib/schemas';
+
+const SERVICE_ICONS = {
+  'emergency': '🚨',
+  'leak-repair': '💧',
+  'drain-cleaning': '🌀',
+  'pipe-burst-repair': '🔩',
+  'water-heater-repair': '🔥',
+  'sewer-line-repair': '🚿',
+  'toilet-repair': '🚽',
+  'slab-leak-repair': '🏗️',
+  'water-line-repair': '🚰',
+  'faucet-repair': '🚧',
+  'garbage-disposal-repair': '♻️',
+  'water-softener-repair': '💎',
+  'whole-house-repiping': '🔧',
+  'main-water-shutoff-valve-repair': '⏹️',
+  'sump-pump-repair': '🏊',
+};
 
 export default function PlumberUSA() {
   const title = 'Plumber USA — Emergency Plumbing Services in Every US City | YoHomeFix';
@@ -22,6 +41,43 @@ export default function PlumberUSA() {
       { name: 'Plumber USA', url: `${domain}/plumber-usa` },
     ],
   });
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeService, setActiveService] = useState('all');
+
+  // Group cities by state for directory layout
+  const citiesByState = useMemo(() => {
+    const groups = {};
+    SEED_CITIES.forEach(city => {
+      if (!groups[city.stateCode]) {
+        const stateInfo = STATES.find(s => s.code === city.stateCode);
+        groups[city.stateCode] = { stateCode: city.stateCode, stateName: stateInfo?.name || city.stateCode, cities: [] };
+      }
+      groups[city.stateCode].cities.push(city);
+    });
+    return Object.values(groups).sort((a, b) => a.stateName.localeCompare(b.stateName));
+  }, []);
+
+  // Filtered cities based on search
+  const filteredStates = useMemo(() => {
+    if (!searchQuery.trim()) return citiesByState;
+    const q = searchQuery.toLowerCase().trim();
+    return citiesByState
+      .map(group => ({
+        ...group,
+        cities: group.cities.filter(c => c.name.toLowerCase().includes(q) || group.stateName.toLowerCase().includes(q)),
+      }))
+      .filter(g => g.cities.length > 0);
+  }, [searchQuery, citiesByState]);
+
+  // Count cities per service
+  const serviceCityCounts = useMemo(() => {
+    const counts = {};
+    SERVICES.forEach(s => {
+      counts[s.slug] = SEED_CITIES.filter(c => isCityQualifiedForService(c.name, s.slug)).length;
+    });
+    return counts;
+  }, []);
 
   return (
     <>
@@ -43,8 +99,8 @@ export default function PlumberUSA() {
       </Head>
 
       {/* Sticky mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden">
-        <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3 py-4 text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
+        <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-sticky-mobile" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
           <span>📞</span><span>CALL NOW — 24/7</span>
         </a>
       </div>
@@ -54,10 +110,10 @@ export default function PlumberUSA() {
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors" aria-label="Call emergency dispatch">
+          <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-nav-desktop" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors" aria-label="Call emergency dispatch">
             📞 Call Now
           </a>
-          <a href={`tel:${PHONE_NUMBER}`} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
@@ -73,7 +129,7 @@ export default function PlumberUSA() {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
             <p className="text-lg text-white mb-6">Licensed plumbers dispatched in 60 minutes. Available 24/7 with no overtime charges.</p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
+            <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
               📞 Get Emergency Help
             </a>
           </div>
@@ -81,40 +137,82 @@ export default function PlumberUSA() {
 
         <main className="max-w-5xl mx-auto w-full px-4 py-12">
 
-          {/* Services Hub — anchor links */}
+          {/* Services Hub — filterable cards */}
           <section className="mb-14">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Our Plumbing Services</h2>
-            <div className="grid md:grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               {SERVICES.map((s) => (
-                <a key={s.slug} id={s.slug} href={`#${s.slug}-cities`}
-                  className="p-4 border border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all text-center no-underline">
+                <a key={s.slug} href={`#${s.slug}-cities`}
+                  className={`p-4 border-2 rounded-xl hover:shadow-md transition-all text-center no-underline ${activeService === s.slug ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-blue-400'}`}
+                  onClick={() => setActiveService(s.slug)}>
+                  <div className="text-2xl mb-1">{SERVICE_ICONS[s.slug] || '🔧'}</div>
                   <p className="font-bold text-blue-900 text-sm">{s.name}</p>
-                  <p className="text-gray-700 text-xs mt-1">{SEED_CITIES.length} cities</p>
+                  <p className="text-gray-500 text-xs mt-1">{serviceCityCounts[s.slug]} cities</p>
                 </a>
               ))}
             </div>
           </section>
 
-          {/* Cities by Service */}
-          {SERVICES.map((service) => (
-            <section key={service.slug} id={`${service.slug}-cities`} className="mb-14 scroll-mt-20">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-blue-900">{service.name} — All Cities</h2>
+          {/* Search bar */}
+          <section className="mb-10">
+            <div className="max-w-md mx-auto">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder="Search city or state..."
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 outline-none text-gray-800"
+                  aria-label="Search cities"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">🔍</span>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    aria-label="Clear search"
+                  >✕</button>
+                )}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                {SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug)).map((city) => {
-                  const href = `/${buildSlug(cityToSlug(city.name), service.slug)}`;
-                  return (
-                    <Link key={`${service.slug}-${city.name}`} href={href}
-                      className="px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg text-sm text-gray-700 hover:text-blue-800 no-underline transition-all text-center"
-                      title={`${service.name} in ${city.name}`}>
-                      {service.shortName} in {city.name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
+              <p className="text-center text-gray-400 text-xs mt-2">
+                {filteredStates.reduce((sum, s) => sum + s.cities.length, 0)} of {SEED_CITIES.length} cities shown
+              </p>
+            </div>
+          </section>
+
+          {/* Cities by Service — compact grids */}
+          {SERVICES.map((service) => {
+            const cities = SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug));
+            const filteredCities = searchQuery.trim()
+              ? cities.filter(c => {
+                  const q = searchQuery.toLowerCase().trim();
+                  return c.name.toLowerCase().includes(q) || c.stateCode.toLowerCase().includes(q);
+                })
+              : cities;
+            if (filteredCities.length === 0) return null;
+
+            return (
+              <section key={service.slug} id={`${service.slug}-cities`} className="mb-12 scroll-mt-20">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-2xl">{SERVICE_ICONS[service.slug] || '🔧'}</span>
+                  <h2 className="text-xl font-bold text-blue-900">{service.name} — All Cities</h2>
+                  <span className="text-gray-400 text-sm">({filteredCities.length})</span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                  {filteredCities.map((city) => {
+                    const href = `/${buildSlug(cityToSlug(city.name), service.slug)}`;
+                    return (
+                      <Link key={`${service.slug}-${city.name}`} href={href}
+                        className="px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg text-sm text-gray-700 hover:text-blue-800 no-underline transition-all text-center"
+                        title={`${service.name} in ${city.name}, ${city.stateCode}`}>
+                        {service.shortName} in {city.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
 
           {/* Cost Guides Section */}
           <section className="mb-14 bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
@@ -153,31 +251,33 @@ export default function PlumberUSA() {
             </div>
           </section>
 
-          {/* City Hub — all services per city */}
+          {/* City Directory — grouped by state with search */}
           <section className="mb-14">
-            <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Browse by City</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {SEED_CITIES.map((city) => (
-                <div key={city.name} className="border border-gray-200 rounded-xl p-4">
-                  <p className="font-bold text-blue-900 mb-2">
-                    <Link href={`/${buildSlug(cityToSlug(city.name), 'emergency')}`} className="hover:underline no-underline">
-                      Emergency plumber in {city.name}, {city.stateCode}
-                    </Link>
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug)).map((s) => {
-                      const href = `/${buildSlug(cityToSlug(city.name), s.slug)}`;
-                      return (
-                        <Link key={s.slug} href={href}
-                          className="px-2 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-xs no-underline transition-colors"
-                          title={`${s.name} in ${city.name}`}>
-                          {s.shortName} in {city.name}
+            <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Browse by City</h2>
+            <p className="text-gray-500 text-center text-sm mb-6">All {SEED_CITIES.length} cities across {filteredStates.length} states — click any city for emergency plumbing services</p>
+            <div className="space-y-4">
+              {filteredStates.map((group) => (
+                <div key={group.stateCode} className="border border-gray-200 rounded-xl overflow-hidden">
+                  <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
+                    <h3 className="font-bold text-blue-900 text-sm">{group.stateName} ({group.stateCode}) <span className="text-gray-400 font-normal">— {group.cities.length} cities</span></h3>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex flex-wrap gap-2">
+                      {group.cities.map((city) => (
+                        <Link key={city.name}
+                          href={`/${buildSlug(cityToSlug(city.name), 'emergency')}`}
+                          className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-xs no-underline transition-colors font-medium"
+                          title={`Emergency plumber in ${city.name}, ${city.stateCode}`}>
+                          {city.name}
                         </Link>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
+              {filteredStates.length === 0 && (
+                <p className="text-center text-gray-400 py-8">No cities found for &quot;{searchQuery}&quot;</p>
+              )}
             </div>
           </section>
 
@@ -188,7 +288,7 @@ export default function PlumberUSA() {
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need a Plumber Right Now?</h2>
             <p className="text-white mb-5">Our dispatchers are standing by 24/7 across the USA</p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
+            <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Call Today
             </a>
           </div>
