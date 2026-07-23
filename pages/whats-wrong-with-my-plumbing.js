@@ -291,6 +291,23 @@ export default function PlumbingDiagnosticTool() {
                 </div>
               </div>
 
+              {/* Call CTA — shown first for emergency/high urgency */}
+              {(result.symptom.urgency === 'emergency' || result.symptom.urgency === 'high') && (
+                <div className="bg-red-600 text-white rounded-2xl p-6 text-center">
+                  <h3 className="text-xl font-extrabold mb-2">Need Help Right Now?</h3>
+                  <p className="text-white mb-4">Live dispatcher — 60-minute response target — no overtime charges</p>
+                  <a
+                    href={`tel:${PHONE_NUMBER}`}
+                    onClick={() => handleDiagnosticCall(result.symptom.urgency, result.symptom)}
+                    data-track="diagnostic-urgent-call"
+                    className="inline-flex items-center gap-3 bg-white text-red-600 px-8 py-4 rounded-full text-xl font-extrabold hover:bg-gray-100 transition-colors"
+                    aria-label="Call emergency dispatch"
+                  >
+                    📞 Call Now
+                  </a>
+                </div>
+              )}
+
               {/* Safety Guidance */}
               <div className="bg-green-50 border border-green-200 rounded-2xl p-5">
                 <h3 className="text-lg font-bold text-green-900 mb-2">✓ Immediate Safety Steps</h3>
@@ -321,23 +338,6 @@ export default function PlumbingDiagnosticTool() {
                   <p className="text-gray-500 text-sm">Select your city above to see local service options.</p>
                 )}
               </div>
-
-              {/* Call CTA */}
-              {(result.symptom.urgency === 'emergency' || result.symptom.urgency === 'high') && (
-                <div className="bg-red-600 text-white rounded-2xl p-6 text-center">
-                  <h3 className="text-xl font-extrabold mb-2">Need Help Right Now?</h3>
-                  <p className="text-white mb-4">Live dispatcher — 60-minute response target — no overtime charges</p>
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    onClick={() => handleDiagnosticCall(result.symptom.urgency, result.symptom)}
-                    data-track="diagnostic-urgent-call"
-                    className="inline-flex items-center gap-3 bg-white text-red-600 px-8 py-4 rounded-full text-xl font-extrabold hover:bg-gray-100 transition-colors"
-                    aria-label="Call emergency dispatch"
-                  >
-                    📞 Call Now
-                  </a>
-                </div>
-              )}
 
               {(result.symptom.urgency === 'medium' || result.symptom.urgency === 'low') && (
                 <div className="bg-blue-900 text-white rounded-2xl p-6 text-center">
