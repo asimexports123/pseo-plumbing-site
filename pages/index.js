@@ -12,7 +12,10 @@ function trackCall(label) {
     existing['__last'] = new Date().toISOString();
     localStorage.setItem(key, JSON.stringify(existing));
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'call_click', { event_label: label });
+      window.gtag('event', 'call_click', {
+        cta_location: label,
+        page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+      });
     }
   } catch (_) {}
 }

@@ -1,13 +1,65 @@
 import '../styles/globals.css';
 import Head from 'next/head';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
+const GA_ID = 'G-TEKZ2B3NXQ';
 
 const MC_SITE     = '3143';
 const MC_CAMPAIGN = '348734';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  // GA4 — SPA route-change page_view tracking
+  useEffect(() => {
+    if (!GA_ID) return;
+    const handleRouteChange = (url) => {
+      try {
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('config', GA_ID, {
+            page_path: url,
+            page_location: window.location.origin + url,
+          });
+          window.gtag('event', 'page_view', {
+            page_path: url,
+            page_location: window.location.origin + url,
+            send_to: GA_ID,
+          });
+        }
+      } catch (_) {}
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  // GA4 — global tel: click delegation (catches any tel: link without explicit tracking)
+  useEffect(() => {
+    if (!GA_ID) return;
+    const handleClick = (e) => {
+      try {
+        const link = e.target.closest('a[href^="tel:"]');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        if (href !== `tel:${'+'}18449344386`) return;
+        const trackLabel = link.getAttribute('data-track');
+        if (trackLabel) return; // already tracked by explicit handler
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'call_click', {
+            cta_location: 'untracked',
+            page_path: window.location.pathname,
+            page_location: window.location.href,
+          });
+        }
+      } catch (_) {}
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
+
   return (
     <>
       <Head>
@@ -23,23 +75,19 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </Head>
 
-      {/* GA4 — only injected when NEXT_PUBLIC_GA_ID is set in environment */}
-      {GA_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', { page_path: window.location.pathname });
-            `}
-          </Script>
-        </>
-      )}
+      {/* GA4 — Google Analytics 4 with Measurement ID G-TEKZ2B3NXQ */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga4-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}', { page_path: window.location.pathname, send_page_view: true });
+        `}
+      </Script>
 
       {/* MarketCall Dynamic Call Tracking — init config before library loads */}
       <Script id="mc-config" strategy="afterInteractive">

@@ -3,10 +3,17 @@ import { useState, useEffect, useCallback } from 'react';
 import { PHONE_NUMBER, PHONE_DISPLAY, SERVICES } from '../lib/cities';
 
 // ── Call tracking helper ─────────────────────────────────────
-function trackEvent(action, label) {
+function trackEvent(action, label, extra) {
   try {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', action, { event_label: label });
+      const params = { event_label: label };
+      if (action === 'call_click' || action.includes('_call')) {
+        params.cta_location = label;
+        params.page_path = window.location.pathname;
+        if (extra?.city) params.city = extra.city;
+        if (extra?.service) params.service = extra.service;
+      }
+      window.gtag('event', action, params);
     }
     const key = 'yhf_conversion_events';
     const existing = JSON.parse(localStorage.getItem(key) || '[]');
@@ -36,7 +43,7 @@ export function QuoteForm({ cityName, defaultService }) {
   const [submitted, setSubmitted] = useState(false);
 
   function handleCall() {
-    trackEvent('quote_form_call', `${cityName}-${service}`);
+    trackEvent('quote_form_call', `${cityName}-${service}`, { city: cityName, service });
     setSubmitted(true);
     window.location.href = `tel:${PHONE_NUMBER}`;
   }
@@ -98,7 +105,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
         clearTimeout(timer);
         timer = setTimeout(() => {
           setVisible(true);
-          trackEvent('exit_intent_shown', `${cityName}-${serviceName}`);
+          trackEvent('exit_intent_shown', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
           try { sessionStorage.setItem('yhf_exit_shown', '1'); } catch (_) {}
         }, 200);
       }
@@ -112,14 +119,14 @@ export function ExitIntentPopup({ cityName, serviceName }) {
   }, [dismissed, visible, cityName, serviceName]);
 
   function handleCall() {
-    trackEvent('exit_intent_call', `${cityName}-${serviceName}`);
+    trackEvent('exit_intent_call', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
     window.location.href = `tel:${PHONE_NUMBER}`;
   }
 
   function handleDismiss() {
     setVisible(false);
     setDismissed(true);
-    trackEvent('exit_intent_dismissed', `${cityName}-${serviceName}`);
+    trackEvent('exit_intent_dismissed', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
   }
 
   if (!visible) return null;
@@ -170,7 +177,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
 // ── 4. MID-PAGE CTA STRIP ────────────────────────────────────
 export function MidPageCTA({ cityName, serviceName }) {
   function handleClick() {
-    trackEvent('mid_cta_call', `${cityName}-${serviceName}`);
+    trackEvent('mid_cta_call', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
   }
   return (
     <div className="bg-red-600 text-white rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">

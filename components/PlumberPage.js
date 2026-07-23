@@ -24,7 +24,7 @@ import { Trust } from './Trust';
 import { Sources } from './Sources';
 import { InternalLinks } from './InternalLinks';
 
-function trackCall(label) {
+function trackCall(label, city, service) {
   try {
     const key = 'yhf_call_clicks';
     const existing = JSON.parse(localStorage.getItem(key) || '{}');
@@ -33,7 +33,12 @@ function trackCall(label) {
     existing['__last'] = new Date().toISOString();
     localStorage.setItem(key, JSON.stringify(existing));
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'call_click', { event_label: label });
+      window.gtag('event', 'call_click', {
+        cta_location: label,
+        page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+        city: city || '',
+        service: service || '',
+      });
     }
   } catch (_) {}
 }
@@ -45,8 +50,8 @@ const CTA_TEXT = {
   'nav-desktop':'Call Now',
 };
 
-function CallButton({ label, size = 'lg', className = '' }) {
-  const handleClick = useCallback(() => trackCall(label), [label]);
+function CallButton({ label, size = 'lg', className = '', city, service }) {
+  const handleClick = useCallback(() => trackCall(label, city, service), [label, city, service]);
   const base = size === 'lg'
     ? 'inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white rounded-full font-extrabold shadow-xl transition-transform hover:scale-105 px-8 py-5 text-xl'
     : 'inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold transition-colors px-5 py-2';
@@ -493,7 +498,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
         <a
           href={`tel:${PHONE_NUMBER}`}
-          onClick={() => trackCall('sticky-mobile')}
+          onClick={() => trackCall('sticky-mobile', cityName, serviceName)}
           data-track="sticky-mobile"
           className="flex items-center justify-center gap-3 h-full w-full"
           style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
@@ -513,8 +518,8 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <CallButton label="nav-desktop" size="sm" className="hidden md:inline-flex" />
-          <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('nav-mobile')} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <CallButton label="nav-desktop" size="sm" className="hidden md:inline-flex" city={cityName} service={serviceName} />
+          <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('nav-mobile', cityName, serviceName)} data-track="nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         {/* Breadcrumb */}
@@ -555,7 +560,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber dispatched fast. Upfront pricing.`
                 : `Licensed plumber dispatched fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
             </p>
-            <CallButton label="hero" />
+            <CallButton label="hero" city={cityName} service={serviceName} />
             <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live dispatcher, 24/7</p>
             <div className="flex flex-wrap justify-center gap-3 text-sm">
               {['✅ Licensed & Insured', '⏱️ Fast Response', '💰 Upfront Pricing', '🔧 All Plumbing Jobs'].map((badge) => (
@@ -574,7 +579,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             <div className="flex items-center gap-3 flex-shrink-0">
               <a
                 href={`tel:${PHONE_NUMBER}`}
-                onClick={() => trackCall('secondary-cta')}
+                onClick={() => trackCall('secondary-cta', cityName, serviceName)}
                 data-track="secondary-cta"
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
               >
@@ -582,7 +587,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
               </a>
               <a
                 href={`sms:${PHONE_NUMBER}`}
-                onClick={() => trackCall('secondary-cta-sms')}
+                onClick={() => trackCall('secondary-cta-sms', cityName, serviceName)}
                 data-track="secondary-cta-sms"
                 className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
               >
@@ -890,7 +895,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Ready for Fast, Reliable Help in {cityName}?</h2>
             <p className="text-white mb-6">Licensed plumbers available right now. Upfront pricing before any work begins.</p>
-            <CallButton label="bottom" />
+            <CallButton label="bottom" city={cityName} service={serviceName} />
           </div>
 
           {/* Availability disclaimer */}

@@ -96,6 +96,46 @@ export default function PlumbingDiagnosticTool() {
   const [selectedCity, setSelectedCity] = useState('');
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
+  function trackDiagnostic(action, params) {
+    try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', action, params);
+      }
+    } catch (_) {}
+  }
+
+  function handleSymptomSelect(symptomId) {
+    setSelectedSymptom(symptomId);
+    const symptom = SYMPTOMS.find(s => s.id === symptomId);
+    trackDiagnostic('diagnostic_symptom_selected', {
+      symptom_id: symptomId,
+      symptom_label: symptom?.label || '',
+      urgency: symptom?.urgency || '',
+      service: symptom?.service || '',
+      page_path: window.location.pathname,
+    });
+  }
+
+  function handleCitySelect(cityName) {
+    setSelectedCity(cityName);
+    trackDiagnostic('diagnostic_city_selected', {
+      city: cityName,
+      symptom_id: selectedSymptom || '',
+      page_path: window.location.pathname,
+    });
+  }
+
+  function handleDiagnosticCall(urgency, symptom) {
+    trackDiagnostic('call_click', {
+      cta_location: urgency === 'emergency' || urgency === 'high' ? 'diagnostic-urgent-call' : 'diagnostic-schedule-call',
+      page_path: window.location.pathname,
+      symptom_id: symptom?.id || '',
+      urgency: urgency || '',
+      service: symptom?.service || '',
+      city: selectedCity || '',
+    });
+  }
+
   const cityOptions = useMemo(() => {
     return SEED_CITIES.map(c => ({ name: c.name, state: c.stateCode }))
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -180,7 +220,7 @@ export default function PlumbingDiagnosticTool() {
               {SYMPTOMS.map(s => (
                 <button
                   key={s.id}
-                  onClick={() => setSelectedSymptom(s.id)}
+                  onClick={() => handleSymptomSelect(s.id)}
                   className={`text-left p-4 rounded-xl border-2 transition-all ${
                     selectedSymptom === s.id
                       ? 'border-blue-600 bg-blue-50 shadow-md'
@@ -202,7 +242,7 @@ export default function PlumbingDiagnosticTool() {
               <h2 className="text-xl font-bold text-blue-900 mb-4">Step 2: Your city (optional — for local service)</h2>
               <select
                 value={selectedCity}
-                onChange={e => setSelectedCity(e.target.value)}
+                onChange={e => handleCitySelect(e.target.value)}
                 className="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 outline-none text-gray-800"
               >
                 <option value="">Select your city...</option>
@@ -267,6 +307,8 @@ export default function PlumbingDiagnosticTool() {
                   <p className="text-white mb-4">Live dispatcher — 60-minute response target — no overtime charges</p>
                   <a
                     href={`tel:${PHONE_NUMBER}`}
+                    onClick={() => handleDiagnosticCall(result.symptom.urgency, result.symptom)}
+                    data-track="diagnostic-urgent-call"
                     className="inline-flex items-center gap-3 bg-white text-red-600 px-8 py-4 rounded-full text-xl font-extrabold hover:bg-gray-100 transition-colors"
                     aria-label="Call emergency dispatch"
                   >
@@ -281,6 +323,8 @@ export default function PlumbingDiagnosticTool() {
                   <p className="text-white mb-4">Call now or browse our service pages for more information.</p>
                   <a
                     href={`tel:${PHONE_NUMBER}`}
+                    onClick={() => handleDiagnosticCall(result.symptom.urgency, result.symptom)}
+                    data-track="diagnostic-schedule-call"
                     className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-full text-xl font-extrabold hover:bg-red-500 transition-colors"
                     aria-label="Call to schedule service"
                   >
