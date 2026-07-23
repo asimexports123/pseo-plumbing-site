@@ -11,6 +11,7 @@ const footerLinks = [
   { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
   { href: '/guides', label: 'Guides' },
+  { href: '/research/us-water-hardness-plumbing-risk', label: 'Water Hardness Research' },
   { href: '/plumber-usa', label: 'Cities' },
   { href: '/sitemap.xml', label: 'Sitemap' },
   { href: '/privacy-policy', label: 'Privacy' },

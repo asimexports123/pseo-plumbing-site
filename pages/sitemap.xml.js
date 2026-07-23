@@ -57,6 +57,7 @@ export function buildStaticUrlset() {
       lastmod: today,
     })),
     { loc: `${DOMAIN}/guides`, priority: '0.7', changefreq: 'monthly', lastmod: today },
+    { loc: `${DOMAIN}/research/us-water-hardness-plumbing-risk`, priority: '0.9', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/why-trust-yohomefix`, priority: '0.6', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/how-yohomefix-works`, priority: '0.6', changefreq: 'monthly', lastmod: today },
     { loc: `${DOMAIN}/authors`, priority: '0.5', changefreq: 'monthly', lastmod: today },

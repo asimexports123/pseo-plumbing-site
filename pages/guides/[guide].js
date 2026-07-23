@@ -382,6 +382,22 @@ export default function GuidePage({ guide, slug }) {
             </div>
           </div>
 
+          {slug === 'hard-water-effects-on-plumbing' && (
+            <div className="mb-10 bg-blue-50 rounded-xl border border-blue-200 p-6">
+              <h2 className="text-xl font-bold text-blue-900 mb-2">US City Water Hardness Data</h2>
+              <p className="text-sm text-gray-600 mb-3">
+                See measured water hardness levels for {155} US cities, including hardness classifications,
+                plumbing risk scores, and regional patterns.
+              </p>
+              <Link
+                href="/research/us-water-hardness-plumbing-risk"
+                className="inline-block text-sm text-blue-600 hover:underline font-bold"
+              >
+                Explore the Water Hardness Index →
+              </Link>
+            </div>
+          )}
+
           <Trust pageType="guide" lastReviewed={lastReviewed} />
           <Sources pageType="guide" guideSlug={slug} />
           <EditorialFooter pageType="guide" />

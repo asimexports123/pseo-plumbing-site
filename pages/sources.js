@@ -161,6 +161,11 @@ export default function Sources() {
               <p>
                 <strong>5. Continuous updates.</strong> Source pages are reviewed quarterly. When official data changes, we update the affected content within one review cycle.
               </p>
+              <p className="mt-4">
+                <Link href="/research/us-water-hardness-plumbing-risk" className="text-blue-600 hover:underline font-bold">
+                  See our US City Water Hardness & Plumbing Risk Index →
+                </Link>
+              </p>
             </div>
           </section>
 
