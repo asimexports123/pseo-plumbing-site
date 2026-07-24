@@ -371,11 +371,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── ALL CITIES GRID ────────────────────────────────────── */}
+        {/* ── FEATURED CITIES GRID ────────────────────────────────────── */}
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">19,000+ Cities & Towns Covered Nationwide</h2>
-            <p className="text-gray-500 text-center mb-8">Featured cities below — browse all {TOTAL_PLACES.toLocaleString()} locations by state</p>
+            <p className="text-gray-500 text-center mb-8">Featured Cities Across the USA — selected locations below, browse all {TOTAL_PLACES.toLocaleString()}+ on our full directory</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {SEED_CITIES.map((city) => {
                 const slug = buildSlug(cityToSlug(city.name), 'emergency');
@@ -393,7 +393,7 @@ export default function Home() {
             </div>
             <div className="text-center mt-6">
               <Link href="/plumber-usa" className="inline-block bg-blue-900 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors no-underline">
-                Browse 19,000+ Cities & Towns
+                Browse All 19,000+ Cities & Towns
               </Link>
             </div>
           </div>

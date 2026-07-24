@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
-import { TOTAL_PLACES } from '../lib/nationwidePlaces';
+import { TOTAL_PLACES, NATIONWIDE_SERVICE_COUNTS } from '../lib/nationwidePlaces';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -71,14 +71,8 @@ export default function PlumberUSA() {
     return Object.values(groups).sort((a, b) => a.stateName.localeCompare(b.stateName));
   }, []);
 
-  // Count cities per service
-  const serviceCityCounts = useMemo(() => {
-    const counts = {};
-    SERVICES.forEach(s => {
-      counts[s.slug] = SEED_CITIES.filter(c => isCityQualifiedForService(c.name, s.slug)).length;
-    });
-    return counts;
-  }, []);
+  // Nationwide service counts (computed at module init from full dataset)
+  const serviceCityCounts = NATIONWIDE_SERVICE_COUNTS;
 
   // Determine which service sections have matching cities when searching
   const serviceMatches = useMemo(() => {
@@ -340,10 +334,10 @@ export default function PlumberUSA() {
             </div>
           </section>
 
-          {/* City Directory — collapsed state accordions */}
-          <section className="mb-10" aria-label="City directory by state">
-            <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Browse by City</h2>
-            <p className="text-gray-600 text-center text-sm mb-2">Featured cities below — browse all {TOTAL_PLACES.toLocaleString()}+ locations by state</p>
+          {/* Featured City Directory — collapsed state accordions */}
+          <section className="mb-10" aria-label="Featured city directory by state">
+            <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Browse Featured Cities</h2>
+            <p className="text-gray-600 text-center text-sm mb-2">Popular locations below — search {TOTAL_PLACES.toLocaleString()} cities & towns above, or browse all US states for complete nationwide coverage.</p>
             <p className="text-gray-500 text-center text-xs mb-6">Looking for a smaller town? <Link href="/plumber-usa#all-states" className="text-blue-700 underline">Browse all state pages</Link> for complete city & town listings nationwide.</p>
             <div className="space-y-2">
               {filteredStates.map((group) => (
