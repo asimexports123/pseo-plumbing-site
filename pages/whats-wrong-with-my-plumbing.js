@@ -368,7 +368,7 @@ export default function PlumbingDiagnosticTool() {
             </p>
             <p className="text-gray-600 leading-relaxed mt-3">
               YoHomeFix provides plumbing services across the United States. Our team is available
-              24/7 to take your call and send a qualified plumber to your home. We serve 155 cities across 46 states with upfront
+              24/7 to take your call and send a qualified plumber to your home. We serve 19,000+ cities and towns nationwide with upfront
               pricing and no overtime charges.
             </p>
           </div>

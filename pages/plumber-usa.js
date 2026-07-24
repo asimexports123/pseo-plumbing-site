@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
+import { TOTAL_PLACES } from '../lib/nationwidePlaces';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -28,7 +29,7 @@ const SERVICE_ICONS = {
 export default function PlumberUSA() {
   const title = 'Plumber USA — Emergency Plumbing Services in Every US City | YoHomeFix';
   const description =
-    `Find local emergency plumbers in ${SEED_CITIES.length} US cities. YoHomeFix provides licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
+    `Plumbing services across ${TOTAL_PLACES.toLocaleString()}+ US cities and towns nationwide. YoHomeFix provides licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
   const canonical = `${domain}/plumber-usa`;
@@ -44,7 +45,18 @@ export default function PlumberUSA() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedStates, setExpandedStates] = useState({});
+  const [nationwidePlaces, setNationwidePlaces] = useState(null);
   const searchRef = useRef(null);
+
+  // Lazy-load nationwide places dataset when user first searches
+  useEffect(() => {
+    if (searchQuery.trim() && !nationwidePlaces) {
+      fetch('/nationwide-places.json')
+        .then(r => r.json())
+        .then(data => setNationwidePlaces(data))
+        .catch(() => {});
+    }
+  }, [searchQuery, nationwidePlaces]);
 
   // Group cities by state for directory layout
   const citiesByState = useMemo(() => {
@@ -86,6 +98,15 @@ export default function PlumberUSA() {
     return matches;
   }, [searchQuery]);
 
+  // Nationwide search results (from full 19,000+ dataset)
+  const nationwideResults = useMemo(() => {
+    if (!searchQuery.trim() || !nationwidePlaces) return [];
+    const q = searchQuery.toLowerCase().trim();
+    return nationwidePlaces
+      .filter(p => p.n.toLowerCase().includes(q) || p.s.toLowerCase().includes(q))
+      .slice(0, 50);
+  }, [searchQuery, nationwidePlaces]);
+
   // Filtered states for city directory
   const filteredStates = useMemo(() => {
     if (!searchQuery.trim()) return citiesByState;
@@ -104,9 +125,10 @@ export default function PlumberUSA() {
 
   // Search results count
   const searchResultCount = useMemo(() => {
-    if (!searchQuery.trim()) return SEED_CITIES.length;
-    return filteredStates.reduce((sum, s) => sum + s.cities.length, 0);
-  }, [searchQuery, filteredStates]);
+    if (!searchQuery.trim()) return TOTAL_PLACES;
+    const seedCount = filteredStates.reduce((sum, s) => sum + s.cities.length, 0);
+    return seedCount + nationwideResults.length;
+  }, [searchQuery, filteredStates, nationwideResults]);
 
   // Auto-expand matching states during search
   useEffect(() => {
@@ -180,7 +202,8 @@ export default function PlumberUSA() {
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-12 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
-            <p className="text-lg text-blue-50 mb-6">Licensed plumbers in 60 minutes. Available 24/7 with no overtime charges.</p>
+            <p className="text-lg text-blue-50 mb-2">Licensed plumbers in 60 minutes. Available 24/7 with no overtime charges.</p>
+            <p className="text-base text-blue-100 mb-6">{TOTAL_PLACES.toLocaleString()}+ Cities & Towns Covered Nationwide</p>
             <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
@@ -200,7 +223,7 @@ export default function PlumberUSA() {
                   type="search"
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  placeholder="Search city, state, or service — e.g. Chicago, Texas, Drain Cleaning"
+                  placeholder="Search 19,000+ cities, towns, or states — e.g. Chicago, Texas, Dayton"
                   className="w-full pl-12 pr-10 py-4 rounded-xl border-2 border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 outline-none text-gray-900 text-base"
                 />
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg" aria-hidden="true">🔍</span>
@@ -216,8 +239,8 @@ export default function PlumberUSA() {
               </div>
               <p className="text-center text-gray-600 text-sm mt-2" aria-live="polite">
                 {searchQuery
-                  ? `${searchResultCount} ${searchResultCount === 1 ? 'city' : 'cities'} found`
-                  : `${SEED_CITIES.length} cities across ${citiesByState.length} states — search or browse below`}
+                  ? `${searchResultCount} ${searchResultCount === 1 ? 'location' : 'locations'} found`
+                  : `${TOTAL_PLACES.toLocaleString()}+ cities & towns across ${citiesByState.length} states — search or browse below`}
               </p>
             </div>
           </section>
@@ -320,7 +343,8 @@ export default function PlumberUSA() {
           {/* City Directory — collapsed state accordions */}
           <section className="mb-10" aria-label="City directory by state">
             <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Browse by City</h2>
-            <p className="text-gray-600 text-center text-sm mb-6">All {SEED_CITIES.length} cities across {citiesByState.length} states — click a state to expand</p>
+            <p className="text-gray-600 text-center text-sm mb-2">Featured cities below — browse all {TOTAL_PLACES.toLocaleString()}+ locations by state</p>
+            <p className="text-gray-500 text-center text-xs mb-6">Looking for a smaller town? <Link href="/plumber-usa#all-states" className="text-blue-700 underline">Browse all state pages</Link> for complete city & town listings nationwide.</p>
             <div className="space-y-2">
               {filteredStates.map((group) => (
                 <details
@@ -351,14 +375,58 @@ export default function PlumberUSA() {
                   </div>
                 </details>
               ))}
-              {filteredStates.length === 0 && (
-                <p className="text-center text-gray-600 py-8">No cities found for &quot;{searchQuery}&quot;</p>
+              {filteredStates.length === 0 && nationwideResults.length === 0 && (
+                <p className="text-center text-gray-600 py-8">
+                  {nationwidePlaces === null
+                    ? 'Loading nationwide directory…'
+                    : 'No cities found for "' + searchQuery + '"'}
+                </p>
+              )}
+
+              {/* Nationwide search results — from full 19,000+ dataset */}
+              {nationwideResults.length > 0 && (
+                <div className="mt-4 border border-blue-200 rounded-xl overflow-hidden">
+                  <div className="px-4 py-3 bg-blue-50">
+                    <p className="font-semibold text-blue-900 text-sm">
+                      More locations matching &quot;{searchQuery}&quot; ({nationwideResults.length} shown)
+                    </p>
+                  </div>
+                  <div className="p-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                      {nationwideResults.map((place) => (
+                        <Link
+                          key={place.u}
+                          href={`/${buildSlug(place.u, 'emergency')}`}
+                          className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg text-xs no-underline transition-colors font-medium"
+                          title={`Emergency plumber in ${place.n}, ${place.s}`}
+                        >
+                          {place.n}, {place.s}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
           </section>
 
           <EditorialFooter pageType="national-hub" />
           <Author pageType="national-hub" />
+
+          {/* All states directory — links to state hub pages for nationwide coverage */}
+          <section id="all-states" className="mb-10" aria-label="All state coverage">
+            <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">All US States Covered</h2>
+            <p className="text-gray-600 text-center text-sm mb-6">Each state page includes the full list of cities and towns we serve — from major metros to small communities.</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+              {STATES.map((s) => (
+                <Link key={s.code}
+                  href={`/plumber-${s.slug}`}
+                  className="px-3 py-2 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center">
+                  {s.name}
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* Bottom CTA */}
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">

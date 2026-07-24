@@ -57,7 +57,10 @@ const STATE_REWRITES = [
 const nextConfig = {
   turbopack: {},
   async rewrites() {
-    return STATE_REWRITES;
+    return [
+      ...STATE_REWRITES,
+      { source: '/sitemap-states/:state.xml', destination: '/sitemap-states/:state' },
+    ];
   },
   webpack: (config, { isServer }) => {
     if (process.env.ANALYZE === 'true') {

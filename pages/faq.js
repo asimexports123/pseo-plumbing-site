@@ -200,7 +200,7 @@ export default function FAQ() {
               ))}
             </div>
             <div className="text-center mt-3">
-              <Link href="/plumber-usa" className="text-blue-600 text-sm font-semibold hover:underline">Browse emergency plumbers in all {SEED_CITIES.length} cities</Link>
+              <Link href="/plumber-usa" className="text-blue-600 text-sm font-semibold hover:underline">Browse 19,000+ cities & towns nationwide</Link>
             </div>
           </div>
 

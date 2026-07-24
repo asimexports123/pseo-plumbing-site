@@ -3,12 +3,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import {
-
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
-
   cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, COST_PAGE_CITIES,
-
 } from '../../lib/cities';
+import { getPlacesByState } from '../../lib/nationwidePlaces';
 
 import { RelatedGuides } from '../../components/RelatedGuides';
 
@@ -52,13 +50,19 @@ export async function getStaticProps({ params }) {
 
   const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
 
-  return { props: { stateObj, stateCities } };
+  // Get nationwide places for this state (excluding enriched SEED_CITIES)
+  const seedCityNames = new Set(stateCities.map(c => c.name));
+  const additionalPlaces = getPlacesByState(stateObj.code)
+    .filter(p => !seedCityNames.has(p.name))
+    .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
+
+  return { props: { stateObj, stateCities, additionalPlaces }, revalidate: 86400 };
 
 }
 
 
 
-export default function StatePage({ stateObj, stateCities }) {
+export default function StatePage({ stateObj, stateCities, additionalPlaces = [] }) {
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -619,6 +623,70 @@ export default function StatePage({ stateObj, stateCities }) {
                 📞 Check Availability
 
               </a>
+
+            </div>
+
+          )}
+
+
+
+          {/* Additional cities and towns in this state (nationwide expansion) */}
+
+          {additionalPlaces.length > 0 && (
+
+            <div className="mb-12">
+
+              <h2 className="text-2xl font-bold text-blue-900 mb-2">
+
+                More Cities & Towns in {stateObj.name}
+
+              </h2>
+
+              <p className="text-gray-500 text-sm mb-5">
+
+                {additionalPlaces.length} additional {additionalPlaces.length === 1 ? 'location' : 'locations'} with plumbing service coverage
+
+              </p>
+
+              <details className="border border-gray-200 rounded-xl overflow-hidden group">
+
+                <summary className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
+
+                  <span className="font-semibold text-blue-900">Show all {additionalPlaces.length} cities & towns</span>
+
+                  <span className="text-gray-400 text-sm">click to expand</span>
+
+                </summary>
+
+                <div className="p-4">
+
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+
+                    {additionalPlaces.map((place) => (
+
+                      <Link
+
+                        key={place.slug}
+
+                        href={`/${buildSlug(place.slug, 'emergency')}`}
+
+                        className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-sm no-underline transition-colors"
+
+                        title={`Emergency plumber in ${place.name}, ${place.stateCode}`}
+
+                      >
+
+                        {place.name}
+
+                      </Link>
+
+                    ))}
+
+                  </div>
+
+                </div>
+
+              </details>
 
             </div>
 

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER } from '../lib/cities';
+import { TOTAL_PLACES } from '../lib/nationwidePlaces';
 import { EditorialFooter } from '../components/EditorialFooter';
 
 function trackCall(label) {
@@ -373,8 +374,8 @@ export default function Home() {
         {/* ── ALL CITIES GRID ────────────────────────────────────── */}
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">All {SEED_CITIES.length} Cities We Serve</h2>
-            <p className="text-gray-500 text-center mb-8">Click your city for local plumber dispatch and service pages</p>
+            <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">19,000+ Cities & Towns Covered Nationwide</h2>
+            <p className="text-gray-500 text-center mb-8">Featured cities below — browse all {TOTAL_PLACES.toLocaleString()} locations by state</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {SEED_CITIES.map((city) => {
                 const slug = buildSlug(cityToSlug(city.name), 'emergency');
@@ -392,7 +393,7 @@ export default function Home() {
             </div>
             <div className="text-center mt-6">
               <Link href="/plumber-usa" className="inline-block bg-blue-900 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors no-underline">
-                Browse emergency plumbers in every US city
+                Browse 19,000+ Cities & Towns
               </Link>
             </div>
           </div>
@@ -594,7 +595,7 @@ export default function Home() {
               <p className="text-white font-semibold mb-2">Resources</p>
               <ul className="space-y-1 text-sm">
                 <li><Link href="/guides" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Plumbing guides</Link></li>
-                <li><Link href="/plumber-usa" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Emergency plumbers in every city</Link></li>
+                <li><Link href="/plumber-usa" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Browse 19,000+ cities & towns</Link></li>
                 <li><Link href="/faq" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Frequently asked questions</Link></li>
                 <li><Link href="/about" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">About YoHomeFix</Link></li>
                 <li><Link href="/how-yohomefix-works" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">How YoHomeFix works</Link></li>

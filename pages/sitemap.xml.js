@@ -109,14 +109,20 @@ export function buildCityUrlset() {
 }
 
 // Sitemap index — root /sitemap.xml points to sub-sitemaps.
-// This pattern supports 50,000 URLs per sub-sitemap per Google spec.
-// To scale to 1,000 cities: add more /sitemap-cities-N.xml entries here.
+// Architecture: 1 static sitemap + 1 enriched-cities sitemap + 47 state sitemaps.
+// Each state sitemap contains all city-service URLs for that state,
+// staying well under the 50,000 URL limit per Google spec.
 function generateSitemapIndex() {
   const today = new Date().toISOString().split('T')[0];
-  return buildSitemapIndex([
+  const sitemaps = [
     { loc: `${DOMAIN}/sitemap-static.xml`, lastmod: today },
     { loc: `${DOMAIN}/sitemap-cities.xml`, lastmod: today },
-  ]);
+  ];
+  // Add per-state sitemaps for nationwide coverage
+  STATES.forEach(s => {
+    sitemaps.push({ loc: `${DOMAIN}/sitemap-states/${s.slug}.xml`, lastmod: today });
+  });
+  return buildSitemapIndex(sitemaps);
 }
 
 export async function getServerSideProps({ res }) {
