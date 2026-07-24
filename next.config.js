@@ -60,6 +60,7 @@ const nextConfig = {
     return [
       ...STATE_REWRITES,
       { source: '/sitemap-states/:state.xml', destination: '/sitemap-states/:state' },
+      { source: '/sitemap-zcta/:state.xml', destination: '/sitemap-zcta/:state' },
     ];
   },
   webpack: (config, { isServer }) => {

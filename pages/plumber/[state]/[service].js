@@ -135,7 +135,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
     ? `Emergency Drain Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
     : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName} | 24/7 Licensed Service | YoHomeFix`;
   const description = serviceObj.slug === 'emergency'
-    ? `24/7 emergency plumbing service across all of ${stateObj.name}. YoHomeFix provides licensed plumbers for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing, no overtime charges. Call now.`
+    ? `24/7 emergency plumbing service across all of ${stateObj.name}. YoHomeFix provides licensed plumbers for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing whenever available from participating providers. Call now.`
     : serviceObj.slug === 'pipe-burst-repair'
     ? `Burst pipe in ${stateObj.name}? Licensed emergency plumber in under 60 minutes — 24/7 service across all of ${stateObj.name}. Upfront pricing. Get help now.`
     : serviceObj.slug === 'leak-repair'
@@ -291,7 +291,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
               📞 Get Help Now
             </a>
-            <p className="text-white text-sm mt-3">Live operator — 60-minute response target — no overtime charges</p>
+            <p className="text-white text-sm mt-3">Live operator — 60-minute response target — transparent pricing from participating providers</p>
           </div>
         </section>
 
@@ -495,7 +495,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
 
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need {serviceObj.name} in {stateObj.name} Right Now?</h2>
-            <p className="text-white mb-5">We cover all of {stateObj.name} — 24/7, no overtime charges, upfront pricing</p>
+            <p className="text-white mb-5">We cover all of {stateObj.name} — 24/7, transparent pricing from participating providers</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>

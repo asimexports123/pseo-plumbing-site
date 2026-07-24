@@ -295,7 +295,7 @@ export default function PlumbingDiagnosticTool() {
               {(result.symptom.urgency === 'emergency' || result.symptom.urgency === 'high') && (
                 <div className="bg-red-600 text-white rounded-2xl p-6 text-center">
                   <h3 className="text-xl font-extrabold mb-2">Need Help Right Now?</h3>
-                  <p className="text-white mb-4">Live operator — 60-minute response target — no overtime charges</p>
+                  <p className="text-white mb-4">Live operator — 60-minute response target — transparent pricing from participating providers</p>
                   <a
                     href={`tel:${PHONE_NUMBER}`}
                     onClick={() => handleDiagnosticCall(result.symptom.urgency, result.symptom)}
@@ -369,7 +369,7 @@ export default function PlumbingDiagnosticTool() {
             <p className="text-gray-600 leading-relaxed mt-3">
               YoHomeFix provides plumbing services across the United States. Our team is available
               24/7 to take your call and send a qualified plumber to your home. We serve 19,000+ cities and towns nationwide with upfront
-              pricing and no overtime charges.
+              pricing from participating providers.
             </p>
           </div>
         </main>

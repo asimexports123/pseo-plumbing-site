@@ -95,7 +95,7 @@ function getCostFaqs(cityName, profile) {
     },
     {
       q: `Does YoHomeFix charge extra for emergency plumbing in ${cityName}?`,
-      a: `No. YoHomeFix does not apply overtime surcharges or after-hours premiums. The written upfront quote you receive on arrival is the same whether you call at 2 PM or 2 AM, including weekends and holidays.`,
+      a: `YoHomeFix connects you with participating providers who offer transparent pricing. The written upfront quote you receive on arrival is provided before any work begins, where available.`,
     },
     {
       q: `What affects the cost of a plumbing job in ${cityName}?`,
@@ -385,7 +385,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
 
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Ready for an Exact Quote in {cityName}?</h2>
-            <p className="text-white mb-5">24/7 dispatch — upfront written pricing — no overtime charges</p>
+            <p className="text-white mb-5">24/7 dispatch — transparent pricing from participating providers</p>
             <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>

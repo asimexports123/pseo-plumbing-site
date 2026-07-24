@@ -216,7 +216,7 @@ export default function Home() {
         <section className="max-w-4xl mx-auto w-full px-4 py-12">
           <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">How YoHomeFix Works</h2>
           <p className="text-gray-500 text-center mb-10 max-w-xl mx-auto">
-            Call YoHomeFix and a live operator will send a licensed, insured plumber to your door — fast. Available 24/7 with upfront pricing and no overtime charges.
+            Call YoHomeFix and a live operator will send a licensed, insured plumber to your door — fast. Available 24/7 with transparent pricing from participating providers.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -255,7 +255,7 @@ export default function Home() {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">Plumbing Services We Provide</h2>
-            <p className="text-gray-500 text-center mb-8">Every service available 24/7 — licensed plumbers, upfront pricing, no overtime surcharges</p>
+            <p className="text-gray-500 text-center mb-8">Every service available 24/7 — licensed plumbers, transparent pricing from participating providers</p>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
                 { icon: '🚨', slug: 'emergency',           name: 'Emergency Plumbing',    urgency: 'Burst pipe, flooding, gas shutoff — plumber in under 60 min',   city: 'New York' },
@@ -279,7 +279,7 @@ export default function Home() {
             <div className="bg-red-600 text-white rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="font-extrabold text-lg">Need a Plumber Right Now?</p>
-                <p className="text-white text-sm">Live operator — 60-min response target — no overtime charges</p>
+                <p className="text-white text-sm">Live operator — 60-min response target — transparent pricing from participating providers</p>
               </div>
               <a
                 href={`tel:${PHONE_NUMBER}`}
@@ -460,7 +460,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-6 mb-10">
               {[
                 { icon: '🏅', title: 'Licensed & Insured', desc: 'Every technician holds a valid state plumbing license and carries liability insurance. Credentials are verified before network admission.' },
-                { icon: '⏱️', title: '24/7 Service — 60-Min Target', desc: 'Live operators available around the clock. We aim to have a plumber at your door within 60 minutes. No overtime surcharges — ever.' },
+                { icon: '⏱️', title: '24/7 Service — 60-Min Target', desc: 'Live operators available around the clock. We aim to have a plumber at your door within 60 minutes. Transparent pricing from participating providers.' },
                 { icon: '💰', title: 'Upfront Pricing Only', desc: 'Written quote before any work begins. The price you agree to is the price you pay — no hidden fees, no mid-job surprises.' },
                 { icon: '📞', title: 'Live Operator — No Menus', desc: 'A real person answers your call. No automated phone trees, no callback lists. You get a local plumber in seconds.' },
                 { icon: '📍', title: 'Truly Local Plumbers', desc: 'Your call goes to a plumber who works in your area — familiar with local codes, infrastructure, and permit requirements.' },

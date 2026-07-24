@@ -109,18 +109,22 @@ export function buildCityUrlset() {
 }
 
 // Sitemap index — root /sitemap.xml points to sub-sitemaps.
-// Architecture: 1 static sitemap + 1 enriched-cities sitemap + 47 state sitemaps.
-// Each state sitemap contains all city-service URLs for that state,
-// staying well under the 50,000 URL limit per Google spec.
+// Architecture: 1 static sitemap + 1 enriched-cities sitemap + 47 state sitemaps
+// + 47 ZCTA/ZIP sitemaps for hyperlocal coverage.
+// Each sitemap stays well under the 50,000 URL limit per Google spec.
 function generateSitemapIndex() {
   const today = new Date().toISOString().split('T')[0];
   const sitemaps = [
     { loc: `${DOMAIN}/sitemap-static.xml`, lastmod: today },
     { loc: `${DOMAIN}/sitemap-cities.xml`, lastmod: today },
   ];
-  // Add per-state sitemaps for nationwide coverage
+  // Add per-state sitemaps for nationwide city coverage
   STATES.forEach(s => {
     sitemaps.push({ loc: `${DOMAIN}/sitemap-states/${s.slug}.xml`, lastmod: today });
+  });
+  // Add per-state ZCTA sitemaps for hyperlocal ZIP coverage
+  STATES.forEach(s => {
+    sitemaps.push({ loc: `${DOMAIN}/sitemap-zcta/${s.slug}.xml`, lastmod: today });
   });
   return buildSitemapIndex(sitemaps);
 }

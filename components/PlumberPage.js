@@ -23,6 +23,7 @@ import { Author } from './Author';
 import { Trust } from './Trust';
 import { Sources } from './Sources';
 import { InternalLinks } from './InternalLinks';
+import { getZctasByCity } from '../lib/hyperlocalPlaces';
 
 function trackCall(label, city, service) {
   try {
@@ -222,7 +223,7 @@ const SERVICE_CALLOUTS = {
     { slug: 'leak-repair', label: 'Leak Repair', text: 'Suspect a hidden leak near your water heater? We use acoustic and thermal detection to pinpoint it without demolition.' },
   ],
   'leak-repair': [
-    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active flooding from a burst pipe? Our 24 hour plumbers are on the way immediately — no overtime charges.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active flooding from a burst pipe? Our 24 hour plumbers are on the way immediately — transparent pricing from participating providers.' },
     { slug: 'drain-cleaning', label: 'Drain Service', text: 'Slow drains alongside a leak? We clear blockages and inspect for related pipe damage in one visit.' },
   ],
   'pipe-burst-repair': [
@@ -279,6 +280,46 @@ function getCityDisplayName(cityName, stateCode) {
   return cityName;
 }
 
+// ── Areas We Serve (hyperlocal ZIP directory) ──────────────────
+function AreasWeServe({ cityName, stateCode, serviceSlug }) {
+  const cSlug = cityToSlug(cityName);
+  const zctas = getZctasByCity(cSlug);
+
+  if (zctas.length === 0) return null;
+
+  // Show up to 20 featured ZIPs initially, with link to full directory
+  const featuredZips = zctas.slice(0, 20);
+  const hasMore = zctas.length > 20;
+
+  return (
+    <section className="mb-8" aria-label="Areas we serve">
+      <h2 className="text-2xl font-bold text-blue-900 mb-2">Areas We Serve in {cityName}</h2>
+      <p className="text-gray-600 text-sm mb-4">
+        {zctas.length} ZIP Code areas in {cityName}, {stateCode}. Select your ZIP for local plumbing service.
+      </p>
+      <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 mb-4">
+        {featuredZips.map(z => (
+          <Link
+            key={z.zip}
+            href={`/areas/${cSlug}/${z.zip}/${serviceSlug}`}
+            className="px-3 py-2 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center"
+          >
+            {z.zip}
+          </Link>
+        ))}
+      </div>
+      {hasMore && (
+        <Link
+          href={`/areas/${cSlug}`}
+          className="inline-block text-blue-700 hover:underline text-sm font-medium no-underline"
+        >
+          View all {zctas.length} ZIP Codes in {cityName} →
+        </Link>
+      )}
+    </section>
+  );
+}
+
 export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities }) {
   const cleanCityName = getCityDisplayName(cityName, stateCode);
   const location = stateCode ? `${cleanCityName}, ${stateCode}` : cityName;
@@ -328,9 +369,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     : `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
 
   const description = serviceSlug === 'emergency'
-    ? `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed 24 hour plumber in under 60 min — live operator answers 24/7, no overtime charges. Call now.`
+    ? `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed 24 hour plumber in under 60 min — live operator answers 24/7, upfront pricing whenever available from participating providers. Call now.`
     : serviceSlug === 'pipe-burst-repair'
-    ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 service, upfront pricing, no overtime charges. Get help now.`
+    ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 service, upfront pricing whenever available from participating providers. Get help now.`
     : serviceSlug === 'leak-repair'
     ? `Water leak in ${location}? Pinhole, slab, or supply line — licensed emergency plumber in 60 min. 24/7 availability, upfront pricing before work begins. Call now.`
     : serviceSlug === 'drain-cleaning'
@@ -357,7 +398,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Main water shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair and replacement. 24/7 service and upfront pricing. Call now.`
     : serviceSlug === 'sump-pump-repair'
     ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 service, upfront pricing. Call now.`
-    : `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7, no overtime charges. Call now.`;
+    : `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7, upfront pricing whenever available from participating providers. Call now.`;
 
   // Breadcrumb items
   const breadcrumbs = [
@@ -887,6 +928,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
 
           <Trust pageType="city" sourceCount={6} lastReviewed={lastReviewed} />
           <Sources pageType="city" cityName={cityName} stateCode={stateCode} />
+
+          {/* Areas We Serve — hyperlocal ZIP directory */}
+          <AreasWeServe cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} />
 
           {/* EEAT footer */}
           <EditorialFooter pageType="city-service" />

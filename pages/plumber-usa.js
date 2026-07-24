@@ -109,7 +109,7 @@ export default function PlumberUSA() {
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-12 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
-            <p className="text-lg text-blue-50 mb-2">Licensed plumbers in 60 minutes. Available 24/7 with no overtime charges.</p>
+            <p className="text-lg text-blue-50 mb-2">Licensed plumbers in 60 minutes. Available 24/7 with transparent pricing from participating providers.</p>
             <p className="text-base text-blue-100 mb-6">{TOTAL_PLACES.toLocaleString()}+ Cities & Towns Covered Nationwide</p>
             <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help

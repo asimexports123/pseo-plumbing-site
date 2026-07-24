@@ -90,7 +90,7 @@ export default function About() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">How YoHomeFix Works</h2>
               <p>
-                When you call YoHomeFix, a live operator confirms your location and plumbing issue, then sends the nearest available licensed plumber to your door. We are available 24/7 with upfront pricing and no overtime charges.
+                When you call YoHomeFix, a live operator confirms your location and plumbing issue, then sends the nearest available licensed plumber to your door. We are available 24/7 with transparent pricing from participating providers.
               </p>
               <ul className="list-disc ml-5 mt-3 space-y-1 text-sm">
                 <li>You call our 24/7 line.</li>
