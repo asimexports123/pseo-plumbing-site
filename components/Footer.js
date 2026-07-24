@@ -42,10 +42,10 @@ export function Footer() {
         </div>
 
         <nav aria-label="Footer">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm mb-6">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-2 text-sm mb-6">
             {footerLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors py-2 inline-block min-h-[44px] flex items-center">
+                <Link href={link.href} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block py-1.5">
                   {link.label}
                 </Link>
               </li>

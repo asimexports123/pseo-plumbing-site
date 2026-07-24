@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useMemo } from 'react';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
 import { TOTAL_PLACES, NATIONWIDE_SERVICE_COUNTS } from '../lib/nationwidePlaces';
+import { NationwideSearch } from '../components/NationwideSearch';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -43,22 +44,7 @@ export default function PlumberUSA() {
     ],
   });
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [expandedStates, setExpandedStates] = useState({});
-  const [nationwidePlaces, setNationwidePlaces] = useState(null);
-  const searchRef = useRef(null);
-
-  // Lazy-load nationwide places dataset when user first searches
-  useEffect(() => {
-    if (searchQuery.trim() && !nationwidePlaces) {
-      fetch('/nationwide-places.json')
-        .then(r => r.json())
-        .then(data => setNationwidePlaces(data))
-        .catch(() => {});
-    }
-  }, [searchQuery, nationwidePlaces]);
-
-  // Group cities by state for directory layout
+  // Group cities by state for directory layout (static, no search filtering)
   const citiesByState = useMemo(() => {
     const groups = {};
     SEED_CITIES.forEach(city => {
@@ -73,79 +59,6 @@ export default function PlumberUSA() {
 
   // Nationwide service counts (computed at module init from full dataset)
   const serviceCityCounts = NATIONWIDE_SERVICE_COUNTS;
-
-  // Determine which service sections have matching cities when searching
-  const serviceMatches = useMemo(() => {
-    if (!searchQuery.trim()) return null;
-    const q = searchQuery.toLowerCase().trim();
-    const matches = {};
-    SERVICES.forEach(s => {
-      const cities = SEED_CITIES.filter(c => isCityQualifiedForService(c.name, s.slug));
-      const filtered = cities.filter(c =>
-        c.name.toLowerCase().includes(q) ||
-        c.stateCode.toLowerCase().includes(q) ||
-        s.name.toLowerCase().includes(q) ||
-        s.shortName.toLowerCase().includes(q)
-      );
-      if (filtered.length > 0) matches[s.slug] = filtered;
-    });
-    return matches;
-  }, [searchQuery]);
-
-  // Nationwide search results (from full 19,000+ dataset)
-  const nationwideResults = useMemo(() => {
-    if (!searchQuery.trim() || !nationwidePlaces) return [];
-    const q = searchQuery.toLowerCase().trim();
-    return nationwidePlaces
-      .filter(p => p.n.toLowerCase().includes(q) || p.s.toLowerCase().includes(q))
-      .slice(0, 50);
-  }, [searchQuery, nationwidePlaces]);
-
-  // Filtered states for city directory
-  const filteredStates = useMemo(() => {
-    if (!searchQuery.trim()) return citiesByState;
-    const q = searchQuery.toLowerCase().trim();
-    return citiesByState
-      .map(group => ({
-        ...group,
-        cities: group.cities.filter(c =>
-          c.name.toLowerCase().includes(q) ||
-          group.stateName.toLowerCase().includes(q) ||
-          group.stateCode.toLowerCase().includes(q)
-        ),
-      }))
-      .filter(g => g.cities.length > 0);
-  }, [searchQuery, citiesByState]);
-
-  // Search results count
-  const searchResultCount = useMemo(() => {
-    if (!searchQuery.trim()) return TOTAL_PLACES;
-    const seedCount = filteredStates.reduce((sum, s) => sum + s.cities.length, 0);
-    return seedCount + nationwideResults.length;
-  }, [searchQuery, filteredStates, nationwideResults]);
-
-  // Auto-expand matching states during search
-  useEffect(() => {
-    if (searchQuery.trim()) {
-      const expanded = {};
-      filteredStates.forEach(g => { expanded[g.stateCode] = true; });
-      setExpandedStates(expanded);
-    } else {
-      setExpandedStates({});
-    }
-  }, [searchQuery, filteredStates]);
-
-  // Keyboard shortcut: focus search on "/"
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.key === '/' && document.activeElement !== searchRef.current) {
-        e.preventDefault();
-        searchRef.current?.focus();
-      }
-    };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
-  }, []);
 
   return (
     <>
@@ -206,37 +119,9 @@ export default function PlumberUSA() {
 
         <main className="max-w-5xl mx-auto w-full px-4 py-8 md:py-12">
 
-          {/* Search bar — prominent, above the fold */}
+          {/* Search bar — isolated component, no parent state */}
           <section className="mb-8" aria-label="Search directory">
-            <div className="max-w-lg mx-auto">
-              <label htmlFor="directory-search" className="sr-only">Search by city, state, or service</label>
-              <div className="relative">
-                <input
-                  id="directory-search"
-                  ref={searchRef}
-                  type="search"
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  placeholder="Search 19,000+ cities, towns, or states — e.g. Chicago, Texas, Dayton"
-                  className="w-full pl-12 pr-10 py-4 rounded-xl border-2 border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 outline-none text-gray-900 text-base"
-                />
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg" aria-hidden="true">🔍</span>
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 p-1 rounded"
-                    aria-label="Clear search"
-                  >
-                    <span aria-hidden="true">✕</span>
-                  </button>
-                )}
-              </div>
-              <p className="text-center text-gray-600 text-sm mt-2" aria-live="polite">
-                {searchQuery
-                  ? `${searchResultCount} ${searchResultCount === 1 ? 'location' : 'locations'} found`
-                  : `${TOTAL_PLACES.toLocaleString()}+ cities & towns across ${citiesByState.length} states — search or browse below`}
-              </p>
-            </div>
+            <NationwideSearch />
           </section>
 
           {/* Services Hub — compact cards */}
@@ -262,14 +147,9 @@ export default function PlumberUSA() {
             <div className="space-y-2">
               {SERVICES.map((service) => {
                 const cities = SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug));
-                const filteredCities = searchQuery.trim() && serviceMatches
-                  ? (serviceMatches[service.slug] || [])
-                  : searchQuery.trim() ? [] : cities;
-                const hasResults = filteredCities.length > 0;
-                const shouldOpen = searchQuery.trim() ? hasResults : false;
 
                 return (
-                  <details key={service.slug} id={`${service.slug}-cities`} open={shouldOpen} className="border border-gray-200 rounded-xl overflow-hidden scroll-mt-20 group">
+                  <details key={service.slug} id={`${service.slug}-cities`} className="border border-gray-200 rounded-xl overflow-hidden scroll-mt-20 group">
                     <summary className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
                       <span className="text-xl" aria-hidden="true">{SERVICE_ICONS[service.slug] || '🔧'}</span>
                       <span className="font-bold text-blue-900 text-sm flex-1">{service.name}</span>
@@ -280,10 +160,9 @@ export default function PlumberUSA() {
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
                         {cities.map((city) => {
                           const href = `/${buildSlug(cityToSlug(city.name), service.slug)}`;
-                          const dimmed = searchQuery.trim() && !hasResults;
                           return (
                             <Link key={`${service.slug}-${city.name}`} href={href}
-                              className={`px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg text-sm text-gray-800 hover:text-blue-800 no-underline transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-300 ${dimmed ? 'opacity-40' : ''}`}
+                              className="px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg text-sm text-gray-800 hover:text-blue-800 no-underline transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-300"
                               title={`${service.name} in ${city.name}, ${city.stateCode}`}>
                               {service.shortName} in {city.name}
                             </Link>
@@ -340,17 +219,12 @@ export default function PlumberUSA() {
             <p className="text-gray-600 text-center text-sm mb-2">Popular locations below — search {TOTAL_PLACES.toLocaleString()} cities & towns above, or browse all US states for complete nationwide coverage.</p>
             <p className="text-gray-500 text-center text-xs mb-6">Looking for a smaller town? <Link href="/plumber-usa#all-states" className="text-blue-700 underline">Browse all state pages</Link> for complete city & town listings nationwide.</p>
             <div className="space-y-2">
-              {filteredStates.map((group) => (
+              {citiesByState.map((group) => (
                 <details
                   key={group.stateCode}
-                  open={!!expandedStates[group.stateCode]}
-                  onToggle={(e) => {
-                    setExpandedStates(prev => ({ ...prev, [group.stateCode]: e.currentTarget.open }));
-                  }}
                   className="border border-gray-200 rounded-xl overflow-hidden group">
                   <summary
-                    className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden"
-                    aria-expanded={!!expandedStates[group.stateCode]}>
+                    className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
                     <span className="font-bold text-blue-900 text-sm flex-1">{group.stateName} ({group.stateCode})</span>
                     <span className="text-gray-600 text-xs">{group.cities.length} {group.cities.length === 1 ? 'city' : 'cities'}</span>
                     <span className="text-gray-500 text-sm group-open:rotate-90 transition-transform" aria-hidden="true">▸</span>
@@ -369,38 +243,6 @@ export default function PlumberUSA() {
                   </div>
                 </details>
               ))}
-              {filteredStates.length === 0 && nationwideResults.length === 0 && (
-                <p className="text-center text-gray-600 py-8">
-                  {nationwidePlaces === null
-                    ? 'Loading nationwide directory…'
-                    : 'No cities found for "' + searchQuery + '"'}
-                </p>
-              )}
-
-              {/* Nationwide search results — from full 19,000+ dataset */}
-              {nationwideResults.length > 0 && (
-                <div className="mt-4 border border-blue-200 rounded-xl overflow-hidden">
-                  <div className="px-4 py-3 bg-blue-50">
-                    <p className="font-semibold text-blue-900 text-sm">
-                      More locations matching &quot;{searchQuery}&quot; ({nationwideResults.length} shown)
-                    </p>
-                  </div>
-                  <div className="p-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                      {nationwideResults.map((place) => (
-                        <Link
-                          key={place.u}
-                          href={`/${buildSlug(place.u, 'emergency')}`}
-                          className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg text-xs no-underline transition-colors font-medium"
-                          title={`Emergency plumber in ${place.n}, ${place.s}`}
-                        >
-                          {place.n}, {place.s}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </section>
 

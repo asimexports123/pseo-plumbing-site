@@ -544,83 +544,85 @@ export default function Home() {
 
         {/* ── FOOTER ────────────────────────────────────────────── */}
         <footer className="bg-gray-900 text-gray-300 px-4 py-10">
-          <div className="max-w-4xl mx-auto flex flex-wrap justify-between gap-6 mb-6">
-            <div>
-              <p className="text-white font-bold text-lg mb-1">YoHomeFix</p>
-              <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
-              <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
-                Call Now — 24/7
-              </a>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">Top Cities</p>
-              <ul className="space-y-1 text-sm">
-                {TOP_CITIES.slice(0, 6).map((name) => (
-                  <li key={name}>
-                    <Link href={`/${buildSlug(cityToSlug(name), 'emergency')}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Emergency plumber in {name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">State Hubs</p>
-              <ul className="space-y-1 text-sm">
-                {['california','texas','florida','new-york','illinois','georgia','washington','colorado'].map((slug) => {
-                  const s = STATES.find((st) => st.slug === slug);
-                  return s ? (
-                    <li key={slug}>
-                      <Link href={`/plumber-${slug}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Emergency plumber in {s.name}</Link>
+          <div className="max-w-5xl mx-auto mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-x-5 gap-y-6">
+              <div className="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-1">
+                <p className="text-white font-bold text-lg mb-1">YoHomeFix</p>
+                <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
+                <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
+                  Call Now — 24/7
+                </a>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">Top Cities</p>
+                <ul className="space-y-1.5 text-sm">
+                  {TOP_CITIES.slice(0, 6).map((name) => (
+                    <li key={name}>
+                      <Link href={`/${buildSlug(cityToSlug(name), 'emergency')}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Emergency plumber in {name}</Link>
                     </li>
-                  ) : null;
-                })}
-              </ul>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">Services</p>
-              <ul className="space-y-1 text-sm">
-                {[
-                  { href: `/${buildSlug(cityToSlug('New York'), 'emergency')}`,           label: 'Emergency plumber in New York' },
-                  { href: `/${buildSlug(cityToSlug('Los Angeles'), 'leak-repair')}`,      label: 'Leak repair in Los Angeles' },
-                  { href: `/${buildSlug(cityToSlug('Chicago'), 'drain-cleaning')}`,       label: 'Drain cleaning in Chicago' },
-                  { href: `/${buildSlug(cityToSlug('Houston'), 'pipe-burst-repair')}`,    label: 'Pipe burst repair in Houston' },
-                  { href: `/${buildSlug(cityToSlug('Phoenix'), 'water-heater-repair')}`,  label: 'Water heater repair in Phoenix' },
-                ].map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">Resources</p>
-              <ul className="space-y-1 text-sm">
-                <li><Link href="/guides" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Plumbing guides</Link></li>
-                <li><Link href="/plumber-usa" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Browse 19,000+ cities & towns</Link></li>
-                <li><Link href="/faq" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Frequently asked questions</Link></li>
-                <li><Link href="/about" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">About YoHomeFix</Link></li>
-                <li><Link href="/how-yohomefix-works" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">How YoHomeFix works</Link></li>
-                <li><Link href="/contact" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Contact us</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">Editorial & Trust</p>
-              <ul className="space-y-1 text-sm">
-                <li><Link href="/why-trust-yohomefix" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Why trust YoHomeFix</Link></li>
-                <li><Link href="/authors" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Authors</Link></li>
-                <li><Link href="/editorial-policy" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Editorial policy</Link></li>
-                <li><Link href="/sources" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Sources & methodology</Link></li>
-                <li><Link href="/press" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Press</Link></li>
-                <li><Link href="/media-kit" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Media kit</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-white font-semibold mb-2">Legal</p>
-              <ul className="space-y-1 text-sm">
-                <li><Link href="/disclaimer" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Service disclaimer</Link></li>
-                <li><Link href="/privacy-policy" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Privacy policy</Link></li>
-                <li><Link href="/terms-of-service" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Terms of service</Link></li>
-                <li><Link href="/sitemap.xml" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline py-2 inline-block min-h-[44px] flex items-center">Sitemap</Link></li>
-              </ul>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">State Hubs</p>
+                <ul className="space-y-1.5 text-sm">
+                  {['california','texas','florida','new-york','illinois','georgia','washington','colorado'].map((slug) => {
+                    const s = STATES.find((st) => st.slug === slug);
+                    return s ? (
+                      <li key={slug}>
+                        <Link href={`/plumber-${slug}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Emergency plumber in {s.name}</Link>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">Services</p>
+                <ul className="space-y-1.5 text-sm">
+                  {[
+                    { href: `/${buildSlug(cityToSlug('New York'), 'emergency')}`,           label: 'Emergency plumber in New York' },
+                    { href: `/${buildSlug(cityToSlug('Los Angeles'), 'leak-repair')}`,      label: 'Leak repair in Los Angeles' },
+                    { href: `/${buildSlug(cityToSlug('Chicago'), 'drain-cleaning')}`,       label: 'Drain cleaning in Chicago' },
+                    { href: `/${buildSlug(cityToSlug('Houston'), 'pipe-burst-repair')}`,    label: 'Pipe burst repair in Houston' },
+                    { href: `/${buildSlug(cityToSlug('Phoenix'), 'water-heater-repair')}`,  label: 'Water heater repair in Phoenix' },
+                  ].map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">Resources</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/guides" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Plumbing guides</Link></li>
+                  <li><Link href="/plumber-usa" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Browse 19,000+ cities & towns</Link></li>
+                  <li><Link href="/faq" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Frequently asked questions</Link></li>
+                  <li><Link href="/about" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">About YoHomeFix</Link></li>
+                  <li><Link href="/how-yohomefix-works" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">How YoHomeFix works</Link></li>
+                  <li><Link href="/contact" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Contact us</Link></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">Editorial & Trust</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/why-trust-yohomefix" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Why trust YoHomeFix</Link></li>
+                  <li><Link href="/authors" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Authors</Link></li>
+                  <li><Link href="/editorial-policy" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Editorial policy</Link></li>
+                  <li><Link href="/sources" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Sources & methodology</Link></li>
+                  <li><Link href="/press" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Press</Link></li>
+                  <li><Link href="/media-kit" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Media kit</Link></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-white font-semibold mb-3 text-sm">Legal</p>
+                <ul className="space-y-1.5 text-sm">
+                  <li><Link href="/disclaimer" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Service disclaimer</Link></li>
+                  <li><Link href="/privacy-policy" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Privacy policy</Link></li>
+                  <li><Link href="/terms-of-service" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Terms of service</Link></li>
+                  <li><Link href="/sitemap.xml" className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Sitemap</Link></li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="max-w-4xl mx-auto border-t border-gray-800 pt-4 text-center text-sm">
