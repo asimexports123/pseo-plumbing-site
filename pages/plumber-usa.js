@@ -146,7 +146,7 @@ export default function PlumberUSA() {
             <p className="text-gray-600 text-center text-sm mb-6">Click any service to see all cities — all links are crawlable</p>
             <div className="space-y-2">
               {SERVICES.map((service) => {
-                const cities = SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug));
+                const cities = SEED_CITIES.filter((city) => isCityQualifiedForService(city.name, service.slug, city.stateCode));
 
                 return (
                   <details key={service.slug} id={`${service.slug}-cities`} className="border border-gray-200 rounded-xl overflow-hidden scroll-mt-20 group">

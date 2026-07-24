@@ -556,7 +556,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
                       <div className="flex flex-wrap gap-2">
 
-                        {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug)).map((s) => (
+                        {SERVICES.filter((s) => isCityQualifiedForService(city.name, s.slug, city.stateCode)).map((s) => (
 
                           <Link
 

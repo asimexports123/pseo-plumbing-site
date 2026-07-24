@@ -114,13 +114,13 @@ export async function getStaticProps({ params }) {
   const serviceObj = SERVICES.find((s) => s.slug === serviceSlug);
   if (!serviceObj) return { notFound: true };
   const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
-  const qualifiedStateCities = stateCities.filter((c) => isCityQualifiedForService(c.name, serviceObj.slug));
+  const qualifiedStateCities = stateCities.filter((c) => isCityQualifiedForService(c.name, serviceObj.slug, c.stateCode));
   const cityCards = qualifiedStateCities.map(getCityCardData).filter(Boolean);
 
   // Get nationwide places for this state (excluding enriched SEED_CITIES)
   const seedCityNames = new Set(stateCities.map(c => c.name));
   const additionalPlaces = getPlacesByState(stateObj.code)
-    .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug))
+    .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug, p.stateCode))
     .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
 
   return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces }, revalidate: 86400 };

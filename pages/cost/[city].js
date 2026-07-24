@@ -356,7 +356,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
           <div className="mb-10">
             <h2 className="text-xl font-bold text-blue-900 mb-4">Book a Plumber in {cityName}</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {SERVICES.filter((s) => isCityQualifiedForService(cityName, s.slug)).map((s) => (
+              {SERVICES.filter((s) => isCityQualifiedForService(cityName, s.slug, stateCode)).map((s) => (
                 <Link key={s.slug} href={`/${buildSlug(slug, s.slug)}`} className="block border border-gray-200 rounded-xl p-4 hover:border-blue-400 hover:shadow-sm transition-all no-underline group">
                   <p className="font-semibold text-blue-900 group-hover:text-blue-700 text-sm">{s.name} in {cityName}</p>
                   <p className="text-gray-700 text-xs mt-1">{s.description}</p>

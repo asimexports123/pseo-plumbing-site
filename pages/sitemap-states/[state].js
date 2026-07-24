@@ -45,7 +45,7 @@ function generateStateSitemap(stateObj) {
   seedCitiesForState.forEach(city => {
     const cSlug = cityToSlug(city.name);
     SERVICES.forEach(svc => {
-      if (isCityQualifiedForService(city.name, svc.slug)) {
+      if (isCityQualifiedForService(city.name, svc.slug, city.stateCode)) {
         urls.push({
           loc: `${DOMAIN}/${buildSlug(cSlug, svc.slug)}`,
           priority: svc.slug === 'emergency' ? '0.9' : '0.8',
@@ -60,7 +60,7 @@ function generateStateSitemap(stateObj) {
   const statePlaces = getPlacesByState(stateObj.code).filter(p => !seedCityNames.has(p.name));
   statePlaces.forEach(place => {
     SERVICES.forEach(svc => {
-      if (isCityQualifiedForService(place.name, svc.slug)) {
+      if (isCityQualifiedForService(place.name, svc.slug, place.stateCode)) {
         urls.push({
           loc: `${DOMAIN}/${buildSlug(place.slug, svc.slug)}`,
           priority: svc.slug === 'emergency' ? '0.9' : '0.7',

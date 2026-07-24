@@ -61,7 +61,7 @@ function buildAllUrls() {
   SEED_CITIES.forEach(city => {
     const cSlug = cityToSlug(city.name);
     SERVICES.forEach(service => {
-      if (isCityQualifiedForService(city.name, service.slug)) {
+      if (isCityQualifiedForService(city.name, service.slug, city.stateCode)) {
         urls.push(`${DOMAIN}/${buildSlug(cSlug, service.slug)}`);
       }
     });

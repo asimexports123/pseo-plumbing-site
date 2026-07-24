@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   for (const city of SEED_CITIES) {
     const cSlug = cityToSlug(city.name);
     for (const service of SERVICES) {
-      if (isCityQualifiedForService(city.name, service.slug)) {
+      if (isCityQualifiedForService(city.name, service.slug, city.stateCode)) {
         paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
       }
     }
@@ -39,7 +39,7 @@ export async function getStaticProps({ params }) {
   const stateCode = knownCity.stateCode || '';
 
   // Verify service qualification (e.g., sump-pump only in qualifying states)
-  if (service && !isCityQualifiedForService(cityName, service.slug)) {
+  if (service && !isCityQualifiedForService(cityName, service.slug, stateCode)) {
     return { notFound: true };
   }
 

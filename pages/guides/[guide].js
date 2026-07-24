@@ -317,7 +317,7 @@ export default function GuidePage({ guide, slug }) {
                     <p className="font-bold text-blue-900 mb-1">{svc.name}</p>
                     <p className="text-gray-500 text-sm mb-3">{svc.description}</p>
                     <div className="flex flex-wrap gap-2">
-                      {sampleCities.filter((city) => isCityQualifiedForService(city.name, svc.slug)).map((city) => (
+                      {sampleCities.filter((city) => isCityQualifiedForService(city.name, svc.slug, city.stateCode)).map((city) => (
                         <Link
                           key={city.name}
                           href={`/${buildSlug(cityToSlug(city.name), svc.slug)}`}

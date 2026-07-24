@@ -95,7 +95,7 @@ export function buildCityUrlset() {
     const cSlug = cityToSlug(city.name);
     SERVICES.forEach((service) => {
       // Only include URLs for cities qualified for selective services
-      if (isCityQualifiedForService(city.name, service.slug)) {
+      if (isCityQualifiedForService(city.name, service.slug, city.stateCode)) {
         urls.push({
           loc: `${DOMAIN}/${buildSlug(cSlug, service.slug)}`,
           priority: service.slug === 'emergency' ? '0.9' : '0.8',

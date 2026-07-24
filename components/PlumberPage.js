@@ -236,7 +236,7 @@ const SERVICE_CALLOUTS = {
   ],
 };
 
-function RelatedServiceCallout({ cityName, serviceSlug }) {
+function RelatedServiceCallout({ cityName, serviceSlug, stateCode }) {
   const callouts = SERVICE_CALLOUTS[serviceSlug];
   if (!callouts || callouts.length === 0) return null;
   const citySlug = cityToSlug(cityName);
@@ -244,7 +244,7 @@ function RelatedServiceCallout({ cityName, serviceSlug }) {
   return (
     <div className="mb-10 grid md:grid-cols-2 gap-4">
       {callouts.map((c) => {
-        if (!isCityQualifiedForService(cityName, c.slug)) return null;
+        if (!isCityQualifiedForService(cityName, c.slug, stateCode)) return null;
         const href = `/${buildSlug(citySlug, c.slug)}`;
         return (
           <Link
@@ -481,7 +481,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           '@type': 'OfferCatalog',
           name: `${serviceName} in ${cityName}`,
           itemListElement: SERVICES
-            .filter((s) => isCityQualifiedForService(cityName, s.slug))
+            .filter((s) => isCityQualifiedForService(cityName, s.slug, stateCode))
             .map((s) => ({
               '@type': 'Offer',
               itemOffered: {
@@ -722,7 +722,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           </div>
 
           {/* Contextual cross-links to related services — authority concentration */}
-          <RelatedServiceCallout cityName={cityName} serviceSlug={serviceSlug} />
+          <RelatedServiceCallout cityName={cityName} serviceSlug={serviceSlug} stateCode={stateCode} />
 
           {/* Mid-page CTA */}
           <MidPageCTA cityName={cityName} serviceName={serviceName} />
@@ -762,7 +762,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           <div className="mb-10">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">All Plumbing Services in {cityName}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {SERVICES.filter((s) => isCityQualifiedForService(cityName, s.slug)).map((s) => {
+              {SERVICES.filter((s) => isCityQualifiedForService(cityName, s.slug, stateCode)).map((s) => {
                 const href = `/${buildSlug(cityToSlug(cityName), s.slug)}`;
                 const isActive = s.slug === serviceSlug;
                 return (
@@ -852,7 +852,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 YoHomeFix provides licensed plumbers across the wider {stateCode} region. Select a nearby city for local service details.
               </p>
               <div className="grid md:grid-cols-2 gap-3">
-                {nearbyCities.filter((nearbyCity) => isCityQualifiedForService(nearbyCity.name, serviceSlug)).map((nearbyCity) => (
+                {nearbyCities.filter((nearbyCity) => isCityQualifiedForService(nearbyCity.name, serviceSlug, nearbyCity.stateCode)).map((nearbyCity) => (
                   <div key={nearbyCity.slug} className="border border-gray-200 rounded-xl p-3">
                     <p className="font-semibold text-gray-800 text-sm mb-2">{nearbyCity.name}, {nearbyCity.stateCode}</p>
                     <div className="flex flex-wrap gap-1">
