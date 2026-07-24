@@ -625,7 +625,8 @@ export default function Home() {
           </div>
           <div className="max-w-4xl mx-auto border-t border-gray-800 pt-4 text-center text-sm">
             <p className="mb-2">© {new Date().getFullYear()} YoHomeFix. All rights reserved.</p>
-            <p>Same-day and 24/7 emergency services are subject to location, plumber availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.</p>
+            <p className="mb-2">Same-day and 24/7 emergency services are subject to provider participation, location, technician availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.</p>
+            <p className="text-xs text-gray-500 leading-relaxed">Disclaimer: YoHomeFix is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and YoHomeFix does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on YoHomeFix.</p>
           </div>
         </footer>
       </div>
