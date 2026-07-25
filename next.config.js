@@ -111,13 +111,25 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      // PoC: cache one representative fallback-blocking page at the edge for 1h
-      // without revalidate/Data Cache writes. If this works, roll out to all
-      // dynamic slug routes.
+      // HTML edge cache for fallback: 'blocking' dynamic routes (24h).
+      // No revalidate is set, so these are pure edge cache responses and do
+      // not trigger ISR / Vercel Data Cache writes.
       {
-        source: '/plumber-walters-mn-drain-cleaning',
+        source: '/plumber-:slug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, must-revalidate' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
+        ],
+      },
+      {
+        source: '/areas/:citySlug',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
+        ],
+      },
+      {
+        source: '/areas/:citySlug/:zip/:service',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
         ],
       },
     ];
