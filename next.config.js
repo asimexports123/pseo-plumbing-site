@@ -111,6 +111,15 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
+      // PoC: cache one representative fallback-blocking page at the edge for 1h
+      // without revalidate/Data Cache writes. If this works, roll out to all
+      // dynamic slug routes.
+      {
+        source: '/plumber-walters-mn-drain-cleaning',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, must-revalidate' },
+        ],
+      },
     ];
   },
   webpack: (config, { isServer }) => {
