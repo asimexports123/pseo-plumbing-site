@@ -123,7 +123,7 @@ export async function getStaticProps({ params }) {
     .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug, p.stateCode))
     .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
 
-  return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces }, revalidate: 86400 };
+  return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces } };
 }
 
 export default function StateServiceHub({ stateObj, serviceObj, stateCities, cityCards, additionalPlaces = [] }) {

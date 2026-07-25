@@ -56,7 +56,7 @@ export async function getStaticProps({ params }) {
     .filter(p => !seedCityNames.has(p.name))
     .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
 
-  return { props: { stateObj, stateCities, additionalPlaces }, revalidate: 86400 };
+  return { props: { stateObj, stateCities, additionalPlaces } };
 
 }
 

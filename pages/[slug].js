@@ -5,7 +5,7 @@ import PlumberPage from '../components/PlumberPage';
 
 // Pre-build the existing 155 enriched cities at build time.
 // New nationwide cities are generated on demand via fallback: 'blocking'
-// and cached via ISR (revalidate every 24 hours).
+// and served statically after first request.
 export async function getStaticPaths() {
   const paths = [];
   for (const city of SEED_CITIES) {
@@ -87,7 +87,6 @@ export async function getStaticProps({ params }) {
       pageSlug: rawSlug,
       nearbyCities,
     },
-    revalidate: 86400, // ISR: revalidate every 24 hours
   };
 }
 

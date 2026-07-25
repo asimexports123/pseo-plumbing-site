@@ -37,7 +37,6 @@ export async function getStaticProps({ params }) {
       zipCount: zctas.length,
       zctas: zctas.map(z => ({ zip: z.zip, lat: z.lat, lon: z.lon })),
     },
-    revalidate: 86400,
   };
 }
 

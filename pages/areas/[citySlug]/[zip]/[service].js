@@ -4,7 +4,7 @@ import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 
 // Hyperlocal ZIP-service pages are generated on demand via fallback: 'blocking'
-// and cached via ISR (revalidate every 24 hours).
+// and served statically after first request.
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' };
 }
@@ -79,7 +79,6 @@ export async function getStaticProps({ params }) {
       cityZipCount: cityZips.length,
       pageSlug,
     },
-    revalidate: 86400,
   };
 }
 
