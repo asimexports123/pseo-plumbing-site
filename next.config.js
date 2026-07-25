@@ -52,6 +52,10 @@ const STATE_REWRITES = [
   { source: '/plumber-montana',       destination: '/states/montana'       },
   { source: '/plumber-wyoming',       destination: '/states/wyoming'       },
   { source: '/plumber-south-carolina',destination: '/states/south-carolina'},
+  { source: '/plumber-west-virginia', destination: '/states/west-virginia' },
+  { source: '/plumber-new-hampshire', destination: '/states/new-hampshire' },
+  { source: '/plumber-vermont',       destination: '/states/vermont'       },
+  { source: '/plumber-maine',         destination: '/states/maine'         },
 ];
 
 const nextConfig = {
@@ -59,8 +63,54 @@ const nextConfig = {
   async rewrites() {
     return [
       ...STATE_REWRITES,
-      { source: '/sitemap-states/:state.xml', destination: '/sitemap-states/:state' },
-      { source: '/sitemap-zcta/:state.xml', destination: '/sitemap-zcta/:state' },
+      { source: '/sitemap-static/:chunk.xml', destination: '/sitemap-static/:chunk' },
+      { source: '/sitemap-cities/:chunk.xml', destination: '/sitemap-cities/:chunk' },
+      { source: '/sitemap-states/:state/:chunk.xml', destination: '/sitemap-states/:state/:chunk' },
+      { source: '/sitemap-zcta/:state/:chunk.xml', destination: '/sitemap-zcta/:state/:chunk' },
+    ];
+  },
+
+  // Reduce Vercel Fast Origin Transfer by caching large public assets at the
+  // edge (s-maxage) and in browsers (max-age). _next/static already gets
+  // immutable long caching; this fixes public/ JSON and image assets.
+  async headers() {
+    return [
+      {
+        source: '/nationwide-places.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=31536000, must-revalidate' },
+        ],
+      },
+      {
+        source: '/zcta-search.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=31536000, must-revalidate' },
+        ],
+      },
+      {
+        source: '/og-image.png',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/favicon.ico',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/favicon-:size.ico',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/apple-touch-icon.svg',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
     ];
   },
   webpack: (config, { isServer }) => {
