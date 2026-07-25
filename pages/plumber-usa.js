@@ -1,9 +1,8 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
-import { TOTAL_PLACES, NATIONWIDE_SERVICE_COUNTS } from '../lib/nationwidePlaces';
-import { NationwideSearch } from '../components/NationwideSearch';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -27,10 +26,15 @@ const SERVICE_ICONS = {
   'sump-pump-repair': '🏊',
 };
 
-export default function PlumberUSA() {
+const NationwideSearch = dynamic(
+  () => import('../components/NationwideSearch').then((mod) => mod.NationwideSearch),
+  { ssr: false }
+);
+
+export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
   const title = 'Plumber USA — Emergency Plumbing Services in Every US City | YoHomeFix';
   const description =
-    `Plumbing services across ${TOTAL_PLACES.toLocaleString()}+ US cities and towns nationwide. YoHomeFix provides licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
+    `Plumbing services across ${totalPlaces.toLocaleString()}+ US cities and towns nationwide. YoHomeFix provides licensed, insured plumbers available 24/7. Burst pipes, leaks, drain cleaning & more.`;
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
   const canonical = `${domain}/plumber-usa`;
@@ -57,8 +61,7 @@ export default function PlumberUSA() {
     return Object.values(groups).sort((a, b) => a.stateName.localeCompare(b.stateName));
   }, []);
 
-  // Nationwide service counts (computed at module init from full dataset)
-  const serviceCityCounts = NATIONWIDE_SERVICE_COUNTS;
+  // serviceCityCounts is provided by getStaticProps (server-side only)
 
   return (
     <>
@@ -110,7 +113,7 @@ export default function PlumberUSA() {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
             <p className="text-lg text-blue-50 mb-2">Licensed plumbers in 60 minutes. Available 24/7 with transparent pricing from participating providers.</p>
-            <p className="text-base text-blue-100 mb-6">{TOTAL_PLACES.toLocaleString()}+ Cities & Towns Covered Nationwide</p>
+            <p className="text-base text-blue-100 mb-6">{totalPlaces.toLocaleString()}+ Cities & Towns Covered Nationwide</p>
             <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
@@ -121,7 +124,7 @@ export default function PlumberUSA() {
 
           {/* Search bar — isolated component, no parent state */}
           <section className="mb-8" aria-label="Search directory">
-            <NationwideSearch />
+            <NationwideSearch totalPlaces={totalPlaces} />
           </section>
 
           {/* Services Hub — compact cards */}
@@ -216,7 +219,7 @@ export default function PlumberUSA() {
           {/* Featured City Directory — collapsed state accordions */}
           <section className="mb-10" aria-label="Featured city directory by state">
             <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Browse Featured Cities</h2>
-            <p className="text-gray-600 text-center text-sm mb-2">Popular locations below — search {TOTAL_PLACES.toLocaleString()} cities & towns above, or browse all US states for complete nationwide coverage.</p>
+            <p className="text-gray-600 text-center text-sm mb-2">Popular locations below — search {totalPlaces.toLocaleString()} cities & towns above, or browse all US states for complete nationwide coverage.</p>
             <p className="text-gray-500 text-center text-xs mb-6">Looking for a smaller town? <Link href="/plumber-usa#all-states" className="text-blue-700 underline">Browse all state pages</Link> for complete city & town listings nationwide.</p>
             <div className="space-y-2">
               {citiesByState.map((group) => (
@@ -278,4 +281,14 @@ export default function PlumberUSA() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { TOTAL_PLACES, NATIONWIDE_SERVICE_COUNTS } = require('../lib/nationwidePlaces');
+  return {
+    props: {
+      totalPlaces: TOTAL_PLACES,
+      serviceCityCounts: NATIONWIDE_SERVICE_COUNTS,
+    },
+  };
 }

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER } from '../lib/cities';
-import { TOTAL_PLACES } from '../lib/nationwidePlaces';
 import { EditorialFooter } from '../components/EditorialFooter';
 
 function trackCall(label) {
@@ -32,7 +31,7 @@ const LEAK_CITIES = [
   'San Francisco','Seattle','Denver','Nashville','Jacksonville',
 ];
 
-export default function Home() {
+export default function Home({ totalPlaces }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const title = 'Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix';
   const description =
@@ -375,7 +374,7 @@ export default function Home() {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">19,000+ Cities & Towns Covered Nationwide</h2>
-            <p className="text-gray-500 text-center mb-8">Featured Cities Across the USA — selected locations below, browse all {TOTAL_PLACES.toLocaleString()}+ on our full directory</p>
+            <p className="text-gray-500 text-center mb-8">Featured Cities Across the USA — selected locations below, browse all {totalPlaces.toLocaleString()}+ on our full directory</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {SEED_CITIES.map((city) => {
                 const slug = buildSlug(cityToSlug(city.name), 'emergency');
@@ -421,35 +420,55 @@ export default function Home() {
         </section>
 
         {/* ── STATE COVERAGE HUB (Phase 3) ──────────────────────── */}
-        <section className="max-w-4xl mx-auto w-full px-4 py-12">
-          <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">Plumber Coverage by State</h2>
-          <p className="text-gray-500 text-center mb-8 max-w-xl mx-auto">
-            YoHomeFix operates across {STATES.length} states. Select your state for local plumber information, city coverage, and direct dispatch.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {STATES.slice(0, 32).map((s) => (
-              <Link
-                key={s.code}
-                href={`/plumber-${s.slug}`}
-                className="flex items-center gap-2 p-3 border border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 no-underline transition-all group"
-                title={`Emergency plumber in ${s.name}`}
-              >
-                <span className="text-xs font-extrabold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">{s.code}</span>
-                <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-800 truncate">{s.name} emergency plumber</span>
-              </Link>
-            ))}
-          </div>
-          {STATES.length > 32 && (
-            <div className="flex flex-wrap gap-2 mt-3">
-              {STATES.slice(32).map((s) => (
-                <Link key={s.code} href={`/plumber-${s.slug}`}
-                  className="px-3 py-1 border border-gray-200 rounded-full text-xs text-blue-700 font-semibold hover:border-blue-400 hover:bg-blue-50 no-underline transition-colors"
-                  title={`Emergency plumber in ${s.name}`}>
-                  Emergency plumber in {s.name}
-                </Link>
-              ))}
+        <section className="max-w-5xl mx-auto w-full px-4 py-16">
+          <div className="relative overflow-hidden rounded-[28px] bg-blue-950 px-6 py-8 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.65)] sm:px-10 sm:py-11">
+            <div className="absolute -right-24 -top-28 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" aria-hidden="true" />
+            <div className="absolute -bottom-36 left-1/3 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" aria-hidden="true" />
+            <div className="relative">
+              <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-2xl">
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-300/25 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-blue-100">
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M3 11.5 8.2 4l3.2 3.1L15.5 3l5.5 8.5-4.5 8.5H7.2L3 11.5Z" strokeLinejoin="round" />
+                      <path d="m8.2 4 1.3 7.5m5.2-8.5.8 8.5m5.5 0-6 0-3.6 8.5-2-8.5H3" strokeLinejoin="round" />
+                    </svg>
+                    Nationwide service directory
+                  </div>
+                  <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Plumbing Coverage by State</h2>
+                  <p className="mt-4 max-w-xl text-base leading-7 text-blue-100 sm:text-lg">
+                    Select your state to find licensed local plumbers, emergency services, repair costs, city coverage, and local plumbing guides.
+                  </p>
+                </div>
+                <div className="flex shrink-0 gap-3">
+                  <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                    <p className="text-2xl font-extrabold leading-none text-white">{STATES.length}</p>
+                    <p className="mt-1 text-xs font-medium text-blue-200">States covered</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                    <p className="text-2xl font-extrabold leading-none text-white">24/7</p>
+                    <p className="mt-1 text-xs font-medium text-blue-200">Emergency help</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-9 rounded-2xl border border-white/10 bg-black/10 p-3 sm:p-4">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6">
+                  {STATES.map((s) => (
+                    <Link
+                      key={s.code}
+                      href={`/plumber-${s.slug}`}
+                      className="group flex min-h-[56px] items-center justify-between gap-2 rounded-xl border border-transparent bg-white/[0.07] px-4 py-3.5 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-blue-300/40 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
+                      title={`Emergency plumber in ${s.name}`}
+                    >
+                      <span className="truncate text-sm font-semibold text-white group-hover:text-blue-950">{s.name}</span>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-400/20 text-[10px] font-extrabold tracking-wide text-blue-100 transition-colors duration-200 group-hover:bg-blue-700 group-hover:text-white">{s.code}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <p className="mt-4 text-center text-xs text-blue-200">Choose a state to view local service availability and plumbing resources.</p>
             </div>
-          )}
+          </div>
         </section>
 
         {/* ── TRUST SECTION (Phase 4) ────────────────────────────── */}
@@ -547,7 +566,10 @@ export default function Home() {
           <div className="max-w-5xl mx-auto mb-6">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-x-5 gap-y-6">
               <div className="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-1">
-                <p className="text-white font-bold text-lg mb-1">YoHomeFix</p>
+                <p className="flex items-center gap-2 text-white font-bold text-lg mb-1">
+                  <img src="/favicon.svg?v=2" alt="" width="24" height="24" className="h-6 w-6 shrink-0" />
+                  <span>YoHomeFix</span>
+                </p>
                 <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
                 <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
                   Call Now — 24/7
@@ -634,4 +656,13 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { TOTAL_PLACES } = require('../lib/nationwidePlaces');
+  return {
+    props: {
+      totalPlaces: TOTAL_PLACES,
+    },
+  };
 }

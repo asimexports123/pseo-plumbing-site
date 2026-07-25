@@ -1,13 +1,12 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { buildSlug } from '../lib/cities';
-import { TOTAL_PLACES } from '../lib/nationwidePlaces';
 
 const MIN_CHARS = 2;
 const MAX_RESULTS = 50;
 const MAX_ZIP_RESULTS = 30;
 
-export function NationwideSearch() {
+export function NationwideSearch({ totalPlaces }) {
   const [query, setQuery] = useState('');
   const [places, setPlaces] = useState(null);
   const [zctaData, setZctaData] = useState(null);
@@ -91,7 +90,7 @@ export function NationwideSearch() {
       </div>
       <p className="text-center text-gray-600 text-sm mt-2" aria-live="polite">
         {!showResults
-          ? `${TOTAL_PLACES.toLocaleString()}+ cities & towns — search or browse below`
+          ? `${totalPlaces.toLocaleString()}+ cities & towns — search or browse below`
           : loading
             ? 'Loading nationwide directory…'
             : error
