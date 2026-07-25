@@ -1,6 +1,6 @@
 import { parseSlug, getCityBySlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { generatePageContent } from '../lib/contentGenerator';
-import { getNearbyPlaces } from '../lib/nationwidePlaces';
+import { getNearbyPlaces, getTopPlacesByLandArea } from '../lib/nationwidePlaces';
 import PlumberPage from '../components/PlumberPage';
 
 // Pre-build the existing 155 enriched cities at build time.
@@ -12,6 +12,17 @@ export async function getStaticPaths() {
     const cSlug = cityToSlug(city.name);
     for (const service of SERVICES) {
       if (isCityQualifiedForService(city.name, service.slug, city.stateCode)) {
+        paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
+      }
+    }
+  }
+
+  // Pre-build the top 1000 largest nationwide places at build time so the
+  // most visited pages are served instantly on first request.
+  for (const place of getTopPlacesByLandArea(1000)) {
+    const cSlug = place.slug;
+    for (const service of SERVICES) {
+      if (isCityQualifiedForService(place.name, service.slug, place.stateCode)) {
         paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
       }
     }
