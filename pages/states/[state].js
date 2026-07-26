@@ -7,6 +7,7 @@ import {
   cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, COST_PAGE_CITIES,
 } from '../../lib/cities';
 import { getPlacesByState } from '../../lib/nationwidePlaces';
+import { getCrawlHubPath, groupPlacesByLetter } from '../../lib/crawl';
 
 import { RelatedGuides } from '../../components/RelatedGuides';
 
@@ -54,9 +55,11 @@ export async function getStaticProps({ params }) {
   const seedCityNames = new Set(stateCities.map(c => c.name));
   const additionalPlaces = getPlacesByState(stateObj.code)
     .filter(p => !seedCityNames.has(p.name))
-    .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
+    .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const additionalGrouped = groupPlacesByLetter(additionalPlaces);
 
-  return { props: { stateObj, stateCities, additionalPlaces } };
+  return { props: { stateObj, stateCities, additionalPlaces: additionalGrouped } };
 
 }
 
@@ -630,7 +633,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
 
 
-          {/* Additional cities and towns in this state (nationwide expansion) */}
+          {/* Additional cities and towns in this state (nationwide expansion, grouped A-Z) */}
 
           {additionalPlaces.length > 0 && (
 
@@ -639,54 +642,37 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
               <h2 className="text-2xl font-bold text-blue-900 mb-2">
 
                 More Cities & Towns in {stateObj.name}
-
               </h2>
 
               <p className="text-gray-500 text-sm mb-5">
-
-                {additionalPlaces.length} additional {additionalPlaces.length === 1 ? 'location' : 'locations'} with plumbing service coverage
-
+                {additionalPlaces.reduce((acc, g) => acc + g.places.length, 0)} additional {additionalPlaces.length === 1 ? 'location' : 'locations'} with plumbing service coverage
               </p>
 
-              <details className="border border-gray-200 rounded-xl overflow-hidden group">
-
-                <summary className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
-
-                  <span className="font-semibold text-blue-900">Show all {additionalPlaces.length} cities & towns</span>
-
-                  <span className="text-gray-400 text-sm">click to expand</span>
-
-                </summary>
-
-                <div className="p-4">
-
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-
-                    {additionalPlaces.map((place) => (
-
-                      <Link
-
-                        key={place.slug}
-
-                        href={`/${buildSlug(place.slug, 'emergency')}`}
-
-                        className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-sm no-underline transition-colors"
-
-                        title={`Emergency plumber in ${place.name}, ${place.stateCode}`}
-
-                      >
-
-                        {place.name}
-
-                      </Link>
-
-                    ))}
-
-                  </div>
-
-                </div>
-
-              </details>
+              <div className="space-y-2">
+                {additionalPlaces.map((group) => (
+                  <details key={group.letter} className="border border-gray-200 rounded-xl overflow-hidden group">
+                    <summary className="cursor-pointer px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-3 list-none [&::-webkit-details-marker]:hidden">
+                      <span className="font-semibold text-blue-900 w-8">{group.letter}</span>
+                      <span className="text-gray-600 text-xs flex-1">{group.places.length} {group.places.length === 1 ? 'city/town' : 'cities/towns'}</span>
+                      <span className="text-gray-400 text-sm">click to expand</span>
+                    </summary>
+                    <div className="p-4">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                        {group.places.map((place) => (
+                          <Link
+                            key={place.slug}
+                            href={`/${buildSlug(place.slug, 'emergency')}`}
+                            className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-sm no-underline transition-colors"
+                            title={`Emergency plumber in ${place.name}, ${place.stateCode}`}
+                          >
+                            {place.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </details>
+                ))}
+              </div>
 
             </div>
 
@@ -714,11 +700,15 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
             <p className="text-gray-700 text-sm font-medium">Explore other states or all cities</p>
 
-            <div className="flex gap-4 text-sm">
+            <div className="flex flex-wrap gap-4 text-sm">
 
               <Link href="/" className="text-blue-700 font-semibold hover:underline">← YoHomeFix homepage</Link>
 
               <Link href="/plumber-usa" className="text-blue-700 font-semibold hover:underline">All US cities →</Link>
+
+              {getCrawlHubPath(stateObj.slug) && (
+                <Link href={getCrawlHubPath(stateObj.slug)} className="text-blue-700 font-semibold hover:underline">Plain-text index for {stateObj.name} →</Link>
+              )}
 
             </div>
 

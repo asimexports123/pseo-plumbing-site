@@ -22,7 +22,7 @@ import { Footer } from './Footer';
 import { Author } from './Author';
 import { Trust } from './Trust';
 import { Sources } from './Sources';
-import { InternalLinks } from './InternalLinks';
+import { CrawlLinks } from './CrawlLinks';
 import { getZctasByCity } from '../lib/hyperlocalPlaces';
 
 function trackCall(label, city, service) {
@@ -924,7 +924,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           {/* Topical authority — related guides and costs */}
           <RelatedGuides serviceSlug={serviceSlug} cityName={cityName} />
           <RelatedCosts cityName={cityName} />
-          <InternalLinks cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} nearbyCities={nearbyCities} />
+          <CrawlLinks cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} nearbyCities={nearbyCities} pageSlug={pageSlug} />
 
           <Trust pageType="city" sourceCount={6} lastReviewed={lastReviewed} />
           <Sources pageType="city" cityName={cityName} stateCode={stateCode} />

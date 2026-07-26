@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { PHONE_NUMBER, SERVICES, cityToSlug, buildSlug, getStateSlug } from '../lib/cities';
+import { getZctaByZip, isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
 import { generatePageContent } from '../lib/contentGenerator';
+import { CrawlLinks } from './CrawlLinks';
 import { getDeterministicLastReviewed } from '../lib/dateUtils';
 import { TrustBar } from './ConversionLayer';
 import { EditorialFooter } from './EditorialFooter';
@@ -29,6 +31,30 @@ const SERVICE_NAMES = {
   'sump-pump-repair': 'Sump Pump Repair',
 };
 
+const ZIP_DESCRIPTION_TEMPLATES = {
+  'emergency': (svc, zip, city, st) => `${svc} in ZIP ${zip}, ${city}, ${st}? Burst pipe or flooding? Licensed 24/7 emergency plumber dispatched fast — upfront pricing before any work begins. Call now.`,
+  'leak-repair': (svc, zip, city, st) => `Water leak in ZIP ${zip}, ${city}, ${st}? Licensed plumber for pinhole, slab, and supply line leaks — 24/7 service, upfront pricing. Call now.`,
+  'drain-cleaning': (svc, zip, city, st) => `Clogged drain in ZIP ${zip}, ${city}, ${st}? 24/7 emergency drain cleaning and sewer clearing — licensed plumber sent fast. Upfront pricing. Call now.`,
+  'pipe-burst-repair': (svc, zip, city, st) => `Burst pipe in ZIP ${zip}, ${city}, ${st}? Stop water damage now. Licensed emergency plumber on-site fast — 24/7 service, upfront pricing. Call now.`,
+  'water-heater-repair': (svc, zip, city, st) => `No hot water in ZIP ${zip}, ${city}, ${st}? Emergency water heater repair 24/7 — tank & tankless, same-day replacement. Licensed plumber, upfront pricing. Call now.`,
+  'sewer-line-repair': (svc, zip, city, st) => `Sewer line problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles main line repair, camera inspection, trenchless options. 24/7 service, upfront pricing. Call now.`,
+  'toilet-repair': (svc, zip, city, st) => `Toilet problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles running toilets, clogs, leaks, and installation. 24/7 service, upfront pricing. Call now.`,
+  'slab-leak-repair': (svc, zip, city, st) => `Slab leak in ZIP ${zip}, ${city}, ${st}? Licensed plumber provides detection, epoxy lining, and repair. 24/7 service, upfront pricing. Call now.`,
+  'water-line-repair': (svc, zip, city, st) => `Water line problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles leak detection, section repair, and line replacement. 24/7, upfront pricing. Call now.`,
+  'faucet-repair': (svc, zip, city, st) => `Faucet problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles dripping faucets, leaks, and new installation. 24/7 service, upfront pricing. Call now.`,
+  'garbage-disposal-repair': (svc, zip, city, st) => `Garbage disposal problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles jammed disposals, leaks, and installation. 24/7, upfront pricing. Call now.`,
+  'water-softener-repair': (svc, zip, city, st) => `Water softener problems in ZIP ${zip}, ${city}, ${st}? Licensed plumber handles softener repair, resin replacement, and installation. 24/7, upfront pricing. Call now.`,
+  'whole-house-repiping': (svc, zip, city, st) => `Repeated pipe leaks in ZIP ${zip}, ${city}, ${st}? Licensed plumber assesses whole-house repiping and replacement options. Written scope, upfront pricing. Call now.`,
+  'main-water-shutoff-valve-repair': (svc, zip, city, st) => `Shutoff valve leaking or stuck in ZIP ${zip}, ${city}, ${st}? Licensed plumber provides safe valve repair and replacement. 24/7, upfront pricing. Call now.`,
+  'sump-pump-repair': (svc, zip, city, st) => `Sump pump failure in ZIP ${zip}, ${city}, ${st}? Licensed 24/7 sump pump repair — float switch, motor, backup systems. Upfront pricing. Call now.`,
+};
+
+function buildZipDescription(serviceSlug, serviceName, zip, cityName, stateCode) {
+  const template = ZIP_DESCRIPTION_TEMPLATES[serviceSlug];
+  if (template) return template(serviceName, zip, cityName, stateCode);
+  return `${serviceName} in ZIP ${zip}, ${cityName}, ${stateCode}. Licensed plumbers available 24/7 with upfront pricing. Call now.`;
+}
+
 export function ZipServicePage({
   zip,
   cityName,
@@ -38,34 +64,126 @@ export function ZipServicePage({
   serviceName,
   content,
   nearbyZips,
+  nearbyCities,
   cityZipCount,
   pageSlug,
 }) {
+  const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const title = `${serviceName} in ${cityName}, ${stateCode} ${zip} | 24/7 Plumber | YoHomeFix`;
-  const description = `${serviceName} services in ZIP ${zip}, ${cityName}, ${stateCode}. Licensed plumbers available 24/7 with upfront pricing. Serving the ${zip} area of ${cityName}. Call now.`;
-  const canonical = `https://yohomefix.com/areas/${pageSlug}`;
+  const description = buildZipDescription(serviceSlug, serviceName, zip, cityName, stateCode);
+  const canonical = `${domain}/areas/${pageSlug}`;
   const stateHubSlug = stateCode ? `plumber-${getStateSlug(stateCode)}` : null;
   const cityServiceSlug = buildSlug(cityToSlug(cityName), serviceSlug);
   const lastReviewed = getDeterministicLastReviewed(cityName);
-
   const orgSchema = buildOrganizationSchema();
   const webSchema = buildWebSiteSchema();
+
+  const breadcrumbs = [
+    { name: 'Home', url: `${domain}/` },
+    { name: 'All Cities', url: `${domain}/plumber-usa` },
+    ...(stateHubSlug ? [{ name: stateCode, url: `${domain}/${stateHubSlug}` }] : []),
+    { name: cityName, url: `${domain}/${cityServiceSlug}` },
+    { name: `ZIP ${zip}`, url: canonical },
+  ];
+
+  const zcta = getZctaByZip(zip);
+
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: `${serviceName} in ${cityName}, ${stateCode} ${zip}`,
-    serviceType: serviceName,
-    areaServed: {
-      '@type': 'PostalCode',
-      postalCode: zip,
-      addressRegion: stateCode,
-      addressLocality: cityName,
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'YoHomeFix',
-      telephone: PHONE_NUMBER,
-    },
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumb`,
+        itemListElement: breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: b.name,
+          item: b.url,
+        })),
+      },
+      orgSchema,
+      webSchema,
+      {
+        '@type': 'PlumbingService',
+        '@id': `${canonical}#plumbingservice`,
+        name: 'YoHomeFix',
+        description,
+        telephone: PHONE_NUMBER,
+        url: canonical,
+        priceRange: '$$',
+        image: `${domain}/og-image.png`,
+        areaServed: {
+          '@type': 'PostalCode',
+          postalCode: zip,
+          addressRegion: stateCode,
+          addressLocality: cityName,
+          addressCountry: 'US',
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+        availableChannel: {
+          '@type': 'ServiceChannel',
+          serviceUrl: canonical,
+          servicePhone: PHONE_NUMBER,
+          availableLanguage: 'English',
+          serviceLocation: {
+            '@type': 'Place',
+            name: `${cityName}, ${stateCode} ${zip}`,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: cityName,
+              addressRegion: stateCode,
+              postalCode: zip,
+              addressCountry: 'US',
+            },
+          },
+        },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: `${serviceName} in ${cityName}, ${stateCode} ${zip}`,
+          itemListElement: SERVICES
+            .filter((s) => {
+              if (!zcta) return true;
+              return isZctaQualifiedForService(zcta, s.slug);
+            })
+            .map((s) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: s.name,
+                url: `${domain}/areas/${cityToSlug(cityName)}/${zip}/${s.slug}`,
+              },
+            })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: (content?.faqs || []).slice(0, 6).map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a },
+        })),
+      },
+      {
+        '@type': 'WebPage',
+        '@id': canonical,
+        url: canonical,
+        name: title,
+        description,
+        datePublished: '2025-01-15',
+        dateModified: lastReviewed,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['h1', '.speakable-intro'],
+        },
+        breadcrumb: { '@id': `${canonical}#breadcrumb` },
+        isPartOf: { '@type': 'WebSite', '@id': `${domain}/#website` },
+      },
+    ],
   };
 
   return (
@@ -79,8 +197,6 @@ export function ZipServicePage({
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
@@ -192,7 +308,7 @@ export function ZipServicePage({
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">All Plumbing Services in ZIP {zip}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {SERVICES.map(svc => (
+              {SERVICES.filter(svc => !zcta || isZctaQualifiedForService(zcta, svc.slug)).map(svc => (
                 <Link
                   key={svc.slug}
                   href={`/areas/${cityToSlug(cityName)}/${zip}/${svc.slug}`}
@@ -209,7 +325,10 @@ export function ZipServicePage({
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-blue-900 mb-4">Also Serving Nearby ZIP Codes</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                {nearbyZips.map(nz => (
+                {nearbyZips.filter(nz => {
+                  const nzZcta = getZctaByZip(nz.zip);
+                  return !nzZcta || isZctaQualifiedForService(nzZcta, serviceSlug);
+                }).map(nz => (
                   <Link
                     key={nz.zip}
                     href={`/areas/${cityToSlug(cityName)}/${nz.zip}/${serviceSlug}`}
@@ -273,6 +392,16 @@ export function ZipServicePage({
           </section>
 
           {/* Editorial footer */}
+          <CrawlLinks
+            cityName={cityName}
+            stateCode={stateCode}
+            serviceSlug={serviceSlug}
+            nearbyCities={nearbyCities}
+            nearbyZips={nearbyZips}
+            zip={zip}
+            pageSlug={pageSlug}
+          />
+
           <EditorialFooter pageType="zip-service" />
 
           {/* Author */}

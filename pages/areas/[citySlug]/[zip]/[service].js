@@ -1,6 +1,7 @@
 import { getCityBySlug, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
 import { generatePageContent } from '../../../../lib/contentGenerator';
 import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService } from '../../../../lib/hyperlocalPlaces';
+import { getNearbyPlaces } from '../../../../lib/nationwidePlaces';
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 
 // Hyperlocal ZIP-service pages are generated on demand via fallback: 'blocking'
@@ -61,6 +62,13 @@ export async function getStaticProps({ params }) {
     stateCode: nz.stateCode,
   }));
 
+  // Nearby cities for the same service
+  const nearbyCities = getNearbyPlaces(citySlug, stateCode, 8).map(p => ({
+    slug: p.slug,
+    name: p.name,
+    stateCode: p.stateCode,
+  }));
+
   // Get total ZIP count for this city
   const cityZips = getZctasByCity(citySlug);
 
@@ -76,6 +84,7 @@ export async function getStaticProps({ params }) {
       serviceName: svc.name,
       content,
       nearbyZips,
+      nearbyCities,
       cityZipCount: cityZips.length,
       pageSlug,
     },
