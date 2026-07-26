@@ -7,7 +7,6 @@ import {
   cityToSlug, buildSlug, getStateSlug, CITY_DATA,
   isCityQualifiedForService,
 } from '../lib/cities';
-import { CITY_COORDS } from '../lib/cityCoords';
 import { getDeterministicLastReviewed } from '../lib/dateUtils';
 import { TrustBar } from './ConversionLayer';
 
@@ -17,7 +16,7 @@ const ExitIntentPopup = dynamic(() => import('./ConversionLayer').then((m) => m.
 const RelatedGuides = dynamic(() => import('./RelatedGuides').then((m) => m.RelatedGuides));
 const RelatedCosts = dynamic(() => import('./RelatedCosts').then((m) => m.RelatedCosts));
 import { EditorialFooter } from './EditorialFooter';
-import { buildOrganizationSchema, buildWebSiteSchema } from '../lib/schemas';
+import { buildOrganizationSchema, buildWebSiteSchema, buildPlumberSchema, buildServiceSchema } from '../lib/schemas';
 import { Footer } from './Footer';
 import { Author } from './Author';
 import { Trust } from './Trust';
@@ -408,7 +407,6 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ...(serviceSlug !== 'emergency' ? [{ name: serviceName, url: canonical }] : []),
   ];
 
-  const coords = CITY_COORDS[cityName];
   const cityDataEntry = CITY_DATA[cityName];
   const neighborhoods = cityDataEntry?.neighborhoods || [];
 
@@ -427,15 +425,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
       },
       buildOrganizationSchema(),
       buildWebSiteSchema(),
-      {
-        '@type': 'PlumbingService',
-        '@id': `${domain}/#plumbingservice-${cityToSlug(cityName)}`,
-        name: 'YoHomeFix',
-        description,
-        telephone: PHONE_NUMBER,
+      buildPlumberSchema({
         url: canonical,
-        priceRange: '$$',
-        image: `${domain}/og-image.png`,
+        description,
         areaServed: [
           {
             '@type': 'City',
@@ -447,59 +439,27 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             name: `${n}, ${cityName}`,
           })),
         ],
-        ...(coords ? {
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: coords.lat,
-            longitude: coords.lng,
-          },
-          hasMap: `https://www.google.com/maps/search/${encodeURIComponent(`plumber ${cityName} ${stateCode}`)}`,
-        } : {}),
-        openingHoursSpecification: {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-          opens: '00:00',
-          closes: '23:59',
+      }),
+      buildServiceSchema({
+        name: `${serviceName} in ${cityName}, ${stateCode}`,
+        serviceType: serviceName,
+        url: canonical,
+        description,
+        areaServed: {
+          '@type': 'City',
+          name: cityName,
+          containedInPlace: { '@type': 'State', name: stateCode },
         },
-        availableChannel: {
-          '@type': 'ServiceChannel',
-          serviceUrl: canonical,
-          servicePhone: PHONE_NUMBER,
-          availableLanguage: 'English',
-          serviceLocation: {
-            '@type': 'Place',
-            name: cityName,
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: cityName,
-              addressRegion: stateCode,
-              addressCountry: 'US',
-            },
-          },
-        },
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: `${serviceName} in ${cityName}`,
-          itemListElement: SERVICES
-            .filter((s) => isCityQualifiedForService(cityName, s.slug, stateCode))
-            .map((s) => ({
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: s.name,
-                url: `${domain}/${buildSlug(cityToSlug(cityName), s.slug)}`,
-              },
-            })),
-        },
-      },
-      {
+        providerId: `${canonical}#plumber`,
+      }),
+      ...(content?.faqs?.length ? [{
         '@type': 'FAQPage',
-        mainEntity: (content?.faqs || []).map((faq) => ({
+        mainEntity: content.faqs.map((faq) => ({
           '@type': 'Question',
           name: faq.q,
           acceptedAnswer: { '@type': 'Answer', text: faq.a },
         })),
-      },
+      }] : []),
       {
         '@type': 'WebPage',
         '@id': canonical,

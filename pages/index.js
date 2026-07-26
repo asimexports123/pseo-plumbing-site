@@ -87,6 +87,23 @@ export default function Home({ totalPlaces }) {
         },
       },
       {
+        '@type': 'Plumber',
+        '@id': `${domain}/#plumber`,
+        name: 'YoHomeFix',
+        url: domain,
+        telephone: PHONE_NUMBER,
+        description: 'YoHomeFix provides 24/7 emergency plumbing services across the United States.',
+        image: `${domain}/og-image.png`,
+        priceRange: '$$',
+        areaServed: { '@type': 'Country', name: 'United States' },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+      },
+      {
         '@type': 'WebPage',
         '@id': `${domain}/#webpage`,
         url: `${domain}/`,

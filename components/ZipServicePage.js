@@ -11,7 +11,7 @@ import { Footer } from './Footer';
 import { Author } from './Author';
 import { Trust } from './Trust';
 import { Sources } from './Sources';
-import { buildOrganizationSchema, buildWebSiteSchema } from '../lib/schemas';
+import { buildOrganizationSchema, buildWebSiteSchema, buildPlumberSchema, buildServiceSchema } from '../lib/schemas';
 
 const SERVICE_NAMES = {
   'emergency': 'Emergency Plumber',
@@ -103,71 +103,35 @@ export function ZipServicePage({
       },
       orgSchema,
       webSchema,
-      {
-        '@type': 'PlumbingService',
-        '@id': `${canonical}#plumbingservice`,
-        name: 'YoHomeFix',
-        description,
-        telephone: PHONE_NUMBER,
+      buildPlumberSchema({
         url: canonical,
-        priceRange: '$$',
-        image: `${domain}/og-image.png`,
+        description,
         areaServed: {
-          '@type': 'PostalCode',
-          postalCode: zip,
-          addressRegion: stateCode,
-          addressLocality: cityName,
-          addressCountry: 'US',
+          '@type': 'City',
+          name: cityName,
+          containedInPlace: { '@type': 'State', name: stateCode },
         },
-        openingHoursSpecification: {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-          opens: '00:00',
-          closes: '23:59',
+      }),
+      buildServiceSchema({
+        name: `${serviceName} in ${cityName}, ${stateCode} ${zip}`,
+        serviceType: serviceName,
+        url: canonical,
+        description,
+        areaServed: {
+          '@type': 'City',
+          name: cityName,
+          containedInPlace: { '@type': 'State', name: stateCode },
         },
-        availableChannel: {
-          '@type': 'ServiceChannel',
-          serviceUrl: canonical,
-          servicePhone: PHONE_NUMBER,
-          availableLanguage: 'English',
-          serviceLocation: {
-            '@type': 'Place',
-            name: `${cityName}, ${stateCode} ${zip}`,
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: cityName,
-              addressRegion: stateCode,
-              postalCode: zip,
-              addressCountry: 'US',
-            },
-          },
-        },
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: `${serviceName} in ${cityName}, ${stateCode} ${zip}`,
-          itemListElement: SERVICES
-            .filter((s) => {
-              if (!zcta) return true;
-              return isZctaQualifiedForService(zcta, s.slug);
-            })
-            .map((s) => ({
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: s.name,
-                url: `${domain}/areas/${cityToSlug(cityName)}/${zip}/${s.slug}`,
-              },
-            })),
-        },
-      },
-      {
+        providerId: `${canonical}#plumber`,
+      }),
+      ...(content?.faqs?.length ? [{
         '@type': 'FAQPage',
-        mainEntity: (content?.faqs || []).slice(0, 6).map((faq) => ({
+        mainEntity: content.faqs.slice(0, 6).map((faq) => ({
           '@type': 'Question',
           name: faq.q,
           acceptedAnswer: { '@type': 'Answer', text: faq.a },
         })),
-      },
+      }] : []),
       {
         '@type': 'WebPage',
         '@id': canonical,

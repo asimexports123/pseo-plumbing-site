@@ -21,7 +21,7 @@ import { Trust } from '../../components/Trust';
 
 import { Sources } from '../../components/Sources';
 
-import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema } from '../../lib/schemas';
+import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema, buildPlumberSchema } from '../../lib/schemas';
 
 import { STATE_INTROS } from '../../lib/stateIntros';
 
@@ -111,23 +111,15 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
       },
 
-      {
-
-        '@type': 'PlumbingService',
-
-        name: 'YoHomeFix',
-
-        description,
-
-        telephone: PHONE_NUMBER,
-
+      buildPlumberSchema({
         url: canonical,
-
-        priceRange: '$$',
-
-        areaServed: { '@type': 'State', name: stateObj.name },
-
-      },
+        description,
+        areaServed: {
+          '@type': 'State',
+          name: stateObj.name,
+          containedInPlace: { '@type': 'Country', name: 'United States' },
+        },
+      }),
 
       {
 
