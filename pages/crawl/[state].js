@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { STATES, buildSlug } from '../../lib/cities';
+import { STATES, cityToSlug, buildSlug } from '../../lib/cities';
 import { getSeedCitiesForState, getAdditionalPlacesForState, groupPlacesByLetter } from '../../lib/crawl';
 import { Footer } from '../../components/Footer';
 
