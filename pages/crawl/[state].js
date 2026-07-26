@@ -113,7 +113,11 @@ export async function getStaticProps({ params }) {
   const stateObj = STATES.find((s) => s.slug === params.state);
   if (!stateObj) return { notFound: true };
 
-  const seedCities = getSeedCitiesForState(stateObj.code);
+  const seedCities = getSeedCitiesForState(stateObj.code).map((c) => ({
+    name: c.name,
+    stateCode: c.stateCode,
+    slug: c.slug || cityToSlug(c.name),
+  }));
   const additional = getAdditionalPlacesForState(stateObj.code);
   const additionalGroups = groupPlacesByLetter(additional);
   const totalCount = seedCities.length + additional.length;
@@ -121,7 +125,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       stateObj,
-      seedCities: seedCities.map((c) => ({ name: c.name, slug: c.slug, stateCode: c.stateCode })),
+      seedCities,
       additionalGroups,
       totalCount,
     },
