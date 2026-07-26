@@ -65,6 +65,8 @@ const nextConfig = {
       ...STATE_REWRITES,
       { source: '/sitemap-static/:chunk.xml', destination: '/sitemap-static/:chunk' },
       { source: '/sitemap-cities/:chunk.xml', destination: '/sitemap-cities/:chunk' },
+      { source: '/sitemap-states/:state.xml', destination: '/sitemap-states/:state' },
+      { source: '/sitemap-zcta/:state.xml', destination: '/sitemap-zcta/:state' },
       { source: '/sitemap-states/:state/:chunk.xml', destination: '/sitemap-states/:state/:chunk' },
       { source: '/sitemap-zcta/:state/:chunk.xml', destination: '/sitemap-zcta/:state/:chunk' },
     ];
