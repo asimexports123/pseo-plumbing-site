@@ -1,6 +1,7 @@
-import { getCityBySlug, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
+import { SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
+import { getCityBySlug } from '../../../../lib/cities-server';
 import { generatePageContent } from '../../../../lib/contentGenerator';
-import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService } from '../../../../lib/hyperlocalPlaces';
+import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService } from '../../../../lib/hyperlocalPlaces-server';
 import { getNearbyPlaces } from '../../../../lib/nationwidePlaces';
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 

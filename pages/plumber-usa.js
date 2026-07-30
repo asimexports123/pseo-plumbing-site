@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, PHONE_NUMBER, isCityQualifiedForService } from '../lib/cities';
+import { SEED_CITIES, SERVICES, STATES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -84,7 +84,7 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
 
       {/* Sticky mobile CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-sticky-mobile" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
+        <a href="tel:1" data-track="plumber-usa-sticky-mobile" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
           <span aria-hidden="true">📞</span><span>CALL NOW — 24/7</span>
         </a>
       </div>
@@ -94,10 +94,10 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-nav-desktop" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
+          <a href="tel:1" data-track="plumber-usa-nav-desktop" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
             <span aria-hidden="true">📞</span> Call Now
           </a>
-          <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm no-underline" aria-label="Call emergency dispatch">Call Now</a>
+          <a href="tel:1" data-track="plumber-usa-nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm no-underline" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto w-full px-4 py-2 text-sm text-gray-600">
@@ -114,7 +114,7 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Emergency Plumbers in Every US City</h1>
             <p className="text-lg text-blue-50 mb-2">Licensed plumbers in 60 minutes. Available 24/7 with transparent pricing from participating providers.</p>
             <p className="text-base text-blue-100 mb-6">{totalPlaces.toLocaleString()}+ Cities & Towns Covered Nationwide</p>
-            <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+            <a href="tel:1" data-track="plumber-usa-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
           </div>
@@ -271,7 +271,7 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Need a Plumber Right Now?</h2>
             <p className="text-blue-100 mb-5">Our team is standing by 24/7 across the USA</p>
-            <a href={`tel:${PHONE_NUMBER}`} data-track="plumber-usa-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors no-underline" aria-label="Call emergency dispatch today">
+            <a href="tel:1" data-track="plumber-usa-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors no-underline" aria-label="Call emergency dispatch today">
               <span aria-hidden="true">📞</span> Call Today
             </a>
           </div>

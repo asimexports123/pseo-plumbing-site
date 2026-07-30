@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import { PHONE_NUMBER, SERVICES } from '../lib/cities';
+import { SERVICES } from '../lib/cities';
 
 // ── Call tracking helper ─────────────────────────────────────
 function trackEvent(action, label, extra) {
@@ -46,7 +46,7 @@ export function QuoteForm({ cityName, defaultService }) {
   function handleCall() {
     trackEvent('quote_form_call', `${cityName}-${service}`, { city: cityName, service });
     setSubmitted(true);
-    window.location.href = `tel:${PHONE_NUMBER}`;
+    window.location.href = 'tel:1';
   }
 
   if (submitted) {
@@ -135,7 +135,7 @@ export function ExitIntentPopup({ cityName, serviceName }) {
 
   function handleCall() {
     trackEvent('exit_intent_call', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
-    window.location.href = `tel:${PHONE_NUMBER}`;
+    window.location.href = 'tel:1';
   }
 
   function handleDismiss() {
@@ -165,13 +165,13 @@ export function ExitIntentPopup({ cityName, serviceName }) {
         </p>
         <div className="flex flex-col gap-3">
           <a
-            href={`tel:${PHONE_NUMBER}`}
+            href="tel:1"
             onClick={handleCall}
             data-track="exit-intent"
             className="bg-red-600 hover:bg-red-500 text-white px-6 py-4 rounded-xl font-extrabold text-lg transition-colors"
             aria-label="Call emergency dispatch"
           >
-            📞 Call Now
+            📞 Connect Now
           </a>
           <button
             onClick={handleDismiss}
@@ -202,13 +202,13 @@ export function MidPageCTA({ cityName, serviceName }) {
         <p className="text-white text-sm">Live operator — no hold music — 60-min response target</p>
       </div>
       <a
-        href={`tel:${PHONE_NUMBER}`}
+        href="tel:1"
         onClick={handleClick}
         data-track="mid-page-cta"
         className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
         aria-label="Call emergency dispatch"
       >
-        📞 Call Now
+        📞 Connect Now
       </a>
     </div>
   );

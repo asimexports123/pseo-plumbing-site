@@ -1,14 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { getCityBySlug, SERVICES, cityToSlug, buildSlug, PHONE_NUMBER, getStateSlug } from '../../../lib/cities';
-import { getZctasByCity } from '../../../lib/hyperlocalPlaces';
+import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../../../lib/cities';
+import { getCityBySlug } from '../../../lib/cities-server';
+import { getZctasByCity, getCitiesWithZctas } from '../../../lib/hyperlocalPlaces-server';
 import { Footer } from '../../../components/Footer';
 import { EditorialFooter } from '../../../components/EditorialFooter';
 import { Author } from '../../../components/Author';
 import { buildOrganizationSchema, buildWebSiteSchema } from '../../../lib/schemas';
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: 'blocking' };
+  const citySlugs = getCitiesWithZctas();
+  const paths = citySlugs.map(citySlug => ({ params: { citySlug } }));
+  return { paths, fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
@@ -62,11 +65,25 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteSchema()) }} />
       </Head>
 
-      <div className="font-sans bg-white min-h-screen flex flex-col">
+      {/* Sticky mobile CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
+        <a
+          href="tel:1"
+          data-track="zip-dir-sticky-mobile"
+          className="flex items-center justify-center gap-3 h-full w-full"
+          style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
+          aria-label="Call emergency dispatch"
+        >
+          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.6)', flexShrink: 0 }}>📞</span>
+          <span>CALL NOW — 24/7 Emergency</span>
+        </a>
+      </div>
+
+      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} data-track="zip-dir-nav" className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
+          <a href="tel:1" data-track="zip-dir-nav" className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
             <span aria-hidden="true">📞</span> Call Now
           </a>
         </nav>
@@ -98,7 +115,7 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
             <p className="text-sm text-blue-100 mb-6">
               Select your ZIP Code to find plumbing services in your area of {cityName}.
             </p>
-            <a href={`tel:${PHONE_NUMBER}`} data-track="zip-dir-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+            <a href="tel:1" data-track="zip-dir-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
           </div>
@@ -119,6 +136,25 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
                   className="px-3 py-2 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center"
                 >
                   {z.zip}
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* Service-specific ZIP browsing */}
+          <section className="mb-8">
+            <h2 className="text-xl font-bold text-blue-900 mb-3">Browse {cityName} ZIP Codes by Service</h2>
+            <p className="text-gray-600 text-sm mb-4">
+              Select a service to view all ZIP Code areas in {cityName} where that service is available.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {SERVICES.map(s => (
+                <Link
+                  key={s.slug}
+                  href={`/${buildSlug(citySlug, s.slug)}`}
+                  className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm no-underline transition-colors font-medium"
+                >
+                  {s.shortName} in {cityName}
                 </Link>
               ))}
             </div>

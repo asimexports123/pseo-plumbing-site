@@ -1,8 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { PHONE_NUMBER, SERVICES, cityToSlug, buildSlug, getStateSlug } from '../lib/cities';
-import { getZctaByZip, isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
-import { generatePageContent } from '../lib/contentGenerator';
+import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../lib/cities';
+import { isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
 import { CrawlLinks } from './CrawlLinks';
 import { getDeterministicLastReviewed } from '../lib/dateUtils';
 import { TrustBar } from './ConversionLayer';
@@ -86,7 +85,7 @@ export function ZipServicePage({
     { name: `ZIP ${zip}`, url: canonical },
   ];
 
-  const zcta = getZctaByZip(zip);
+  const zcta = { stateCode };
 
   const schema = {
     '@context': 'https://schema.org',
@@ -164,11 +163,25 @@ export function ZipServicePage({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
-      <div className="font-sans bg-white min-h-screen flex flex-col">
+      {/* Sticky mobile CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
+        <a
+          href="tel:1"
+          data-track="zip-sticky-mobile"
+          className="flex items-center justify-center gap-3 h-full w-full"
+          style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
+          aria-label="Call emergency dispatch"
+        >
+          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.6)', flexShrink: 0 }}>📞</span>
+          <span>CALL NOW — 24/7 Emergency</span>
+        </a>
+      </div>
+
+      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} data-track="zip-nav" className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
+          <a href="tel:1" data-track="zip-nav" className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
             <span aria-hidden="true">📞</span> Call Now
           </a>
         </nav>
@@ -204,7 +217,7 @@ export function ZipServicePage({
             <p className="text-sm text-blue-100 mb-6">
               ZIP Code {zip} is part of {cityName}, {stateName}. We connect homeowners in this area with local plumbing professionals.
             </p>
-            <a href={`tel:${PHONE_NUMBER}`} data-track="zip-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+            <a href="tel:1" data-track="zip-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
           </div>
@@ -290,12 +303,11 @@ export function ZipServicePage({
               <h2 className="text-2xl font-bold text-blue-900 mb-4">Also Serving Nearby ZIP Codes</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {nearbyZips.filter(nz => {
-                  const nzZcta = getZctaByZip(nz.zip);
-                  return !nzZcta || isZctaQualifiedForService(nzZcta, serviceSlug);
+                  return isZctaQualifiedForService({ stateCode: nz.stateCode }, serviceSlug);
                 }).map(nz => (
                   <Link
                     key={nz.zip}
-                    href={`/areas/${cityToSlug(cityName)}/${nz.zip}/${serviceSlug}`}
+                    href={`/areas/${nz.parentCitySlug || cityToSlug(cityName)}/${nz.zip}/${serviceSlug}`}
                     className="px-3 py-2 bg-gray-50 hover:bg-blue-50 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center"
                   >
                     ZIP {nz.zip} — {nz.parentCity}
@@ -347,12 +359,22 @@ export function ZipServicePage({
             <p className="text-gray-600 text-sm mb-4">
               See all plumbing services available throughout {cityName}, {stateCode} — including {cityZipCount} ZIP Code areas we serve.
             </p>
-            <Link
-              href={`/${cityServiceSlug}`}
-              className="inline-block bg-blue-900 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors no-underline"
-            >
-              {serviceName} in {cityName} →
-            </Link>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link
+                href={`/${cityServiceSlug}`}
+                className="inline-block bg-blue-900 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors no-underline"
+              >
+                {serviceName} in {cityName} →
+              </Link>
+              {cityZipCount > 1 && (
+                <Link
+                  href={`/areas/${cityToSlug(cityName)}`}
+                  className="inline-block bg-white text-blue-900 border border-blue-300 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors no-underline"
+                >
+                  All ZIP Codes in {cityName} →
+                </Link>
+              )}
+            </div>
           </section>
 
           {/* Editorial footer */}
@@ -381,7 +403,7 @@ export function ZipServicePage({
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center mt-8">
             <h2 className="text-2xl font-extrabold mb-2">Need a Plumber in ZIP {zip}?</h2>
             <p className="text-blue-100 mb-5">Our team is standing by 24/7 in {cityName}</p>
-            <a href={`tel:${PHONE_NUMBER}`} data-track="zip-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors no-underline" aria-label="Call emergency dispatch today">
+            <a href="tel:1" data-track="zip-bottom-cta" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors no-underline" aria-label="Call emergency dispatch today">
               <span aria-hidden="true">📞</span> Call Today
             </a>
           </div>

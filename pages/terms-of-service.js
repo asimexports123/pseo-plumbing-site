@@ -45,7 +45,7 @@ export default function TermsOfService() {
 
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
+          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
         </nav>
 
         <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
@@ -118,7 +118,7 @@ export default function TermsOfService() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">11. Contact</h2>
-              <p>For questions about these Terms, contact us at <a href={`tel:${PHONE_NUMBER}`} className="text-blue-600">Call Now — 24/7</a> or <a href="mailto:hello@yohomefix.com" className="text-blue-600">hello@yohomefix.com</a>.</p>
+              <p>For questions about these Terms, contact us at <a href="tel:1" className="text-blue-600">Call Now — 24/7</a> or <a href="mailto:hello@yohomefix.com" className="text-blue-600">hello@yohomefix.com</a>.</p>
             </div>
           </div>
 

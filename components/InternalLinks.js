@@ -87,7 +87,9 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
 
 
-  // Nearby cities
+  // Nearby cities: use the precomputed slug already passed in the
+  // nearbyCities objects (from [slug].js seed/nationwide lookup) instead of
+  // re-deriving it from name, which may contain suffixes or differ in slug form.
 
   if (nearbyCities.length > 0) {
 
@@ -97,7 +99,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
       links: nearbyCities.slice(0, 5).map((c) => ({
 
-        href: `/${buildSlug(cityToSlug(c.name), serviceSlug)}`,
+        href: `/${buildSlug(c.slug, serviceSlug)}`,
 
         label: `${serviceSlug === 'emergency' ? 'Emergency plumber' : serviceSlug.replace(/-/g, ' ')} in ${c.name}`,
 

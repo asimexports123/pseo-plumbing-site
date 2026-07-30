@@ -1,4 +1,4 @@
-const { SEED_CITIES, getCityData } = require('./lib/cities.js');
+const { SEED_CITIES, getCityData } = require('./lib/cities-server.js');
 
 // Get cities with different hardness levels
 const citiesByHardness = SEED_CITIES.map(city => ({

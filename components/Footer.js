@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { PHONE_NUMBER } from '../lib/cities';
 
 const footerLinks = [
   { href: '/about', label: 'About' },
@@ -13,6 +12,7 @@ const footerLinks = [
   { href: '/guides', label: 'Guides' },
   { href: '/research/us-water-hardness-plumbing-risk', label: 'Water Hardness Research' },
   { href: '/plumber-usa', label: 'Cities' },
+  { href: '/crawl', label: 'Browse All Locations' },
   { href: '/sitemap.xml', label: 'Sitemap' },
   { href: '/privacy-policy', label: 'Privacy' },
   { href: '/terms-of-service', label: 'Terms' },
@@ -32,7 +32,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
             <a
-              href={`tel:${PHONE_NUMBER}`}
+              href="tel:1"
               className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors"
               aria-label="Call emergency dispatch"
             >

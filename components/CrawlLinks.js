@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { SERVICES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
 import { getRelatedServices, getCrawlHubPath } from '../lib/crawl';
-import { getZctaByZip, isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
+import { isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
 
 const COST_CITIES = [
   'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
@@ -61,8 +61,7 @@ export function CrawlLinks({
   const otherServices = SERVICES.filter(s => {
     if (s.slug === serviceSlug) return false;
     if (zip) {
-      const zcta = getZctaByZip(zip);
-      return zcta ? isZctaQualifiedForService(zcta, s.slug) : isCityQualifiedForService(cityName, s.slug, stateCode);
+      return isZctaQualifiedForService({ stateCode }, s.slug);
     }
     return isCityQualifiedForService(cityName, s.slug, stateCode);
   }).slice(0, 8);

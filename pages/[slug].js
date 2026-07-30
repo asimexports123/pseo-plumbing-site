@@ -1,6 +1,8 @@
-import { parseSlug, getCityBySlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
+import { parseSlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
+import { getCityBySlug } from '../lib/cities-server';
 import { generatePageContent } from '../lib/contentGenerator';
 import { getNearbyPlaces, getTopPlacesByLandArea } from '../lib/nationwidePlaces';
+import { getZctasByCity } from '../lib/hyperlocalPlaces-server';
 import PlumberPage from '../components/PlumberPage';
 
 // Pre-build the existing 155 enriched cities at build time.
@@ -86,6 +88,9 @@ export async function getStaticProps({ params }) {
     nearbyCities = [];
   }
 
+  // Pre-compute ZCTAs for this city (for AreasWeServe component)
+  const cityZctas = getZctasByCity(cityToSlug(cityName));
+
   return {
     props: {
       cityName,
@@ -97,6 +102,7 @@ export async function getStaticProps({ params }) {
       content,
       pageSlug: rawSlug,
       nearbyCities,
+      zctas: cityZctas.map(z => ({ zip: z.zip })),
     },
   };
 }

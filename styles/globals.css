@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+nav.bg-blue-900 > a[href="/"],
+nav.bg-blue-950 > a[href="/"],
+footer a[href="/"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav.bg-blue-900 > a[href="/"]::before,
+nav.bg-blue-950 > a[href="/"]::before,
+footer a[href="/"]::before {
+  content: "";
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 1.75rem;
+  background: url("/favicon.svg?v=2") center / contain no-repeat;
+}
+
+nav.bg-blue-900 > a[href="/"]::before,
+nav.bg-blue-950 > a[href="/"]::before {
+  transform: scale(1.25);
+  transform-origin: center;
+}
+
+footer a[href="/"]::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-basis: 1.5rem;
+}
+
+#mc-tracking-phone {
+  display: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

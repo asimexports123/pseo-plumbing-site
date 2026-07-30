@@ -3,7 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useCallback } from 'react';
 import {
-  PHONE_NUMBER, SERVICES, SEED_CITIES,
+  SERVICES, SEED_CITIES,
   cityToSlug, buildSlug, getStateSlug, CITY_DATA,
   isCityQualifiedForService,
 } from '../lib/cities';
@@ -22,7 +22,7 @@ import { Author } from './Author';
 import { Trust } from './Trust';
 import { Sources } from './Sources';
 import { CrawlLinks } from './CrawlLinks';
-import { getZctasByCity } from '../lib/hyperlocalPlaces';
+import { ContentBlocks } from './ContentBlocks';
 
 function trackCall(label, city, service) {
   try {
@@ -59,7 +59,7 @@ function CallButton({ label, size = 'lg', className = '', city, service }) {
   const text = CTA_TEXT[label] || 'Call Now';
   return (
     <a
-      href={`tel:${PHONE_NUMBER}`}
+      href="tel:1"
       onClick={handleClick}
       data-track={label}
       className={`${base} ${className}`}
@@ -87,7 +87,11 @@ const SERVICES_COVERED = [
   { icon: '🏗️', text: 'New plumbing installations for upgrades and renovations' },
 ];
 
-function CityDeepContent({ cityName, stateCode, serviceSlug }) {
+function CityDeepContent({ cityName, stateCode, serviceSlug, blocks }) {
+  if (blocks && blocks.length > 0) {
+    return <ContentBlocks blocks={blocks} />;
+  }
+
   const data = CITY_DATA[cityName];
   if (!data) return null;
 
@@ -233,6 +237,42 @@ const SERVICE_CALLOUTS = {
     { slug: 'drain-cleaning', label: 'Emergency Drain Service', text: 'Need immediate clearing? Our hydro-jetting and snaking service clears blocked sewer lines fast — 24/7.' },
     { slug: 'emergency', label: 'Emergency Plumber', text: 'Sewage backing up? Our emergency plumbers respond 24/7 to stop backups and protect your home.' },
   ],
+  'toilet-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Toilet overflow or sewage backup? Our 24/7 emergency plumbers stop the flooding and fix the source.' },
+    { slug: 'drain-cleaning', label: 'Drain Service', text: 'Recurring toilet clogs may indicate a deeper sewer line issue. We clear blockages and inspect the full line.' },
+  ],
+  'slab-leak-repair': [
+    { slug: 'leak-repair', label: 'Leak Detection', text: 'Suspect a hidden slab leak? We use acoustic and thermal detection to pinpoint leaks without concrete demolition.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Active water seeping through your slab? Our emergency plumbers respond 24/7 to stop the damage.' },
+  ],
+  'water-line-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'No water or a burst supply line? Our 24/7 emergency plumbers restore water service fast.' },
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Hidden water line leak? We use non-invasive detection to locate and repair supply line failures.' },
+  ],
+  'faucet-repair': [
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Faucet leak won\'t stop? We repair and replace cartridges, valves, and supply lines to stop drips for good.' },
+    { slug: 'drain-cleaning', label: 'Drain Service', text: 'Slow kitchen drain along with a faucet issue? We clear blockages and fix the faucet in one visit.' },
+  ],
+  'garbage-disposal-repair': [
+    { slug: 'drain-cleaning', label: 'Drain Service', text: 'Disposal clogged or backed up? We clear the blockage and inspect the disposal unit for damage.' },
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Disposal leaking or jammed beyond repair? Our plumbers replace units fast with upfront pricing.' },
+  ],
+  'water-softener-repair': [
+    { slug: 'water-heater-repair', label: 'Water Heater Repair', text: 'Hard water damaging your water heater? We repair heaters and softeners to protect your entire system.' },
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Softener leaking or cycling continuously? We repair valves, resin tanks, and supply connections.' },
+  ],
+  'whole-house-repiping': [
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Multiple leaks or discolored water? Whole-house repiping eliminates recurring pipe failures for good.' },
+    { slug: 'water-line-repair', label: 'Water Line Repair', text: 'Aging supply lines causing low pressure? We replace main water lines as part of a full repipe.' },
+  ],
+  'main-water-shutoff-valve-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Can\'t shut off your water in an emergency? We repair and replace main shutoff valves fast — 24/7.' },
+    { slug: 'water-line-repair', label: 'Water Line Repair', text: 'Shutoff valve seized or corroded? We replace valves and inspect the supply line for related damage.' },
+  ],
+  'sump-pump-repair': [
+    { slug: 'emergency', label: 'Emergency Plumber', text: 'Sump pump failure during a storm? Our 24/7 emergency plumbers respond fast to prevent basement flooding.' },
+    { slug: 'leak-repair', label: 'Leak Repair', text: 'Water pooling near your sump pit? We repair pumps, check valves, and identify the source of excess water.' },
+  ],
 };
 
 function RelatedServiceCallout({ cityName, serviceSlug, stateCode }) {
@@ -280,11 +320,10 @@ function getCityDisplayName(cityName, stateCode) {
 }
 
 // ── Areas We Serve (hyperlocal ZIP directory) ──────────────────
-function AreasWeServe({ cityName, stateCode, serviceSlug }) {
+function AreasWeServe({ cityName, stateCode, serviceSlug, zctas }) {
   const cSlug = cityToSlug(cityName);
-  const zctas = getZctasByCity(cSlug);
 
-  if (zctas.length === 0) return null;
+  if (!zctas || zctas.length === 0) return null;
 
   // Show up to 20 featured ZIPs initially, with link to full directory
   const featuredZips = zctas.slice(0, 20);
@@ -319,7 +358,65 @@ function AreasWeServe({ cityName, stateCode, serviceSlug }) {
   );
 }
 
-export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities }) {
+const NYC_BOROUGHS = [
+  {
+    name: 'Manhattan',
+    icon: '🏙️',
+    description: 'Pre-war high-rises and co-ops with original cast iron drain stacks, shared vertical plumbing risers, and booster pump systems in taller buildings. Common issues include pinhole leaks in aging copper supply lines and corroded cast iron waste pipes in pre-1940 buildings.',
+    zipExamples: '10001, 10002, 10036',
+  },
+  {
+    name: 'Brooklyn',
+    icon: '🌉',
+    description: 'Brownstones and rowhouses with original galvanized supply lines and cast iron drains from the 1890s–1930s. Many have undergone partial repiping with copper or PEX, creating mixed-material galvanic corrosion points. Combined sewer system is vulnerable to backups during heavy rainfall.',
+    zipExamples: '11201, 11215, 11238',
+  },
+  {
+    name: 'Queens',
+    icon: '🏡',
+    description: 'Mix of detached single-family homes and multi-family buildings. Older sections (Astoria, Flushing) have pre-war cast iron and galvanized pipes, while post-war neighborhoods (Fresh Meadows, Bayside) have copper and CPVC. Sewer line root intrusion is common in areas with mature street trees.',
+    zipExamples: '11101, 11354, 11432',
+  },
+  {
+    name: 'The Bronx',
+    icon: '🏟️',
+    description: 'A mix of pre-war apartment buildings and post-war multi-family housing. Many buildings share vertical plumbing stacks where a single failure affects multiple units. Lead service lines remain in some pre-1940 buildings. Winter freeze risk is high for exposed pipes in older building envelopes.',
+    zipExamples: '10451, 10458, 10467',
+  },
+  {
+    name: 'Staten Island',
+    icon: '🏝️',
+    description: 'Primarily detached single-family homes with a wider range of pipe ages. Older homes near St. George have galvanized and cast iron plumbing, while suburban developments in mid-island and south shore have copper and PVC. Lower density means faster repair access but longer travel times.',
+    zipExamples: '10301, 10306, 10314',
+  },
+];
+
+function NycBoroughSection({ serviceName, serviceSlug }) {
+  return (
+    <section className="mb-10" aria-label="NYC borough service areas">
+      <h2 className="text-2xl font-bold text-blue-900 mb-2">{serviceName} Across All 5 Boroughs</h2>
+      <p className="text-gray-600 text-sm mb-5">
+        New York City spans five distinct boroughs, each with unique plumbing infrastructure and housing stock. Our licensed plumbers serve all five boroughs 24/7.
+      </p>
+      <div className="grid md:grid-cols-2 gap-4">
+        {NYC_BOROUGHS.map((borough) => (
+          <div key={borough.name} className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-colors">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl" aria-hidden="true">{borough.icon}</span>
+              <h3 className="text-lg font-bold text-blue-900 m-0">{borough.name}</h3>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed mb-3">{borough.description}</p>
+            <p className="text-xs text-gray-500">
+              <span className="font-semibold">Example ZIPs:</span> {borough.zipExamples}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities, zctas }) {
   const cleanCityName = getCityDisplayName(cityName, stateCode);
   const location = stateCode ? `${cleanCityName}, ${stateCode}` : cityName;
   const serviceName = service?.name || 'Emergency Plumbing';
@@ -499,7 +596,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
       {/* Sticky mobile CTA — no layout shift (fixed height reserved via pb-16) */}
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
         <a
-          href={`tel:${PHONE_NUMBER}`}
+          href="tel:1"
           onClick={() => trackCall('sticky-mobile', cityName, serviceName)}
           data-track="sticky-mobile"
           className="flex items-center justify-center gap-3 h-full w-full"
@@ -521,7 +618,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
           <CallButton label="nav-desktop" size="sm" className="hidden md:inline-flex" city={cityName} service={serviceName} />
-          <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('nav-mobile', cityName, serviceName)} data-track="nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href="tel:1" onClick={() => trackCall('nav-mobile', cityName, serviceName)} data-track="nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         {/* Breadcrumb */}
@@ -541,7 +638,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         <main className="flex-1">
 
         {/* Hero — py reduced to py-6 so CTA is above fold on 1366x768 */}
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-6 text-center">
+        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-5 md:py-6 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="inline-block bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
               ⚡ Emergency Available — 24/7
@@ -555,7 +652,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 ? `Water Heater Repair in ${location} — Emergency 24/7`
                 : `Emergency Plumber in ${location} — ${service?.shortName || serviceName}`}
             </h1>
-            <p className="speakable-intro text-lg md:text-xl text-white mb-5 max-w-2xl mx-auto">
+            <p className="speakable-intro text-base md:text-xl text-white mb-4 max-w-2xl mx-auto">
               {serviceSlug === 'drain-cleaning'
                 ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
                 : serviceSlug === 'water-heater-repair'
@@ -580,7 +677,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             </p>
             <div className="flex items-center gap-3 flex-shrink-0">
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href="tel:1"
                 onClick={() => trackCall('secondary-cta', cityName, serviceName)}
                 data-track="secondary-cta"
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
@@ -588,7 +685,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 📞 Call Now
               </a>
               <a
-                href={`sms:${PHONE_NUMBER}`}
+                href="sms:1"
                 onClick={() => trackCall('secondary-cta-sms', cityName, serviceName)}
                 data-track="secondary-cta-sms"
                 className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
@@ -644,16 +741,16 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
 
           {/* Intro */}
           {content?.intro && (
-            <p className="text-lg text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-600 pl-4">
-              {content.intro}
-            </p>
+            <div className="mb-8 border-l-4 border-blue-600 pl-4 py-2">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">{content.intro}</p>
+            </div>
           )}
 
           {/* Content Sections */}
           {(content?.sections || []).map((section, i) => (
-            <div key={i} className="mb-10">
-              <h2 className="text-2xl font-bold text-blue-900 mb-3">{section.heading}</h2>
-              <p className="text-gray-700 leading-relaxed mb-4">{section.body}</p>
+            <div key={i} className="mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-blue-900 mb-3">{section.heading}</h2>
+              <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">{section.body}</p>
               {section.list && (
                 <ul className="grid md:grid-cols-2 gap-2">
                   {section.list.map((item, j) => (
@@ -668,10 +765,10 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           ))}
 
           {/* Topical authority — maintenance & emergency prep */}
-          <div className="mb-10 bg-blue-50 border border-blue-200 rounded-2xl p-6">
-            <h2 className="text-xl font-bold text-blue-900 mb-3">Preventive Maintenance & Emergency Prep for {cityName} Homeowners</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              The best way to avoid an emergency {serviceName.toLowerCase()} call in {cityName} is to catch problems early. Locate your main water shutoff valve and test it once a year. In winter, keep interior temperatures above 55°F and insulate pipes in crawl spaces or attics. If your home has hard water or aging pipes, schedule a professional inspection every 1–2 years. Knowing these basics reduces damage and gives you faster control if a leak or burst does happen.
+          <div className="mb-8 bg-blue-50 border border-blue-200 rounded-2xl p-5 md:p-6">
+            <h2 className="text-lg md:text-xl font-bold text-blue-900 mb-3">Preventive Maintenance & Emergency Prep for {cityName} Homeowners</h2>
+            <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
+              The best way to avoid an emergency {serviceName.toLowerCase()} call in {cityName} is to catch problems early. Locate your main water shutoff valve and test it once a year. In winter, keep interior temperatures above 55°F and insulate pipes in crawl spaces or attics. If your home has hard water or aging pipes, schedule a professional inspection every 1–2 years.
             </p>
             <div className="grid sm:grid-cols-2 gap-3 text-sm text-gray-700">
               <div className="flex gap-2"><span className="font-bold">✓</span> Test the main shutoff valve annually.</div>
@@ -879,7 +976,12 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           <WhyChooseUs />
 
           {/* City-specific deep content */}
-          <CityDeepContent cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} />
+          <CityDeepContent cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} blocks={content?.blocks} />
+
+          {/* NYC borough-specific content — only on New York pages */}
+          {cityName === 'New York' && (
+            <NycBoroughSection serviceName={serviceName} serviceSlug={serviceSlug} />
+          )}
 
           {/* Topical authority — related guides and costs */}
           <RelatedGuides serviceSlug={serviceSlug} cityName={cityName} />
@@ -890,7 +992,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           <Sources pageType="city" cityName={cityName} stateCode={stateCode} />
 
           {/* Areas We Serve — hyperlocal ZIP directory */}
-          <AreasWeServe cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} />
+          <AreasWeServe cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} zctas={zctas} />
 
           {/* EEAT footer */}
           <EditorialFooter pageType="city-service" />

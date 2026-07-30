@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { PHONE_NUMBER, buildSlug, cityToSlug } from '../../lib/cities';
+import { buildSlug, cityToSlug } from '../../lib/cities';
 import { buildResearchDataset, computeFindings, classifyHardness, HARDNESS_COLORS, HARDNESS_IMPLICATIONS, RISK_COLORS } from '../../lib/researchData';
 import { buildPageSchema, buildBreadcrumbSchema } from '../../lib/schemas';
 import { Footer } from '../../components/Footer';

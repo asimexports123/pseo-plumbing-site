@@ -211,7 +211,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
       </Head>
 
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">📞 CALL NOW — 24/7</a>
+        <a href="tel:1" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">📞 CALL NOW — 24/7</a>
       </div>
 
       <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
@@ -221,8 +221,8 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
 
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">📞 Call Now</a>
-          <a href={`tel:${PHONE_NUMBER}`} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href="tel:1" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">📞 Call Now</a>
+          <a href="tel:1" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
 
         <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
@@ -248,7 +248,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
             <p className="speakable-intro text-white text-lg mb-6 max-w-2xl mx-auto">
               Educational national plumbing cost benchmarks with {cityName} market context. Your technician provides an upfront written quote after diagnosis.
             </p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl">
+            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl">
               📞 Get a Free Quote
             </a>
             <p className="text-white text-sm mt-3">Live operator — no obligation — upfront pricing</p>
@@ -327,7 +327,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
               <p className="font-extrabold text-xl">Get Your Exact {cityName} Quote Now</p>
               <p className="text-white text-sm">Live operator — 60-min response — no obligation</p>
             </div>
-            <a href={`tel:${PHONE_NUMBER}`} className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap">📞 Call Now</a>
+            <a href="tel:1" className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap">📞 Call Now</a>
           </div>
 
           <div className="mb-10">
@@ -386,7 +386,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-extrabold mb-2">Ready for an Exact Quote in {cityName}?</h2>
             <p className="text-white mb-5">24/7 dispatch — transparent pricing from participating providers</p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
+            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>
           </div>

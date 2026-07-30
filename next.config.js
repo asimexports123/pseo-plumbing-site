@@ -63,12 +63,6 @@ const nextConfig = {
   async rewrites() {
     return [
       ...STATE_REWRITES,
-      { source: '/sitemap-static/:chunk.xml', destination: '/sitemap-static/:chunk' },
-      { source: '/sitemap-cities/:chunk.xml', destination: '/sitemap-cities/:chunk' },
-      { source: '/sitemap-states/:state.xml', destination: '/sitemap-states/:state' },
-      { source: '/sitemap-zcta/:state.xml', destination: '/sitemap-zcta/:state' },
-      { source: '/sitemap-states/:state/:chunk.xml', destination: '/sitemap-states/:state/:chunk' },
-      { source: '/sitemap-zcta/:state/:chunk.xml', destination: '/sitemap-zcta/:state/:chunk' },
     ];
   },
 
@@ -113,25 +107,60 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      // HTML edge cache for fallback: 'blocking' dynamic routes (24h).
-      // No revalidate is set, so these are pure edge cache responses and do
-      // not trigger ISR / Vercel Data Cache writes.
+      // HTML edge cache for homepage and static pages (24h edge,
+      // 7-day stale-while-revalidate).
+      {
+        source: '/',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/crawl',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/states/:state',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      // HTML edge cache for fallback: 'blocking' dynamic routes (24h edge,
+      // 7-day stale-while-revalidate). No revalidate is set in getStaticProps,
+      // so these are pure edge cache responses and do not trigger ISR writes.
+      // stale-while-revalidate allows serving stale content during edge
+      // revalidation, reducing origin hits.
       {
         source: '/plumber-:slug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },
       {
         source: '/areas/:citySlug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },
       {
         source: '/areas/:citySlug/:zip/:service',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, must-revalidate' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      // Sitemap XML public files (24h edge, 7-day stale-while-revalidate).
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/sitemap-:type/:file*.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },
     ];

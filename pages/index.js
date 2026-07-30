@@ -140,7 +140,7 @@ export default function Home({ totalPlaces }) {
       {/* Sticky mobile CTA — height fixed to prevent CLS */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
         <a
-          href={`tel:${PHONE_NUMBER}`}
+          href="tel:1"
           onClick={() => trackCall('sticky-mobile-home')}
           data-track="sticky-mobile-home"
           className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full"
@@ -157,7 +157,7 @@ export default function Home({ totalPlaces }) {
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
           <a
-            href={`tel:${PHONE_NUMBER}`}
+            href="tel:1"
             onClick={() => trackCall('nav-desktop-home')}
             data-track="nav-desktop-home"
             className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors"
@@ -166,7 +166,7 @@ export default function Home({ totalPlaces }) {
             📞 Call Now
           </a>
           <a
-            href={`tel:${PHONE_NUMBER}`}
+            href="tel:1"
             onClick={() => trackCall('nav-mobile-home')}
             data-track="nav-mobile-home"
             className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm"
@@ -194,7 +194,7 @@ export default function Home({ totalPlaces }) {
               Licensed &amp; insured technicians. Upfront pricing before any work begins.
             </p>
             <a
-              href={`tel:${PHONE_NUMBER}`}
+              href="tel:1"
               onClick={() => trackCall('hero-home')}
               data-track="hero-home"
               className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105"
@@ -298,7 +298,7 @@ export default function Home({ totalPlaces }) {
                 <p className="text-white text-sm">Live operator — 60-min response target — transparent pricing from participating providers</p>
               </div>
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href="tel:1"
                 onClick={() => trackCall('mid-cta-home')}
                 data-track="mid-cta-home"
                 className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
@@ -517,7 +517,7 @@ export default function Home({ totalPlaces }) {
               <p className="text-white mb-2">Live operators available 24/7. No hold queues. No automated menus.</p>
               <p className="text-white text-sm mb-6">Your call goes directly to a licensed local plumber ready to help.</p>
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href="tel:1"
                 onClick={() => trackCall('bottom-cta-home')}
                 data-track="bottom-cta-home"
                 className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-colors"
@@ -588,7 +588,7 @@ export default function Home({ totalPlaces }) {
                   <span>YoHomeFix</span>
                 </p>
                 <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
-                <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
+                <a href="tel:1" onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
                   Call Now — 24/7
                 </a>
               </div>

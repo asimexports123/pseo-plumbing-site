@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { PHONE_NUMBER, STATES, SEED_CITIES, cityToSlug, buildSlug } from '../lib/cities';
+import { STATES, SEED_CITIES, cityToSlug, buildSlug } from '../lib/cities';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
@@ -141,7 +141,7 @@ export default function FAQ() {
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">
+          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">
             📞 Call Now
           </a>
         </nav>
@@ -182,7 +182,7 @@ export default function FAQ() {
           <div className="mt-10 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
             <h2 className="text-xl font-bold text-blue-900 mb-2">Still Have Questions?</h2>
             <p className="text-gray-600 mb-4">Our team is available 24/7 to answer any questions.</p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full font-bold no-underline" aria-label="Call emergency dispatch">
+            <a href="tel:1" className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full font-bold no-underline" aria-label="Call emergency dispatch">
               📞 Call Now — 24/7
             </a>
           </div>

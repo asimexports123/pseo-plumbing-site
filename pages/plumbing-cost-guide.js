@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { PHONE_NUMBER } from '../lib/cities';
 import { Footer } from '../components/Footer';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Author } from '../components/Author';
@@ -115,13 +114,13 @@ export default function PlumbingCostGuide() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">📞 CALL NOW — 24/7</a>
+        <a href="tel:1" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">📞 CALL NOW — 24/7</a>
       </div>
       <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href={`tel:${PHONE_NUMBER}`} className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">📞 Call Now</a>
-          <a href={`tel:${PHONE_NUMBER}`} className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href="tel:1" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">📞 Call Now</a>
+          <a href="tel:1" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
         </nav>
         <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
           <ol className="flex flex-wrap items-center gap-1">
@@ -134,7 +133,7 @@ export default function PlumbingCostGuide() {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Plumbing Cost Guide</h1>
             <p className="speakable-intro text-lg text-white mb-6">Typical national plumbing price ranges, the factors behind your quote, and how to evaluate repair versus replacement.</p>
-            <a href={`tel:${PHONE_NUMBER}`} className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl" aria-label="Call for an upfront plumbing quote">📞 Get an Upfront Quote</a>
+            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl" aria-label="Call for an upfront plumbing quote">📞 Get an Upfront Quote</a>
           </div>
         </section>
         <main className="max-w-4xl mx-auto w-full px-4 py-10">
