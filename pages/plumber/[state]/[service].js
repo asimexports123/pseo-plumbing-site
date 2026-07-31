@@ -247,13 +247,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href="tel:1" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
-          📞 CALL NOW — 24/7
-        </a>
-      </div>
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
           <a href="tel:1" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">
@@ -285,9 +279,10 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
                 ? `Emergency Drain Service in ${stateObj.name}`
                 : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName}`}
             </h1>
-            <p className="text-lg text-white mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-white mb-2 max-w-2xl mx-auto">
               Licensed {serviceObj.name.toLowerCase()} technicians across {stateObj.name}. {stateObj.fact.charAt(0).toUpperCase() + stateObj.fact.slice(1)}.
             </p>
+            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
             <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
               📞 Get Help Now
             </a>

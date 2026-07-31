@@ -210,11 +210,7 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a href="tel:1" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">📞 CALL NOW — 24/7</a>
-      </div>
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
         <div className="bg-blue-950 text-white py-2 px-4 text-center text-xs font-semibold">
           ✅ Licensed & Insured · ⏱️ 60-Min Response · 💰 Upfront Pricing · 📞 24/7 Live Operator
         </div>
@@ -245,9 +241,10 @@ export default function CostPage({ cityName, stateCode, profile, costTable, faqs
               <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-700 text-white">National benchmark ranges</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Plumber Cost in {cityName}, {stateCode}</h1>
-            <p className="speakable-intro text-white text-lg mb-6 max-w-2xl mx-auto">
+            <p className="speakable-intro text-white text-lg mb-2 max-w-2xl mx-auto">
               Educational national plumbing cost benchmarks with {cityName} market context. Your technician provides an upfront written quote after diagnosis.
             </p>
+            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
             <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl">
               📞 Get a Free Quote
             </a>

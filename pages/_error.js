@@ -1,7 +1,14 @@
 import Head from 'next/head';
 
-function Error({ statusCode }) {
-  const title = statusCode === 404 ? 'Page Not Found' : 'Error';
+function Error({ statusCode, err }) {
+  const code = statusCode || 500;
+  const is404 = code === 404;
+  const title = is404 ? 'Page Not Found' : 'Error';
+
+  if (err && !is404) {
+    console.error('[Next.js runtime error]', err);
+  }
+
   return (
     <>
       <Head>
@@ -11,10 +18,10 @@ function Error({ statusCode }) {
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold text-blue-900 mb-4">
-            {statusCode === 404 ? '404 — Page Not Found' : `Error ${statusCode}`}
+            {is404 ? '404 — Page Not Found' : `Error ${code}`}
           </h1>
           <p className="text-gray-600 mb-6">
-            {statusCode === 404
+            {is404
               ? "The page you requested doesn't exist or has been moved."
               : 'Something went wrong. Please try again later.'}
           </p>
@@ -26,16 +33,14 @@ function Error({ statusCode }) {
 }
 
 Error.getInitialProps = ({ res, err, statusCode }) => {
-  // Cache 404 responses at the Vercel edge for one hour so repeated bot scans
-  // of non-existent paths don't keep hitting the origin and generating
-  // Fast Origin Transfer.
-  if (res && statusCode === 404) {
+  const code = statusCode || (res && res.statusCode) || 500;
+  if (res && code === 404) {
     res.setHeader(
       'Cache-Control',
       'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400, must-revalidate'
     );
   }
-  return { statusCode };
+  return { statusCode: code, err: err || null };
 };
 
 export default Error;

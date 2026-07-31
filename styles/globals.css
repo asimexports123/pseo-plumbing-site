@@ -39,3 +39,22 @@ footer a[href="/"]::before {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+/* Mobile sticky CTA pulse to make the call button impossible to miss */
+.mobile-sticky-cta {
+  animation: cta-pulse 2s infinite ease-in-out;
+}
+
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 -4px 12px rgba(220, 38, 38, 0.45); }
+  50% { box-shadow: 0 -6px 22px rgba(220, 38, 38, 0.7); }
+}
+
+.mobile-cta-icon {
+  animation: cta-ring 2s infinite ease-in-out;
+}
+
+@keyframes cta-ring {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}

@@ -31,7 +31,8 @@ export function TrustBar({ cityName }) {
         <span>✅ Licensed & Insured</span>
         <span>⏱️ 60-Min Response Target</span>
         <span>💰 Upfront Pricing — No Surprises</span>
-        <span>📞 Live Operator 24/7</span>
+        <span>� Same-Day Emergency Service</span>
+        <span>�📞 Live Operator 24/7</span>
         {cityName && <span>📍 Serving {cityName}</span>}
       </div>
     </div>
@@ -41,22 +42,9 @@ export function TrustBar({ cityName }) {
 // ── 2. INLINE QUOTE FORM ─────────────────────────────────────
 export function QuoteForm({ cityName, defaultService }) {
   const [service, setService] = useState(defaultService || 'emergency');
-  const [submitted, setSubmitted] = useState(false);
 
   function handleCall() {
     trackEvent('quote_form_call', `${cityName}-${service}`, { city: cityName, service });
-    setSubmitted(true);
-    window.location.href = 'tel:1';
-  }
-
-  if (submitted) {
-    return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl p-6 text-center mb-10">
-        <div className="text-3xl mb-2">📞</div>
-        <p className="font-bold text-green-800 text-lg">Connecting you now...</p>
-        <p className="text-green-700 text-sm mt-1">A live operator will answer immediately.</p>
-      </div>
-    );
   }
 
   return (
@@ -69,19 +57,22 @@ export function QuoteForm({ cityName, defaultService }) {
           id="quote-service"
           value={service}
           onChange={(e) => setService(e.target.value)}
-          className="flex-1 bg-white text-gray-800 rounded-xl px-4 py-3 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
+          className="flex-1 bg-white text-gray-800 rounded-xl px-4 py-3 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-brand-light"
         >
           {SERVICES.map((s) => (
             <option key={s.slug} value={s.slug}>{s.name}</option>
           ))}
         </select>
-        <button
+        <a
+          href="tel:+18449344386"
           onClick={handleCall}
-          className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-xl font-extrabold text-sm transition-colors whitespace-nowrap"
+          data-track="quote-form-call"
+          className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-xl font-extrabold text-sm transition-colors whitespace-nowrap inline-flex items-center justify-center"
           aria-label="Call emergency dispatch"
+          style={{ textDecoration: 'none' }}
         >
           📞 Call Now — Free Quote
-        </button>
+        </a>
       </div>
       <p className="text-white text-xs mt-3 text-center">No obligation. Upfront pricing before any work begins.</p>
     </div>
@@ -135,7 +126,6 @@ export function ExitIntentPopup({ cityName, serviceName }) {
 
   function handleCall() {
     trackEvent('exit_intent_call', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
-    window.location.href = 'tel:1';
   }
 
   function handleDismiss() {
@@ -165,10 +155,10 @@ export function ExitIntentPopup({ cityName, serviceName }) {
         </p>
         <div className="flex flex-col gap-3">
           <a
-            href="tel:1"
+            href="tel:+18449344386"
             onClick={handleCall}
             data-track="exit-intent"
-            className="bg-red-600 hover:bg-red-500 text-white px-6 py-4 rounded-xl font-extrabold text-lg transition-colors"
+            className="bg-brand hover:bg-brand-dark text-white px-6 py-4 rounded-xl font-extrabold text-lg transition-colors"
             aria-label="Call emergency dispatch"
           >
             📞 Connect Now
@@ -196,7 +186,7 @@ export function MidPageCTA({ cityName, serviceName }) {
     trackEvent('mid_cta_call', `${cityName}-${serviceName}`, { city: cityName, service: serviceName });
   }
   return (
-    <div className="bg-red-600 text-white rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="bg-brand text-white rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <p className="font-extrabold text-lg">{serviceName} Help Available Now in {cityName}</p>
         <p className="text-white text-sm">Live operator — no hold music — 60-min response target</p>
@@ -205,7 +195,7 @@ export function MidPageCTA({ cityName, serviceName }) {
         href="tel:1"
         onClick={handleClick}
         data-track="mid-page-cta"
-        className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
+        className="bg-white text-brand hover:bg-brand-pale px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
         aria-label="Call emergency dispatch"
       >
         📞 Connect Now

@@ -10,8 +10,8 @@ import {
 import { getDeterministicLastReviewed } from '../lib/dateUtils';
 import { TrustBar } from './ConversionLayer';
 
-const QuoteForm = dynamic(() => import('./ConversionLayer').then((m) => m.QuoteForm));
 const MidPageCTA = dynamic(() => import('./ConversionLayer').then((m) => m.MidPageCTA));
+const QuoteForm = dynamic(() => import('./ConversionLayer').then((m) => m.QuoteForm));
 const ExitIntentPopup = dynamic(() => import('./ConversionLayer').then((m) => m.ExitIntentPopup));
 const RelatedGuides = dynamic(() => import('./RelatedGuides').then((m) => m.RelatedGuides));
 const RelatedCosts = dynamic(() => import('./RelatedCosts').then((m) => m.RelatedCosts));
@@ -54,8 +54,8 @@ const CTA_TEXT = {
 function CallButton({ label, size = 'lg', className = '', city, service }) {
   const handleClick = useCallback(() => trackCall(label, city, service), [label, city, service]);
   const base = size === 'lg'
-    ? 'inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white rounded-full font-extrabold shadow-xl transition-transform hover:scale-105 px-8 py-5 text-xl'
-    : 'inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold transition-colors px-5 py-2';
+    ? 'inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white rounded-full font-extrabold shadow-xl transition-transform hover:scale-105 px-8 py-5 text-xl'
+    : 'inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white rounded-full font-bold transition-colors px-5 py-2';
   const text = CTA_TEXT[label] || 'Call Now';
   return (
     <a
@@ -593,23 +593,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
-      {/* Sticky mobile CTA — no layout shift (fixed height reserved via pb-16) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
-        <a
-          href="tel:1"
-          onClick={() => trackCall('sticky-mobile', cityName, serviceName)}
-          data-track="sticky-mobile"
-          className="flex items-center justify-center gap-3 h-full w-full"
-          style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
-        >
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.6)', flexShrink: 0 }}>📞</span>
-          <span>CALL NOW — 24/7 Emergency</span>
-        </a>
-      </div>
-
       <ExitIntentPopup cityName={cityName} serviceName={serviceName} />
 
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
 
         {/* Trust Bar */}
         <TrustBar cityName={cityName} />
@@ -640,7 +626,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         {/* Hero — py reduced to py-6 so CTA is above fold on 1366x768 */}
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-5 md:py-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <div className="inline-block bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
               ⚡ Emergency Available — 24/7
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
@@ -658,6 +644,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 : serviceSlug === 'water-heater-repair'
                 ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber on the way fast. Upfront pricing.`
                 : `Licensed plumber on the way fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
+            </p>
+            <p className="text-white text-sm mb-3 max-w-2xl mx-auto">
+              Serving homeowners across the USA with ZIP code–based local plumber matching.
             </p>
             <CallButton label="hero" city={cityName} service={serviceName} />
             <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live operator, 24/7</p>
@@ -680,7 +669,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                 href="tel:1"
                 onClick={() => trackCall('secondary-cta', cityName, serviceName)}
                 data-track="secondary-cta"
-                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
+                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full font-bold text-sm transition-colors no-underline"
               >
                 📞 Call Now
               </a>
@@ -722,7 +711,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
                   <span className={`text-xs font-semibold px-3 py-1 rounded-full ${winterBadge.color}`}>{winterBadge.label}</span>
                   {ls.climate && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-700">{ls.climate} climate</span>}
                   {ls.pop && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-700">Pop. {ls.pop}</span>}
-                  {ls.infraClass && <span className={`text-xs font-semibold px-3 py-1 rounded-full ${ls.infraClass === 'aging' ? 'bg-red-100 text-red-700' : ls.infraClass === 'modern' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-800'}`}>Infrastructure: {ls.infraClass}</span>}
+                  {ls.infraClass && <span className={`text-xs font-semibold px-3 py-1 rounded-full ${ls.infraClass === 'aging' ? 'bg-brand-soft text-brand-muted' : ls.infraClass === 'modern' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-800'}`}>Infrastructure: {ls.infraClass}</span>}
                 </div>
                 <div className="grid md:grid-cols-2 gap-3 text-sm text-blue-800">
                   <div><span className="font-semibold">Most common failure:</span> {ls.dominantFailure}</div>

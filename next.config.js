@@ -60,6 +60,7 @@ const STATE_REWRITES = [
 
 const nextConfig = {
   turbopack: {},
+  allowedDevOrigins: ['127.0.0.1'],
   async rewrites() {
     return [
       ...STATE_REWRITES,
@@ -107,60 +108,57 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      // HTML edge cache for homepage and static pages (24h edge,
-      // 7-day stale-while-revalidate).
+      // HTML pages — short edge cache (60s) to prevent stale deployments.
+      // Cloudflare and Vercel both respect s-maxage. A short TTL ensures
+      // that after a new deployment, stale content clears within 60 seconds.
+      // Vercel's own edge cache (x-vercel-cache) still provides HITs.
       {
         source: '/',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
       {
         source: '/crawl',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
       {
         source: '/states/:state',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
-      // HTML edge cache for fallback: 'blocking' dynamic routes (24h edge,
-      // 7-day stale-while-revalidate). No revalidate is set in getStaticProps,
-      // so these are pure edge cache responses and do not trigger ISR writes.
-      // stale-while-revalidate allows serving stale content during edge
-      // revalidation, reducing origin hits.
       {
         source: '/plumber-:slug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
       {
         source: '/areas/:citySlug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
       {
         source: '/areas/:citySlug/:zip/:service',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
-      // Sitemap XML public files (24h edge, 7-day stale-while-revalidate).
+      // Sitemap XML — short edge cache.
       {
         source: '/sitemap.xml',
         headers: [
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
       {
         source: '/sitemap-:type/:file*.xml',
         headers: [
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, s-maxage=60, stale-while-revalidate=60' },
         ],
       },
     ];

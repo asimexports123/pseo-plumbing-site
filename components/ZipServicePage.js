@@ -163,25 +163,11 @@ export function ZipServicePage({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </Head>
 
-      {/* Sticky mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
-        <a
-          href="tel:1"
-          data-track="zip-sticky-mobile"
-          className="flex items-center justify-center gap-3 h-full w-full"
-          style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
-          aria-label="Call emergency dispatch"
-        >
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.6)', flexShrink: 0 }}>📞</span>
-          <span>CALL NOW — 24/7 Emergency</span>
-        </a>
-      </div>
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" data-track="zip-nav" className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
+          <a href="tel:1" data-track="zip-nav" className="bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full font-bold transition-colors no-underline" aria-label="Call emergency dispatch">
             <span aria-hidden="true">📞</span> Call Now
           </a>
         </nav>
@@ -208,16 +194,22 @@ export function ZipServicePage({
         {/* Hero */}
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-10 text-center">
           <div className="max-w-3xl mx-auto">
+            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+              ⚡ 24/7 Emergency Available
+            </div>
             <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
               {serviceName} in {cityName}, {stateCode} {zip}
             </h1>
             <p className="text-lg text-blue-50 mb-2">
               Licensed plumbers serving the {zip} area of {cityName}. Available 24/7 with transparent pricing from participating providers.
             </p>
-            <p className="text-sm text-blue-100 mb-6">
+            <p className="text-sm text-blue-100 mb-5">
               ZIP Code {zip} is part of {cityName}, {stateName}. We connect homeowners in this area with local plumbing professionals.
             </p>
-            <a href="tel:1" data-track="zip-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+            <p className="text-white text-sm mb-5 max-w-2xl mx-auto">
+              Serving homeowners across the USA with ZIP code–based local plumber matching.
+            </p>
+            <a href="tel:1" data-track="zip-hero" className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>
           </div>

@@ -137,21 +137,7 @@ export default function Home({ totalPlaces }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       </Head>
 
-      {/* Sticky mobile CTA — height fixed to prevent CLS */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-        <a
-          href="tel:1"
-          onClick={() => trackCall('sticky-mobile-home')}
-          data-track="sticky-mobile-home"
-          className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full"
-          aria-label="Call emergency dispatch"
-        >
-          <span>📞</span>
-          <span>CALL NOW — 24/7</span>
-        </a>
-      </div>
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
 
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
@@ -160,7 +146,7 @@ export default function Home({ totalPlaces }) {
             href="tel:1"
             onClick={() => trackCall('nav-desktop-home')}
             data-track="nav-desktop-home"
-            className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold transition-colors"
+            className="hidden md:flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full font-bold transition-colors"
             aria-label="Call emergency dispatch"
           >
             📞 Call Now
@@ -169,7 +155,7 @@ export default function Home({ totalPlaces }) {
             href="tel:1"
             onClick={() => trackCall('nav-mobile-home')}
             data-track="nav-mobile-home"
-            className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm"
+            className="md:hidden bg-brand text-white px-4 py-2 rounded-full font-bold text-sm"
             aria-label="Call emergency dispatch"
           >
             Call Now
@@ -181,7 +167,7 @@ export default function Home({ totalPlaces }) {
         {/* ── HERO ──────────────────────────────────────────────── */}
         <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-14 text-center">
           <div className="max-w-3xl mx-auto">
-            <div className="inline-block bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
+            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
               ⚡ 24/7 Emergency Dispatch — Live Operators Standing By
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
@@ -190,14 +176,14 @@ export default function Home({ totalPlaces }) {
             <p className="speakable-intro text-xl text-white mb-2 max-w-2xl mx-auto">
               Burst pipe? Flooding? No hot water? Get a licensed local plumber to your door in under 60 minutes — no hold queues, no automated menus.
             </p>
-            <p className="text-white text-base mb-8 max-w-xl mx-auto">
-              Licensed &amp; insured technicians. Upfront pricing before any work begins.
+            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">
+              Serving homeowners across the USA with ZIP code–based local plumber matching.
             </p>
             <a
               href="tel:1"
               onClick={() => trackCall('hero-home')}
               data-track="hero-home"
-              className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105"
+              className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105"
               aria-label="Call emergency dispatch"
             >
               📞 Get Emergency Help Now
@@ -282,17 +268,17 @@ export default function Home({ totalPlaces }) {
                 <Link
                   key={s.slug}
                   href={`/${buildSlug(cityToSlug(s.city), s.slug)}`}
-                  className="block bg-white border border-gray-200 rounded-2xl p-5 hover:border-blue-500 hover:shadow-md transition-all no-underline group"
+                  className="block bg-white border border-gray-200 rounded-2xl p-5 hover:border-brand hover:shadow-md transition-all no-underline group"
                 >
                   <p className="text-3xl mb-3">{s.icon}</p>
-                  <p className="font-extrabold text-blue-900 text-base mb-2 group-hover:text-blue-700">{s.name}</p>
+                  <p className="font-extrabold text-blue-900 text-base mb-2 group-hover:text-brand">{s.name}</p>
                   <p className="text-gray-500 text-xs leading-relaxed mb-3">{s.urgency}</p>
-                  <span className="text-blue-600 text-xs font-bold group-hover:underline">Find local service →</span>
+                  <span className="text-brand text-xs font-bold group-hover:underline">Find local service →</span>
                 </Link>
               ))}
             </div>
             {/* Mid-page CTA — after service grid */}
-            <div className="bg-red-600 text-white rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="bg-brand text-white rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="font-extrabold text-lg">Need a Plumber Right Now?</p>
                 <p className="text-white text-sm">Live operator — 60-min response target — transparent pricing from participating providers</p>
@@ -301,7 +287,7 @@ export default function Home({ totalPlaces }) {
                 href="tel:1"
                 onClick={() => trackCall('mid-cta-home')}
                 data-track="mid-cta-home"
-                className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
+                className="bg-white text-brand hover:bg-brand-pale px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors"
               >
                 📞 Call Now
               </a>
@@ -321,9 +307,9 @@ export default function Home({ totalPlaces }) {
                 <Link
                   key={name}
                   href={`/${buildSlug(cityToSlug(name), 'emergency')}`}
-                  className="p-3 bg-red-50 border border-red-200 rounded-lg hover:border-red-500 hover:bg-red-100 text-center no-underline transition-all"
+                  className="p-3 bg-brand-pale border border-brand-soft rounded-lg hover:border-brand hover:bg-white text-center no-underline transition-all"
                 >
-                  <p className="font-semibold text-red-800 text-sm">{name}</p>
+                  <p className="font-semibold text-brand-text text-sm">{name}</p>
                   <p className="text-white text-xs">{city.stateCode} · Emergency</p>
                 </Link>
               );
@@ -520,7 +506,7 @@ export default function Home({ totalPlaces }) {
                 href="tel:1"
                 onClick={() => trackCall('bottom-cta-home')}
                 data-track="bottom-cta-home"
-                className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-colors"
+                className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-colors"
               >
                 📞 Call Today — 24/7
               </a>

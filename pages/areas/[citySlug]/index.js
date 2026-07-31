@@ -65,21 +65,7 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteSchema()) }} />
       </Head>
 
-      {/* Sticky mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden" style={{ height: 64, background: '#dc2626' }}>
-        <a
-          href="tel:1"
-          data-track="zip-dir-sticky-mobile"
-          className="flex items-center justify-center gap-3 h-full w-full"
-          style={{ color: '#ffffff', fontWeight: 900, fontSize: '1.2rem', letterSpacing: '0.01em', textDecoration: 'none' }}
-          aria-label="Call emergency dispatch"
-        >
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(255,255,255,0.6)', flexShrink: 0 }}>📞</span>
-          <span>CALL NOW — 24/7 Emergency</span>
-        </a>
-      </div>
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
         {/* Header */}
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
@@ -112,9 +98,10 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
             <p className="text-lg text-blue-50 mb-2">
               {zipCount} ZIP Code areas in {cityName}, {stateName}
             </p>
-            <p className="text-sm text-blue-100 mb-6">
+            <p className="text-sm text-blue-100 mb-2">
               Select your ZIP Code to find plumbing services in your area of {cityName}.
             </p>
+            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
             <a href="tel:1" data-track="zip-dir-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
               <span aria-hidden="true">📞</span> Get Emergency Help
             </a>

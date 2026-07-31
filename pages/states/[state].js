@@ -225,21 +225,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
 
 
-      {/* Sticky mobile CTA */}
-
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-red-600 md:hidden" style={{ height: 64 }}>
-
-        <a href="tel:1" className="flex items-center justify-center gap-3 h-full text-white font-extrabold text-xl w-full" aria-label="Call emergency dispatch">
-
-          📞 CALL NOW — 24/7
-
-        </a>
-
-      </div>
-
-
-
-      <div className="font-sans bg-white min-h-screen flex flex-col pb-16 md:pb-0">
+      <div className="font-sans bg-white min-h-screen flex flex-col">
 
 
 
@@ -249,13 +235,13 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
 
-          <a href="tel:1" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">
+          <a href="tel:1" className="hidden md:flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full font-bold" aria-label="Call emergency dispatch">
 
             📞 Call Now
 
           </a>
 
-          <a href="tel:1" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href="tel:1" className="md:hidden bg-brand text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
 
         </nav>
 
@@ -305,7 +291,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
           <div className="max-w-3xl mx-auto">
 
-            <div className="inline-block bg-red-600 text-sm font-bold px-3 py-1 rounded-full mb-4">⚡ 24/7 Emergency Available in {stateObj.name}</div>
+            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-4">⚡ 24/7 Emergency Available in {stateObj.name}</div>
 
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
 
@@ -319,7 +305,13 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
             </p>
 
-            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
+            <p className="text-white text-sm mb-5 max-w-2xl mx-auto">
+
+              Serving homeowners across the USA with ZIP code–based local plumber matching.
+
+            </p>
+
+            <a href="tel:1" className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105" aria-label="Call emergency dispatch">
 
               📞 Get Emergency Help
 
@@ -489,7 +481,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
           {/* Mid-page CTA */}
 
-          <div className="bg-red-600 text-white rounded-2xl p-5 mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-brand text-white rounded-2xl p-5 mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
 
             <div>
 
@@ -499,7 +491,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
             </div>
 
-            <a href="tel:1" className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors" aria-label="Call emergency dispatch">
+            <a href="tel:1" className="bg-white text-brand hover:bg-brand-pale px-6 py-3 rounded-full font-extrabold whitespace-nowrap transition-colors" aria-label="Call emergency dispatch">
 
               📞 Call Now
 
@@ -613,7 +605,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
               <p className="text-blue-800 mb-3">We&apos;re expanding coverage in {stateObj.name}. Call us to check availability in your area.</p>
 
-              <a href="tel:1" className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full font-bold" aria-label="Call emergency dispatch">
+              <a href="tel:1" className="inline-flex items-center gap-2 bg-brand text-white px-6 py-3 rounded-full font-bold" aria-label="Call emergency dispatch">
 
                 📞 Check Availability
 
@@ -720,7 +712,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
             </p>
 
-            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
+            <a href="tel:1" className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-xl font-extrabold transition-colors" aria-label="Call emergency dispatch">
 
               📞 Call Now — 24/7
 
