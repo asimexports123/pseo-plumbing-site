@@ -58,12 +58,21 @@ const STATE_REWRITES = [
   { source: '/plumber-maine',         destination: '/states/maine'         },
 ];
 
+// Client-side Next.js data requests use the `as` path (/plumber-{state})
+// for the _next/data JSON fetch. These rewrites mirror STATE_REWRITES so
+// those data requests resolve to the correct /states/{state} data JSON.
+const DATA_STATE_REWRITES = STATE_REWRITES.map(({ source, destination }) => ({
+  source: `/_next/data/:buildId${source}.json`,
+  destination: `/_next/data/:buildId${destination}.json`,
+}));
+
 const nextConfig = {
   turbopack: {},
   allowedDevOrigins: ['127.0.0.1'],
   async rewrites() {
     return [
       ...STATE_REWRITES,
+      ...DATA_STATE_REWRITES,
     ];
   },
 
