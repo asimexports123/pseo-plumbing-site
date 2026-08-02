@@ -52,7 +52,7 @@ export function CrawlLinks({
     recommendations.push({
       title: `More in ${stateCode}`,
       links: [
-        { href: `/states/${stateSlug}`, as: `/${stateHubSlug}`, label: `Plumbers in ${stateCode}` },
+        { href: { pathname: '/states/[state]', query: { state: stateSlug } }, as: `/${stateHubSlug}`, label: `Plumbers in ${stateCode}` },
         ...(getCrawlHubPath(stateCode) ? [{ href: getCrawlHubPath(stateCode), label: `All cities in ${stateCode}` }] : []),
       ],
     });
@@ -147,7 +147,7 @@ export function CrawlLinks({
             <h3 className="text-sm font-semibold text-gray-700 mb-2">{rec.title}</h3>
             <ul className="space-y-1">
               {rec.links.map((l) => (
-                <li key={l.href}>
+                <li key={l.as || (typeof l.href === 'string' ? l.href : l.href.pathname)}>
                   <Link href={l.href} as={l.as} className="text-sm text-blue-700 hover:underline no-underline">
                     {l.label}
                   </Link>

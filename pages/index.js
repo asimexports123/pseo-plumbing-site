@@ -459,7 +459,7 @@ export default function Home({ totalPlaces }) {
                   {STATES.map((s) => (
                     <Link
                       key={s.code}
-                      href={`/states/${s.slug}`}
+                      href={{ pathname: '/states/[state]', query: { state: s.slug } }}
                       as={`/plumber-${s.slug}`}
                       className="group flex min-h-[56px] items-center justify-between gap-2 rounded-xl border border-transparent bg-white/[0.07] px-4 py-3.5 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-blue-300/40 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
                       title={`Emergency plumber in ${s.name}`}
@@ -596,7 +596,7 @@ export default function Home({ totalPlaces }) {
                     const s = STATES.find((st) => st.slug === slug);
                     return s ? (
                       <li key={slug}>
-                        <Link href={`/states/${slug}`} as={`/plumber-${slug}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Emergency plumber in {s.name}</Link>
+                        <Link href={{ pathname: '/states/[state]', query: { state: slug } }} as={`/plumber-${slug}`} className="text-gray-300 hover:text-white underline underline-offset-4 hover:no-underline transition-colors block">Emergency plumber in {s.name}</Link>
                       </li>
                     ) : null;
                   })}

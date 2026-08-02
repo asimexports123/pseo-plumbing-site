@@ -81,7 +81,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
       title: `More in ${stateCode}`,
 
-      links: [{ href: `/states/${stateSlug}`, as: `/plumber-${stateSlug}`, label: `Emergency plumbers in ${stateCode}` }],
+      links: [{ href: { pathname: '/states/[state]', query: { state: stateSlug } }, as: `/plumber-${stateSlug}`, label: `Emergency plumbers in ${stateCode}` }],
 
     });
 
@@ -155,7 +155,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
               {rec.links.map((l) => (
 
-                <li key={l.href}>
+                <li key={l.as || (typeof l.href === 'string' ? l.href : l.href.pathname)}>
 
                   <Link href={l.href} as={l.as} className="text-sm text-blue-700 hover:underline no-underline">
 

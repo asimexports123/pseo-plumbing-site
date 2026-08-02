@@ -198,7 +198,7 @@ export default function FAQ() {
             <h2 className="text-lg font-bold text-blue-900 mb-4">Find a Plumber by State</h2>
             <div className="flex flex-wrap gap-2">
               {STATES.slice(0, 16).map((s) => (
-                <Link key={s.slug} href={`/states/${s.slug}`} as={`/plumber-${s.slug}`}
+                <Link key={s.slug} href={{ pathname: '/states/[state]', query: { state: s.slug } }} as={`/plumber-${s.slug}`}
                   className="px-3 py-1 border border-gray-200 rounded-full text-sm text-blue-700 hover:border-blue-400 hover:bg-blue-50 no-underline transition-colors"
                   title={`Emergency plumber in ${s.name}`}>
                   Emergency plumber in {s.name}

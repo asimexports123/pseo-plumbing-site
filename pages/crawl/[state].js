@@ -43,7 +43,7 @@ export default function StateCrawl({ stateObj, seedCities, additionalGroups, tot
           <p className="text-gray-600 mb-8">
             {totalCount.toLocaleString()} cities and towns in {stateObj.name} with YoHomeFix emergency plumber coverage. 
             <Link
-              href={`/states/${stateObj.slug}`}
+              href={{ pathname: '/states/[state]', query: { state: stateObj.slug } }}
               as={`/plumber-${stateObj.slug}`}
               className="text-blue-700 hover:underline no-underline">View {stateObj.name} state page →</Link>
           </p>

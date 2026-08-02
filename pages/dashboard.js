@@ -374,7 +374,7 @@ export default function Dashboard({ engineReport, generatedCount }) {
               {STATES.map((s) => (
                 <Link
                   key={s.slug}
-                  href={`/states/${s.slug}`}
+                  href={{ pathname: '/states/[state]', query: { state: s.slug } }}
                   as={`/plumber-${s.slug}`}
                   className="p-3 border border-gray-200 rounded-lg hover:border-blue-400 text-sm no-underline transition-colors"
                 >

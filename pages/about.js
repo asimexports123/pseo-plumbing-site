@@ -197,7 +197,7 @@ export default function About() {
               <h2 className="text-xl font-bold text-blue-900 mb-3">States We Cover</h2>
               <div className="flex flex-wrap gap-2 mt-3">
                 {STATES.map((s) => (
-                  <Link key={s.slug} href={`/states/${s.slug}`} as={`/plumber-${s.slug}`}
+                  <Link key={s.slug} href={{ pathname: '/states/[state]', query: { state: s.slug } }} as={`/plumber-${s.slug}`}
                     className="px-3 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-full text-sm no-underline transition-colors"
                     title={`Emergency plumber in ${s.name}`}>
                     Emergency plumber in {s.name}

@@ -253,7 +253,7 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
               {STATES.map((s) => (
                 <Link key={s.code}
-                  href={`/states/${s.slug}`}
+                  href={{ pathname: '/states/[state]', query: { state: s.slug } }}
                   as={`/plumber-${s.slug}`}
                   className="px-3 py-2 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center">
                   {s.name}

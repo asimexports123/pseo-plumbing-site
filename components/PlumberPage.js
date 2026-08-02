@@ -930,7 +930,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
             <div className="mb-4 bg-gray-50 border border-gray-200 rounded-xl p-5">
               <p className="text-gray-700 text-sm">
                 Looking for plumbers across {stateCode}?{' '}
-                <Link href={`/states/${getStateSlug(stateCode)}`} as={`/${stateHubSlug}`} className="text-blue-700 font-semibold hover:underline">
+                <Link href={{ pathname: '/states/[state]', query: { state: getStateSlug(stateCode) } }} as={`/${stateHubSlug}`} className="text-blue-700 font-semibold hover:underline">
                   View all {stateCode} emergency plumbers and services
                 </Link>
               </p>

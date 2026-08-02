@@ -270,7 +270,7 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
               <li key={b.url} className="flex items-center gap-1">
                 {i > 0 && <span className="text-gray-300">›</span>}
                 {i < breadcrumbs.length - 1
-                  ? <Link href={isStateHub ? `/states/${stateObj.slug}` : linkPath} as={isStateHub ? linkPath : undefined} className="text-blue-600 hover:underline no-underline">{b.name}</Link>
+                  ? <Link href={isStateHub ? { pathname: '/states/[state]', query: { state: stateObj.slug } } : linkPath} as={isStateHub ? linkPath : undefined} className="text-blue-600 hover:underline no-underline">{b.name}</Link>
                   : <span className="text-gray-700 font-medium">{b.name}</span>}
               </li>
               );
