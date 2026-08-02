@@ -59,11 +59,11 @@ const STATE_REWRITES = [
 ];
 
 // Client-side Next.js data requests use the `as` path (/plumber-{state})
-// for the _next/data JSON fetch. These rewrites mirror STATE_REWRITES so
-// those data requests resolve to the correct /states/{state} data JSON.
+// for the _next/data JSON fetch. Rewriting to the page route (/states/{state})
+// lets Next.js serve the correct data JSON for that route.
 const DATA_STATE_REWRITES = STATE_REWRITES.map(({ source, destination }) => ({
   source: `/_next/data/:buildId${source}.json`,
-  destination: `/_next/data/:buildId${destination}.json`,
+  destination,
 }));
 
 const nextConfig = {
