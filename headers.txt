@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Date: Sun, 26 Jul 2026 16:11:16 GMT
+Content-Type: text/xml
+Transfer-Encoding: chunked
+Connection: keep-alive
+Age: 46
+Cache-Control: public
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=fUY8pRSSV1j2yBaD5G8aJM6JeIlkEc4bUXvLbNCGxzq5nMQQddvRAeRLNt%2FOsu3efAyvdzSP3DA9tM3v1gcbRM8b0WpRCKwYnJRArDSs5sLE5TFpQRhW8%2FkI8iYlinjx"}]}
+Server: cloudflare
+strict-transport-security: max-age=63072000
+x-matched-path: /sitemap-states/[state]
+x-vercel-cache: HIT
+x-vercel-id: bom1::iad1::vr7gq-1785082276032-87af2b32839d
+cf-cache-status: DYNAMIC
+vary: accept-encoding
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+CF-RAY: a214ade0ff6284b3-BOM
+alt-svc: h3=":443"; ma=86400
+

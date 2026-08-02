@@ -1,0 +1,53 @@
+﻿{
+  "result": {
+    "description": "Block Meta, Anthropic, Amazon, Ahrefs, Semrush, GPT, CCBot crawlers at Cloudflare edge",
+    "id": "00c67dd36c3a4e49b6d19bc096e27ea1",
+    "kind": "zone",
+    "last_updated": "2026-07-30T22:48:27.83312Z",
+    "name": "Block unwanted bots",
+    "phase": "http_request_firewall_custom",
+    "rules": [
+      {
+        "action": "block",
+        "description": "Block unwanted crawler bots by User-Agent",
+        "enabled": true,
+        "expression": "(http.user_agent contains \"meta-webindexer\") or (http.user_agent contains \"facebookexternalhit\") or (http.user_agent contains \"facebot\") or (http.user_agent contains \"Claude-SearchBot\") or (http.user_agent contains \"ClaudeBot\") or (http.user_agent contains \"Claude-Web\") or (http.user_agent contains \"anthropic-ai\") or (http.user_agent contains \"Amzn-SearchBot\") or (http.user_agent contains \"AhrefsBot\") or (http.user_agent contains \"SemrushBot\") or (http.user_agent contains \"GPTBot\") or (http.user_agent contains \"CCBot\")",
+        "id": "d1db6549498347c4b97c15e29e591369",
+        "last_updated": "2026-07-29T05:04:17.399056Z",
+        "ref": "d1db6549498347c4b97c15e29e591369",
+        "version": "1"
+      },
+      {
+        "action": "block",
+        "description": "Block proactive AI, scrapers, and HTTP libraries",
+        "enabled": true,
+        "expression": "(\n          (http.user_agent contains \"GPTBot\") or\n          (http.user_agent contains \"ClaudeBot\") or\n          (http.user_agent contains \"Claude-Web\") or\n          (http.user_agent contains \"Anthropic-AI\") or\n          (http.user_agent contains \"Bytespider\") or\n          (http.user_agent contains \"Applebot\") or\n          (http.user_agent contains \"Amazonbot\") or\n          (http.user_agent contains \"Google-Extended\") or\n          (http.user_agent contains \"meta-externalagent\") or\n          (http.user_agent contains \"meta-webindexer\") or\n          (http.user_agent contains \"facebookexternalhit\") or\n          (http.user_agent contains \"AhrefsBot\") or\n          (http.user_agent contains \"SemrushBot\") or\n          (http.user_agent contains \"DotBot\") or\n          (http.user_agent contains \"MJ12bot\") or\n          (http.user_agent contains \"YandexBot\") or\n          (http.user_agent contains \"Baiduspider\") or\n          (http.user_agent contains \"curl\") or\n          (http.user_agent contains \"python-requests\") or\n          (http.user_agent contains \"Scrapy\") or\n          (http.user_agent eq \"\")\n        )",
+        "id": "03da8a6a277841b8bccdf81ab9c853ce",
+        "last_updated": "2026-07-30T22:47:09.667082Z",
+        "ref": "03da8a6a277841b8bccdf81ab9c853ce",
+        "version": "2"
+      },
+      {
+        "action": "skip",
+        "action_parameters": {
+          "ruleset": "current"
+        },
+        "description": "Allow search and AI fetchers",
+        "enabled": true,
+        "expression": "(\n                  (http.user_agent contains \"Googlebot\") or\n                  (http.user_agent contains \"GoogleOther\") or\n                  (http.user_agent contains \"Bingbot\") or\n                  (http.user_agent contains \"ChatGPT-User\") or\n                  (http.user_agent contains \"PerplexityBot\") or\n                  (http.user_agent contains \"Claude-SearchBot\")\n                )",
+        "id": "291f32a1684d4ba18307fcf038515bfe",
+        "last_updated": "2026-07-30T22:48:27.83312Z",
+        "logging": {
+          "enabled": true
+        },
+        "ref": "291f32a1684d4ba18307fcf038515bfe",
+        "version": "2"
+      }
+    ],
+    "source": "firewall_custom",
+    "version": "5"
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}

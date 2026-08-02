@@ -4,6 +4,8 @@ import { STATES, SEED_CITIES, cityToSlug, buildSlug } from '../lib/cities';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
+import { Header } from '../components/Header';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { buildPageSchema } from '../lib/schemas';
 
 const FAQS = [
@@ -81,7 +83,7 @@ const FAQS = [
   },
   {
     q: 'What if I am not satisfied with the service?',
-    a: 'Service quality is the responsibility of the plumber performing the work. We track complaints and take action when standards are not met. For disputes, contact the plumber directly and report the issue to us at hello@yohomefix.com.',
+    a: 'Service quality is the responsibility of the plumber performing the work. We track complaints and take action when standards are not met. For disputes, contact the plumber directly and report the issue to us at yohomefix@gmail.com.',
   },
 ];
 
@@ -138,22 +140,9 @@ export default function FAQ() {
 
       <div className="font-sans bg-white min-h-screen flex flex-col">
 
-        {/* Header */}
-        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">
-            📞 Call Now
-          </a>
-        </nav>
+        <Header />
 
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
-          <ol className="flex items-center gap-1">
-            <li><Link href="/" className="text-blue-600 hover:underline no-underline">Home</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><span className="text-gray-700 font-medium">FAQ</span></li>
-          </ol>
-        </nav>
+        <Breadcrumbs separatorAsListItem olClassName="flex items-center gap-1" items={[{ name: 'Home', url: '/' }, { name: 'FAQ' }]} />
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
           <h1 className="text-3xl font-extrabold text-blue-900 mb-2">Frequently Asked Questions</h1>
@@ -209,7 +198,7 @@ export default function FAQ() {
             <h2 className="text-lg font-bold text-blue-900 mb-4">Find a Plumber by State</h2>
             <div className="flex flex-wrap gap-2">
               {STATES.slice(0, 16).map((s) => (
-                <Link key={s.slug} href={`/plumber-${s.slug}`}
+                <Link key={s.slug} href={`/states/${s.slug}`} as={`/plumber-${s.slug}`}
                   className="px-3 py-1 border border-gray-200 rounded-full text-sm text-blue-700 hover:border-blue-400 hover:bg-blue-50 no-underline transition-colors"
                   title={`Emergency plumber in ${s.name}`}>
                   Emergency plumber in {s.name}

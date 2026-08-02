@@ -75,11 +75,13 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
   if (stateCode) {
 
+    const stateSlug = getStateSlug(stateCode);
+
     recommendations.push({
 
       title: `More in ${stateCode}`,
 
-      links: [{ href: `/plumber-${getStateSlug(stateCode)}`, label: `Emergency plumbers in ${stateCode}` }],
+      links: [{ href: `/states/${stateSlug}`, as: `/plumber-${stateSlug}`, label: `Emergency plumbers in ${stateCode}` }],
 
     });
 
@@ -155,7 +157,7 @@ export function InternalLinks({ cityName, stateCode, serviceSlug, nearbyCities =
 
                 <li key={l.href}>
 
-                  <Link href={l.href} className="text-sm text-blue-700 hover:underline no-underline">
+                  <Link href={l.href} as={l.as} className="text-sm text-blue-700 hover:underline no-underline">
 
                     {l.label}
 

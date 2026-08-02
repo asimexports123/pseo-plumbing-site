@@ -1,0 +1,8 @@
+﻿C:\Windows\System32\curl.exe : curl: option --http2: the installed libcurl version does not support this
+At line:1 char:1
++ C:\Windows\System32\curl.exe -sS -D - -o NUL --http2 -A "Mozilla/5.0  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (curl: option --...ot support this:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+curl: try 'curl --help' for more information

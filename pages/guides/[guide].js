@@ -115,9 +115,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const guide = GUIDES[params.guide];
-  if (!guide) return { notFound: true };
-  return { props: { guide, slug: params.guide } };
+  try {
+    const guide = GUIDES[params.guide];
+    if (!guide) return { notFound: true };
+    return { props: { guide, slug: params.guide } };
+  } catch (err) {
+    console.error(`[guides/[guide]] getStaticProps error for ${params.guide}:`, err.message);
+    return { notFound: true };
+  }
 }
 
 export default function GuidePage({ guide, slug }) {
@@ -366,7 +371,8 @@ export default function GuidePage({ guide, slug }) {
               {STATES.map((s) => (
                 <Link
                   key={s.slug}
-                  href={`/plumber-${s.slug}`}
+                  href={`/states/${s.slug}`}
+                  as={`/plumber-${s.slug}`}
                   className="px-3 py-1 border border-gray-200 rounded-full text-sm text-blue-700 hover:border-blue-400 hover:bg-blue-50 transition-colors no-underline"
                   title={`Emergency plumber in ${s.name}`}
                 >

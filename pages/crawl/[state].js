@@ -42,7 +42,10 @@ export default function StateCrawl({ stateObj, seedCities, additionalGroups, tot
           <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-2">Crawl Index: {stateObj.name}</h1>
           <p className="text-gray-600 mb-8">
             {totalCount.toLocaleString()} cities and towns in {stateObj.name} with YoHomeFix emergency plumber coverage. 
-            <Link href={`/plumber-${stateObj.slug}`} className="text-blue-700 hover:underline no-underline">View {stateObj.name} state page →</Link>
+            <Link
+              href={`/states/${stateObj.slug}`}
+              as={`/plumber-${stateObj.slug}`}
+              className="text-blue-700 hover:underline no-underline">View {stateObj.name} state page →</Link>
           </p>
 
           {majorCities.length > 0 && (
@@ -103,31 +106,33 @@ export default function StateCrawl({ stateObj, seedCities, additionalGroups, tot
 }
 
 export async function getStaticPaths() {
-  return {
-    paths: STATES.map((s) => ({ params: { state: s.slug } })),
-    fallback: false,
-  };
+  return { paths: [], fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
-  const stateObj = STATES.find((s) => s.slug === params.state);
-  if (!stateObj) return { notFound: true };
+  try {
+    const stateObj = STATES.find((s) => s.slug === params.state);
+    if (!stateObj) return { notFound: true };
 
-  const seedCities = getSeedCitiesForState(stateObj.code).map((c) => ({
-    name: c.name,
-    stateCode: c.stateCode,
-    slug: c.slug || cityToSlug(c.name),
-  }));
-  const additional = getAdditionalPlacesForState(stateObj.code);
-  const additionalGroups = groupPlacesByLetter(additional);
-  const totalCount = seedCities.length + additional.length;
+    const seedCities = getSeedCitiesForState(stateObj.code).map((c) => ({
+      name: c.name,
+      stateCode: c.stateCode,
+      slug: c.slug || cityToSlug(c.name),
+    }));
+    const additional = getAdditionalPlacesForState(stateObj.code);
+    const additionalGroups = groupPlacesByLetter(additional);
+    const totalCount = seedCities.length + additional.length;
 
-  return {
-    props: {
-      stateObj,
-      seedCities,
-      additionalGroups,
-      totalCount,
-    },
-  };
+    return {
+      props: {
+        stateObj,
+        seedCities,
+        additionalGroups,
+        totalCount,
+      },
+    };
+  } catch (err) {
+    console.error(`[crawl/[state]] getStaticProps error for ${params.state}:`, err.message);
+    return { notFound: true };
+  }
 }

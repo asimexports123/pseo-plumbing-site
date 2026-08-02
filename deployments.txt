@@ -1,0 +1,75 @@
+﻿node.exe : Vercel CLI 54.14.2 (Node.js 24.16.0)
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Vercel CLI 54.14.2 (Node.js 24.16.0):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Retrieving projectΓÇª
+Fetching deployments in asim-s-projects9
+> Deployments for asim-s-projects9/pseo-plumbing-site-main [435ms]
+
+  Age     Project                                      Deployment                                                                Status      Environment     
+Duration     Username                
+  6h      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-7lnw1wndf-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+31s          asimexports123-7875     
+  6h      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-dihshp91j-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+30s          asimexports123-7875     
+  23h     asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-oyy502dwv-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  23h     asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-4eaegvwdd-asim-s-projects9.vercel.app     ΓùÅ Error     Production      
+8s           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-nl36bmr68-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-95ez32e9q-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+5m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-e1edfkoal-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-p6hquxnl7-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-2ngt1iwjn-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-k0exkn1yw-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-85cuq23xh-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-imnjdfa5f-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-dtr4awczk-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-93f9sbk6r-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-ntqp2epby-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-2214iy3z3-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  1d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-2j64n9st8-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  2d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-662co3um6-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+3m           asimexports123-7875     
+  2d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-o8jbua0bk-asim-s-projects9.vercel.app     ΓùÅ Error     Production      
+6s           asimexports123-7875     
+  2d      asim-s-projects9/pseo-plumbing-site-main     https://pseo-plumbing-site-main-285azq28e-asim-s-projects9.vercel.app     ΓùÅ Ready     Production      
+6m           asimexports123-7875     
+
+https://pseo-plumbing-site-main-7lnw1wndf-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-dihshp91j-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-oyy502dwv-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-4eaegvwdd-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-nl36bmr68-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-95ez32e9q-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-e1edfkoal-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-p6hquxnl7-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-2ngt1iwjn-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-k0exkn1yw-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-85cuq23xh-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-imnjdfa5f-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-dtr4awczk-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-93f9sbk6r-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-ntqp2epby-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-2214iy3z3-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-2j64n9st8-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-662co3um6-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-o8jbua0bk-asim-s-projects9.vercel.app
+https://pseo-plumbing-site-main-285azq28e-asim-s-projects9.vercel.app
+> To display the next page, run `vercel ls --next 1785359183275`

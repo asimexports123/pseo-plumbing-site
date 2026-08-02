@@ -4,6 +4,8 @@ import { PHONE_NUMBER } from '../../lib/cities';
 import { buildPageSchema } from '../../lib/schemas';
 import { getAllAuthors, getAuthor } from '../../lib/authors';
 import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { buildPersonSchema } from '../../lib/schemas';
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
@@ -16,8 +18,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const author = getAuthor(params.slug);
-  return { props: { author } };
+  try {
+    const author = getAuthor(params.slug);
+    if (!author) return { notFound: true };
+    return { props: { author } };
+  } catch (err) {
+    console.error(`[authors/[slug]] getStaticProps error for ${params.slug}:`, err.message);
+    return { notFound: true };
+  }
 }
 
 export default function AuthorPage({ author }) {
@@ -57,20 +65,9 @@ export default function AuthorPage({ author }) {
       </Head>
 
       <div className="font-sans bg-white min-h-screen flex flex-col">
-        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
-        </nav>
+        <Header />
 
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
-          <ol className="flex flex-wrap items-center gap-1">
-            <li><Link href="/" className="text-blue-600 hover:underline no-underline">Home</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><Link href="/authors" className="text-blue-600 hover:underline no-underline">Authors</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><span className="text-gray-700 font-medium">{author.name}</span></li>
-          </ol>
-        </nav>
+        <Breadcrumbs separatorAsListItem items={[{ name: 'Home', url: '/' }, { name: 'Authors', url: '/authors' }, { name: author.name }]} />
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
           <h1 className="text-3xl font-extrabold text-blue-900 mb-2">{author.name}</h1>

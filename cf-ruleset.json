@@ -1,0 +1,121 @@
+﻿{
+  "result": {
+    "description": "",
+    "id": "8360f525de25463086f7c6c74072939e",
+    "kind": "zone",
+    "last_updated": "2026-07-31T23:02:28.788797Z",
+    "name": "Cache ISR routes at edge",
+    "phase": "http_request_cache_settings",
+    "rules": [
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "cache": false
+        },
+        "description": "Bypass cache for homepage to prevent stale 403 text/plain",
+        "enabled": true,
+        "expression": "(http.request.uri.path eq \"/\")",
+        "id": "fe4eb901909b44b2a79dfe9b22821cc5",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "fe4eb901909b44b2a79dfe9b22821cc5",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "cache": false
+        },
+        "description": "Do not cache /api/ routes",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/api/\"))",
+        "id": "303dbdefcbc949999420b0eb2096b355",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "303dbdefcbc949999420b0eb2096b355",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "browser_ttl": {
+            "mode": "respect_origin"
+          },
+          "cache": true,
+          "edge_ttl": {
+            "default": 60,
+            "mode": "override_origin"
+          }
+        },
+        "description": "Cache HTML pages at edge (60s max TTL)",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/areas/\")) or (starts_with(http.request.uri.path, \"/plumber-\")) or (starts_with(http.request.uri.path, \"/states/\")) or (starts_with(http.request.uri.path, \"/crawl\"))",
+        "id": "bf76bbf06bab45af8b423466dd640899",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "bf76bbf06bab45af8b423466dd640899",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "browser_ttl": {
+            "default": 3600,
+            "mode": "override_origin"
+          },
+          "cache": true,
+          "edge_ttl": {
+            "default": 86400,
+            "mode": "override_origin"
+          }
+        },
+        "description": "Cache sitemap pages for 24h at edge",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/sitemap\"))",
+        "id": "bcd0d2a9f4ef472e8f6c727c113691c4",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "bcd0d2a9f4ef472e8f6c727c113691c4",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "browser_ttl": {
+            "default": 2592000,
+            "mode": "override_origin"
+          },
+          "cache": true,
+          "edge_ttl": {
+            "default": 2592000,
+            "mode": "override_origin"
+          }
+        },
+        "description": "Cache _next/static assets for 30 days at edge",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/_next/static/\"))",
+        "id": "7e784b2f2a3a469ba57db7a019c1588c",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "7e784b2f2a3a469ba57db7a019c1588c",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "cache": true,
+          "edge_ttl": {
+            "default": 60,
+            "mode": "override_origin"
+          }
+        },
+        "description": "Cache city/service pages for allowed fetchers",
+        "enabled": true,
+        "expression": "((http.user_agent contains \"Googlebot\") or (http.user_agent contains \"GoogleOther\") or (http.user_agent contains \"Bingbot\") or (http.user_agent contains \"ChatGPT-User\") or (http.user_agent contains \"PerplexityBot\") or (http.user_agent contains \"Claude-SearchBot\")) and ((http.request.uri.path contains \"/plumber-\") or (http.request.uri.path contains \"/areas/\"))",
+        "id": "ee1c80e98eee4967bda849f686cc2f72",
+        "last_updated": "2026-07-31T23:02:28.788797Z",
+        "ref": "ee1c80e98eee4967bda849f686cc2f72",
+        "version": "1"
+      }
+    ],
+    "version": "6"
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}

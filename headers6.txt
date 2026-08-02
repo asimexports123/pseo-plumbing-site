@@ -1,0 +1,12 @@
+﻿HTTP/1.1 301 Moved Permanently
+Date: Fri, 31 Jul 2026 22:10:06 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Location: https://yohomefix.com/
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tKC%2FSuReln5COKpvgVttLh8a52mA9oN5WlHc53BE1qItg1TAWn8mLq7n4l3vm%2FDPM%2FVCQK8vttwWnaMc3S0FZ6rYe%2F60z%2BVCy8Kt4WZ9x9ORhkM6iIEQVcY99EgkK1F0"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Server: cloudflare
+CF-RAY: a23fee647f529094-BOM
+alt-svc: h3=":443"; ma=86400
+

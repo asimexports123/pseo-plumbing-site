@@ -44,23 +44,25 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
+  try {
+    const stateObj = STATES.find((s) => s.slug === params.state);
+    if (!stateObj) return { notFound: true };
 
-  const stateObj = STATES.find((s) => s.slug === params.state);
+    const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
 
-  if (!stateObj) return { notFound: true };
+    // Get nationwide places for this state (excluding enriched SEED_CITIES)
+    const seedCityNames = new Set(stateCities.map(c => c.name));
+    const additionalPlaces = getPlacesByState(stateObj.code)
+      .filter(p => !seedCityNames.has(p.name))
+      .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    const additionalGrouped = groupPlacesByLetter(additionalPlaces);
 
-  const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
-
-  // Get nationwide places for this state (excluding enriched SEED_CITIES)
-  const seedCityNames = new Set(stateCities.map(c => c.name));
-  const additionalPlaces = getPlacesByState(stateObj.code)
-    .filter(p => !seedCityNames.has(p.name))
-    .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }))
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const additionalGrouped = groupPlacesByLetter(additionalPlaces);
-
-  return { props: { stateObj, stateCities, additionalPlaces: additionalGrouped } };
-
+    return { props: { stateObj, stateCities, additionalPlaces: additionalGrouped } };
+  } catch (err) {
+    console.error(`[states/[state]] getStaticProps error for ${params.state}:`, err.message);
+    return { notFound: true };
+  }
 }
 
 

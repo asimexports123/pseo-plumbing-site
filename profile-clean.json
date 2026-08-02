@@ -1,0 +1,503 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "perf": {
+        "domContentLoaded": 731,
+        "load": 731,
+        "responseEnd": 207,
+        "ttfb": 193.70000004768372
+      },
+      "summary": {
+        "jsCount": 11,
+        "cssCount": 1,
+        "jsSize": 822448,
+        "cssSize": 5987,
+        "topJs": [
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 682860,
+            "duration": 182
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 67903,
+            "duration": 89
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 19773,
+            "duration": 62
+          },
+          {
+            "name": "3_h522yh17065.js",
+            "size": 17372,
+            "duration": 76
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 14122,
+            "duration": 185
+          },
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 7528,
+            "duration": 53
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 4880,
+            "duration": 92
+          },
+          {
+            "name": "turbopack-0si8mm0lae5dp.js",
+            "size": 4870,
+            "duration": 60
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 2011,
+            "duration": 96
+          },
+          {
+            "name": "_ssgManifest.js",
+            "size": 733,
+            "duration": 93
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511470.315523,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 4,
+        "Nodes": 2025,
+        "LayoutCount": 1,
+        "RecalcStyleCount": 2,
+        "LayoutDuration": 0.227529,
+        "RecalcStyleDuration": 0.015537,
+        "ScriptDuration": 0.010237,
+        "TaskDuration": 0.46762,
+        "JSHeapUsedSize": 15407512,
+        "JSHeapTotalSize": 25337856
+      }
+    },
+    {
+      "path": "/plumber-usa",
+      "perf": {
+        "domContentLoaded": 408,
+        "load": 415,
+        "responseEnd": 56,
+        "ttfb": 37.59999996423721
+      },
+      "summary": {
+        "jsCount": 12,
+        "cssCount": 1,
+        "jsSize": 23126,
+        "cssSize": 0,
+        "topJs": [
+          {
+            "name": "2re10mxd-i5td.js",
+            "size": 11657,
+            "duration": 40
+          },
+          {
+            "name": "3299ey4v425n7.js",
+            "size": 6580,
+            "duration": 52
+          },
+          {
+            "name": "turbopack-29841i4735t2d.js",
+            "size": 4889,
+            "duration": 75
+          },
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 0,
+            "duration": 0
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511470.753839,
+        "Documents": 8,
+        "Frames": 7,
+        "JSEventListeners": 471,
+        "Nodes": 18205,
+        "LayoutCount": 1,
+        "RecalcStyleCount": 3,
+        "LayoutDuration": 0.077257,
+        "RecalcStyleDuration": 0.017368,
+        "ScriptDuration": 0.004131,
+        "TaskDuration": 0.34644,
+        "JSHeapUsedSize": 24248604,
+        "JSHeapTotalSize": 42475520
+      }
+    },
+    {
+      "path": "/plumber-new-york",
+      "perf": {
+        "domContentLoaded": 876,
+        "load": 876,
+        "responseEnd": 721,
+        "firstPaint": 856,
+        "firstContentfulPaint": 856,
+        "ttfb": 40.80000001192093
+      },
+      "summary": {
+        "jsCount": 12,
+        "cssCount": 1,
+        "jsSize": 21915,
+        "cssSize": 0,
+        "topJs": [
+          {
+            "name": "2xyuf8r0doopd.js",
+            "size": 17028,
+            "duration": 65
+          },
+          {
+            "name": "turbopack-3po7h28tra0lc.js",
+            "size": 4887,
+            "duration": 65
+          },
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2re10mxd-i5td.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 0,
+            "duration": 0
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511471.653056,
+        "Documents": 3,
+        "Frames": 3,
+        "JSEventListeners": 3495,
+        "Nodes": 20273,
+        "LayoutCount": 2,
+        "RecalcStyleCount": 3,
+        "LayoutDuration": 0.033445,
+        "RecalcStyleDuration": 0.007122,
+        "ScriptDuration": 0.007701,
+        "TaskDuration": 0.198616,
+        "JSHeapUsedSize": 50216464,
+        "JSHeapTotalSize": 74113024
+      }
+    },
+    {
+      "path": "/cost/new-york",
+      "perf": {
+        "domContentLoaded": 822,
+        "load": 823,
+        "responseEnd": 692,
+        "ttfb": 38.80000001192093
+      },
+      "summary": {
+        "jsCount": 12,
+        "cssCount": 1,
+        "jsSize": 13236,
+        "cssSize": 0,
+        "topJs": [
+          {
+            "name": "3q2jxa8v_bhzs.js",
+            "size": 8345,
+            "duration": 60
+          },
+          {
+            "name": "turbopack-24ohj632cgj33.js",
+            "size": 4891,
+            "duration": 58
+          },
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2re10mxd-i5td.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 0,
+            "duration": 0
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511472.538272,
+        "Documents": 7,
+        "Frames": 6,
+        "JSEventListeners": 6115,
+        "Nodes": 24439,
+        "LayoutCount": 3,
+        "RecalcStyleCount": 4,
+        "LayoutDuration": 0.031597,
+        "RecalcStyleDuration": 0.008135,
+        "ScriptDuration": 0.036405,
+        "TaskDuration": 0.185909,
+        "JSHeapUsedSize": 75781348,
+        "JSHeapTotalSize": 91193344
+      }
+    },
+    {
+      "path": "/plumber/california/emergency",
+      "perf": {
+        "domContentLoaded": 777,
+        "load": 777,
+        "responseEnd": 649,
+        "firstPaint": 748,
+        "firstContentfulPaint": 748,
+        "ttfb": 49.299999952316284
+      },
+      "summary": {
+        "jsCount": 12,
+        "cssCount": 1,
+        "jsSize": 17552,
+        "cssSize": 0,
+        "topJs": [
+          {
+            "name": "0l64jj_0lpb2q.js",
+            "size": 12660,
+            "duration": 52
+          },
+          {
+            "name": "turbopack-23wk0_5ccajrc.js",
+            "size": 4892,
+            "duration": 44
+          },
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2re10mxd-i5td.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 0,
+            "duration": 0
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511473.417234,
+        "Documents": 11,
+        "Frames": 9,
+        "JSEventListeners": 7408,
+        "Nodes": 28583,
+        "LayoutCount": 2,
+        "RecalcStyleCount": 3,
+        "LayoutDuration": 0.019779,
+        "RecalcStyleDuration": 0.007548,
+        "ScriptDuration": 0.072139,
+        "TaskDuration": 0.215474,
+        "JSHeapUsedSize": 92273832,
+        "JSHeapTotalSize": 133566464
+      }
+    },
+    {
+      "path": "/states/texas",
+      "perf": {
+        "domContentLoaded": 971,
+        "load": 972,
+        "responseEnd": 850,
+        "ttfb": 40.19999998807907
+      },
+      "summary": {
+        "jsCount": 12,
+        "cssCount": 1,
+        "jsSize": 0,
+        "cssSize": 0,
+        "topJs": [
+          {
+            "name": "3d_2okpr4gr53.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "3wh6qwgyfiie0.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "0lftuuo5zbrox.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "1s5tctayugl95.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-2mn398nk4wkqa.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2re10mxd-i5td.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2xyuf8r0doopd.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "2tnh1uduspl1n.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "turbopack-3po7h28tra0lc.js",
+            "size": 0,
+            "duration": 0
+          },
+          {
+            "name": "_buildManifest.js",
+            "size": 0,
+            "duration": 0
+          }
+        ]
+      },
+      "metrics": {
+        "Timestamp": 511474.531082,
+        "Documents": 15,
+        "Frames": 12,
+        "JSEventListeners": 11078,
+        "Nodes": 36410,
+        "LayoutCount": 3,
+        "RecalcStyleCount": 4,
+        "LayoutDuration": 0.012903,
+        "RecalcStyleDuration": 0.008434,
+        "ScriptDuration": 0.106016,
+        "TaskDuration": 0.282827,
+        "JSHeapUsedSize": 104762772,
+        "JSHeapTotalSize": 145608704
+      }
+    }
+  ],
+  "search": {
+    "searchInputFound": false
+  }
+}

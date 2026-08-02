@@ -116,15 +116,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const cityName = COST_PAGE_CITIES.find((n) => cityToSlug(n) === params.city);
-  if (!cityName) return { notFound: true };
-  const cityEntry = SEED_CITIES.find((c) => c.name === cityName);
-  if (!cityEntry) return { notFound: true };
-  const profile = CITY_COST_PROFILE[cityName] || { factor: 1.0, tier: 'Near Average', note: '' };
-  const costTable = getCostTable(cityName);
-  const faqs = getCostFaqs(cityName, profile);
-  const cityData = CITY_DATA[cityName] || {};
-  return { props: { cityName, stateCode: cityEntry.stateCode, profile, costTable, faqs, cityData } };
+  try {
+    const cityName = COST_PAGE_CITIES.find((n) => cityToSlug(n) === params.city);
+    if (!cityName) return { notFound: true };
+    const cityEntry = SEED_CITIES.find((c) => c.name === cityName);
+    if (!cityEntry) return { notFound: true };
+    const profile = CITY_COST_PROFILE[cityName] || { factor: 1.0, tier: 'Near Average', note: '' };
+    const costTable = getCostTable(cityName);
+    const faqs = getCostFaqs(cityName, profile);
+    const cityData = CITY_DATA[cityName] || {};
+    return { props: { cityName, stateCode: cityEntry.stateCode, profile, costTable, faqs, cityData } };
+  } catch (err) {
+    console.error(`[cost/[city]] getStaticProps error for ${params.city}:`, err.message);
+    return { notFound: true };
+  }
 }
 
 export default function CostPage({ cityName, stateCode, profile, costTable, faqs, cityData }) {

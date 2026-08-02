@@ -9,38 +9,41 @@ import { Author } from '../../../components/Author';
 import { buildOrganizationSchema, buildWebSiteSchema } from '../../../lib/schemas';
 
 export async function getStaticPaths() {
-  const citySlugs = getCitiesWithZctas();
-  const paths = citySlugs.map(citySlug => ({ params: { citySlug } }));
-  return { paths, fallback: 'blocking' };
+  return { paths: [], fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
-  const { citySlug } = params;
+  try {
+    const { citySlug } = params;
 
-  const knownCity = getCityBySlug(citySlug);
-  if (!knownCity) {
+    const knownCity = getCityBySlug(citySlug);
+    if (!knownCity) {
+      return { notFound: true };
+    }
+
+    const zctas = getZctasByCity(citySlug);
+    if (zctas.length === 0) {
+      return { notFound: true };
+    }
+
+    const cityName = knownCity.name;
+    const stateCode = knownCity.stateCode;
+    const stateName = zctas[0].state;
+
+    return {
+      props: {
+        cityName,
+        stateCode,
+        stateName,
+        citySlug,
+        zipCount: zctas.length,
+        zctas: zctas.map(z => ({ zip: z.zip, lat: z.lat, lon: z.lon })),
+      },
+    };
+  } catch (err) {
+    console.error(`[areas/[citySlug]] getStaticProps error for ${params.citySlug}:`, err.message);
     return { notFound: true };
   }
-
-  const zctas = getZctasByCity(citySlug);
-  if (zctas.length === 0) {
-    return { notFound: true };
-  }
-
-  const cityName = knownCity.name;
-  const stateCode = knownCity.stateCode;
-  const stateName = zctas[0].state;
-
-  return {
-    props: {
-      cityName,
-      stateCode,
-      stateName,
-      citySlug,
-      zipCount: zctas.length,
-      zctas: zctas.map(z => ({ zip: z.zip, lat: z.lat, lon: z.lon })),
-    },
-  };
 }
 
 export default function CityZipDirectory({ cityName, stateCode, stateName, citySlug, zipCount, zctas }) {

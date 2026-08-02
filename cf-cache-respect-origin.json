@@ -1,0 +1,74 @@
+{
+  "rules": [
+    {
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": false
+      },
+      "description": "Do not cache /api/ routes",
+      "enabled": true,
+      "expression": "(starts_with(http.request.uri.path, \"/api/\"))"
+    },
+    {
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "browser_ttl": {
+          "mode": "respect_origin"
+        },
+        "cache": true,
+        "edge_ttl": {
+          "mode": "respect_origin"
+        }
+      },
+      "description": "Cache HTML pages respecting origin Cache-Control (1h for 200s, no-store for errors)",
+      "enabled": true,
+      "expression": "(http.request.uri.path eq \"/\") or (starts_with(http.request.uri.path, \"/areas/\")) or (starts_with(http.request.uri.path, \"/plumber-\")) or (starts_with(http.request.uri.path, \"/states/\")) or (starts_with(http.request.uri.path, \"/crawl\"))"
+    },
+    {
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "browser_ttl": {
+          "default": 3600,
+          "mode": "override_origin"
+        },
+        "cache": true,
+        "edge_ttl": {
+          "default": 86400,
+          "mode": "override_origin"
+        }
+      },
+      "description": "Cache sitemap pages for 24h at edge",
+      "enabled": true,
+      "expression": "(starts_with(http.request.uri.path, \"/sitemap\"))"
+    },
+    {
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "browser_ttl": {
+          "default": 2592000,
+          "mode": "override_origin"
+        },
+        "cache": true,
+        "edge_ttl": {
+          "default": 2592000,
+          "mode": "override_origin"
+        }
+      },
+      "description": "Cache _next/static assets for 30 days at edge",
+      "enabled": true,
+      "expression": "(starts_with(http.request.uri.path, \"/_next/static/\"))"
+    },
+    {
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "respect_origin"
+        }
+      },
+      "description": "Cache city/service pages for allowed fetchers (respect origin TTL)",
+      "enabled": true,
+      "expression": "((http.user_agent contains \"Googlebot\") or (http.user_agent contains \"GoogleOther\") or (http.user_agent contains \"Bingbot\") or (http.user_agent contains \"ChatGPT-User\") or (http.user_agent contains \"PerplexityBot\") or (http.user_agent contains \"Claude-SearchBot\")) and ((http.request.uri.path contains \"/plumber-\") or (http.request.uri.path contains \"/areas/\"))"
+    }
+  ]
+}

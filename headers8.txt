@@ -1,0 +1,38 @@
+﻿HTTP/1.1 307 Temporary Redirect
+Date: Fri, 31 Jul 2026 22:10:28 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: public, max-age=0, must-revalidate
+location: https://yohomefix.com/
+Server: cloudflare
+strict-transport-security: max-age=63072000
+x-vercel-id: bom1::z258z-1785535828161-1e82f62895bd
+cf-cache-status: MISS
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=YUnuPAdBaGNXExY950QKFNiuhogWjsBvG9kwuLQAiY6eU21iUjctMr69njhA%2BObl77bE7TkqRE8hwdbjgdDWVBqYOLSW69V%2FvgeYnWuozNJ8qEVxHif6Kh%2BpXb1v4Vu5cbFNew%3D%3D"}]}
+CF-RAY: a23feeeb6f364425-BOM
+alt-svc: h3=":443"; ma=86400
+
+HTTP/1.1 200 OK
+Date: Fri, 31 Jul 2026 22:10:28 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+access-control-allow-origin: *
+Age: 313
+Cache-Control: public, max-age=0, s-maxage=60, stale-while-revalidate=60
+content-disposition: inline
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=6COhaSR%2BeaBkfTx%2B6nAS7N5pjUpix%2FbGBbNbWFFv1Lb7X49Zuk9VwnXr4I%2BI%2BkR1TX5sCmRxvohqk8FjF9jhckMKNB0E8NqgxMUhXv4a7jAszp1w0saSmG7KMKOubZGz"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Server: cloudflare
+strict-transport-security: max-age=63072000
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+vary: accept-encoding
+x-matched-path: /
+x-vercel-cache: HIT
+x-vercel-id: bom1::5dj7f-1785535828401-376a71f373d0
+cf-cache-status: EXPIRED
+CF-RAY: a23feeef4e0c3a29-BOM
+alt-svc: h3=":443"; ma=86400
+

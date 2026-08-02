@@ -1,0 +1,16 @@
+﻿HTTP/1.1 307 Temporary Redirect
+Date: Fri, 31 Jul 2026 22:10:14 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: public, max-age=0, must-revalidate
+location: https://yohomefix.com/
+Server: cloudflare
+strict-transport-security: max-age=63072000
+x-vercel-id: bom1::5dj7f-1785535814761-1cbd0ab068f9
+cf-cache-status: MISS
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=A0ddBDxwnfjWCPmTr3ye4k7nBrMFNSTSKyuVQixRzhXxcCzOPCQJbb2fGaOqfEMiw%2B7p1pB0fX4lbUWODPKnb%2BHvUfW9RNetXg8BAsnnhH3jN8sBsPvJlmfgmfhmxJvkstedXQ%3D%3D"}]}
+CF-RAY: a23fee979ad2cd4d-BOM
+alt-svc: h3=":443"; ma=86400
+

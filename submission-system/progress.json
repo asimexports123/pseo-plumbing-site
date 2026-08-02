@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-07-31T20:40:39.890Z",
+  "lastUpdated": "2026-07-31T20:49:27.563Z",
+  "total": 37,
+  "completed": 0,
+  "pendingVerification": 0,
+  "requiresAction": 0,
+  "rejected": 0,
+  "skipped": 3,
+  "platforms": {
+    "manta": {
+      "status": "skipped",
+      "listingUrl": "",
+      "notes": "Skipped by user",
+      "updatedAt": "2026-07-31T20:45:08.915Z"
+    },
+    "hotfrog": {
+      "status": "skipped",
+      "listingUrl": "",
+      "notes": "Skipped by user",
+      "updatedAt": "2026-07-31T20:47:14.280Z"
+    },
+    "showmelocal": {
+      "status": "skipped",
+      "listingUrl": "",
+      "notes": "Skipped by user",
+      "updatedAt": "2026-07-31T20:49:27.563Z"
+    }
+  }
+}

@@ -77,10 +77,8 @@ const BLOCKED_BOTS = [
   'aiohttp',
   'mechanize',
   'phantomjs',
-  'headless',
   'selenium',
   'puppeteer',
-  'chrome-lighthouse',
 ];
 
 // ALLOWED: search-engine crawlers
@@ -95,6 +93,7 @@ const ALLOWED_SEARCH_BOTS = [
   'apis-google',
   'adsbot-google',
   'google-inspectiontool',
+  'chrome-lighthouse',
 ];
 
 // ALLOWED: user-driven AI fetchers (GET/HEAD only, rate-limited at Cloudflare)
@@ -135,6 +134,7 @@ function blockResponse(message, status, extraHeaders = {}) {
     headers: {
       'Content-Type': 'text/plain',
       'X-Robots-Tag': 'noindex, nofollow',
+      'Vary': 'User-Agent',
       ...extraHeaders,
     },
   });
@@ -146,9 +146,12 @@ export function middleware(request) {
   const method = request.method;
 
   // 1. Fast block for known bad crawlers and HTTP libraries.
-  //    Cache the 403 at the edge for 24h to avoid repeated origin hits.
-  if (BLOCKED_BOTS.some(bot => userAgent.includes(bot))) {
-    return blockResponse('Access Denied', 403, { 'Cache-Control': 'public, max-age=86400' });
+  //    Exempt the homepage (static, no ISR cost) to prevent cached
+  //    text/plain 403 responses from being served to real users.
+  //    Error responses use no-store to prevent edge caching.
+  const isHomepage = path === '/';
+  if (!isHomepage && BLOCKED_BOTS.some(bot => userAgent.includes(bot))) {
+    return blockResponse('Access Denied', 403, { 'Cache-Control': 'no-store, no-cache, must-revalidate' });
   }
 
   // 2. Allowed AI fetchers: GET/HEAD only, UA length sanity.
@@ -164,9 +167,10 @@ export function middleware(request) {
   }
 
   // 3. ISR route protection — only real browsers, search, and allowed AI
+  //    Error responses use no-store to prevent edge caching of text/plain.
   const isISRRoute = ISR_ROUTE_PATTERNS.some(pattern => pattern.test(path));
   if (isISRRoute && !isAllowedSearchOrAIBot(userAgent)) {
-    return blockResponse('Forbidden', 403, { 'Cache-Control': 'public, max-age=86400' });
+    return blockResponse('Forbidden', 403, { 'Cache-Control': 'no-store, no-cache, must-revalidate' });
   }
 
   return NextResponse.next();

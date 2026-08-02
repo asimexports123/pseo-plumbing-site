@@ -4,6 +4,8 @@ import { PHONE_NUMBER } from '../lib/cities';
 import { buildPageSchema } from '../lib/schemas';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
+import { Header } from '../components/Header';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -42,18 +44,9 @@ export default function WhyTrust() {
 
       <div className="font-sans bg-white min-h-screen flex flex-col">
 
-        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
-        </nav>
+        <Header />
 
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
-          <ol className="flex flex-wrap items-center gap-1">
-            <li><Link href="/" className="text-blue-600 hover:underline no-underline">Home</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><span className="text-gray-700 font-medium">Why Trust YoHomeFix</span></li>
-          </ol>
-        </nav>
+        <Breadcrumbs separatorAsListItem items={[{ name: 'Home', url: '/' }, { name: 'Why Trust YoHomeFix' }]} />
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
 

@@ -108,22 +108,27 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { state: stateSlug, service: serviceSlug } = params;
-  const stateObj = STATES.find((s) => s.slug === stateSlug);
-  if (!stateObj) return { notFound: true };
-  const serviceObj = SERVICES.find((s) => s.slug === serviceSlug);
-  if (!serviceObj) return { notFound: true };
-  const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
-  const qualifiedStateCities = stateCities.filter((c) => isCityQualifiedForService(c.name, serviceObj.slug, c.stateCode));
-  const cityCards = qualifiedStateCities.map(getCityCardData).filter(Boolean);
+  try {
+    const { state: stateSlug, service: serviceSlug } = params;
+    const stateObj = STATES.find((s) => s.slug === stateSlug);
+    if (!stateObj) return { notFound: true };
+    const serviceObj = SERVICES.find((s) => s.slug === serviceSlug);
+    if (!serviceObj) return { notFound: true };
+    const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
+    const qualifiedStateCities = stateCities.filter((c) => isCityQualifiedForService(c.name, serviceObj.slug, c.stateCode));
+    const cityCards = qualifiedStateCities.map(getCityCardData).filter(Boolean);
 
-  // Get nationwide places for this state (excluding enriched SEED_CITIES)
-  const seedCityNames = new Set(stateCities.map(c => c.name));
-  const additionalPlaces = getPlacesByState(stateObj.code)
-    .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug, p.stateCode))
-    .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
+    // Get nationwide places for this state (excluding enriched SEED_CITIES)
+    const seedCityNames = new Set(stateCities.map(c => c.name));
+    const additionalPlaces = getPlacesByState(stateObj.code)
+      .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug, p.stateCode))
+      .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
 
-  return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces } };
+    return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces } };
+  } catch (err) {
+    console.error(`[plumber/[state]/[service]] getStaticProps error for ${params.state}/${params.service}:`, err.message);
+    return { notFound: true };
+  }
 }
 
 export default function StateServiceHub({ stateObj, serviceObj, stateCities, cityCards, additionalPlaces = [] }) {
@@ -258,14 +263,18 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
 
         <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
           <ol className="flex flex-wrap items-center gap-1">
-            {breadcrumbs.map((b, i) => (
+            {breadcrumbs.map((b, i) => {
+              const linkPath = b.url.replace(domain, '');
+              const isStateHub = linkPath === `/plumber-${stateObj.slug}`;
+              return (
               <li key={b.url} className="flex items-center gap-1">
                 {i > 0 && <span className="text-gray-300">›</span>}
                 {i < breadcrumbs.length - 1
-                  ? <Link href={b.url.replace(domain, '')} className="text-blue-600 hover:underline no-underline">{b.name}</Link>
+                  ? <Link href={isStateHub ? `/states/${stateObj.slug}` : linkPath} as={isStateHub ? linkPath : undefined} className="text-blue-600 hover:underline no-underline">{b.name}</Link>
                   : <span className="text-gray-700 font-medium">{b.name}</span>}
               </li>
-            ))}
+              );
+            })}
           </ol>
         </nav>
 
@@ -463,24 +472,14 @@ export default function StateServiceHub({ stateObj, serviceObj, stateCities, cit
             </div>
           </div>
 
-          <div className="mb-10 flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-5">
-              <p className="text-gray-700 text-sm">
-                View all plumbing services in {stateObj.name}:{' '}
-                <Link href={`/plumber-${stateObj.slug}`} className="text-blue-700 font-semibold hover:underline">
-                  {stateObj.name} emergency plumber directory
-                </Link>
-              </p>
-            </div>
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-5">
-              <p className="text-gray-700 text-sm">
+          <div className="mb-4 bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <p className="text-gray-700 text-sm">
                 Looking for plumbers in other states?{' '}
                 <Link href="/plumber-usa" className="text-blue-700 font-semibold hover:underline">
                   Browse emergency plumbers across the USA
                 </Link>
               </p>
             </div>
-          </div>
 
           <RelatedGuides serviceSlug={serviceObj.slug} cityName={stateObj.name} />
           <Trust pageType="state" lastReviewed={lastReviewed} />

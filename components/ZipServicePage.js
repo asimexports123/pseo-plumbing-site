@@ -181,7 +181,7 @@ export function ZipServicePage({
             <li><span className="text-gray-400 mx-1" aria-hidden="true">›</span></li>
             {stateHubSlug && (
               <>
-                <li><Link href={`/${stateHubSlug}`} className="text-blue-700 hover:underline no-underline">{stateCode}</Link></li>
+                <li><Link href={`/states/${getStateSlug(stateCode)}`} as={`/${stateHubSlug}`} className="text-blue-700 hover:underline no-underline">{stateCode}</Link></li>
                 <li><span className="text-gray-400 mx-1" aria-hidden="true">›</span></li>
               </>
             )}

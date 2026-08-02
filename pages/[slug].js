@@ -1,13 +1,16 @@
 import { parseSlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { getCityBySlug } from '../lib/cities-server';
 import { generatePageContent } from '../lib/contentGenerator';
-import { getNearbyPlaces, getTopPlacesByLandArea } from '../lib/nationwidePlaces';
+import { getNearbyPlaces } from '../lib/nationwidePlaces';
 import { getZctasByCity } from '../lib/hyperlocalPlaces-server';
 import PlumberPage from '../components/PlumberPage';
 
-// Pre-build the existing 155 enriched cities at build time.
-// New nationwide cities are generated on demand via fallback: 'blocking'
-// and served statically after first request.
+// Pre-build only the curated SEED_CITIES set at build time (highest-traffic,
+// highest-conversion pages per GSC data). All other nationwide cities
+// (the former top-1000-by-land-area expansion) are generated on demand via
+// fallback: 'blocking' and served statically after first request — same
+// content, metadata, schema, and URL, just generated on first hit instead
+// of at build time.
 export async function getStaticPaths() {
   const paths = [];
   for (const city of SEED_CITIES) {
@@ -18,93 +21,83 @@ export async function getStaticPaths() {
       }
     }
   }
-
-  // Pre-build the top 1000 largest nationwide places at build time so the
-  // most visited pages are served instantly on first request.
-  for (const place of getTopPlacesByLandArea(1000)) {
-    const cSlug = place.slug;
-    for (const service of SERVICES) {
-      if (isCityQualifiedForService(place.name, service.slug, place.stateCode)) {
-        paths.push({ params: { slug: buildSlug(cSlug, service.slug) } });
-      }
-    }
-  }
   return { paths, fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
-  const rawSlug = params.slug;
-
-  const parsed = parseSlug(rawSlug);
-  if (!parsed) {
-    return { notFound: true };
-  }
-
-  const { citySlug, service } = parsed;
-
-  // Look up city — checks SEED_CITIES first, then nationwide places dataset
-  const knownCity = getCityBySlug(citySlug);
-  if (!knownCity) {
-    return { notFound: true };
-  }
-
-  const cityName = knownCity.name;
-  const stateCode = knownCity.stateCode || '';
-
-  // Verify service qualification (e.g., sump-pump only in qualifying states)
-  if (service && !isCityQualifiedForService(cityName, service.slug, stateCode)) {
-    return { notFound: true };
-  }
-
-  let content;
   try {
-    content = generatePageContent(cityName, stateCode, service);
+    const rawSlug = params.slug;
+
+    const parsed = parseSlug(rawSlug);
+    if (!parsed) {
+      return { notFound: true };
+    }
+
+    const { citySlug, service } = parsed;
+
+    // Look up city — checks SEED_CITIES first, then nationwide places dataset
+    const knownCity = getCityBySlug(citySlug);
+    if (!knownCity) {
+      return { notFound: true };
+    }
+
+    const cityName = knownCity.name;
+    const stateCode = knownCity.stateCode || '';
+
+    // Verify service qualification (e.g., sump-pump only in qualifying states)
+    if (service && !isCityQualifiedForService(cityName, service.slug, stateCode)) {
+      return { notFound: true };
+    }
+
+    let content;
+    try {
+      content = generatePageContent(cityName, stateCode, service);
+    } catch (err) {
+      console.error(`[slug].js generatePageContent error for ${cityName}:`, err.message);
+      return { notFound: true };
+    }
+
+    // Build nearby cities list
+    let nearbyCities;
+    if (knownCity.nearby && knownCity.nearby.length > 0) {
+      nearbyCities = knownCity.nearby
+        .map((nSlug) => {
+          const c = getCityBySlug(nSlug);
+          return c ? { slug: nSlug, name: c.name, stateCode: c.stateCode } : null;
+        })
+        .filter(Boolean)
+        .slice(0, 8);
+    } else if (stateCode) {
+      nearbyCities = getNearbyPlaces(citySlug, stateCode, 8).map(p => ({
+        slug: p.slug,
+        name: p.name,
+        stateCode: p.stateCode,
+      }));
+    } else {
+      nearbyCities = [];
+    }
+
+    // Pre-compute ZCTAs for this city (for AreasWeServe component)
+    const cityZctas = getZctasByCity(cityToSlug(cityName));
+
+    return {
+      props: {
+        cityName,
+        stateCode,
+        stateHubSlug: stateCode ? `plumber-${getStateSlug(stateCode)}` : null,
+        service: service
+          ? { slug: service.slug, name: service.name, shortName: service.shortName }
+          : null,
+        content,
+        pageSlug: rawSlug,
+        nearbyCities,
+        zctas: cityZctas.map(z => ({ zip: z.zip })),
+      },
+    };
   } catch (err) {
-    console.error(`[slug].js generatePageContent error for ${cityName}:`, err.message);
+    console.error(`[slug].js getStaticProps error for ${params.slug}:`, err.message);
     return { notFound: true };
   }
-
-  // Build nearby cities list
-  // For enriched SEED_CITIES, use their curated nearby list.
-  // For nationwide places without nearby data, compute geographic nearby
-  // places from the Census dataset using lat/lon coordinates.
-  let nearbyCities;
-  if (knownCity.nearby && knownCity.nearby.length > 0) {
-    nearbyCities = knownCity.nearby
-      .map((nSlug) => {
-        const c = getCityBySlug(nSlug);
-        return c ? { slug: nSlug, name: c.name, stateCode: c.stateCode } : null;
-      })
-      .filter(Boolean)
-      .slice(0, 8);
-  } else if (stateCode) {
-    // Compute nearby places from nationwide dataset
-    nearbyCities = getNearbyPlaces(citySlug, stateCode, 8).map(p => ({
-      slug: p.slug,
-      name: p.name,
-      stateCode: p.stateCode,
-    }));
-  } else {
-    nearbyCities = [];
-  }
-
-  // Pre-compute ZCTAs for this city (for AreasWeServe component)
-  const cityZctas = getZctasByCity(cityToSlug(cityName));
-
-  return {
-    props: {
-      cityName,
-      stateCode,
-      stateHubSlug: stateCode ? `plumber-${getStateSlug(stateCode)}` : null,
-      service: service
-        ? { slug: service.slug, name: service.name, shortName: service.shortName }
-        : null,
-      content,
-      pageSlug: rawSlug,
-      nearbyCities,
-      zctas: cityZctas.map(z => ({ zip: z.zip })),
-    },
-  };
 }
 
 export default function Page(props) {

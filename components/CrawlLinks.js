@@ -48,10 +48,11 @@ export function CrawlLinks({
 
   // Parent state hub
   if (stateHubSlug) {
+    const stateSlug = getStateSlug(stateCode);
     recommendations.push({
       title: `More in ${stateCode}`,
       links: [
-        { href: `/${stateHubSlug}`, label: `Plumbers in ${stateCode}` },
+        { href: `/states/${stateSlug}`, as: `/${stateHubSlug}`, label: `Plumbers in ${stateCode}` },
         ...(getCrawlHubPath(stateCode) ? [{ href: getCrawlHubPath(stateCode), label: `All cities in ${stateCode}` }] : []),
       ],
     });
@@ -147,7 +148,7 @@ export function CrawlLinks({
             <ul className="space-y-1">
               {rec.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-blue-700 hover:underline no-underline">
+                  <Link href={l.href} as={l.as} className="text-sm text-blue-700 hover:underline no-underline">
                     {l.label}
                   </Link>
                 </li>

@@ -1,0 +1,45 @@
+[2026-07-31T20:40:39.902Z] 
+============================================================
+[2026-07-31T20:40:39.905Z] YoHomeFix Directory Submission System — Starting
+[2026-07-31T20:40:39.907Z] Platforms to process: 37
+[2026-07-31T20:40:39.908Z] ============================================================
+
+[2026-07-31T20:40:39.909Z]   → (Re)opening browser...
+[2026-07-31T20:40:41.236Z]   ✓ Browser ready
+[2026-07-31T20:40:41.237Z] 
+[1/37] Processing: Manta (id: manta)
+[2026-07-31T20:40:41.255Z] 
+>>> Opening Manta: https://www.manta.com/mb/add-business
+[2026-07-31T20:40:43.652Z]   → Filling business listing form for Manta...
+[2026-07-31T20:40:43.761Z]   ℹ️ No logo upload field found on this page
+[2026-07-31T20:45:08.909Z]   ⏭️ Skipped by user
+[2026-07-31T20:45:08.916Z] [manta] Status: skipped | Notes: Skipped by user
+[2026-07-31T20:45:08.919Z]   ⏳ Waiting 5 seconds before next platform...
+[2026-07-31T20:45:13.925Z] 
+[2/37] Processing: Hotfrog (id: hotfrog)
+[2026-07-31T20:45:13.934Z]   → Page was closed, creating new page...
+[2026-07-31T20:45:14.186Z] 
+>>> Opening Hotfrog: https://www.hotfrog.com/company/add
+[2026-07-31T20:45:17.232Z]   → Filling business listing form for Hotfrog...
+[2026-07-31T20:45:17.292Z]   ℹ️ No logo upload field found on this page
+[2026-07-31T20:47:14.274Z]   ⏭️ Skipped by user
+[2026-07-31T20:47:14.281Z] [hotfrog] Status: skipped | Notes: Skipped by user
+[2026-07-31T20:47:14.287Z]   ⏳ Waiting 5 seconds before next platform...
+[2026-07-31T20:47:19.297Z] 
+[3/37] Processing: ShowMeLocal (id: showmelocal)
+[2026-07-31T20:47:19.300Z]   → Page was closed, creating new page...
+[2026-07-31T20:47:19.615Z] 
+>>> Opening ShowMeLocal: https://www.showmelocal.com/add-business
+[2026-07-31T20:47:24.429Z]   → Filling business listing form for ShowMeLocal...
+[2026-07-31T20:47:24.553Z]   ✓ Filled Email
+[2026-07-31T20:47:24.619Z]   ℹ️ No logo upload field found on this page
+[2026-07-31T20:49:27.561Z]   ⏭️ Skipped by user
+[2026-07-31T20:49:27.564Z] [showmelocal] Status: skipped | Notes: Skipped by user
+[2026-07-31T20:49:27.566Z]   ⏳ Waiting 5 seconds before next platform...
+[2026-07-31T20:49:32.583Z] 
+[4/37] Processing: MapQuest (id: mapquest)
+[2026-07-31T20:49:32.585Z]   → Page was closed, creating new page...
+[2026-07-31T20:49:32.696Z] 
+>>> Opening MapQuest: https://www.mapquest.com/add-business
+[2026-07-31T20:49:35.250Z]   → Filling business listing form for MapQuest...
+[2026-07-31T20:49:35.901Z]   ℹ️ No logo upload field found on this page

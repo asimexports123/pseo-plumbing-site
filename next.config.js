@@ -108,44 +108,45 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      // HTML pages — short edge cache (60s) to prevent stale deployments.
-      // Cloudflare and Vercel both respect s-maxage. A short TTL ensures
-      // that after a new deployment, stale content clears within 60 seconds.
-      // Vercel's own edge cache (x-vercel-cache) still provides HITs.
+      // HTML pages — 1h edge cache (s-maxage=3600) with stale-while-revalidate.
+      // Cloudflare uses respect_origin mode, so it honors these headers.
+      // 200 responses: cached for 1h at edge.
+      // Error responses (403/405 from middleware): use no-store, never cached.
+      // Vercel's own edge cache (x-vercel-cache) also provides HITs.
       {
         source: '/',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       {
         source: '/crawl',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       {
         source: '/states/:state',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       {
         source: '/plumber-:slug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       {
         source: '/areas/:citySlug',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       {
         source: '/areas/:citySlug/:zip/:service',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60' },
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600' },
         ],
       },
       // Sitemap XML — short edge cache.

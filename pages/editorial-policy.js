@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { buildPageSchema } from '../lib/schemas';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
+import { Header } from '../components/Header';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { PHONE_NUMBER } from '../lib/cities';
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
@@ -41,18 +43,9 @@ export default function EditorialPolicy() {
       </Head>
 
       <div className="font-sans bg-white min-h-screen flex flex-col">
-        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
-        </nav>
+        <Header />
 
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
-          <ol className="flex flex-wrap items-center gap-1">
-            <li><Link href="/" className="text-blue-600 hover:underline no-underline">Home</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><span className="text-gray-700 font-medium">Editorial Policy</span></li>
-          </ol>
-        </nav>
+        <Breadcrumbs separatorAsListItem items={[{ name: 'Home', url: '/' }, { name: 'Editorial Policy' }]} />
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
           <h1 className="text-3xl font-extrabold text-blue-900 mb-4">Editorial Policy</h1>
@@ -124,7 +117,7 @@ export default function EditorialPolicy() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Corrections Policy</h2>
               <p>
-                If you find a factual error, contact us at <a href="mailto:corrections@yohomefix.com" className="text-blue-600 hover:underline">corrections@yohomefix.com</a>. We investigate corrections within two business days and update the page with a corrected date when warranted.
+                If you find a factual error, contact us at <a href="mailto:yohomefix@gmail.com" className="text-blue-600 hover:underline">yohomefix@gmail.com</a>. We investigate corrections within two business days and update the page with a corrected date when warranted.
               </p>
             </section>
 
@@ -159,9 +152,9 @@ export default function EditorialPolicy() {
             <section>
               <h2 className="text-xl font-bold text-blue-900 mb-2">Contact for Corrections</h2>
               <p>
-                Email: <a href="mailto:corrections@yohomefix.com" className="text-blue-600 hover:underline">corrections@yohomefix.com</a>
+                Email: <a href="mailto:yohomefix@gmail.com" className="text-blue-600 hover:underline">yohomefix@gmail.com</a>
                 <br />
-                General inquiries: <a href="mailto:hello@yohomefix.com" className="text-blue-600 hover:underline">hello@yohomefix.com</a>
+                General inquiries: <a href="mailto:yohomefix@gmail.com" className="text-blue-600 hover:underline">yohomefix@gmail.com</a>
               </p>
             </section>
           </div>

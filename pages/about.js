@@ -4,6 +4,8 @@ import { SERVICES, STATES, SEED_CITIES, cityToSlug, buildSlug } from '../lib/cit
 import { buildPageSchema } from '../lib/schemas';
 import { Footer } from '../components/Footer';
 import { Author } from '../components/Author';
+import { Header } from '../components/Header';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -42,18 +44,9 @@ export default function About() {
 
       <div className="font-sans bg-white min-h-screen flex flex-col">
 
-        <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-          <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
-          <a href="tel:1" className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">📞 Call Now</a>
-        </nav>
+        <Header />
 
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto w-full px-4 py-2 text-sm text-gray-500">
-          <ol className="flex flex-wrap items-center gap-1">
-            <li><Link href="/" className="text-blue-600 hover:underline no-underline">Home</Link></li>
-            <li><span className="text-gray-300 mx-1">›</span></li>
-            <li><span className="text-gray-700 font-medium">About</span></li>
-          </ol>
-        </nav>
+        <Breadcrumbs separatorAsListItem items={[{ name: 'Home', url: '/' }, { name: 'About' }]} />
 
         <main className="max-w-3xl mx-auto w-full px-4 py-10 flex-1">
 
@@ -204,7 +197,7 @@ export default function About() {
               <h2 className="text-xl font-bold text-blue-900 mb-3">States We Cover</h2>
               <div className="flex flex-wrap gap-2 mt-3">
                 {STATES.map((s) => (
-                  <Link key={s.slug} href={`/plumber-${s.slug}`}
+                  <Link key={s.slug} href={`/states/${s.slug}`} as={`/plumber-${s.slug}`}
                     className="px-3 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-full text-sm no-underline transition-colors"
                     title={`Emergency plumber in ${s.name}`}>
                     Emergency plumber in {s.name}

@@ -1,0 +1,16 @@
+{
+  "name": "yohomefix-directory-submitter",
+  "version": "1.0.0",
+  "description": "Playwright-based browser automation to accelerate manual directory submissions for YoHomeFix",
+  "type": "module",
+  "scripts": {
+    "start": "node runner.js",
+    "start:single": "node runner.js --single",
+    "list": "node runner.js --list",
+    "resume": "node runner.js --resume",
+    "status": "node runner.js --status"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
