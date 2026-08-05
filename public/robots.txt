@@ -27,6 +27,14 @@ User-agent: Bingbot
 Disallow: /dashboard
 Disallow: /api/
 
+User-agent: Slurp
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Disallow: /dashboard
+Disallow: /api/
+
 # ── User-driven AI search fetchers — allow with restrictions ──
 # Middleware enforces GET/HEAD only; rate limits handled at Cloudflare
 User-agent: ChatGPT-User
