@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "manifest": "node scripts/generate-content-manifest.js",
     "build": "next build",
+    "build:fast": "node scripts/fast-build.js",
+    "build:full": "node scripts/full-build.js",
     "start": "next start"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@sentry/nextjs": "^10.69.0",
     "@supabase/supabase-js": "^2.0.0",
     "next": "latest",
     "openai": "^6.43.0",
