@@ -3,6 +3,7 @@ import { getCityBySlug } from '../lib/cities-server';
 import { generatePageContent } from '../lib/contentGenerator';
 import { getNearbyPlaces } from '../lib/nationwidePlaces';
 import { getZctasByCity } from '../lib/hyperlocalPlaces-server';
+import { getPageDate } from '../lib/contentVersioning';
 import PlumberPage from '../components/PlumberPage';
 
 // Pre-build only the curated SEED_CITIES set at build time (highest-traffic,
@@ -12,6 +13,9 @@ import PlumberPage from '../components/PlumberPage';
 // content, metadata, schema, and URL, just generated on first hit instead
 // of at build time.
 export async function getStaticPaths() {
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
   const paths = [];
   for (const city of SEED_CITIES) {
     const cSlug = cityToSlug(city.name);
@@ -80,6 +84,8 @@ export async function getStaticProps({ params }) {
     // Pre-compute ZCTAs for this city (for AreasWeServe component)
     const cityZctas = getZctasByCity(cityToSlug(cityName));
 
+    const lastReviewed = getPageDate(`city-service:${rawSlug}`);
+
     return {
       props: {
         cityName,
@@ -92,6 +98,7 @@ export async function getStaticProps({ params }) {
         pageSlug: rawSlug,
         nearbyCities,
         zctas: cityZctas.map(z => ({ zip: z.zip })),
+        lastReviewed,
       },
     };
   } catch (err) {

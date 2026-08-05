@@ -6,7 +6,7 @@ import { Author } from '../components/Author';
 import { Trust } from '../components/Trust';
 import { Sources } from '../components/Sources';
 import { buildOrganizationSchema, buildWebSiteSchema } from '../lib/schemas';
-import { getDeterministicLastReviewed } from '../lib/dateUtils';
+import { getPageDate } from '../lib/contentVersioning';
 
 const costSections = [
   {
@@ -57,12 +57,16 @@ const faqs = [
   },
 ];
 
-export default function PlumbingCostGuide() {
+export async function getStaticProps() {
+  const lastReviewed = getPageDate('static:plumbing-cost-guide');
+  return { props: { lastReviewed } };
+}
+
+export default function PlumbingCostGuide({ lastReviewed }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const canonical = `${domain}/plumbing-cost-guide`;
   const title = 'Plumbing Cost Guide | Typical Repair & Emergency Prices | YoHomeFix';
   const description = 'Understand typical plumbing costs for emergencies, leaks, drains, sewer lines, water heaters, and replacements. Learn what affects pricing before requesting an upfront quote.';
-  const lastReviewed = getDeterministicLastReviewed('plumbing-cost-guide');
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [

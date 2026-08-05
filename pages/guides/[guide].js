@@ -7,7 +7,7 @@ import { Author } from '../../components/Author';
 import { Trust } from '../../components/Trust';
 import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema } from '../../lib/schemas';
 import { Sources } from '../../components/Sources';
-import { getDeterministicLastReviewed } from '../../lib/dateUtils';
+import { getPageDate } from '../../lib/contentVersioning';
 
 const GUIDES = {
   'how-to-prevent-frozen-pipes': {
@@ -108,9 +108,12 @@ const GUIDES = {
 };
 
 export async function getStaticPaths() {
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
   return {
     paths: Object.keys(GUIDES).map((slug) => ({ params: { guide: slug } })),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
@@ -118,17 +121,17 @@ export async function getStaticProps({ params }) {
   try {
     const guide = GUIDES[params.guide];
     if (!guide) return { notFound: true };
-    return { props: { guide, slug: params.guide } };
+    const lastReviewed = getPageDate(`guide:${params.guide}`);
+    return { props: { guide, slug: params.guide, lastReviewed } };
   } catch (err) {
     console.error(`[guides/[guide]] getStaticProps error for ${params.guide}:`, err.message);
     return { notFound: true };
   }
 }
 
-export default function GuidePage({ guide, slug }) {
+export default function GuidePage({ guide, slug, lastReviewed }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const canonical = `${domain}/guides/${slug}`;
-  const lastReviewed = getDeterministicLastReviewed(`guide-${slug}`);
 
   const breadcrumbs = [
     { name: 'Home', url: `${domain}/` },

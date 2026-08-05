@@ -6,14 +6,14 @@ import { buildResearchDataset, computeFindings, classifyHardness, HARDNESS_COLOR
 import { buildPageSchema, buildBreadcrumbSchema } from '../../lib/schemas';
 import { Footer } from '../../components/Footer';
 import { Author } from '../../components/Author';
-import { getDeterministicLastReviewed } from '../../lib/dateUtils';
+import { getPageDate } from '../../lib/contentVersioning';
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export async function getStaticProps() {
   const dataset = buildResearchDataset();
   const findings = computeFindings(dataset);
-  const lastReviewed = getDeterministicLastReviewed('research-water-hardness');
+  const lastReviewed = getPageDate('static:research-us-water-hardness');
   return {
     props: {
       dataset,

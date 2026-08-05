@@ -11,9 +11,12 @@ import { buildPersonSchema } from '../../lib/schemas';
 const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
 export async function getStaticPaths() {
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
   return {
     paths: getAllAuthors().map((a) => ({ params: { slug: a.slug } })),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 

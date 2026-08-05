@@ -3,6 +3,7 @@ import { getCityBySlug } from '../../../../lib/cities-server';
 import { generatePageContent } from '../../../../lib/contentGenerator';
 import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService } from '../../../../lib/hyperlocalPlaces-server';
 import { getNearbyPlaces } from '../../../../lib/nationwidePlaces';
+import { getPageDate } from '../../../../lib/contentVersioning';
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 
 // Hyperlocal ZIP-service pages are generated on demand via fallback: 'blocking'
@@ -75,6 +76,7 @@ export async function getStaticProps({ params }) {
     const cityZips = getZctasByCity(citySlug);
 
     const pageSlug = `${citySlug}/${zip}/${svc.slug}`;
+    const lastReviewed = getPageDate(`zcta-service:${citySlug}:${zip}:${svc.slug}`);
 
     return {
       props: {
@@ -89,6 +91,7 @@ export async function getStaticProps({ params }) {
         nearbyCities,
         cityZipCount: cityZips.length,
         pageSlug,
+        lastReviewed,
       },
     };
   } catch (err) {

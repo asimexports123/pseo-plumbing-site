@@ -59,21 +59,23 @@ const STATE_REWRITES = [
 ];
 
 // Client-side Next.js data requests use the `as` path (/plumber-{state})
-// for the _next/data JSON fetch. Rewriting to the page route (/states/{state})
-// lets Next.js serve the correct data JSON for that route.
+// for the _next/data JSON fetch. Rewriting to the corresponding data route
+// (/states/{state}.json) serves the correct data JSON for that route.
 const DATA_STATE_REWRITES = STATE_REWRITES.map(({ source, destination }) => ({
   source: `/_next/data/:buildId${source}.json`,
-  destination,
+  destination: `/_next/data/:buildId${destination}.json`,
 }));
 
 const nextConfig = {
   turbopack: {},
   allowedDevOrigins: ['127.0.0.1'],
   async rewrites() {
-    return [
-      ...STATE_REWRITES,
-      ...DATA_STATE_REWRITES,
-    ];
+    return {
+      beforeFiles: [
+        ...DATA_STATE_REWRITES,
+        ...STATE_REWRITES,
+      ],
+    };
   },
 
   // Reduce Vercel Fast Origin Transfer by caching large public assets at the
