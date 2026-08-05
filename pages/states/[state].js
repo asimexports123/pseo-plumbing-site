@@ -21,21 +21,26 @@ import { Trust } from '../../components/Trust';
 
 import { Sources } from '../../components/Sources';
 
-import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema, buildPlumberSchema } from '../../lib/schemas';
+import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema, buildPlumberSchema, buildFAQPageSchema } from '../../lib/schemas';
 
 import { STATE_INTROS } from '../../lib/stateIntros';
 
-import { getDeterministicLastReviewed } from '../../lib/dateUtils';
+import { getStateEntityProfile, buildClimateSection, buildEmergenciesSection, buildSeasonalSection, buildStateFAQs } from '../../lib/stateEntityRollup';
+import { getPageDate } from '../../lib/contentVersioning';
 
 
 
 export async function getStaticPaths() {
 
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
+
   return {
 
     paths: STATES.map((s) => ({ params: { state: s.slug } })),
 
-    fallback: false,
+    fallback: 'blocking',
 
   };
 
@@ -58,7 +63,14 @@ export async function getStaticProps({ params }) {
       .sort((a, b) => a.name.localeCompare(b.name));
     const additionalGrouped = groupPlacesByLetter(additionalPlaces);
 
-    return { props: { stateObj, stateCities, additionalPlaces: additionalGrouped } };
+    const entityProfile = getStateEntityProfile(stateObj.code);
+    const climateContent = buildClimateSection(entityProfile, stateObj);
+    const emergenciesContent = buildEmergenciesSection(entityProfile, stateObj);
+    const seasonalContent = buildSeasonalSection(entityProfile, stateObj);
+    const stateFAQs = buildStateFAQs(entityProfile, stateObj);
+
+    const lastReviewed = getPageDate(`state:${stateObj.slug}`);
+    return { props: { stateObj, stateCities, additionalPlaces: additionalGrouped, climateContent, emergenciesContent, seasonalContent, stateFAQs, lastReviewed } };
   } catch (err) {
     console.error(`[states/[state]] getStaticProps error for ${params.state}:`, err.message);
     return { notFound: true };
@@ -67,7 +79,7 @@ export async function getStaticProps({ params }) {
 
 
 
-export default function StatePage({ stateObj, stateCities, additionalPlaces = [] }) {
+export default function StatePage({ stateObj, stateCities, additionalPlaces = [], climateContent = '', emergenciesContent = '', seasonalContent = '', stateFAQs = [], lastReviewed }) {
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -75,13 +87,11 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
   const canonical = `${domain}/plumber-${stateObj.slug}`;
 
-  const title = `Emergency Plumber in ${stateObj.name} | 24 Hour Plumbing Service | YoHomeFix`;
+  const title = `Emergency Plumber ${stateObj.name} | 24/7 | YoHomeFix`;
 
-  const description = `Burst pipe or flooding in ${stateObj.name}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7 across all of ${stateObj.name}, transparent pricing from participating providers. Call now.`;
+  const description = `24/7 emergency plumber in ${stateObj.name}. Burst pipe or flooding? Licensed plumber dispatched fast statewide. Upfront pricing. Call now.`;
 
   const stateIntro = STATE_INTROS[stateObj.slug] || STATE_INTROS['new-york'];
-
-  const lastReviewed = getDeterministicLastReviewed(`state-${stateObj.slug}`);
 
 
 
@@ -146,6 +156,8 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
       buildOrganizationSchema(),
 
       buildWebSiteSchema(),
+
+      ...(stateFAQs && stateFAQs.length > 0 ? [buildFAQPageSchema({ canonical, faqs: stateFAQs })] : []),
 
       {
 
@@ -383,17 +395,11 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
             <div>
 
-              <h2 className="text-2xl font-bold text-blue-900 mb-3">Why Plumbing Conditions Vary Across {stateObj.name}</h2>
+              <h2 className="text-2xl font-bold text-blue-900 mb-3">How {stateObj.name}'s Climate Affects Your Plumbing</h2>
 
               <p className="text-gray-700 leading-relaxed">
 
-                Plumbing in {stateObj.name} is not uniform. Urban centers, older suburbs, rural areas, and coastal zones each have different pipe materials,
-
-                water sources, and soil conditions. The age of local housing stock determines whether a home has cast iron, galvanized steel, copper, or PVC.
-
-                Licensed plumbers in {stateObj.name} must follow state code while also understanding local water chemistry, freeze risk, and drainage patterns.
-
-                Matching a homeowner with a technician who works in the same region improves diagnostic speed and repair durability.
+                {climateContent}
 
               </p>
 
@@ -405,13 +411,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
               <p className="text-gray-700 leading-relaxed mb-4">
 
-                The most frequent emergency calls in {stateObj.name} are burst pipes, severe leaks, water heater failures, sewer backups, and clogged drains.
-
-                These problems cluster around predictable triggers: winter freezes, summer heat, heavy rainfall, aging pipe materials, and hard water scale.
-
-                A fast response matters because standing water causes structural damage within hours and mold growth within days. The first step in any emergency
-
-                is to locate the main water shutoff valve and stop the flow before a technician arrives.
+                {emergenciesContent}
 
               </p>
 
@@ -423,13 +423,7 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
               <p className="text-gray-700 leading-relaxed">
 
-                Preventive maintenance reduces emergency calls and repair costs. Before cold weather, homeowners should disconnect garden hoses, drain outdoor
-
-                faucets, and insulate exposed pipes in crawl spaces, garages, and attics. Testing the main water shutoff valve annually ensures it will close
-
-                when needed. Water heaters should be flushed to remove sediment, especially in areas with hard water. Sump pumps should be tested before the
-
-                rainy season, and drains should be kept clear of grease, hair, and wipes.
+                {seasonalContent}
 
               </p>
 
@@ -667,6 +661,40 @@ export default function StatePage({ stateObj, stateCities, additionalPlaces = []
 
 
           <RelatedGuides serviceSlug="emergency" cityName={stateObj.name} />
+
+          {stateFAQs && stateFAQs.length > 0 && (
+
+            <div className="mb-12">
+
+              <h2 className="text-2xl font-bold text-blue-900 mb-5">Frequently Asked Questions — Emergency Plumbing in {stateObj.name}</h2>
+
+              <div className="space-y-4">
+
+                {stateFAQs.map((faq, i) => (
+
+                  <details key={i} className="border border-gray-200 rounded-xl overflow-hidden group">
+
+                    <summary className="cursor-pointer px-5 py-4 bg-gray-50 hover:bg-gray-100 transition-colors font-semibold text-gray-800 list-none [&::-webkit-details-marker]:hidden">
+
+                      {faq.q}
+
+                    </summary>
+
+                    <div className="px-5 py-4 text-gray-700 leading-relaxed">
+
+                      {faq.a}
+
+                    </div>
+
+                  </details>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          )}
 
           <Sources pageType="page" cityName={stateObj.name} stateCode={stateObj.code} />
 

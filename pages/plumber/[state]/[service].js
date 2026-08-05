@@ -12,7 +12,7 @@ import { Author } from '../../../components/Author';
 import { Trust } from '../../../components/Trust';
 import { Sources } from '../../../components/Sources';
 import { buildOrganizationSchema, buildWebSiteSchema } from '../../../lib/schemas';
-import { getDeterministicLastReviewed } from '../../../lib/dateUtils';
+import { getPageDate } from '../../../lib/contentVersioning';
 
 // ── State × Service intro paragraphs ──────────────────────────
 const SERVICE_STATE_INTROS = {
@@ -98,13 +98,16 @@ function getCityCardData(city) {
 }
 
 export async function getStaticPaths() {
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
   const paths = [];
   STATES.forEach((s) => {
     SERVICES.filter((svc) => isStateQualifiedForService(s.code, svc.slug)).forEach((svc) => {
       paths.push({ params: { state: s.slug, service: svc.slug } });
     });
   });
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
@@ -124,35 +127,35 @@ export async function getStaticProps({ params }) {
       .filter(p => !seedCityNames.has(p.name) && isCityQualifiedForService(p.name, serviceObj.slug, p.stateCode))
       .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }));
 
-    return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces } };
+    const lastReviewed = getPageDate(`state-service:${stateObj.slug}:${serviceObj.slug}`);
+    return { props: { stateObj, serviceObj, stateCities: qualifiedStateCities, cityCards, additionalPlaces, lastReviewed } };
   } catch (err) {
     console.error(`[plumber/[state]/[service]] getStaticProps error for ${params.state}/${params.service}:`, err.message);
     return { notFound: true };
   }
 }
 
-export default function StateServiceHub({ stateObj, serviceObj, stateCities, cityCards, additionalPlaces = [] }) {
+export default function StateServiceHub({ stateObj, serviceObj, stateCities, cityCards, additionalPlaces = [], lastReviewed }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const canonical = `${domain}/plumber/${stateObj.slug}/${serviceObj.slug}`;
   const title = serviceObj.slug === 'emergency'
-    ? `Emergency Plumbing Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
+    ? `Emergency Plumber ${stateObj.name} | 24/7 | YoHomeFix`
     : serviceObj.slug === 'drain-cleaning'
-    ? `Emergency Drain Service in ${stateObj.name} | 24/7 Licensed Service | YoHomeFix`
-    : `Emergency Plumber in ${stateObj.name} — ${serviceObj.shortName} | 24/7 Licensed Service | YoHomeFix`;
+    ? `Drain Cleaning ${stateObj.name} | 24/7 | YoHomeFix`
+    : `${serviceObj.shortName} ${stateObj.name} | 24/7 | YoHomeFix`;
   const description = serviceObj.slug === 'emergency'
-    ? `24/7 emergency plumbing service across all of ${stateObj.name}. YoHomeFix provides licensed plumbers for burst pipes, severe leaks, sewer backups, and water heater failures — upfront pricing whenever available from participating providers. Call now.`
+    ? `24/7 emergency plumber in ${stateObj.name}. Burst pipe, flooding, or leaks? Licensed plumber dispatched fast statewide. Upfront pricing. Call now.`
     : serviceObj.slug === 'pipe-burst-repair'
-    ? `Burst pipe in ${stateObj.name}? Licensed emergency plumber in under 60 minutes — 24/7 service across all of ${stateObj.name}. Upfront pricing. Get help now.`
+    ? `Burst pipe in ${stateObj.name}? Licensed emergency plumber on-site in 60 min. 24/7 service statewide. Upfront pricing. Call now.`
     : serviceObj.slug === 'leak-repair'
-    ? `Water leak in ${stateObj.name}? Licensed emergency plumber in 60 min — slab, pinhole, or supply line. 24/7 availability across ${stateObj.name}. Upfront pricing. Call now.`
+    ? `24/7 leak repair in ${stateObj.name}. Pinhole, slab, or supply line leak? Licensed plumber dispatched fast statewide. Upfront pricing. Call now.`
     : serviceObj.slug === 'drain-cleaning'
-    ? `Emergency drain service across ${stateObj.name} — 24/7 drain cleaning, sewer clearing, and clog removal. Licensed plumbers sent fast. Upfront pricing. Call now.`
+    ? `24/7 drain cleaning in ${stateObj.name}. Licensed plumber dispatched fast for clogs, backups & sewer blockages. Upfront pricing. Call now.`
     : serviceObj.slug === 'whole-house-repiping'
-    ? `Recurring pipe leaks in ${stateObj.name}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
+    ? `Repeated pipe leaks in ${stateObj.name}? Licensed plumber assesses repiping & replacement options. Upfront pricing. Call now.`
     : serviceObj.slug === 'main-water-shutoff-valve-repair'
-    ? `Main water shutoff valve leaking or stuck in ${stateObj.name}? Licensed plumber provides safe valve repair and replacement with upfront pricing. Call now.`
-    : `No hot water in ${stateObj.name}? Licensed emergency plumber in under 60 min — water heater repair and replacement, 24/7 service. Upfront pricing. Call now.`;
-  const lastReviewed = getDeterministicLastReviewed(`plumber-${stateObj.slug}-${serviceObj.slug}`);
+    ? `Shutoff valve leaking or stuck in ${stateObj.name}? Licensed plumber provides repair & replacement. 24/7. Call now.`
+    : `24/7 water heater repair in ${stateObj.name}. No hot water? Tank & tankless repair, same-day replacement. Licensed plumber. Call now.`;
 
   const breadcrumbs = [
     { name: 'Home', url: `${domain}/` },

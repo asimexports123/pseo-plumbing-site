@@ -7,7 +7,6 @@ import {
   cityToSlug, buildSlug, getStateSlug, CITY_DATA,
   isCityQualifiedForService,
 } from '../lib/cities';
-import { getDeterministicLastReviewed } from '../lib/dateUtils';
 import { TrustBar } from './ConversionLayer';
 
 const MidPageCTA = dynamic(() => import('./ConversionLayer').then((m) => m.MidPageCTA));
@@ -416,7 +415,7 @@ function NycBoroughSection({ serviceName, serviceSlug }) {
   );
 }
 
-export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities, zctas }) {
+export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities, zctas, lastReviewed }) {
   const cleanCityName = getCityDisplayName(cityName, stateCode);
   const location = stateCode ? `${cleanCityName}, ${stateCode}` : cityName;
   const serviceName = service?.name || 'Emergency Plumbing';
@@ -425,76 +424,72 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
   const canonical = `${domain}/${pageSlug}`;
   const stateHubSlug = stateCode ? `plumber-${getStateSlug(stateCode)}` : null;
   const cityBaseSlug = buildSlug(cityToSlug(cityName), 'emergency');
-  const lastReviewed = getDeterministicLastReviewed(pageSlug);
+  const lastReviewedDate = lastReviewed || new Date().toISOString().split('T')[0];
 
-  const pageTitle = serviceSlug === 'emergency'
-    ? `Emergency Plumber in ${location}`
-    : serviceSlug === 'pipe-burst-repair'
-    ? `Emergency Plumber in ${location} — Burst Pipe Repair`
-    : serviceSlug === 'leak-repair'
-    ? `Emergency Plumber in ${location} — Leak Repair`
+  const locShort = stateCode ? `${cleanCityName} ${stateCode}` : cleanCityName;
+  const title = serviceSlug === 'emergency'
+    ? `Emergency Plumber ${locShort} | 24/7 | YoHomeFix`
     : serviceSlug === 'drain-cleaning'
-    ? `Emergency Drain Service in ${location}`
+    ? `Drain Cleaning ${locShort} | 24/7 | YoHomeFix`
     : serviceSlug === 'water-heater-repair'
-    ? `Water Heater Repair in ${location} — Emergency 24/7 Service`
+    ? `Water Heater Repair ${locShort} | 24/7 | YoHomeFix`
+    : serviceSlug === 'leak-repair'
+    ? `Leak Repair ${locShort} | 24/7 | YoHomeFix`
+    : serviceSlug === 'pipe-burst-repair'
+    ? `Burst Pipe Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'sewer-line-repair'
-    ? `Emergency Plumber in ${location} — Sewer Line Repair`
+    ? `Sewer Line Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'toilet-repair'
-    ? `Emergency Plumber in ${location} — Toilet Repair`
+    ? `Toilet Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'slab-leak-repair'
-    ? `Emergency Plumber in ${location} — Slab Leak Repair`
+    ? `Slab Leak Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'water-line-repair'
-    ? `Emergency Plumber in ${location} — Water Line Repair`
+    ? `Water Line Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'faucet-repair'
-    ? `Emergency Plumber in ${location} — Faucet Repair`
+    ? `Faucet Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'garbage-disposal-repair'
-    ? `Emergency Plumber in ${location} — Garbage Disposal Repair`
+    ? `Garbage Disposal Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'water-softener-repair'
-    ? `Emergency Plumber in ${location} — Water Softener Repair`
+    ? `Water Softener Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'whole-house-repiping'
-    ? `Emergency Plumber in ${location} — Whole-House Repiping`
+    ? `Whole-House Repiping ${locShort} | YoHomeFix`
     : serviceSlug === 'main-water-shutoff-valve-repair'
-    ? `Emergency Plumber in ${location} — Main Water Shutoff Valve Repair`
+    ? `Shutoff Valve Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'sump-pump-repair'
-    ? `Emergency Plumber in ${location} — Sump Pump Repair`
-    : `Emergency Plumber in ${location}`;
-  const title = serviceSlug === 'drain-cleaning'
-    ? `${pageTitle} | 24/7 Clog & Backup Clearing | YoHomeFix`
-    : serviceSlug === 'emergency'
-    ? `${pageTitle} | 24 Hour Plumber & Plumbing Service | YoHomeFix`
-    : `${pageTitle} | 24/7 Licensed Service | YoHomeFix`;
+    ? `Sump Pump Repair ${locShort} | YoHomeFix`
+    : `Emergency Plumber ${locShort} | 24/7 | YoHomeFix`;
 
   const description = serviceSlug === 'emergency'
-    ? `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed 24 hour plumber in under 60 min — live operator answers 24/7, upfront pricing whenever available from participating providers. Call now.`
+    ? `24/7 emergency plumber in ${location}. Burst pipe, flooding, or leaks? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`
     : serviceSlug === 'pipe-burst-repair'
-    ? `Burst pipe in ${location}? Stop water damage now. Licensed emergency plumber on-site in under 60 minutes — 24/7 service, upfront pricing whenever available from participating providers. Get help now.`
+    ? `Burst pipe in ${location}? Licensed emergency plumber on-site in 60 min. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'leak-repair'
-    ? `Water leak in ${location}? Pinhole, slab, or supply line — licensed emergency plumber in 60 min. 24/7 availability, upfront pricing before work begins. Call now.`
+    ? `24/7 leak repair in ${location}. Pinhole, slab, or supply line leak? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`
     : serviceSlug === 'drain-cleaning'
-    ? `Emergency drain service in ${location}? 24/7 drain cleaning and sewer clearing — licensed plumber sent fast for clogged drains, backups, and blockages. Upfront pricing. Call now.`
+    ? `24/7 emergency drain cleaning in ${location}. Licensed plumber dispatched fast for clogs, backups & sewer blockages. Upfront pricing. Call now.`
     : serviceSlug === 'water-heater-repair'
-    ? `No hot water in ${location}? Emergency water heater repair 24/7 — licensed plumber in under 60 min. Tank & tankless repair, same-day replacement. Upfront pricing. Call now.`
+    ? `24/7 water heater repair in ${location}. No hot water? Tank & tankless repair, same-day replacement. Licensed plumber. Call now.`
     : serviceSlug === 'sewer-line-repair'
-    ? `Sewer line problems in ${location}? Licensed emergency plumber handles main line repair, camera inspection, and trenchless repair. 24/7 service, upfront pricing. Call now.`
+    ? `Sewer line problems in ${location}? Licensed plumber handles main line repair, camera inspection & trenchless options. 24/7. Call now.`
     : serviceSlug === 'toilet-repair'
-    ? `Toilet problems in ${location}? Licensed emergency plumber handles running toilets, clogs, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
+    ? `Toilet problems in ${location}? Licensed plumber handles running toilets, clogs, leaks & installation. 24/7 service. Call now.`
     : serviceSlug === 'slab-leak-repair'
-    ? `Slab leak in ${location}? Licensed emergency plumber provides detection, epoxy lining, and repair. 24/7 service, upfront pricing. Call now.`
+    ? `Slab leak in ${location}? Licensed plumber provides detection, epoxy lining & repair. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'water-line-repair'
-    ? `Water line problems in ${location}? Licensed emergency plumber handles leak detection, section repair, and line replacement. 24/7 service, upfront pricing. Call now.`
+    ? `Water line problems in ${location}? Licensed plumber handles leak detection, section repair & line replacement. 24/7. Call now.`
     : serviceSlug === 'faucet-repair'
-    ? `Faucet problems in ${location}? Licensed emergency plumber handles dripping faucets, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
+    ? `Faucet problems in ${location}? Licensed plumber handles drips, leaks & new installation. 24/7 service, upfront pricing. Call now.`
     : serviceSlug === 'garbage-disposal-repair'
-    ? `Garbage disposal problems in ${location}? Licensed emergency plumber handles jammed disposals, leaks, and new installation. 24/7 service, upfront pricing. Call now.`
+    ? `Garbage disposal problems in ${location}? Licensed plumber handles jams, leaks & installation. 24/7 service. Call now.`
     : serviceSlug === 'water-softener-repair'
-    ? `Water softener problems in ${location}? Licensed emergency plumber handles softener repair, resin replacement, and new installation. 24/7 service, upfront pricing. Call now.`
+    ? `Water softener problems in ${location}? Licensed plumber handles repair, resin replacement & installation. 24/7. Call now.`
     : serviceSlug === 'whole-house-repiping'
-    ? `Repeated pipe leaks in ${location}? Licensed plumber assesses whole-house repiping, targeted reroutes, and replacement options. Written scope and upfront pricing. Call now.`
+    ? `Repeated pipe leaks in ${location}? Licensed plumber assesses whole-house repiping & replacement options. Upfront pricing. Call now.`
     : serviceSlug === 'main-water-shutoff-valve-repair'
-    ? `Main water shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair and replacement. 24/7 service and upfront pricing. Call now.`
+    ? `Shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair & replacement. 24/7. Call now.`
     : serviceSlug === 'sump-pump-repair'
-    ? `Sump pump problems in ${location}? Licensed emergency plumber handles pump repair, backup systems, and new installation. 24/7 service, upfront pricing. Call now.`
-    : `Burst pipe or flooding in ${location}? YoHomeFix sends a licensed emergency plumber in under 60 min — live operator answers 24/7, upfront pricing whenever available from participating providers. Call now.`;
+    ? `Sump pump problems in ${location}? Licensed plumber handles pump repair, backup systems & installation. 24/7. Call now.`
+    : `24/7 emergency plumber in ${location}. Burst pipe, flooding, or leaks? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`;
 
   // Breadcrumb items
   const breadcrumbs = [
@@ -564,7 +559,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         name: title,
         description,
         datePublished: '2025-01-15',
-        dateModified: lastReviewed,
+        dateModified: lastReviewedDate,
         speakable: {
           '@type': 'SpeakableSpecification',
           cssSelector: ['h1', '.speakable-intro'],
@@ -977,7 +972,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
           <RelatedCosts cityName={cityName} />
           <CrawlLinks cityName={cityName} stateCode={stateCode} serviceSlug={serviceSlug} nearbyCities={nearbyCities} pageSlug={pageSlug} />
 
-          <Trust pageType="city" sourceCount={6} lastReviewed={lastReviewed} />
+          <Trust pageType="city" sourceCount={6} lastReviewed={lastReviewedDate} />
           <Sources pageType="city" cityName={cityName} stateCode={stateCode} />
 
           {/* Areas We Serve — hyperlocal ZIP directory */}
@@ -985,7 +980,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
 
           {/* EEAT footer */}
           <EditorialFooter pageType="city-service" />
-          <Author pageType="city-service" lastReviewed={lastReviewed} />
+          <Author pageType="city-service" lastReviewed={lastReviewedDate} />
 
           {/* Final CTA */}
           <div className="bg-blue-900 text-white rounded-2xl p-8 text-center">

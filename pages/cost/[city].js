@@ -12,7 +12,7 @@ import { Author } from '../../components/Author';
 import { Trust } from '../../components/Trust';
 import { Sources } from '../../components/Sources';
 import { buildOrganizationSchema, buildWebSiteSchema, buildPersonSchema } from '../../lib/schemas';
-import { getDeterministicLastReviewed } from '../../lib/dateUtils';
+import { getPageDate } from '../../lib/contentVersioning';
 
 const CITY_COST_PROFILE = {
   'New York':      { factor: 1.45, tier: 'Premium Market', note: 'NYC labor costs run 40-50% above national average due to high cost of living, union labor prevalence, and parking/access surcharges in dense boroughs.' },
@@ -109,9 +109,12 @@ function getCostFaqs(cityName, profile) {
 }
 
 export async function getStaticPaths() {
+  if (process.env.FULL_BUILD !== 'true') {
+    return { paths: [], fallback: 'blocking' };
+  }
   return {
     paths: COST_PAGE_CITIES.map((name) => ({ params: { city: cityToSlug(name) } })),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
@@ -125,22 +128,22 @@ export async function getStaticProps({ params }) {
     const costTable = getCostTable(cityName);
     const faqs = getCostFaqs(cityName, profile);
     const cityData = CITY_DATA[cityName] || {};
-    return { props: { cityName, stateCode: cityEntry.stateCode, profile, costTable, faqs, cityData } };
+    const lastReviewed = getPageDate(`cost:${params.city}`);
+    return { props: { cityName, stateCode: cityEntry.stateCode, profile, costTable, faqs, cityData, lastReviewed } };
   } catch (err) {
     console.error(`[cost/[city]] getStaticProps error for ${params.city}:`, err.message);
     return { notFound: true };
   }
 }
 
-export default function CostPage({ cityName, stateCode, profile, costTable, faqs, cityData }) {
+export default function CostPage({ cityName, stateCode, profile, costTable, faqs, cityData, lastReviewed }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
   const slug = cityToSlug(cityName);
   const canonical = `${domain}/cost/${slug}`;
   const coords = CITY_COORDS[cityName];
 
-  const title = `Plumber Cost in ${cityName}, ${stateCode} — Pricing Guide | YoHomeFix`;
-  const description = `Educational plumbing cost ranges for ${cityName}: national benchmarks, market-context factors, and pricing considerations for emergency plumbing, drains, leaks, pipes, and water heaters.`;
-  const lastReviewed = getDeterministicLastReviewed(`cost-${slug}`);
+  const title = `Plumber Cost ${cityName} ${stateCode} | Pricing Guide | YoHomeFix`;
+  const description = `Plumbing cost guide for ${cityName}, ${stateCode}. Average prices for emergency plumbing, drain cleaning & water heater repair. Upfront pricing. Call for a quote.`;
 
   const breadcrumbs = [
     { name: 'Home', url: `${domain}/` },
