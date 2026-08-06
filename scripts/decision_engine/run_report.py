@@ -24,6 +24,9 @@ from datetime import datetime, timezone
 
 from . import config
 from . import decision_store, marketcall_ingestion
+from .attribution_engine import (
+    AttributionResolver, evidence_from_gsc_page, evidence_from_marketcall_campaign,
+)
 from .logging_utils import log
 from .data_ingestion import load_gsc_page_report_from_csv, build_hierarchy_graph, ROOT_NODE
 from .opportunity_score import score_records
@@ -77,6 +80,37 @@ def run():
             print('[skipped] marketcall data unavailable (API not configured, no data, or fetch failure)')
     else:
         print('[skipped] marketcall (DECISION_ENGINE_ENABLE_MARKETCALL not set)')
+
+    # attribution_engine: reconcile GSC (page-level) + Marketcall
+    # (campaign-level) evidence without fabricating page attribution.
+    # GA4 evidence is not included -- GA4 credentials are not yet
+    # configured (see attribution_engine.py's "Future extensions"); when
+    # ga4_ingestion.py is built, it plugs into this same resolver via
+    # evidence_from_ga4_page/evidence_from_ga4_event with zero changes here.
+    attribution_resolver = None
+    if config.is_enabled('attribution'):
+        attribution_resolver = AttributionResolver()
+        attribution_resolver.add_all(
+            evidence_from_gsc_page(
+                p['page'],
+                {'impressions': p.get('impressions', 0), 'clicks': p.get('clicks', 0),
+                 'ctr': p.get('ctr'), 'avg_position': p.get('position')},
+            )
+            for p in page_reports
+        )
+        if marketcall_metrics:
+            attribution_resolver.add_evidence(
+                evidence_from_marketcall_campaign(marketcall_metrics['campaign_id'], marketcall_metrics)
+            )
+        else:
+            print('  [attribution] no Marketcall evidence available for this run')
+        print('  [attribution] GA4 evidence unavailable (not configured) — resolving with GSC + Marketcall only')
+        unattributed = attribution_resolver.unattributed_summary()
+        if unattributed['has_unattributed_evidence']:
+            print(f"  [attribution] {unattributed['count']} unattributed evidence entr"
+                  f"{'y' if unattributed['count'] == 1 else 'ies'} from: {sorted(unattributed['by_source'].keys())}")
+    else:
+        print('[skipped] attribution (DECISION_ENGINE_ENABLE_ATTRIBUTION not set)')
 
     # opportunity_score
     opp_results = []
@@ -150,6 +184,7 @@ def run():
             raw_metrics=raw_metrics, weak_components=weak_components,
             real_link_graph_metrics=real_link_graph_metrics,
             revenue_per_call=revenue_per_approved_call,
+            attribution_resolver=attribution_resolver,
         )
         print(f'\n=== {len(recs)} Recommendations ===\n')
         for r in recs[:20]:

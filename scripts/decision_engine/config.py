@@ -63,6 +63,7 @@ FLAG_NAMES = (
     'learning_loop',
     'dashboard',
     'marketcall',
+    'attribution',
 )
 
 

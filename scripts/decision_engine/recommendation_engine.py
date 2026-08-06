@@ -45,6 +45,18 @@ Inputs
 - `mc_seed` (optional): base seed for the embedded Monte Carlo
   simulations (default config.MC_DEFAULT_SEED), reproducible per target
   via a deterministic per-target offset (crc32 of the target id).
+- `revenue_per_call` (optional): a campaign-level revenue-per-approved-call
+  figure (e.g. from marketcall_ingestion.py) used as a fallback for
+  `_simulate_target_impact`'s revenue estimate only when `raw_metrics`
+  cannot supply a population-derived ratio of its own.
+- `attribution_resolver` (optional): an attribution_engine.AttributionResolver
+  already populated with evidence for this run. When supplied, each
+  per-page recommendation's `supporting_data['attribution']` is set to
+  that page's `resolve_page(target)` result (page-level evidence only,
+  never fabricated) purely as additional audit context -- it never
+  changes which recommendations are triggered, their confidence, or their
+  business_value_score. When omitted (the default), behavior is identical
+  to before this parameter existed.
 
 Outputs
 -------
@@ -502,6 +514,7 @@ def generate_recommendations(
     real_link_graph_metrics=None,
     mc_seed=None,
     revenue_per_call=None,
+    attribution_resolver=None,
 ):
     graph_metrics = graph_metrics or {}
     bayesian_posteriors = bayesian_posteriors or {}
@@ -509,6 +522,10 @@ def generate_recommendations(
     weak_components = weak_components or []
     real_link_graph_metrics = real_link_graph_metrics or {}
     seed_base = mc_seed if mc_seed is not None else config.MC_DEFAULT_SEED
+
+    if attribution_resolver is None:
+        log(logging.INFO, 'recommendation_engine_no_attribution_resolver',
+            note='per-recommendation attribution metadata will be omitted')
 
     if not graph_metrics:
         log(logging.INFO, 'recommendation_engine_no_graph_metrics',
@@ -564,6 +581,11 @@ def generate_recommendations(
 
         confidence, confidence_basis = _target_confidence(posterior, raw)
 
+        resolved_attribution = (
+            attribution_resolver.resolve_page(target).to_dict()
+            if attribution_resolver is not None else None
+        )
+
         is_orphan = bool(gmetrics.get('is_orphan')) if gmetrics else False
         pagerank = gmetrics.get('pagerank') if gmetrics else None
         below_median_pagerank = (
@@ -588,6 +610,7 @@ def generate_recommendations(
                 supporting_data={
                     'opportunity_gap_score': gap, 'percentiles': percentiles,
                     'confidence_basis': confidence_basis,
+                    **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
                 confidence=confidence,
                 expected_impact=impact,
@@ -609,6 +632,7 @@ def generate_recommendations(
                 supporting_data={
                     'opportunity_gap_score': gap, 'pagerank': pagerank, 'is_orphan': is_orphan,
                     'confidence_basis': confidence_basis,
+                    **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
                 confidence=confidence,
                 expected_impact=impact,
@@ -638,7 +662,10 @@ def generate_recommendations(
                         f"(<= median {median_n_obs}) — this is a confidently strong performer "
                         f"that has not yet been scaled up."
                     ),
-                    supporting_data=posterior.to_dict(),
+                    supporting_data={
+                        **posterior.to_dict(),
+                        **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
+                    },
                     confidence=conf,
                     expected_impact=impact,
                     business_value_score=business_value,
@@ -673,6 +700,7 @@ def generate_recommendations(
                         'performance_score': perf,
                         'posterior': posterior.to_dict() if posterior else None,
                         'confidence_basis': confidence_basis,
+                        **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                     },
                     confidence=conf,
                     expected_impact=impact,
@@ -698,6 +726,7 @@ def generate_recommendations(
                     'real_is_orphan': real_gmetrics.get('real_is_orphan'),
                     'link_discrepancy': real_gmetrics.get('link_discrepancy'),
                     'confidence_basis': confidence_basis,
+                    **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
                 confidence=confidence,
                 expected_impact=impact,
