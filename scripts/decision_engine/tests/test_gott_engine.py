@@ -32,6 +32,32 @@ import pytest
 from scripts.decision_engine import config, decision_store, gott_engine
 from scripts.decision_engine.gott_engine import (
     TemporalPrior,
+    GottInterval,
+    DecisionAction,
+    CoverageResult,
+    ValidationReport,
+    # Layer 1: Pure Gott
+    gott_remaining_lower,
+    gott_remaining_upper,
+    gott_total_lower,
+    gott_total_upper,
+    gott_median_remaining,
+    gott_survival_probability,
+    gott_interval,
+    # Layer 2: SEO heuristics
+    seo_sigmoid,
+    seo_maturity_score,
+    seo_remaining_growth_probability,
+    seo_remaining_observation_probability,
+    seo_retirement_probability,
+    # Layer 3: Decision policy
+    policy_recommended_wait_days,
+    policy_evaluation_readiness,
+    policy_confidence,
+    policy_decide,
+    # Monte Carlo validation
+    validate_gott_coverage,
+    # Backward-compatible wrappers
     _copernican_remaining_lower,
     _copernican_remaining_upper,
     _compute_maturity_score,
@@ -1003,3 +1029,476 @@ class TestRecommendationEngineIntegration:
         )
         observe_recs = [r for r in recs if r.action == 'observe_and_wait']
         assert len(observe_recs) == 0
+
+
+# =====================================================================
+# Layer 1: Pure Gott Delta-t model tests
+# =====================================================================
+
+class TestGottSurvivalProbability:
+    """Test the fundamental Copernican survival function."""
+
+    def test_zero_past(self):
+        """P(remaining > t | t_past=0) = 0 — no observation, no prediction."""
+        assert gott_survival_probability(0, 100) == 0.0
+
+    def test_zero_remaining(self):
+        """P(remaining > 0) = 1 — always true (lifetime hasn't ended yet)."""
+        assert gott_survival_probability(100, 0) == 1.0
+
+    def test_equal_past_and_remaining(self):
+        """P(remaining > t_past) = 0.5 — the median Copernican result."""
+        assert gott_survival_probability(100, 100) == pytest.approx(0.5)
+
+    def test_remaining_much_larger(self):
+        """P(remaining >> t_past) is small."""
+        assert gott_survival_probability(10, 1000) < 0.01
+
+    def test_remaining_much_smaller(self):
+        """P(remaining << t_past) is close to 1."""
+        assert gott_survival_probability(1000, 10) > 0.99
+
+    def test_formula(self):
+        """P(remaining > t_r) = t_past / (t_past + t_r)."""
+        for t_past, t_r in [(50, 50), (100, 200), (1, 999), (500, 1)]:
+            expected = t_past / (t_past + t_r)
+            assert gott_survival_probability(t_past, t_r) == pytest.approx(expected)
+
+    def test_bounded(self):
+        """Survival probability is always in [0, 1]."""
+        for t_past in [0, 1, 10, 100, 1000]:
+            for t_r in [0, 1, 10, 100, 1000]:
+                p = gott_survival_probability(t_past, t_r)
+                assert 0.0 <= p <= 1.0
+
+
+class TestGottTotalBounds:
+    """Test total lifetime bounds (derived from the Copernican principle)."""
+
+    def test_total_lower_95(self):
+        """P(total > t_past/0.95) = 0.95."""
+        result = gott_total_lower(100, 0.95)
+        assert result == pytest.approx(100 / 0.95, rel=1e-6)
+
+    def test_total_upper_95(self):
+        """P(total < t_past/0.05) = 0.95."""
+        result = gott_total_upper(100, 0.95)
+        assert result == pytest.approx(100 / 0.05, rel=1e-6)
+
+    def test_total_lower_less_than_total_upper(self):
+        for t in [1, 10, 100, 1000]:
+            assert gott_total_lower(t, 0.95) < gott_total_upper(t, 0.95)
+
+    def test_total_consistency_with_remaining(self):
+        """total_lower = t_past + remaining_lower, total_upper = t_past + remaining_upper."""
+        for t in [10, 100, 1000]:
+            for c in [0.5, 0.8, 0.95]:
+                tl = gott_total_lower(t, c)
+                tu = gott_total_upper(t, c)
+                rl = gott_remaining_lower(t, c)
+                ru = gott_remaining_upper(t, c)
+                assert tl == pytest.approx(t + rl)
+                assert tu == pytest.approx(t + ru)
+
+    def test_zero_past(self):
+        assert gott_total_lower(0, 0.95) == 0
+        assert gott_total_upper(0, 0.95) == 0
+
+
+class TestGottMedianRemaining:
+    """Test the median remaining lifetime (50% confidence)."""
+
+    def test_basic(self):
+        """Median remaining = t_past."""
+        assert gott_median_remaining(100) == 100
+
+    def test_zero(self):
+        assert gott_median_remaining(0) == 0
+
+    def test_consistency_with_survival(self):
+        """P(remaining > median_remaining) should be 0.5."""
+        for t in [10, 100, 1000]:
+            med = gott_median_remaining(t)
+            assert gott_survival_probability(t, med) == pytest.approx(0.5)
+
+
+class TestGottInterval:
+    """Test the combined GottInterval output."""
+
+    def test_creation(self):
+        gi = gott_interval(100, 0.95)
+        assert gi.t_past == 100
+        assert gi.confidence_level == 0.95
+        assert gi.remaining_lower > 0
+        assert gi.remaining_upper > gi.remaining_lower
+        assert gi.total_lower > 0
+        assert gi.total_upper > gi.total_lower
+        assert gi.median_remaining == 100
+
+    def test_to_dict(self):
+        gi = gott_interval(100, 0.95)
+        d = gi.to_dict()
+        assert d['t_past'] == 100
+        assert d['confidence_level'] == 0.95
+        assert 'remaining_lower' in d
+        assert 'remaining_upper' in d
+
+    def test_consistency(self):
+        """Interval bounds are consistent with individual functions."""
+        gi = gott_interval(200, 0.90)
+        assert gi.remaining_lower == gott_remaining_lower(200, 0.90)
+        assert gi.remaining_upper == gott_remaining_upper(200, 0.90)
+        assert gi.total_lower == gott_total_lower(200, 0.90)
+        assert gi.total_upper == gott_total_upper(200, 0.90)
+        assert gi.median_remaining == gott_median_remaining(200)
+
+    def test_zero_past(self):
+        gi = gott_interval(0, 0.95)
+        assert gi.remaining_lower == 0
+        assert gi.remaining_upper == 0
+        assert gi.total_lower == 0
+        assert gi.total_upper == 0
+
+
+class TestGottLayer1Purity:
+    """Verify Layer 1 functions don't use sigmoid or SEO heuristics."""
+
+    def test_no_sigmoid_dependency(self):
+        """Layer 1 functions produce exact formula results, not sigmoid-based."""
+        for t in [10, 50, 100, 200, 500]:
+            rl = gott_remaining_lower(t, 0.95)
+            ru = gott_remaining_upper(t, 0.95)
+            assert rl == pytest.approx(t * 0.05 / 0.95)
+            assert ru == pytest.approx(t * 0.95 / 0.05)
+
+    def test_gott_is_distribution_free(self):
+        """Gott's theorem makes no assumption about the lifetime distribution."""
+        assert gott_survival_probability(100, 100) == 0.5
+        assert gott_survival_probability(100, 300) == 0.25
+        assert gott_survival_probability(300, 100) == 0.75
+
+
+# =====================================================================
+# Layer 2: SEO maturity model tests
+# =====================================================================
+
+class TestSeoSigmoid:
+    """Test the SEO sigmoid heuristic (NOT Gott)."""
+
+    def test_midpoint(self):
+        assert seo_sigmoid(MATURITY_SIGMOID_MIDPOINT) == pytest.approx(0.5, abs=1e-6)
+
+    def test_below_midpoint(self):
+        assert seo_sigmoid(MATURITY_SIGMOID_MIDPOINT - 50) < 0.5
+
+    def test_above_midpoint(self):
+        assert seo_sigmoid(MATURITY_SIGMOID_MIDPOINT + 50) > 0.5
+
+    def test_monotonic(self):
+        values = [0, 30, 60, 90, 120, 150, 200, 300]
+        results = [seo_sigmoid(v) for v in values]
+        for i in range(len(results) - 1):
+            assert results[i] <= results[i + 1]
+
+
+class TestSeoMaturityScore:
+    """Test the SEO maturity score heuristic."""
+
+    def test_zero_age(self):
+        assert seo_maturity_score(0) == 0.0
+
+    def test_young_page(self):
+        assert seo_maturity_score(10) < 0.2
+
+    def test_mature_page(self):
+        assert seo_maturity_score(200) > 0.8
+
+    def test_bounded(self):
+        for age in [-100, 0, 1, 10, 50, 100, 500, 1000, 10000]:
+            assert 0.0 <= seo_maturity_score(age) <= 1.0
+
+
+class TestSeoRemainingGrowth:
+    """Test the SEO remaining growth probability heuristic."""
+
+    def test_young_page(self):
+        assert seo_remaining_growth_probability(10) > 0.9
+
+    def test_old_page(self):
+        assert seo_remaining_growth_probability(200) < 0.2
+
+    def test_decreasing(self):
+        ages = [1, 30, 60, 90, 120, 200]
+        probs = [seo_remaining_growth_probability(a) for a in ages]
+        for i in range(len(probs) - 1):
+            assert probs[i] >= probs[i + 1]
+
+
+class TestSeoRetirement:
+    """Test the SEO retirement probability heuristic."""
+
+    def test_young_page(self):
+        assert seo_retirement_probability(10) < 0.1
+
+    def test_old_page(self):
+        assert seo_retirement_probability(300) > 0.5
+
+    def test_bounded(self):
+        for age in [0, 1, 10, 100, 500, 10000]:
+            assert 0.0 <= seo_retirement_probability(age) <= 1.0
+
+
+class TestLayer2IsNotGott:
+    """Verify Layer 2 functions are explicitly different from Layer 1."""
+
+    def test_maturity_uses_sigmoid_not_copernican(self):
+        """Maturity score at 90 days = 0.5 (sigmoid midpoint),
+        not related to Copernican survival probability."""
+        assert seo_maturity_score(90) == pytest.approx(0.5, abs=1e-6)
+        assert seo_maturity_score(180) > 0.9
+        assert gott_survival_probability(180, 180) == 0.5  # still 50%!
+
+    def test_growth_probability_is_not_copernican_survival(self):
+        """SEO growth probability uses sigmoid, not t_past/(t_past+t_remaining)."""
+        assert seo_remaining_growth_probability(180) < 0.2  # sigmoid says low
+        # Copernican says P(remaining > 180 | t_past=180) = 0.5 — very different
+
+
+# =====================================================================
+# Layer 3: Decision policy tests
+# =====================================================================
+
+class TestDecisionAction:
+    """Test the DecisionAction enum."""
+
+    def test_values(self):
+        assert DecisionAction.WAIT.value == 'WAIT'
+        assert DecisionAction.OBSERVE.value == 'OBSERVE'
+        assert DecisionAction.EVALUATE.value == 'EVALUATE'
+        assert DecisionAction.RETIRE.value == 'RETIRE'
+
+
+class TestPolicyDecide:
+    """Test the decision policy that converts layers 1+2+thresholds to actions."""
+
+    def test_wait_for_young_page(self):
+        """Page younger than MIN_AGE_FOR_PREDICTION -> WAIT."""
+        gi = gott_interval(0, 0.95)
+        decision = policy_decide(gi, 0.0, 0, 0,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.WAIT
+
+    def test_wait_for_young_recommendation(self):
+        """Recommendation younger than eval window -> WAIT."""
+        gi = gott_interval(100, 0.95)
+        decision = policy_decide(gi, 0.8, 5, 100,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.WAIT
+
+    def test_observe_for_immature_page(self):
+        """High opportunity, low maturity -> OBSERVE."""
+        gi = gott_interval(10, 0.95)
+        decision = policy_decide(gi, 0.1, 50, 10,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.OBSERVE
+
+    def test_evaluate_for_mature_page(self):
+        """Mature page with old recommendation -> EVALUATE."""
+        gi = gott_interval(200, 0.95)
+        decision = policy_decide(gi, 0.9, 100, 200,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.EVALUATE
+
+    def test_retire_for_very_old_page(self):
+        """Very old page with minimal remaining lifetime at high confidence -> RETIRE."""
+        gi_high = gott_interval(10000, 0.999)
+        decision = policy_decide(gi_high, 0.99, 100, 10000,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.RETIRE
+
+
+class TestPolicyConfidence:
+    """Test the policy confidence function."""
+
+    def test_zero_age(self):
+        assert policy_confidence(0) == 0.0
+
+    def test_at_midpoint(self):
+        assert policy_confidence(MATURITY_SIGMOID_MIDPOINT) == pytest.approx(1.0)
+
+    def test_bounded(self):
+        for age in [0, 1, 50, 100, 500, 10000]:
+            assert 0.0 <= policy_confidence(age) <= 1.0
+
+
+# =====================================================================
+# Monte Carlo validation tests
+# =====================================================================
+
+class TestMonteCarloValidation:
+    """
+    Monte Carlo validation that Layer 1 empirically matches Gott's theorem.
+
+    Generates 100,000 random lifetimes from multiple distributions,
+    randomly observes them, and verifies empirical coverage against
+    the theoretical confidence intervals.
+    """
+
+    @pytest.fixture(scope='class')
+    def validation_report(self):
+        """Run the full Monte Carlo validation once for all tests in this class."""
+        return validate_gott_coverage(
+            n_samples=100_000,
+            confidence_levels=[0.50, 0.80, 0.90, 0.95, 0.99],
+            distributions=['uniform', 'exponential', 'lognormal', 'powerlaw'],
+            seed=42,
+            tolerance=0.005,
+        )
+
+    def test_report_structure(self, validation_report):
+        """The validation report has the expected structure."""
+        assert isinstance(validation_report, ValidationReport)
+        assert validation_report.n_samples == 100_000
+        assert len(validation_report.results) == 5
+        assert validation_report.max_error >= 0
+
+    def test_coverage_at_50_percent(self, validation_report):
+        """At 50% confidence, observed coverage should be ~0.50."""
+        result = validation_report.results[0]
+        assert result.confidence_level == 0.50
+        assert result.expected_coverage == 0.50
+        assert abs(result.error) < 0.005, (
+            f"Expected error < 0.005, got {result.error:.6f}"
+        )
+
+    def test_coverage_at_80_percent(self, validation_report):
+        """At 80% confidence, observed coverage should be ~0.80."""
+        result = validation_report.results[1]
+        assert result.confidence_level == 0.80
+        assert abs(result.error) < 0.005
+
+    def test_coverage_at_90_percent(self, validation_report):
+        """At 90% confidence, observed coverage should be ~0.90."""
+        result = validation_report.results[2]
+        assert result.confidence_level == 0.90
+        assert abs(result.error) < 0.005
+
+    def test_coverage_at_95_percent(self, validation_report):
+        """At 95% confidence, observed coverage should be ~0.95."""
+        result = validation_report.results[3]
+        assert result.confidence_level == 0.95
+        assert abs(result.error) < 0.005
+
+    def test_coverage_at_99_percent(self, validation_report):
+        """At 99% confidence, observed coverage should be ~0.99."""
+        result = validation_report.results[4]
+        assert result.confidence_level == 0.99
+        assert abs(result.error) < 0.005
+
+    def test_validation_passes(self, validation_report):
+        """The full validation should pass (max error < tolerance)."""
+        assert validation_report.passed, (
+            f"Validation failed: max_error={validation_report.max_error:.6f}\n"
+            f"{validation_report}"
+        )
+
+    def test_report_to_dict(self, validation_report):
+        """The report can be serialized to dict."""
+        d = validation_report.to_dict()
+        assert d['n_samples'] == 100_000
+        assert 'results' in d
+        assert len(d['results']) == 5
+        assert 'max_error' in d
+        assert 'passed' in d
+
+    def test_report_str(self, validation_report):
+        """The report has a readable string representation."""
+        s = str(validation_report)
+        assert 'Monte Carlo Validation Report' in s
+        assert 'samples' in s
+        assert 'passed' in s
+
+    def test_distribution_free_property(self, validation_report):
+        """Gott's theorem is distribution-free: coverage should match
+        regardless of the lifetime distribution used."""
+        assert validation_report.max_error < 0.005
+
+    def test_small_sample_validation(self):
+        """A smaller validation should also work (with larger tolerance)."""
+        report = validate_gott_coverage(
+            n_samples=10_000,
+            confidence_levels=[0.50, 0.95],
+            distributions=['uniform', 'exponential'],
+            seed=123,
+            tolerance=0.02,
+        )
+        assert report.passed
+        assert report.n_samples == 10_000
+
+    def test_coverage_result_str(self):
+        """CoverageResult has a readable string representation."""
+        cr = CoverageResult(
+            confidence_level=0.95,
+            expected_coverage=0.95,
+            observed_coverage=0.9487,
+            error=-0.0013,
+            n_samples=100000,
+        )
+        s = str(cr)
+        assert 'c=0.95' in s
+        assert 'expected=0.9500' in s
+        assert 'observed=0.9487' in s
+
+
+# =====================================================================
+# Three-layer separation tests
+# =====================================================================
+
+class TestThreeLayerSeparation:
+    """Verify that the three layers are properly separated."""
+
+    def test_layer1_does_not_use_layer2(self):
+        """Layer 1 functions should not depend on the sigmoid midpoint."""
+        import scripts.decision_engine.gott_engine as ge
+
+        original = ge.MATURITY_SIGMOID_MIDPOINT
+        ge.MATURITY_SIGMOID_MIDPOINT = 999.0
+
+        try:
+            assert gott_remaining_lower(100, 0.95) == pytest.approx(100 * 0.05 / 0.95)
+            assert gott_remaining_upper(100, 0.95) == pytest.approx(100 * 0.95 / 0.05)
+            assert gott_survival_probability(100, 100) == 0.5
+            assert gott_median_remaining(100) == 100
+        finally:
+            ge.MATURITY_SIGMOID_MIDPOINT = original
+
+    def test_layer2_depends_on_sigmoid(self):
+        """Layer 2 functions should change when the sigmoid midpoint changes."""
+        # At midpoint=90, sigmoid(90) = 0.5
+        assert seo_sigmoid(90, midpoint=90) == pytest.approx(0.5, abs=1e-6)
+        # At midpoint=200, sigmoid(200) = 0.5 (new midpoint)
+        assert seo_sigmoid(200, midpoint=200) == pytest.approx(0.5, abs=1e-6)
+        # At midpoint=200, sigmoid(90) < 0.5 (90 is below new midpoint)
+        assert seo_sigmoid(90, midpoint=200) < 0.5
+
+    def test_layer3_uses_both_layers(self):
+        """Layer 3 decision policy uses both Gott interval and SEO maturity."""
+        gi = gott_interval(100, 0.95)
+        decision = policy_decide(gi, 0.1, 50, 100,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.OBSERVE
+
+        decision = policy_decide(gi, 0.9, 50, 100,
+                                 config.LEARNING_LOOP_EVALUATION_WINDOW_DAYS)
+        assert decision == DecisionAction.EVALUATE
+
+    def test_backward_compat_wrappers_match_new_api(self):
+        """Backward-compatible wrappers produce identical results to new API."""
+        for t in [10, 50, 100, 500]:
+            assert _copernican_remaining_lower(t, 0.95) == gott_remaining_lower(t, 0.95)
+            assert _copernican_remaining_upper(t, 0.95) == gott_remaining_upper(t, 0.95)
+            assert _compute_maturity_score(t) == seo_maturity_score(t)
+            assert _compute_remaining_growth_probability(t) == seo_remaining_growth_probability(t)
+            assert _compute_retirement_probability(t) == seo_retirement_probability(t)
+            assert _compute_confidence(t) == policy_confidence(t)
+            assert _sigmoid(t) == seo_sigmoid(t)
