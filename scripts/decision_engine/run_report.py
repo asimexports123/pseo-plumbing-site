@@ -37,6 +37,7 @@ from .link_ingestion import build_real_link_graph, diff_with_hierarchy
 from .page_profile import build_page_decision_records
 from .recommendation_engine import generate_recommendations
 from . import learning_engine
+from . import gott_engine
 
 
 def _build_bayesian_observations(engine, page_reports):
@@ -208,6 +209,15 @@ def run():
 
     # recommendation_engine
     recs = []
+    temporal_priors = {}
+    if config.is_enabled('gott'):
+        temporal_priors = gott_engine.compute_all_temporal_priors()
+        ready = sum(1 for p in temporal_priors.values() if p.evaluation_readiness)
+        print(f'\n=== Gott Temporal Prior Engine: {len(temporal_priors)} pages, '
+              f'{ready} ready for evaluation ===')
+    else:
+        print('[skipped] gott (DECISION_ENGINE_ENABLE_GOTT not set)')
+
     if config.is_enabled('recommendation') and opp_results:
         raw_metrics = {p['page']: p for p in page_reports}
         learned_adjustments = {}
@@ -229,6 +239,7 @@ def run():
             revenue_per_call=revenue_per_approved_call,
             attribution_resolver=attribution_resolver,
             learned_confidence_adjustments=learned_adjustments,
+            temporal_priors={k: v.to_dict() for k, v in temporal_priors.items()},
         )
         print(f'\n=== {len(recs)} Recommendations ===\n')
         for r in recs[:20]:
@@ -249,6 +260,7 @@ def run():
             real_link_graph_metrics=real_link_graph_metrics,
             bayesian_posteriors=posteriors,
             recommendations=recs,
+            temporal_priors={k: v.to_dict() for k, v in temporal_priors.items()},
         )
         decision_store.save_snapshots(records)
         print(f'\n=== Persisted {len(records)} PageDecisionRecord snapshots ===')

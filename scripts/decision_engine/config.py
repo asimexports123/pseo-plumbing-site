@@ -66,6 +66,7 @@ FLAG_NAMES = (
     'attribution',
     'ga4',
     'learning',
+    'gott',
 )
 
 

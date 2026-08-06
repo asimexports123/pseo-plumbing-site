@@ -114,6 +114,7 @@ from typing import Optional
 from . import config, decision_store
 from .logging_utils import traced, log
 from .page_profile import PageDecisionRecord, normalize_page_id
+from . import gott_engine
 
 
 # --- Tunable parameters (statistical conventions, not business weights) ---
@@ -532,6 +533,13 @@ def evaluate_page_learning(page_id, conn=None, evaluation_window_days=None):
             if not recs:
                 continue
 
+            # Consult Gott Temporal Prior Engine: is this recommendation
+            # old enough to evaluate? If not, skip — premature evaluation
+            # would reinforce or penalize based on incomplete outcomes.
+            gott_prior = gott_engine.compute_temporal_prior(
+                page_id, as_of_date=current_record.snapshot_date, conn=conn,
+            )
+
             prev_metrics = _extract_metrics(prev_record)
             curr_metrics = _extract_metrics(current_record)
             outcome_score = _compute_outcome_score(prev_metrics, curr_metrics)
@@ -551,6 +559,14 @@ def evaluate_page_learning(page_id, conn=None, evaluation_window_days=None):
                      prev_record.snapshot_date, current_record.snapshot_date),
                 ).fetchone()
                 if existing:
+                    continue
+
+                # Gott gate: skip evaluation if not ready
+                if not gott_prior.evaluation_readiness:
+                    log(logging.INFO, 'learning_engine_gott_skip',
+                        page_id=page_id, action=action,
+                        rec_age=gott_prior.recommendation_age_days,
+                        wait_days=gott_prior.recommended_wait_days)
                     continue
 
                 record = RecommendationLearningRecord(

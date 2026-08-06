@@ -517,6 +517,7 @@ def generate_recommendations(
     revenue_per_call=None,
     attribution_resolver=None,
     learned_confidence_adjustments=None,
+    temporal_priors=None,
 ):
     graph_metrics = graph_metrics or {}
     bayesian_posteriors = bayesian_posteriors or {}
@@ -524,6 +525,7 @@ def generate_recommendations(
     weak_components = weak_components or []
     real_link_graph_metrics = real_link_graph_metrics or {}
     learned_confidence_adjustments = learned_confidence_adjustments or {}
+    temporal_priors = temporal_priors or {}
     seed_base = mc_seed if mc_seed is not None else config.MC_DEFAULT_SEED
 
     if attribution_resolver is None:
@@ -545,6 +547,9 @@ def generate_recommendations(
     if not learned_confidence_adjustments:
         log(logging.INFO, 'recommendation_engine_no_learned_adjustments',
             note='recommendations will use base confidence without historical learning')
+    if not temporal_priors:
+        log(logging.INFO, 'recommendation_engine_no_temporal_priors',
+            note='temporal maturity will not be assessed (Gott engine disabled or no history)')
 
     results = [r.to_dict() if hasattr(r, 'to_dict') else r for r in opportunity_results]
     if not results:
@@ -773,6 +778,47 @@ def generate_recommendations(
             ))
 
     recommendations.extend(_diagnose_weak_clusters(weak_components, opportunity_by_id, raw_metrics))
+
+    # --- Gott temporal prior: observe_and_wait for immature high-opportunity pages ---
+    if temporal_priors:
+        for r in results:
+            target = r['record_id']
+            gap = r['opportunity_gap_score']
+            tp = temporal_priors.get(target)
+            if tp is None:
+                continue
+            # Only for high-opportunity pages with low maturity
+            if gap >= 0.5 and tp.get('maturity_score', 1.0) < 0.3:
+                # Check if we already have a recommendation for this target
+                # that isn't observe_and_wait
+                existing_actions = {rec.action for rec in recommendations if rec.target == target}
+                if 'observe_and_wait' not in existing_actions:
+                    wait_days = tp.get('recommended_wait_days', 0)
+                    maturity = tp.get('maturity_score', 0.0)
+                    remaining_growth = tp.get('remaining_growth_probability', 1.0)
+                    recommendations.append(Recommendation(
+                        action='observe_and_wait', target=target,
+                        reason=(
+                            f"High opportunity (gap={gap:.2f}) but low temporal maturity "
+                            f"(maturity_score={maturity:.2f}, remaining_growth_probability="
+                            f"{remaining_growth:.2f}). Gott Delta-t estimates "
+                            f"{wait_days} days until evaluation readiness. "
+                            f"Premature action risks misdiagnosing transient ranking signals."
+                        ),
+                        supporting_data={
+                            'temporal_prior': tp,
+                            'opportunity_gap_score': gap,
+                            'confidence_basis': 'gott_temporal_prior',
+                        },
+                        confidence=tp.get('confidence', 0.0),
+                        expected_impact={'note': 'temporal observation — no action expected yet'},
+                        business_value_score=0.0,
+                        action_plan=[{
+                            'action': 'observe_and_wait',
+                            'reason': f'wait {wait_days} days for temporal maturity',
+                            'severity': 1.0 - maturity,
+                        }],
+                    ))
 
     recommendations.sort(key=lambda rec: (rec.business_value_score, rec.confidence), reverse=True)
     return recommendations
