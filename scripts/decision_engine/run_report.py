@@ -23,9 +23,10 @@ import logging
 from datetime import datetime, timezone
 
 from . import config
-from . import decision_store, marketcall_ingestion
+from . import decision_store, marketcall_ingestion, ga4_ingestion
 from .attribution_engine import (
     AttributionResolver, evidence_from_gsc_page, evidence_from_marketcall_campaign,
+    evidence_from_ga4_page,
 )
 from .logging_utils import log
 from .data_ingestion import load_gsc_page_report_from_csv, build_hierarchy_graph, ROOT_NODE
@@ -81,12 +82,30 @@ def run():
     else:
         print('[skipped] marketcall (DECISION_ENGINE_ENABLE_MARKETCALL not set)')
 
-    # attribution_engine: reconcile GSC (page-level) + Marketcall
-    # (campaign-level) evidence without fabricating page attribution.
-    # GA4 evidence is not included -- GA4 credentials are not yet
-    # configured (see attribution_engine.py's "Future extensions"); when
-    # ga4_ingestion.py is built, it plugs into this same resolver via
-    # evidence_from_ga4_page/evidence_from_ga4_event with zero changes here.
+    # ga4_ingestion: per-page engagement/conversion/phone-click outcomes
+    # (reuses the existing GSC service account credentials -- see
+    # ga4_ingestion.py's module docstring; no new auth mechanism).
+    ga4_metrics_by_page = None
+    if config.is_enabled('ga4'):
+        ga4_metrics_by_page = ga4_ingestion.load_ga4_page_metrics()
+        if ga4_metrics_by_page:
+            print(f'\n=== GA4 ({len(ga4_metrics_by_page)} pages) ===')
+            sample = next(iter(ga4_metrics_by_page.values()))
+            print(f"  window: {sample['date_from']} to {sample['date_to']}")
+            total_sessions = sum(m.get('sessions', 0) for m in ga4_metrics_by_page.values())
+            total_phone_clicks = sum(m.get('phone_click_events', 0) for m in ga4_metrics_by_page.values())
+            print(f'  total_sessions={total_sessions}, total_phone_click_events={total_phone_clicks}')
+        elif ga4_metrics_by_page == {}:
+            print('[skipped] ga4 data empty (property configured but zero rows for this window)')
+        else:
+            print('[skipped] ga4 data unavailable (property not configured or fetch failure)')
+    else:
+        print('[skipped] ga4 (DECISION_ENGINE_ENABLE_GA4 not set)')
+
+    # attribution_engine: reconcile GSC (page-level) + GA4 (page-level) +
+    # Marketcall (campaign-level) evidence without fabricating page
+    # attribution. GA4 evidence is included only for pages GA4 actually
+    # returned data for this window -- never backfilled or assumed.
     attribution_resolver = None
     if config.is_enabled('attribution'):
         attribution_resolver = AttributionResolver()
@@ -98,13 +117,24 @@ def run():
             )
             for p in page_reports
         )
+        _ga4_meta_keys = {'attribution_level', 'attribution_note', 'source', 'date_from', 'date_to', 'fetched_at'}
+        if ga4_metrics_by_page:
+            attribution_resolver.add_all(
+                evidence_from_ga4_page(
+                    page_id, {k: v for k, v in metrics.items() if k not in _ga4_meta_keys},
+                    timestamp=metrics.get('fetched_at'),
+                )
+                for page_id, metrics in ga4_metrics_by_page.items()
+            )
+            print(f'  [attribution] {len(ga4_metrics_by_page)} GA4 page-level evidence entries added')
+        else:
+            print('  [attribution] no GA4 evidence available for this run')
         if marketcall_metrics:
             attribution_resolver.add_evidence(
                 evidence_from_marketcall_campaign(marketcall_metrics['campaign_id'], marketcall_metrics)
             )
         else:
             print('  [attribution] no Marketcall evidence available for this run')
-        print('  [attribution] GA4 evidence unavailable (not configured) — resolving with GSC + Marketcall only')
         unattributed = attribution_resolver.unattributed_summary()
         if unattributed['has_unattributed_evidence']:
             print(f"  [attribution] {unattributed['count']} unattributed evidence entr"
@@ -198,6 +228,7 @@ def run():
     if config.is_enabled('decision_store'):
         records = build_page_decision_records(
             page_reports, snapshot_date,
+            ga4_metrics_by_page=ga4_metrics_by_page,
             marketcall_metrics=marketcall_metrics,
             opp_results=opp_results,
             graph_metrics=graph_metrics,

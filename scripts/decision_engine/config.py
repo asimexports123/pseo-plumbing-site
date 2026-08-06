@@ -64,6 +64,7 @@ FLAG_NAMES = (
     'dashboard',
     'marketcall',
     'attribution',
+    'ga4',
 )
 
 
