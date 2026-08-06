@@ -32,7 +32,7 @@ export function EditorialFooter({ pageType = 'page' }) {
           <p>
             Content is reviewed against current plumbing industry standards and local infrastructure data.
             Service pages are built from verified municipal water utility, geological, and climate data.
-            <Link href="/editorial-policy" className="text-blue-700 hover:underline ml-1 no-underline">Read our editorial standards.</Link>
+            <Link href="/editorial-policy" className="text-blue-700 hover:underline ml-1 underline underline-offset-2">Read our editorial standards.</Link>
           </p>
         </div>
         <div>
