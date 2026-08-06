@@ -8,10 +8,10 @@ YoHomeFix provides emergency plumbing services — burst pipes, drain backups, w
 
 ## Services We Offer
 
-- Emergency Plumbing (24/7 urgent response)
-- Leak Repair (pipe leaks, water leaks)
-- Drain Cleaning (clogged drains, sewer backups)
-- Water Heater Repair (no hot water, leaking tanks)
+- [Emergency Plumbing](https://yohomefix.com/) (24/7 urgent response)
+- [Leak Repair](https://yohomefix.com/) (pipe leaks, water leaks)
+- [Drain Cleaning](https://yohomefix.com/) (clogged drains, sewer backups)
+- [Water Heater Repair](https://yohomefix.com/) (no hot water, leaking tanks)
 - Sewer Line Repair (sewer backups, line replacement)
 - Toilet Repair (overflowing, running, clogged toilets)
 - Slab Leak Repair (foundation leaks, under-slab pipe issues)
@@ -26,17 +26,20 @@ YoHomeFix provides emergency plumbing services — burst pipes, drain backups, w
 
 ## How to Contact Us
 
-- Phone: +1 (844) 934-4386 (24/7 emergency service)
-- Website: https://yohomefix.com
-- Emergency diagnostic tool: https://yohomefix.com/whats-wrong-with-my-plumbing
+- **Phone:** +1 (844) 934-4386 (24/7 emergency service)
+- **Website:** <https://yohomefix.com>
+- **Emergency diagnostic tool:** <https://yohomefix.com/whats-wrong-with-my-plumbing>
 
 ## Key Pages
 
-- Homepage: https://yohomefix.com/
-- Emergency plumbing diagnostic tool: https://yohomefix.com/whats-wrong-with-my-plumbing
-- US water hardness and plumbing risk research: https://yohomefix.com/research/us-water-hardness-plumbing-risk
-- State-service hub pages: https://yohomefix.com/plumber/{state}/{service}
-- City-service pages: https://yohomefix.com/plumber-{city}-{service}
+- [Homepage](https://yohomefix.com/)
+- [Emergency plumbing diagnostic tool](https://yohomefix.com/whats-wrong-with-my-plumbing)
+- [US water hardness and plumbing risk research](https://yohomefix.com/research/us-water-hardness-plumbing-risk)
+- [Browse all cities & towns](https://yohomefix.com/plumber-usa)
+- [Plumbing guides](https://yohomefix.com/guides)
+- [Plumbing cost guides](https://yohomefix.com/cost)
+- State-service hub pages: `https://yohomefix.com/plumber-{state}`
+- City-service pages: `https://yohomefix.com/{city}-{service}`
 
 ## Coverage Area
 
@@ -45,6 +48,7 @@ We serve 155 cities across 46 US states including: New York, Los Angeles, Chicag
 ## Research and Data
 
 YoHomeFix publishes original plumbing infrastructure research including:
+
 - US water hardness data and plumbing risk assessment by city
 - City-specific plumbing infrastructure profiles (pipe materials, pipe eras, water utility information, dominant failure patterns)
 - Seasonal plumbing risk analysis by region

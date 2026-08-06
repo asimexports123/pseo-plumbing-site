@@ -217,7 +217,7 @@ export default function Home({ totalPlaces }) {
         {/* ── HOW IT WORKS ──────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto w-full px-4 py-12">
           <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">How YoHomeFix Works</h2>
-          <p className="text-gray-500 text-center mb-10 max-w-xl mx-auto">
+          <p className="text-gray-600 text-center mb-10 max-w-xl mx-auto">
             Call YoHomeFix and a live operator will send a licensed, insured plumber to your door — fast. Available 24/7 with transparent pricing from participating providers.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -230,7 +230,7 @@ export default function Home({ totalPlaces }) {
                 <div className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center font-extrabold text-lg mx-auto mb-3">{item.step}</div>
                 <p className="text-3xl mb-2">{item.icon}</p>
                 <p className="font-bold text-blue-900 text-lg mb-2">{item.title}</p>
-                <p className="text-gray-500 text-sm">{item.desc}</p>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -257,7 +257,7 @@ export default function Home({ totalPlaces }) {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">Plumbing Services We Provide</h2>
-            <p className="text-gray-500 text-center mb-8">Every service available 24/7 — licensed plumbers, transparent pricing from participating providers</p>
+            <p className="text-gray-600 text-center mb-8">Every service available 24/7 — licensed plumbers, transparent pricing from participating providers</p>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
                 { icon: '🚨', slug: 'emergency',           name: 'Emergency Plumbing',    urgency: 'Burst pipe, flooding, gas shutoff — plumber in under 60 min',   city: 'New York' },
@@ -272,7 +272,7 @@ export default function Home({ totalPlaces }) {
                 >
                   <p className="text-3xl mb-3">{s.icon}</p>
                   <p className="font-extrabold text-blue-900 text-base mb-2 group-hover:text-brand">{s.name}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed mb-3">{s.urgency}</p>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-3">{s.urgency}</p>
                   <span className="text-brand text-xs font-bold group-hover:underline">Find local service →</span>
                 </Link>
               ))}
@@ -298,7 +298,7 @@ export default function Home({ totalPlaces }) {
         {/* ── EMERGENCY SERVICE CLUSTER ─────────────────────────── */}
         <section className="max-w-4xl mx-auto w-full px-4 py-12">
           <h2 className="text-2xl font-bold text-blue-900 mb-1">Emergency Plumbing by City</h2>
-          <p className="text-gray-500 text-sm mb-6">Select your city for local emergency plumbing dispatch information and direct call access.</p>
+          <p className="text-gray-600 text-sm mb-6">Select your city for local emergency plumbing dispatch information and direct call access.</p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
             {TOP_CITIES.map((name) => {
               const city = SEED_CITIES.find((c) => c.name === name);
@@ -310,14 +310,14 @@ export default function Home({ totalPlaces }) {
                   className="p-3 bg-brand-pale border border-brand-soft rounded-lg hover:border-brand hover:bg-white text-center no-underline transition-all"
                 >
                   <p className="font-semibold text-brand-text text-sm">{name}</p>
-                  <p className="text-white text-xs">{city.stateCode} · Emergency</p>
+                  <p className="text-brand-muted text-xs">{city.stateCode} · Emergency</p>
                 </Link>
               );
             })}
           </div>
 
           <h2 className="text-2xl font-bold text-blue-900 mb-1">Leak Repair by City</h2>
-          <p className="text-gray-500 text-sm mb-6">Pinhole leaks, slab leaks, and supply line failures — find your city&apos;s leak repair page.</p>
+          <p className="text-gray-600 text-sm mb-6">Pinhole leaks, slab leaks, and supply line failures — find your city&apos;s leak repair page.</p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
             {LEAK_CITIES.map((name) => {
               const city = SEED_CITIES.find((c) => c.name === name);
@@ -329,7 +329,7 @@ export default function Home({ totalPlaces }) {
                   className="p-3 bg-blue-50 border border-blue-200 rounded-lg hover:border-blue-500 hover:bg-blue-100 text-center no-underline transition-all"
                 >
                   <p className="font-semibold text-blue-800 text-sm">{name}</p>
-                  <p className="text-blue-400 text-xs">{city.stateCode} · Leak Repair</p>
+                  <p className="text-blue-600 text-xs">{city.stateCode} · Leak Repair</p>
                 </Link>
               );
             })}
@@ -345,10 +345,10 @@ export default function Home({ totalPlaces }) {
                   if (!city) return null;
                   return (
                     <Link key={name} href={`/${buildSlug(cityToSlug(name), 'drain-cleaning')}`}
-                      className="p-2 bg-green-50 border border-green-200 rounded-lg hover:border-green-500 text-center no-underline transition-all"
+                      className="p-3 bg-green-50 border border-green-200 rounded-lg hover:border-green-500 text-center no-underline transition-all"
                       title={`Emergency drain service in ${name}`}>
                       <p className="font-semibold text-green-800 text-xs">{name}</p>
-                      <p className="text-green-400 text-xs">Drain Service</p>
+                      <p className="text-green-800 text-xs">Drain Service</p>
                     </Link>
                   );
                 })}
@@ -362,9 +362,9 @@ export default function Home({ totalPlaces }) {
                   if (!city) return null;
                   return (
                     <Link key={name} href={`/${buildSlug(cityToSlug(name), 'water-heater-repair')}`}
-                      className="p-2 bg-orange-50 border border-orange-200 rounded-lg hover:border-orange-500 text-center no-underline transition-all">
+                      className="p-3 bg-orange-50 border border-orange-200 rounded-lg hover:border-orange-500 text-center no-underline transition-all">
                       <p className="font-semibold text-orange-800 text-xs">{name}</p>
-                      <p className="text-orange-400 text-xs">{city.stateCode}</p>
+                      <p className="text-orange-700 text-xs">{city.stateCode}</p>
                     </Link>
                   );
                 })}
@@ -377,7 +377,7 @@ export default function Home({ totalPlaces }) {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">19,000+ Cities & Towns Covered Nationwide</h2>
-            <p className="text-gray-500 text-center mb-8">Featured Cities Across the USA — selected locations below, browse all {totalPlaces.toLocaleString()}+ on our full directory</p>
+            <p className="text-gray-600 text-center mb-8">Featured Cities Across the USA — selected locations below, browse all {totalPlaces.toLocaleString()}+ on our full directory</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {SEED_CITIES.map((city) => {
                 const slug = buildSlug(cityToSlug(city.name), 'emergency');
@@ -404,7 +404,7 @@ export default function Home({ totalPlaces }) {
         {/* ── COST GUIDES HUB ─────────────────────────────────── */}
         <section className="max-w-4xl mx-auto w-full px-4 py-12">
           <h2 className="text-2xl font-bold text-blue-900 mb-2 text-center">Plumbing Cost Guides</h2>
-          <p className="text-gray-500 text-center mb-6 max-w-xl mx-auto">
+          <p className="text-gray-600 text-center mb-6 max-w-xl mx-auto">
             See city-adjusted pricing for common services before you call.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -416,7 +416,7 @@ export default function Home({ totalPlaces }) {
                 title={`Plumbing cost guide for ${name}`}
               >
                 <p className="font-semibold text-yellow-800 text-sm">{name}</p>
-                <p className="text-yellow-600 text-xs">Cost guide</p>
+                <p className="text-yellow-700 text-xs">Cost guide</p>
               </Link>
             ))}
           </div>
@@ -519,7 +519,7 @@ export default function Home({ totalPlaces }) {
         <section className="bg-gray-50 px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-blue-900 text-center mb-2">What Homeowners Experience</h2>
-            <p className="text-gray-500 text-center mb-8 max-w-xl mx-auto">Representative experiences from homeowners who used YoHomeFix. Individual results may vary.</p>
+            <p className="text-gray-600 text-center mb-8 max-w-xl mx-auto">Representative experiences from homeowners who used YoHomeFix. Individual results may vary.</p>
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 { quote: 'The technician arrived within the hour. Diagnosed the burst pipe immediately and had the repair done before it caused further damage.', label: 'Emergency Pipe Repair' },
@@ -575,7 +575,7 @@ export default function Home({ totalPlaces }) {
                   <span>YoHomeFix</span>
                 </p>
                 <p className="text-gray-400 text-xs mb-2">24/7 Emergency Plumbing Services</p>
-                <a href="tel:1" onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold">
+                <a href="tel:1" onClick={() => trackCall('footer-home')} data-track="footer-home" className="text-white font-bold underline underline-offset-4">
                   Call Now — 24/7
                 </a>
               </div>
@@ -654,7 +654,7 @@ export default function Home({ totalPlaces }) {
           <div className="max-w-4xl mx-auto border-t border-gray-800 pt-4 text-center text-sm">
             <p className="mb-2">© {new Date().getFullYear()} YoHomeFix. All rights reserved.</p>
             <p className="mb-2">Same-day and 24/7 emergency services are subject to provider participation, location, technician availability, and demand. Availability is not guaranteed and may vary by market and appointment capacity.</p>
-            <p className="text-xs text-gray-500 leading-relaxed">Disclaimer: YoHomeFix is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and YoHomeFix does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on YoHomeFix.</p>
+            <p className="text-xs text-gray-400 leading-relaxed">Disclaimer: YoHomeFix is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and YoHomeFix does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on YoHomeFix.</p>
           </div>
         </footer>
       </div>
