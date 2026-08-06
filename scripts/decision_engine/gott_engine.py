@@ -728,6 +728,10 @@ def _days_between(date_a, date_b):
     """Absolute difference in days between two datetime objects."""
     if date_a is None or date_b is None:
         return 0
+    if date_a.tzinfo is not None:
+        date_a = date_a.replace(tzinfo=None)
+    if date_b.tzinfo is not None:
+        date_b = date_b.replace(tzinfo=None)
     return abs((date_b - date_a).days)
 
 
