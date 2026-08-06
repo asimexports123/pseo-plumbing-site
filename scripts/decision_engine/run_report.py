@@ -36,6 +36,7 @@ from .bayesian_engine import BayesianEngine
 from .link_ingestion import build_real_link_graph, diff_with_hierarchy
 from .page_profile import build_page_decision_records
 from .recommendation_engine import generate_recommendations
+from . import learning_engine
 
 
 def _build_bayesian_observations(engine, page_reports):
@@ -209,12 +210,25 @@ def run():
     recs = []
     if config.is_enabled('recommendation') and opp_results:
         raw_metrics = {p['page']: p for p in page_reports}
+        learned_adjustments = {}
+        if config.is_enabled('learning'):
+            learning_engine.evaluate_all_learning()
+            learning_summary = learning_engine.get_learning_summary()
+            learned_adjustments = learning_summary.adjustments
+            print(f'\n=== Learning Engine: {learning_summary.record_count} records, '
+                  f'{learning_summary.success_count} successes, '
+                  f'{learning_summary.failure_count} failures, '
+                  f'avg_outcome={learning_summary.avg_outcome_score:.3f} ===')
+        else:
+            print('[skipped] learning (DECISION_ENGINE_ENABLE_LEARNING not set)')
+
         recs = generate_recommendations(
             opp_results, graph_metrics=graph_metrics, bayesian_posteriors=posteriors,
             raw_metrics=raw_metrics, weak_components=weak_components,
             real_link_graph_metrics=real_link_graph_metrics,
             revenue_per_call=revenue_per_approved_call,
             attribution_resolver=attribution_resolver,
+            learned_confidence_adjustments=learned_adjustments,
         )
         print(f'\n=== {len(recs)} Recommendations ===\n')
         for r in recs[:20]:

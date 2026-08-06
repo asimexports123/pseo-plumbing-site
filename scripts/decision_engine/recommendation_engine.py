@@ -207,6 +207,7 @@ from . import config
 from .logging_utils import traced, log
 from .bayesian_engine import posterior_from_counts
 from .montecarlo_engine import simulate_new_page_calls
+from .learning_engine import compute_context_fingerprint
 import logging
 
 
@@ -515,12 +516,14 @@ def generate_recommendations(
     mc_seed=None,
     revenue_per_call=None,
     attribution_resolver=None,
+    learned_confidence_adjustments=None,
 ):
     graph_metrics = graph_metrics or {}
     bayesian_posteriors = bayesian_posteriors or {}
     raw_metrics = raw_metrics or {}
     weak_components = weak_components or []
     real_link_graph_metrics = real_link_graph_metrics or {}
+    learned_confidence_adjustments = learned_confidence_adjustments or {}
     seed_base = mc_seed if mc_seed is not None else config.MC_DEFAULT_SEED
 
     if attribution_resolver is None:
@@ -539,6 +542,9 @@ def generate_recommendations(
     if not real_link_graph_metrics:
         log(logging.INFO, 'recommendation_engine_no_real_link_graph_metrics',
             note='fix_broken_or_missing_internal_link diagnosis will be skipped')
+    if not learned_confidence_adjustments:
+        log(logging.INFO, 'recommendation_engine_no_learned_adjustments',
+            note='recommendations will use base confidence without historical learning')
 
     results = [r.to_dict() if hasattr(r, 'to_dict') else r for r in opportunity_results]
     if not results:
@@ -581,6 +587,16 @@ def generate_recommendations(
 
         confidence, confidence_basis = _target_confidence(posterior, raw)
 
+        # Apply learned confidence adjustment from historical outcomes
+        learned_delta = 0.0
+        if learned_confidence_adjustments:
+            opp_score = r.get('opportunity_score') or r
+            fingerprint = compute_context_fingerprint(r.get('action', ''), opp_score)
+            learned_delta = learned_confidence_adjustments.get(
+                f'{r.get("action", "")}|{fingerprint}', 0.0,
+            )
+        adjusted_confidence = max(0.0, min(1.0, confidence + learned_delta))
+
         resolved_attribution = (
             attribution_resolver.resolve_page(target).to_dict()
             if attribution_resolver is not None else None
@@ -596,11 +612,16 @@ def generate_recommendations(
             impact = _simulate_target_impact(target, raw, effective_revenue_per_call, mc_cache, seed_base)
             return impact, _business_value(impact, conf)
 
+        # Use adjusted_confidence (with learned delta) for business value
+        def learned_impact_and_value():
+            impact = _simulate_target_impact(target, raw, effective_revenue_per_call, mc_cache, seed_base)
+            return impact, _business_value(impact, adjusted_confidence)
+
         # --- top-decile opportunity: specific, prioritized action plan ---
         if sorted_gap and percentile_of(gap, sorted_gap) >= 0.90:
             plan = _diagnose_actions(percentiles, gmetrics, is_orphan, below_median_pagerank, pagerank)
             primary = plan[0]
-            impact, business_value = impact_and_value(confidence)
+            impact, business_value = learned_impact_and_value()
             recommendations.append(Recommendation(
                 action=primary['action'], target=target,
                 reason=(
@@ -610,9 +631,10 @@ def generate_recommendations(
                 supporting_data={
                     'opportunity_gap_score': gap, 'percentiles': percentiles,
                     'confidence_basis': confidence_basis,
+                    'learned_confidence_delta': learned_delta,
                     **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
-                confidence=confidence,
+                confidence=adjusted_confidence,
                 expected_impact=impact,
                 business_value_score=business_value,
                 action_plan=plan,
@@ -620,7 +642,7 @@ def generate_recommendations(
 
         # --- increase_internal_links (explicit, dedicated trigger) ---
         if gmetrics is not None and gap >= 0.5 and (is_orphan or below_median_pagerank):
-            impact, business_value = impact_and_value(confidence)
+            impact, business_value = learned_impact_and_value()
             recommendations.append(Recommendation(
                 action='increase_internal_links', target=target,
                 reason=(
@@ -634,7 +656,7 @@ def generate_recommendations(
                     'confidence_basis': confidence_basis,
                     **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
-                confidence=confidence,
+                confidence=adjusted_confidence,
                 expected_impact=impact,
                 business_value_score=business_value,
                 action_plan=[{
@@ -650,7 +672,13 @@ def generate_recommendations(
                     (posterior.ci_high - posterior.ci_low) <= median_width and
                     posterior.n_obs <= median_n_obs):
                 conf = _confidence_from_posterior(posterior)
-                impact, business_value = impact_and_value(conf)
+                learned_delta_expand = 0.0
+                if learned_confidence_adjustments:
+                    fp = compute_context_fingerprint('expand_cluster', r.get('opportunity_score') or r)
+                    learned_delta_expand = learned_confidence_adjustments.get(f'expand_cluster|{fp}', 0.0)
+                adjusted_conf = max(0.0, min(1.0, conf + learned_delta_expand))
+                impact = _simulate_target_impact(target, raw, effective_revenue_per_call, mc_cache, seed_base)
+                business_value = _business_value(impact, adjusted_conf)
                 recommendations.append(Recommendation(
                     action='expand_cluster', target=target,
                     reason=(
@@ -666,7 +694,7 @@ def generate_recommendations(
                         **posterior.to_dict(),
                         **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                     },
-                    confidence=conf,
+                    confidence=adjusted_conf,
                     expected_impact=impact,
                     business_value_score=business_value,
                     action_plan=[{
@@ -686,7 +714,13 @@ def generate_recommendations(
                 conf = confidence
             if confident_low:
                 plan = _diagnose_actions(percentiles, gmetrics, is_orphan, below_median_pagerank, pagerank)
-                impact, business_value = impact_and_value(conf)
+                learned_delta_recovery = 0.0
+                if learned_confidence_adjustments:
+                    fp = compute_context_fingerprint('recovery_strategy', r.get('opportunity_score') or r)
+                    learned_delta_recovery = learned_confidence_adjustments.get(f'recovery_strategy|{fp}', 0.0)
+                adjusted_conf_recovery = max(0.0, min(1.0, conf + learned_delta_recovery))
+                impact = _simulate_target_impact(target, raw, effective_revenue_per_call, mc_cache, seed_base)
+                business_value = _business_value(impact, adjusted_conf_recovery)
                 recommendations.append(Recommendation(
                     action='recovery_strategy', target=target,
                     reason=(
@@ -702,7 +736,7 @@ def generate_recommendations(
                         'confidence_basis': confidence_basis,
                         **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                     },
-                    confidence=conf,
+                    confidence=adjusted_conf_recovery,
                     expected_impact=impact,
                     business_value_score=business_value,
                     action_plan=plan,
@@ -711,7 +745,7 @@ def generate_recommendations(
         # --- fix_broken_or_missing_internal_link (real crawled link graph only) ---
         real_gmetrics = real_link_graph_metrics.get(target)
         if real_gmetrics is not None and real_gmetrics.get('link_discrepancy'):
-            impact, business_value = impact_and_value(confidence)
+            impact, business_value = learned_impact_and_value()
             recommendations.append(Recommendation(
                 action='fix_broken_or_missing_internal_link', target=target,
                 reason=(
@@ -728,7 +762,7 @@ def generate_recommendations(
                     'confidence_basis': confidence_basis,
                     **({'attribution': resolved_attribution} if resolved_attribution is not None else {}),
                 },
-                confidence=confidence,
+                confidence=adjusted_confidence,
                 expected_impact=impact,
                 business_value_score=business_value,
                 action_plan=[{
