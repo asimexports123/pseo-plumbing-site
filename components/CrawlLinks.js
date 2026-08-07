@@ -1,12 +1,27 @@
 import Link from 'next/link';
-import { SERVICES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
+import { SERVICES, SEED_CITIES, STATES, cityToSlug, buildSlug, getStateSlug, isCityQualifiedForService } from '../lib/cities';
 import { getRelatedServices, getCrawlHubPath } from '../lib/crawl';
 import { isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
+import { HIGH_PRIORITY_SLUGS } from '../lib/prioritySeo';
 
 const COST_CITIES = [
   'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
   'Dallas', 'San Antonio', 'San Diego', 'Austin', 'Philadelphia',
 ];
+
+function displayFromSlug(slug) {
+  const noPrefix = slug.replace(/^plumber-/, '');
+  const sortedServices = [...SERVICES].sort((a, b) => b.slug.length - a.slug.length);
+  const service = sortedServices.find(s => noPrefix.endsWith(`-${s.slug}`));
+  const citySlug = service ? noPrefix.slice(0, -(service.slug.length + 1)) : noPrefix;
+  const state = STATES.find(s => s.slug === citySlug);
+  if (state) return { label: `Plumbers in ${state.name}`, isState: true };
+  const seed = SEED_CITIES.find(c => cityToSlug(c.name) === citySlug);
+  const placeName = seed ? seed.name : citySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  return service
+    ? { label: `${service.shortName} in ${placeName}`, isState: false }
+    : { label: `Plumbers in ${placeName}`, isState: false };
+}
 
 // Clean city name for labels when it carries a state suffix
 function displayCity(cityName, stateCode) {
@@ -122,6 +137,21 @@ export function CrawlLinks({
     recommendations.push({
       title: 'Plumbing Cost Guide',
       links: [{ href: `/cost/${citySlug}`, label: `${cleanCity} plumbing costs` }],
+    });
+  }
+
+  // High-priority service areas from the Decision Engine for PageRank distribution
+  const priorityLinks = HIGH_PRIORITY_SLUGS
+    .filter(s => s !== pageSlug)
+    .slice(0, 12)
+    .map(s => {
+      const { label } = displayFromSlug(s);
+      return { href: `/${s}`, label };
+    });
+  if (priorityLinks.length > 0) {
+    recommendations.push({
+      title: 'High-Priority Service Areas',
+      links: priorityLinks,
     });
   }
 

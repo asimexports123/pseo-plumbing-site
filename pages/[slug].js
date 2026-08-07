@@ -4,6 +4,7 @@ import { generatePageContent } from '../lib/contentGenerator';
 import { getNearbyPlaces } from '../lib/nationwidePlaces';
 import { getZctasByCity } from '../lib/hyperlocalPlaces-server';
 import { getPageDate } from '../lib/contentVersioning';
+import { PRIORITY_SEO } from '../lib/prioritySeo';
 import PlumberPage from '../components/PlumberPage';
 
 // Pre-build only the curated SEED_CITIES set at build time (highest-traffic,
@@ -53,6 +54,8 @@ export async function getStaticProps({ params }) {
       return { notFound: true };
     }
 
+    const prioritySeo = PRIORITY_SEO[rawSlug] || null;
+
     let content;
     try {
       content = generatePageContent(cityName, stateCode, service);
@@ -99,6 +102,8 @@ export async function getStaticProps({ params }) {
         nearbyCities,
         zctas: cityZctas.map(z => ({ zip: z.zip })),
         lastReviewed,
+        metaTitle: prioritySeo ? prioritySeo.title : '',
+        metaDescription: prioritySeo ? prioritySeo.meta : '',
       },
     };
   } catch (err) {

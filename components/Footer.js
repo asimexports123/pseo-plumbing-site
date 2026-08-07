@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PHONE_NUMBER, PHONE_DISPLAY } from '../lib/cities';
 
 const footerLinks = [
   { href: '/about', label: 'About' },
@@ -32,11 +33,11 @@ export function Footer() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
             <a
-              href="tel:1"
+              href={`tel:${PHONE_NUMBER}`}
               className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors"
-              aria-label="Call emergency dispatch"
+              aria-label={`Call ${PHONE_DISPLAY} emergency dispatch`}
             >
-              📞 Call 24/7
+              📞 Call {PHONE_DISPLAY} 24/7
             </a>
           </div>
         </div>

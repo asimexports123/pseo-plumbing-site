@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import {
   SERVICES, SEED_CITIES,
   cityToSlug, buildSlug, getStateSlug, CITY_DATA,
-  isCityQualifiedForService,
+  isCityQualifiedForService, PHONE_NUMBER, PHONE_DISPLAY,
 } from '../lib/cities';
 import { TrustBar } from './ConversionLayer';
 
@@ -58,13 +58,13 @@ function CallButton({ label, size = 'lg', className = '', city, service }) {
   const text = CTA_TEXT[label] || 'Call Now';
   return (
     <a
-      href="tel:1"
+      href={`tel:${PHONE_NUMBER}`}
       onClick={handleClick}
       data-track={label}
       className={`${base} ${className}`}
       aria-label={`Call ${text} emergency dispatch`}
     >
-      📞 {text}
+      📞 {text} {PHONE_DISPLAY}
     </a>
   );
 }
@@ -415,7 +415,7 @@ function NycBoroughSection({ serviceName, serviceSlug }) {
   );
 }
 
-export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities, zctas, lastReviewed }) {
+export default function PlumberPage({ cityName, stateCode, service, content, pageSlug, nearbyCities, zctas, lastReviewed, metaTitle = '', metaDescription = '' }) {
   const cleanCityName = getCityDisplayName(cityName, stateCode);
   const location = stateCode ? `${cleanCityName}, ${stateCode}` : cityName;
   const serviceName = service?.name || 'Emergency Plumbing';
@@ -427,7 +427,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
   const lastReviewedDate = lastReviewed || new Date().toISOString().split('T')[0];
 
   const locShort = stateCode ? `${cleanCityName} ${stateCode}` : cleanCityName;
-  const title = serviceSlug === 'emergency'
+  const title = metaTitle || (serviceSlug === 'emergency'
     ? `Emergency Plumber ${locShort} | 24/7 | YoHomeFix`
     : serviceSlug === 'drain-cleaning'
     ? `Drain Cleaning ${locShort} | 24/7 | YoHomeFix`
@@ -457,9 +457,9 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Shutoff Valve Repair ${locShort} | YoHomeFix`
     : serviceSlug === 'sump-pump-repair'
     ? `Sump Pump Repair ${locShort} | YoHomeFix`
-    : `Emergency Plumber ${locShort} | 24/7 | YoHomeFix`;
+    : `Emergency Plumber ${locShort} | 24/7 | YoHomeFix`);
 
-  const description = serviceSlug === 'emergency'
+  const description = metaDescription || (serviceSlug === 'emergency'
     ? `24/7 emergency plumber in ${location}. Burst pipe, flooding, or leaks? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`
     : serviceSlug === 'pipe-burst-repair'
     ? `Burst pipe in ${location}? Licensed emergency plumber on-site in 60 min. 24/7 service, upfront pricing. Call now.`
@@ -489,7 +489,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
     ? `Shutoff valve leaking or stuck in ${location}? Licensed plumber provides safe valve repair & replacement. 24/7. Call now.`
     : serviceSlug === 'sump-pump-repair'
     ? `Sump pump problems in ${location}? Licensed plumber handles pump repair, backup systems & installation. 24/7. Call now.`
-    : `24/7 emergency plumber in ${location}. Burst pipe, flooding, or leaks? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`;
+    : `24/7 emergency plumber in ${location}. Burst pipe, flooding, or leaks? Licensed plumber dispatched in 60 min. Upfront pricing. Call now.`);
 
   // Breadcrumb items
   const breadcrumbs = [
@@ -599,7 +599,7 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
         <nav className="bg-blue-900 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-lg">
           <Link href="/" className="text-2xl font-extrabold text-white no-underline">YoHomeFix</Link>
           <CallButton label="nav-desktop" size="sm" className="hidden md:inline-flex" city={cityName} service={serviceName} />
-          <a href="tel:1" onClick={() => trackCall('nav-mobile', cityName, serviceName)} data-track="nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label="Call emergency dispatch">Call Now</a>
+          <a href={`tel:${PHONE_NUMBER}`} onClick={() => trackCall('nav-mobile', cityName, serviceName)} data-track="nav-mobile" className="md:hidden bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm" aria-label={`Call ${PHONE_DISPLAY} emergency dispatch`}>{PHONE_DISPLAY}</a>
         </nav>
 
         {/* Breadcrumb */}
