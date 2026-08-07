@@ -72,8 +72,8 @@ from .business_priority import (
     filter_low_roi, assign_business_priorities,
 )
 from .url_action_plan import (
-    _root_cause_analysis, _generate_implementation_plan,
-    _page_forecast, _get_service_info, _extract_city,
+    _root_cause_analysis, _page_forecast,
+    _classify_url,
 )
 from . import data_collector
 
@@ -590,10 +590,12 @@ def generate_weekly_action_plan(selected_pages, ctx):
     previous_date = ctx.get('previous_date')
     learning = ctx.get('learning_summary', {})
 
-    p(f'# Weekly Action Plan — Week of {today}')
+    p(f'# Weekly Prioritization Report — Week of {today}')
     p()
-    p('> **The ONLY report. The Action Engine is the single source of truth.**')
-    p('> A developer should never need to manually inspect GSC, GA4, or Marketcall.')
+    p('> **The engine reports measurable facts only.**')
+    p('> **The engine does NOT generate SEO content.**')
+    p('> **The engine does NOT evaluate content quality.**')
+    p('> **The human SEO workflow decides HOW to improve each page.**')
     p()
     p('---')
     p()
@@ -604,7 +606,7 @@ def generate_weekly_action_plan(selected_pages, ctx):
     p(f'- **Report date:** {today}')
     p(f'- **Previous report:** {previous_date or "N/A (first run)"}')
     p(f'- **Pages analyzed:** {ctx["n_pages"]}')
-    p(f'- **Pages selected for action:** {len(selected_pages)}')
+    p(f'- **Pages selected for prioritization:** {len(selected_pages)}')
     p(f'- **Revenue per approved call:** ${revenue_per_call:.2f} (MEASURED, n=1)')
     p()
 
@@ -683,10 +685,29 @@ def generate_weekly_action_plan(selected_pages, ctx):
     p('---')
     p()
 
-    # Per-Page Action Plans
-    p('## Per-Page Weekly Action Plans')
+    # Per-Page Reports
+    p('## Per-Page Prioritization')
     p()
     p('Pages ordered by Business Priority Intelligence ROI ranking.')
+    p()
+
+    # Classify all selected pages
+    classifications = {}
+    for pd in selected_pages:
+        classifications[pd['page']] = _classify_url(pd['page'], ctx)
+    cls_counts = {}
+    for c in classifications.values():
+        cls_counts[c] = cls_counts.get(c, 0) + 1
+
+    p('### URL Classification Summary')
+    p()
+    p('| Classification | Count |')
+    p('|----------------|-------|')
+    for cls in ['Strong Performer', 'Stable Performer', 'Underperforming', 'High Opportunity', 'Monitor']:
+        p(f'| {cls} | {cls_counts.get(cls, 0)} |')
+    p()
+
+    p('---')
     p()
 
     for i, page_data in enumerate(selected_pages, 1):
@@ -702,12 +723,11 @@ def generate_weekly_action_plan(selected_pages, ctx):
         ctr = raw.get('ctr', 0.0)
         position = raw.get('position')
 
-        service_info = _get_service_info(page_id)
-        city = _extract_city(page_id)
+        classification = classifications.get(page_id, 'Monitor')
 
         p(f'### {i}. `{page_id}`')
         p()
-        p(f'**Service:** {service_info["label"]} | **City:** {city}')
+        p(f'**Classification: {classification}**')
         p()
 
         # Current Metrics
@@ -770,15 +790,28 @@ def generate_weekly_action_plan(selected_pages, ctx):
             p(f'| Overall ROI | {priority.get("overall_roi_percent", 0):.1f}% |')
         p()
 
-        # Ranking Blockers
-        blockers = _root_cause_analysis(page_id, ctx)
-        p('#### Ranking Blockers (Root Cause Analysis)')
-        p()
-        for b in blockers:
-            p(f'- **[{b["severity"]}] {b["blocker"]}**')
-            p(f'  - Evidence: `{b["evidence"]}`')
-            p(f'  - Engine: {b["engine"]}')
-        p()
+        # Measurable Reasons (only for Underperforming / High Opportunity)
+        if classification in ('Underperforming', 'High Opportunity'):
+            reasons = _root_cause_analysis(page_id, ctx)
+            p('#### Measurable Reasons')
+            p()
+            p('Every reason is backed by engine evidence. No content quality judgments.')
+            p()
+            for r in reasons:
+                p(f'- **[{r["severity"]}] {r["reason"]}**')
+                p(f'  - Evidence: `{r["evidence"]}`')
+                p(f'  - Engine: {r["engine"]}')
+            p()
+        elif classification in ('Strong Performer', 'Stable Performer'):
+            p('#### Measurable Reasons')
+            p()
+            p('No significant performance issues detected by engine evidence.')
+            p()
+        else:
+            p('#### Measurable Reasons')
+            p()
+            p('Insufficient data for root cause analysis.')
+            p()
 
         # Execution Verification (before vs after)
         verification = _verify_execution(page_id, raw, prev_raw)
@@ -816,80 +849,19 @@ def generate_weekly_action_plan(selected_pages, ctx):
             p('No learning records yet — insufficient historical data for confidence calibration.')
         p()
 
-        # Implementation Plan
-        actions = _generate_implementation_plan(page_id, blockers, rec, ctx)
-        p('#### Implementation Plan (This Week)')
+        # Action
+        p('#### Action')
         p()
-        p('EXACT changes to implement. Every action includes reason, evidence, and expected impact.')
-        p()
-        for j, action in enumerate(actions, 1):
-            p(f'##### {j}. {action["change"]}')
+        if classification in ('Underperforming', 'High Opportunity'):
+            p('**SEO Review Required**')
             p()
-            p(f'- **Current:** {action["current"]}')
-            p(f'- **Recommended:** {action["recommended"]}')
-            p(f'- **Reason:** {action["reason"]}')
-            p(f'- **Evidence:** `{action["evidence"]}`')
-            p(f'- **Confidence:** {action["confidence"]}')
-            p(f'- **Expected ranking impact:** {action["expected_ranking_improvement"]}')
-            p(f'- **Expected CTR impact:** {action["expected_ctr_improvement"]}')
-            p(f'- **Expected call impact:** {action["expected_call_improvement"]}')
-            p(f'- **Expected revenue impact:** {action["expected_revenue_improvement"]}')
-            p()
-
-            if action.get('links'):
-                p('  **Links to add:**')
-                p()
-                p('  | Source | Target | Anchor Text | Placement |')
-                p('  |--------|--------|-------------|-----------|')
-                for link in action['links']:
-                    src = link['source_page'][:35] if len(link['source_page']) > 35 else link['source_page']
-                    tgt = link['target_page'][:35] if len(link['target_page']) > 35 else link['target_page']
-                    p(f'  | `{src}` | `{tgt}` | "{link["anchor_text"]}" | {link["placement"]} |')
-                p()
-
-            if action.get('faqs'):
-                p('  **FAQs:**')
-                for faq in action['faqs']:
-                    p(f'  - {faq}')
-                p()
-
-            if action.get('entities'):
-                p('  **Entities:**')
-                for ent in action['entities']:
-                    p(f'  - {ent}')
-                p()
-
-            if action.get('sections'):
-                p('  **Content sections:**')
-                for sec in action['sections']:
-                    p(f'  - **{sec["section"]}**')
-                    for elem in sec['elements'][:2]:
-                        p(f'    - {elem}')
-                p()
-
-            if action.get('eeat_items'):
-                p('  **EEAT elements:**')
-                for eeat in action['eeat_items'][:3]:
-                    p(f'  - {eeat}')
-                p('  *(+ more — see full list in implementation details)*')
-                p()
-
-            p('---')
-            p()
-
-        # Next Week's Priority
-        p('#### Next Week\'s Priority')
-        p()
-        if priority:
-            roi = priority.get('overall_roi_percent', 0)
-            if roi >= 80:
-                p(f'**HIGH PRIORITY** (ROI: {roi:.1f}%) — Implement all actions above this week. Verify impact next week.')
-            elif roi >= 60:
-                p(f'**MEDIUM PRIORITY** (ROI: {roi:.1f}%) — Implement top 5 actions. Verify impact next week.')
-            else:
-                p(f'**LOW PRIORITY** (ROI: {roi:.1f}%) — Implement if time permits. Monitor for changes.')
+            p('The engine has identified this page as underperforming based on measurable evidence.')
+            p('The human SEO workflow must decide how to improve this page.')
+            p('The engine does not prescribe specific content changes.')
+        elif classification in ('Strong Performer', 'Stable Performer'):
+            p('**No action required** — page is performing well based on measurable metrics.')
         else:
-            p('Priority not determined — no recommendation for this page.')
+            p('**Monitor** — continue tracking. Re-evaluate when more data is available.')
         p()
 
         p('---')
@@ -898,9 +870,12 @@ def generate_weekly_action_plan(selected_pages, ctx):
     # Summary
     p('## Summary')
     p()
-    p(f'- **Pages with action plans:** {len(selected_pages)}')
-    p(f'- **Total ranking blockers:** {sum(len(_root_cause_analysis(pd["page"], ctx)) for pd in selected_pages)}')
-    p(f'- **Total implementation actions:** {sum(len(_generate_implementation_plan(pd["page"], _root_cause_analysis(pd["page"], ctx), pd.get("recommendation"), ctx)) for pd in selected_pages)}')
+    p(f'- **Pages selected:** {len(selected_pages)}')
+    p(f'- **Strong Performer:** {cls_counts.get("Strong Performer", 0)}')
+    p(f'- **Stable Performer:** {cls_counts.get("Stable Performer", 0)}')
+    p(f'- **Underperforming:** {cls_counts.get("Underperforming", 0)}')
+    p(f'- **High Opportunity:** {cls_counts.get("High Opportunity", 0)}')
+    p(f'- **Monitor:** {cls_counts.get("Monitor", 0)}')
     p(f'- **Learning records:** {learning.get("record_count", 0)}')
     p(f'- **Suppressed actions:** {len(learning.get("suppressed_actions", []))}')
     p()
@@ -965,13 +940,16 @@ def generate_weekly_action_plan(selected_pages, ctx):
         p('- Run this pipeline weekly for 4+ weeks to activate the learning feedback loop.')
     p()
 
-    p('### Next Week\'s Plan')
+    p('### What This Report Does NOT Do')
     p()
-    p('1. Implement all HIGH PRIORITY actions from this report.')
-    p('2. Re-run this pipeline next week to collect new data.')
-    p('3. The system will automatically compare this week vs next week.')
-    p('4. Learning Engine will evaluate outcomes and adjust confidence.')
-    p('5. Actions that repeatedly fail will be suppressed automatically.')
+    p('- Does NOT generate replacement titles, meta descriptions, H1s, FAQs, or schema')
+    p('- Does NOT evaluate content quality')
+    p('- Does NOT prescribe specific SEO changes')
+    p('- Does NOT crawl or inspect page HTML')
+    p('- Does NOT claim to know what content is "good" or "bad"')
+    p()
+    p('The human SEO workflow decides HOW to improve each page.')
+    p('The engine only decides WHICH pages deserve attention and WHY based on evidence.')
     p()
 
     p('### Evidence Classification')
