@@ -575,407 +575,151 @@ def _save_snapshots(ctx):
 
 
 # ============================================================
-# Weekly Action Plan Report Generator
+# URL Row Builder — ALL URLs
 # ============================================================
 
-def generate_weekly_action_plan(selected_pages, ctx):
-    """Generate WEEKLY_ACTION_PLAN.md."""
-    lines = []
-
-    def p(s=''):
-        lines.append(s)
-
-    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-    revenue_per_call = ctx.get('revenue_per_call') or 0
-    previous_date = ctx.get('previous_date')
-    learning = ctx.get('learning_summary', {})
-
-    p(f'# Weekly Prioritization Report — Week of {today}')
-    p()
-    p('> **The engine reports measurable facts only.**')
-    p('> **The engine does NOT generate SEO content.**')
-    p('> **The engine does NOT evaluate content quality.**')
-    p('> **The human SEO workflow decides HOW to improve each page.**')
-    p()
-    p('---')
-    p()
-
-    # Executive Summary
-    p('## Executive Summary')
-    p()
-    p(f'- **Report date:** {today}')
-    p(f'- **Previous report:** {previous_date or "N/A (first run)"}')
-    p(f'- **Pages analyzed:** {ctx["n_pages"]}')
-    p(f'- **Pages selected for prioritization:** {len(selected_pages)}')
-    p(f'- **Revenue per approved call:** ${revenue_per_call:.2f} (MEASURED, n=1)')
-    p()
-
-    # Data Collection Status
-    status = data_collector.get_collection_status()
-    p('### Data Collection Status')
-    p()
-    p('| Source | Last Collected | Fresh | Schedule |')
-    p('|--------|---------------|-------|----------|')
-    p(f'| Marketcall | {status["marketcall"]["fetched_at"] or "Never"} | {"Yes" if status["marketcall"]["is_fresh"] else "No"} | Every 24h |')
-    p(f'| GSC Pages | {status["gsc_pages"]["fetched_at"] or "Never"} | {"Yes" if status["gsc_pages"]["is_fresh"] else "No"} | Weekly |')
-    p(f'| GSC Queries | {status["gsc_queries"]["fetched_at"] or "Never"} | {"Yes" if status["gsc_queries"]["is_fresh"] else "No"} | Weekly |')
-    p(f'| GA4 | {status["ga4"]["fetched_at"] or "Never"} | {"Yes" if status["ga4"]["is_fresh"] else "No"} | Weekly |')
-    p()
-
-    # Learning Summary
-    p('### Learning Engine Status')
-    p()
-    p(f'- **Total learning records:** {learning.get("record_count", 0)}')
-    p(f'- **Successful actions:** {learning.get("success_count", 0)}')
-    p(f'- **Failed actions:** {learning.get("failure_count", 0)}')
-    p(f'- **Average outcome score:** {learning.get("avg_outcome_score", 0):.4f}')
-    p(f'- **Suppressed actions (repeated failures):** {len(learning.get("suppressed_actions", []))}')
-    if learning.get('suppressed_actions'):
-        for sa in learning['suppressed_actions']:
-            p(f'  - {sa["action"]} (fingerprint: {sa["fingerprint"][:8]}...)')
-    p()
-
-    # Site-Level Funnel
-    marketcall = ctx.get('marketcall') or {}
-    total_imp = sum(r.get('impressions', 0) for r in ctx['raw_metrics'].values())
-    total_clicks = sum(r.get('clicks', 0) for r in ctx['raw_metrics'].values())
-    total_calls = marketcall.get('calls', 0)
-    approved_calls = marketcall.get('approved_calls', 0)
-
-    if total_imp > 0 and total_clicks > 0:
-        p('### Site-Level Funnel (Markov Engine)')
-        p()
-        stage_counts = [('impression', total_imp), ('click', total_clicks)]
-        if total_calls > 0:
-            stage_counts.append(('call', total_calls))
-            if approved_calls > 0:
-                stage_counts.append(('approved_call', approved_calls))
-        try:
-            funnel = analyze_funnel(stage_counts)
-            p(f'- **Impressions → Clicks:** {funnel.transition_matrix[0].p:.6f} ({total_imp:,} → {total_clicks})')
-            p(f'  - Drop-off: {funnel.drop_off[0].drop_off_rate:.4%} ({funnel.drop_off[0].absolute_loss:.0f} lost)')
-            if len(funnel.transition_matrix) > 1:
-                p(f'- **Clicks → Calls:** {funnel.transition_matrix[1].p:.6f} ({total_clicks} → {total_calls})')
-                p(f'  - Drop-off: {funnel.drop_off[1].drop_off_rate:.4%} ({funnel.drop_off[1].absolute_loss:.0f} lost)')
-            if len(funnel.transition_matrix) > 2:
-                p(f'- **Calls → Approved:** {funnel.transition_matrix[2].p:.6f} ({total_calls} → {approved_calls})')
-                p(f'  - Drop-off: {funnel.drop_off[2].drop_off_rate:.4%} ({funnel.drop_off[2].absolute_loss:.0f} lost)')
-            p(f'- **End-to-end conversion:** {funnel.expected_conversion_path:.8f}')
-            p(f'- **Highest loss step:** {funnel.highest_loss_step_by_rate.from_stage} → {funnel.highest_loss_step_by_rate.to_stage} ({funnel.highest_loss_step_by_rate.drop_off_rate:.4%})')
-        except (ValueError, IndexError):
-            p('Funnel analysis not available.')
-        p()
-
-    # Week-over-Week Movement (site level)
-    p('### Week-over-Week Movement (Site Level)')
-    p()
+def _build_url_rows(ctx, money_pages, opp_loss):
+    """Build a data row for EVERY analyzed URL with all 20 columns."""
+    rows = []
+    prev_raw = ctx.get('previous_raw_metrics', {})
     prev_mc = ctx.get('previous_marketcall') or {}
-    if prev_mc:
-        p('| Metric | Previous | Current | Change |')
-        p('|--------|----------|---------|--------|')
-        p(f'| Total Impressions | {sum(r.get("impressions", 0) for r in ctx.get("previous_raw_metrics", {}).values()):,} | {total_imp:,} | {_fmt_pct(_pct_change(sum(r.get("impressions", 0) for r in ctx.get("previous_raw_metrics", {}).values()), total_imp))} |')
-        p(f'| Total Clicks | {sum(r.get("clicks", 0) for r in ctx.get("previous_raw_metrics", {}).values()):,} | {total_clicks:,} | {_fmt_pct(_pct_change(sum(r.get("clicks", 0) for r in ctx.get("previous_raw_metrics", {}).values()), total_clicks))} |')
-        p(f'| Total Calls | {prev_mc.get("calls", 0)} | {total_calls} | {_fmt_pct(_pct_change(prev_mc.get("calls"), total_calls))} |')
-        p(f'| Approved Calls | {prev_mc.get("approved_calls", 0)} | {approved_calls} | {_fmt_pct(_pct_change(prev_mc.get("approved_calls"), approved_calls))} |')
-        p(f'| Revenue | ${prev_mc.get("revenue", 0):.2f} | ${marketcall.get("revenue", 0):.2f} | {_fmt_pct(_pct_change(prev_mc.get("revenue"), marketcall.get("revenue")))} |')
-    else:
-        p('No previous week data available — this is the first run.')
-    p()
+    marketcall = ctx.get('marketcall') or {}
+    ga4 = ctx.get('ga4') or {}
+    revenue_per_call = ctx.get('revenue_per_call') or 0
 
-    p('---')
-    p()
+    mp_by_page = {mp['page']: mp for mp in money_pages}
+    ol_by_page = {ol['page']: ol for ol in opp_loss}
+    rec_by_target = {}
+    for r in ctx.get('recs', []):
+        if r.target not in rec_by_target:
+            rec_by_target[r.target] = r
 
-    # Per-Page Reports
-    p('## Per-Page Prioritization')
-    p()
-    p('Pages ordered by Business Priority Intelligence ROI ranking.')
-    p()
-
-    # Classify all selected pages
-    classifications = {}
-    for pd in selected_pages:
-        classifications[pd['page']] = _classify_url(pd['page'], ctx)
-    cls_counts = {}
-    for c in classifications.values():
-        cls_counts[c] = cls_counts.get(c, 0) + 1
-
-    p('### URL Classification Summary')
-    p()
-    p('| Classification | Count |')
-    p('|----------------|-------|')
-    for cls in ['Strong Performer', 'Stable Performer', 'Underperforming', 'High Opportunity', 'Monitor']:
-        p(f'| {cls} | {cls_counts.get(cls, 0)} |')
-    p()
-
-    p('---')
-    p()
-
-    for i, page_data in enumerate(selected_pages, 1):
-        page_id = page_data['page']
-        rec = page_data.get('recommendation')
-        money_page = page_data.get('money_page', {})
-        priority = page_data.get('priority', {})
-
-        raw = ctx['raw_metrics'].get(page_id, {})
-        prev_raw = ctx.get('previous_raw_metrics', {}).get(page_id, {})
+    for page in ctx['page_reports']:
+        pid = page['page']
+        raw = ctx['raw_metrics'].get(pid, {})
+        prev = prev_raw.get(pid, {})
         impressions = raw.get('impressions', 0)
         clicks = raw.get('clicks', 0)
         ctr = raw.get('ctr', 0.0)
         position = raw.get('position')
+        ga4_page = ga4.get(pid, {})
+        sessions = ga4_page.get('sessions', 'N/A')
+        engagement_rate = ga4_page.get('engagement_rate')
+        opp = ctx.get('opp_by_id', {}).get(pid)
+        opp_gap = opp.opportunity_gap_score if opp and opp.opportunity_gap_score is not None else 0
+        perf_score = opp.performance_score if opp and opp.performance_score is not None else 0
+        posterior = ctx['posteriors'].get(pid)
+        rec = rec_by_target.get(pid)
+        mp = mp_by_page.get(pid, {})
 
-        classification = classifications.get(page_id, 'Monitor')
+        # Business Score = roi_score from money_pages, or 0
+        business_score = mp.get('roi_score', 0)
 
-        p(f'### {i}. `{page_id}`')
-        p()
-        p(f'**Classification: {classification}**')
-        p()
+        # Opportunity Score
+        opportunity_score = opp_gap
 
-        # Current Metrics
-        p('#### Current Metrics')
-        p()
-        p(f'| Metric | Current | Previous | Movement | Source |')
-        p(f'|--------|---------|----------|----------|--------|')
-        p(f'| Impressions | {impressions:,} | {prev_raw.get("impressions", "N/A"):,} | {_fmt_movement(_pct_change(prev_raw.get("impressions"), impressions))} | GSC |')
-        p(f'| Clicks | {clicks} | {prev_raw.get("clicks", "N/A")} | {_fmt_movement(_pct_change(prev_raw.get("clicks"), clicks))} | GSC |')
-        p(f'| CTR | {ctr:.4%} | {_fmt_prev(prev_raw.get("ctr"), "%")} | {_fmt_movement(_pct_change(prev_raw.get("ctr"), ctr))} | GSC |')
-        pos_prev = prev_raw.get("position")
-        pos_curr_str = f'{position:.1f}' if position else 'N/A'
-        pos_prev_str = f'{pos_prev:.1f}' if pos_prev else 'N/A'
-        p(f'| Position | {pos_curr_str} | {pos_prev_str} | {_fmt_position_movement(_position_change(pos_prev, position))} | GSC |')
-        gm = ctx['graph_metrics'].get(page_id, {})
-        p(f'| PageRank | {gm.get("pagerank", 0):.6f} | — | — | Link Graph |')
-        posterior = ctx['posteriors'].get(page_id)
-        if posterior:
-            p(f'| CTR Posterior | {posterior.mean:.6f} | — | — | Bayesian |')
-        tp = ctx.get('temporal_priors', {}).get(page_id)
-        if tp:
-            maturity = tp.maturity_score if hasattr(tp, 'maturity_score') else tp.get('maturity_score', 0)
-            page_age = tp.page_age_days if hasattr(tp, 'page_age_days') else tp.get('page_age_days', 0)
-            p(f'| Page Age | {page_age} days | — | — | Gott |')
-            p(f'| Maturity | {maturity:.4f} | — | — | Gott |')
-        p()
+        # Confidence = Bayesian posterior mean or 0
+        confidence = posterior.mean if posterior else 0
 
-        # Forecast
-        forecast = _page_forecast(page_id, rec, ctx)
-        p('#### Forecast')
-        p()
-        if forecast:
-            p(f'| Field | Value | Classification |')
-            p(f'|-------|-------|----------------|')
-            if forecast.get('expected_calls') != 'UNKNOWN':
-                p(f'| Expected Calls | {forecast["expected_calls"]:.4f} | {forecast["classification"]} |')
-                p(f'| Calls CI | [{forecast.get("calls_ci_low", "N/A"):.4f}, {forecast.get("calls_ci_high", "N/A"):.4f}] | {forecast["classification"]} |')
-            else:
-                p(f'| Expected Calls | UNKNOWN | UNKNOWN |')
-            if forecast.get('expected_revenue') != 'UNKNOWN':
-                p(f'| Expected Revenue | ${forecast["expected_revenue"]:.2f} | {forecast["classification"]} |')
-                p(f'| Revenue CI | [${forecast.get("revenue_ci_low", 0):.2f}, ${forecast.get("revenue_ci_high", 0):.2f}] | {forecast["classification"]} |')
-            else:
-                p(f'| Expected Revenue | UNKNOWN | UNKNOWN |')
-            p(f'| Confidence | {forecast.get("confidence", "UNKNOWN"):.1%}' if isinstance(forecast.get('confidence'), float) else f'| Confidence | UNKNOWN | |')
-        else:
-            p('No forecast available.')
-        p()
+        # Forecast Score = expected_calls from rec, or 0
+        forecast_score = 0
+        if rec and rec.expected_impact:
+            forecast_score = rec.expected_impact.get('expected_calls', 0) or 0
 
-        # Business Value
-        p('#### Business Value')
-        p()
-        p(f'| Field | Value |')
-        p(f'|-------|-------|')
-        if money_page:
-            p(f'| Expected Revenue (MC) | ${money_page.get("expected_revenue", 0):.2f} |')
-            p(f'| Lost Revenue (Opp Loss) | ${money_page.get("lost_revenue", 0):.2f} |')
-            p(f'| Total Revenue Opportunity | ${money_page.get("total_revenue_opportunity", 0):.2f} |')
-        if priority:
-            p(f'| Overall ROI | {priority.get("overall_roi_percent", 0):.1f}% |')
-        p()
+        # Movement
+        rank_change = _position_change(prev.get('position'), position)
+        ctr_change = _pct_change(prev.get('ctr'), ctr)
+        traffic_change = _pct_change(prev.get('clicks'), clicks)
+        call_change = _pct_change(prev_mc.get('calls'), marketcall.get('calls')) if prev_mc else None
+        revenue_change = _pct_change(prev_mc.get('revenue'), marketcall.get('revenue')) if prev_mc else None
 
-        # Measurable Reasons (only for Underperforming / High Opportunity)
+        # Classification
+        classification = _classify_url(pid, ctx)
+
+        # Reasons (only for underperforming / high opportunity)
+        reasons = []
         if classification in ('Underperforming', 'High Opportunity'):
-            reasons = _root_cause_analysis(page_id, ctx)
-            p('#### Measurable Reasons')
-            p()
-            p('Every reason is backed by engine evidence. No content quality judgments.')
-            p()
-            for r in reasons:
-                p(f'- **[{r["severity"]}] {r["reason"]}**')
-                p(f'  - Evidence: `{r["evidence"]}`')
-                p(f'  - Engine: {r["engine"]}')
-            p()
-        elif classification in ('Strong Performer', 'Stable Performer'):
-            p('#### Measurable Reasons')
-            p()
-            p('No significant performance issues detected by engine evidence.')
-            p()
-        else:
-            p('#### Measurable Reasons')
-            p()
-            p('Insufficient data for root cause analysis.')
-            p()
+            reasons = _root_cause_analysis(pid, ctx)
+        reason_str = '; '.join(r['reason'] for r in reasons) if reasons else '—'
 
-        # Execution Verification (before vs after)
-        verification = _verify_execution(page_id, raw, prev_raw)
-        if verification['has_previous']:
-            p('#### Execution Verification (vs Previous Week)')
-            p()
-            p(f'| Check | Result | Details |')
-            p(f'|-------|--------|---------|')
-            v = verification
-            p(f'| Ranking improved? | {_fmt_bool(v["ranking_improved"])} | {v["details"].get("position_change", "N/A")} |')
-            p(f'| CTR improved? | {_fmt_bool(v["ctr_improved"])} | {v["details"].get("ctr_change", "N/A")} |')
-            p(f'| Traffic improved? | {_fmt_bool(v["traffic_improved"])} | {v["details"].get("clicks_change", "N/A")} |')
-            p(f'| Calls improved? | {_fmt_bool(v["calls_improved"])} | {v["details"].get("calls_note", "N/A")} |')
-            p(f'| Revenue improved? | {_fmt_bool(v["revenue_improved"])} | {v["details"].get("revenue_note", "N/A")} |')
-            p()
-        else:
-            p('#### Execution Verification')
-            p()
-            p('No previous week data — this is the first run for this page.')
-            p()
-
-        # Learning Changes
-        learning_adjustments = ctx.get('learned_adjustments', {})
-        p('#### Learning Changes')
-        p()
-        if learning_adjustments:
-            has_relevant = False
-            for key, delta in learning_adjustments.items():
-                if rec and rec.action in key:
-                    has_relevant = True
-                    p(f'- **{key}**: confidence delta = {delta:+.4f}')
-            if not has_relevant:
-                p('No learning adjustments for this page\'s recommendation type.')
-        else:
-            p('No learning records yet — insufficient historical data for confidence calibration.')
-        p()
-
-        # Action
-        p('#### Action')
-        p()
+        # Status
         if classification in ('Underperforming', 'High Opportunity'):
-            p('**SEO Review Required**')
-            p()
-            p('The engine has identified this page as underperforming based on measurable evidence.')
-            p('The human SEO workflow must decide how to improve this page.')
-            p('The engine does not prescribe specific content changes.')
+            status = 'SEO Review Required'
         elif classification in ('Strong Performer', 'Stable Performer'):
-            p('**No action required** — page is performing well based on measurable metrics.')
+            status = 'No action required'
         else:
-            p('**Monitor** — continue tracking. Re-evaluate when more data is available.')
-        p()
+            status = 'Monitor'
 
-        p('---')
-        p()
+        # Calls and revenue (campaign-level)
+        calls = marketcall.get('calls', 'N/A')
+        revenue = marketcall.get('revenue', 0)
 
-    # Summary
-    p('## Summary')
-    p()
-    p(f'- **Pages selected:** {len(selected_pages)}')
-    p(f'- **Strong Performer:** {cls_counts.get("Strong Performer", 0)}')
-    p(f'- **Stable Performer:** {cls_counts.get("Stable Performer", 0)}')
-    p(f'- **Underperforming:** {cls_counts.get("Underperforming", 0)}')
-    p(f'- **High Opportunity:** {cls_counts.get("High Opportunity", 0)}')
-    p(f'- **Monitor:** {cls_counts.get("Monitor", 0)}')
-    p(f'- **Learning records:** {learning.get("record_count", 0)}')
-    p(f'- **Suppressed actions:** {len(learning.get("suppressed_actions", []))}')
-    p()
+        rows.append({
+            'url': pid,
+            'classification': classification,
+            'business_score': business_score,
+            'opportunity_score': opportunity_score,
+            'confidence': confidence,
+            'forecast_score': forecast_score,
+            'impressions': impressions,
+            'clicks': clicks,
+            'ctr': ctr,
+            'position': position,
+            'sessions': sessions,
+            'engagement': engagement_rate,
+            'calls': calls,
+            'revenue': revenue,
+            'rank_change': rank_change,
+            'ctr_change': ctr_change,
+            'traffic_change': traffic_change,
+            'call_change': call_change,
+            'revenue_change': revenue_change,
+            'reasons': reason_str,
+            'status': status,
+        })
 
-    p('### What Changed This Week')
-    p()
-    if previous_date:
-        p(f'Comparing {today} vs {previous_date}:')
-        p()
-        # Aggregate movements
-        improved_ranking = 0
-        improved_ctr = 0
-        improved_traffic = 0
-        declined_ranking = 0
-        declined_ctr = 0
-        declined_traffic = 0
-        no_change = 0
+    # Sort by Business Score descending
+    rows.sort(key=lambda r: r['business_score'], reverse=True)
+    return rows
 
-        for pd in selected_pages:
-            raw = ctx['raw_metrics'].get(pd['page'], {})
-            prev = ctx.get('previous_raw_metrics', {}).get(pd['page'], {})
-            v = _verify_execution(pd['page'], raw, prev)
-            if v['ranking_improved'] is True:
-                improved_ranking += 1
-            elif v['ranking_improved'] is False:
-                declined_ranking += 1
-            if v['ctr_improved'] is True:
-                improved_ctr += 1
-            elif v['ctr_improved'] is False:
-                declined_ctr += 1
-            if v['traffic_improved'] is True:
-                improved_traffic += 1
-            elif v['traffic_improved'] is False:
-                declined_traffic += 1
-            if not v['has_previous']:
-                no_change += 1
 
-        p(f'- Pages with ranking improvement: {improved_ranking}')
-        p(f'- Pages with ranking decline: {declined_ranking}')
-        p(f'- Pages with CTR improvement: {improved_ctr}')
-        p(f'- Pages with CTR decline: {declined_ctr}')
-        p(f'- Pages with traffic improvement: {improved_traffic}')
-        p(f'- Pages with traffic decline: {declined_traffic}')
-        p(f'- Pages with no previous data: {no_change}')
-    else:
-        p('First run — no previous week to compare against.')
-    p()
+# ============================================================
+# Format Helpers
+# ============================================================
 
-    p('### Learning Gained')
-    p()
-    if learning.get('record_count', 0) > 0:
-        p(f'- **Total learning records:** {learning["record_count"]}')
-        p(f'- **Success rate:** {learning["success_count"] / learning["record_count"]:.1%}')
-        p(f'- **Average outcome score:** {learning["avg_outcome_score"]:.4f}')
-        if learning.get('suppressed_actions'):
-            p(f'- **Actions suppressed due to repeated failures:** {len(learning["suppressed_actions"])}')
-            for sa in learning['suppressed_actions']:
-                p(f'  - {sa["action"]} — stopped after {FAILURE_THRESHOLD} consecutive failures')
-    else:
-        p('- No learning records yet. Learning Engine requires at least 2 weekly snapshots')
-        p('  and a 30-day evaluation window before producing confidence adjustments.')
-        p('- Run this pipeline weekly for 4+ weeks to activate the learning feedback loop.')
-    p()
+def _fmt_num(val, decimals=4):
+    """Format a number for table display."""
+    if val is None:
+        return 'N/A'
+    if isinstance(val, str):
+        return val
+    return f'{val:.{decimals}f}'
 
-    p('### What This Report Does NOT Do')
-    p()
-    p('- Does NOT generate replacement titles, meta descriptions, H1s, FAQs, or schema')
-    p('- Does NOT evaluate content quality')
-    p('- Does NOT prescribe specific SEO changes')
-    p('- Does NOT crawl or inspect page HTML')
-    p('- Does NOT claim to know what content is "good" or "bad"')
-    p()
-    p('The human SEO workflow decides HOW to improve each page.')
-    p('The engine only decides WHICH pages deserve attention and WHY based on evidence.')
-    p()
 
-    p('### Evidence Classification')
-    p()
-    p('| Classification | Meaning |')
-    p('|----------------|---------|')
-    p('| **MEASURED** | Directly observed from GSC, GA4, or Marketcall data |')
-    p('| **ESTIMATED** | Derived from engine models using observed data |')
-    p('| **UNKNOWN** | Cannot be supported by evidence from existing engines |')
-    p()
+def _fmt_change(val, suffix=''):
+    """Format a percentage change for table display."""
+    if val is None:
+        return '—'
+    sign = '+' if val > 0 else ''
+    return f'{sign}{val}{suffix}'
 
-    p('### Confidence Calibration')
-    p()
-    p(f'- **Decision Store snapshots:** {decision_store.count_snapshots()}')
-    p(f'- **Learning records:** {learning.get("record_count", 0)}')
-    p(f'- **Revenue per call:** ${revenue_per_call:.2f} (n=1 approved call)')
-    p(f'- **All dollar forecasts:** UNCALIBRATED MODEL ESTIMATES')
-    p(f'- **Ranking/traffic diagnoses:** Evidence-backed from GSC, Opportunity Score, Link Graph')
-    p()
 
-    p('---')
-    p()
-    p(f'*Generated by Weekly Optimization System at {datetime.now(timezone.utc).isoformat()}*')
-    p(f'*Uses only existing engine outputs. No new mathematical models.*')
+def _fmt_rank_change(val):
+    """Format position change (negative = improvement)."""
+    if val is None:
+        return '—'
+    if val < 0:
+        return f'↑{val:.1f}'
+    if val > 0:
+        return f'↓+{val:.1f}'
+    return '0'
 
-    return '\n'.join(lines)
+
+def _fmt_url(url, max_len=50):
+    """Truncate URL for table display."""
+    if len(url) <= max_len:
+        return url
+    return url[:max_len-3] + '...'
 
 
 def _fmt_pct(val):
@@ -1025,6 +769,224 @@ def _fmt_bool(val):
 
 
 # ============================================================
+# Weekly Report Generator — URL-centric, ALL URLs
+# ============================================================
+
+def generate_weekly_action_plan(all_rows, ctx):
+    """Generate WEEKLY_ACTION_PLAN.md — URL-centric, ALL URLs, no hiding."""
+    lines = []
+
+    def p(s=''):
+        lines.append(s)
+
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    revenue_per_call = ctx.get('revenue_per_call') or 0
+    previous_date = ctx.get('previous_date')
+    learning = ctx.get('learning_summary', {})
+
+    p(f'# Weekly Prioritization Report — Week of {today}')
+    p()
+    p('> **The engine reports measurable facts only.**')
+    p('> **The engine does NOT generate SEO content.**')
+    p('> **The engine does NOT evaluate content quality.**')
+    p('> **The human SEO workflow decides HOW to improve each page.**')
+    p()
+    p('---')
+    p()
+
+    # Executive Summary
+    p('## Executive Summary')
+    p()
+    p(f'- **Report date:** {today}')
+    p(f'- **Previous report:** {previous_date or "N/A (first run)"}')
+    p(f'- **Total URLs analyzed:** {len(all_rows)}')
+    p(f'- **Revenue per approved call:** ${revenue_per_call:.2f} (MEASURED, n=1)')
+    p()
+
+    # Classification Summary
+    cls_counts = {}
+    for r in all_rows:
+        cls_counts[r['classification']] = cls_counts.get(r['classification'], 0) + 1
+    p('### URL Classification Summary')
+    p()
+    p('| Classification | Count |')
+    p('|----------------|-------|')
+    for cls in ['Strong Performer', 'Stable Performer', 'Underperforming', 'High Opportunity', 'Monitor']:
+        p(f'| {cls} | {cls_counts.get(cls, 0)} |')
+    p()
+
+    # Data Collection Status
+    status = data_collector.get_collection_status()
+    p('### Data Collection Status')
+    p()
+    p('| Source | Last Collected | Fresh | Schedule |')
+    p('|--------|---------------|-------|----------|')
+    p(f'| Marketcall | {status["marketcall"]["fetched_at"] or "Never"} | {"Yes" if status["marketcall"]["is_fresh"] else "No"} | Every 24h |')
+    p(f'| GSC Pages | {status["gsc_pages"]["fetched_at"] or "Never"} | {"Yes" if status["gsc_pages"]["is_fresh"] else "No"} | Weekly |')
+    p(f'| GSC Queries | {status["gsc_queries"]["fetched_at"] or "Never"} | {"Yes" if status["gsc_queries"]["is_fresh"] else "No"} | Weekly |')
+    p(f'| GA4 | {status["ga4"]["fetched_at"] or "Never"} | {"Yes" if status["ga4"]["is_fresh"] else "No"} | Weekly |')
+    p()
+
+    # Learning Engine Status
+    p('### Learning Engine Status')
+    p()
+    p(f'- **Total learning records:** {learning.get("record_count", 0)}')
+    p(f'- **Successful actions:** {learning.get("success_count", 0)}')
+    p(f'- **Failed actions:** {learning.get("failure_count", 0)}')
+    p(f'- **Average outcome score:** {learning.get("avg_outcome_score", 0):.4f}')
+    p(f'- **Suppressed actions (repeated failures):** {len(learning.get("suppressed_actions", []))}')
+    p()
+
+    p('---')
+    p()
+
+    # ============================================================
+    # MASTER TABLE — ALL URLs
+    # ============================================================
+    p('## Master URL Table — All Analyzed URLs')
+    p()
+    p(f'Every URL appears exactly once. Sorted by Business Score descending. Total: {len(all_rows)} URLs.')
+    p()
+    p('| # | URL | Classification | Business Score | Opportunity Score | Confidence | Forecast Score | Impressions | Clicks | CTR | Avg Position | Sessions | Engagement | Calls | Revenue | Rank Change | CTR Change | Traffic Change | Call Change | Revenue Change | Reason(s) | Status |')
+    p('|---|-----|----------------|---------------|-------------------|------------|--------------|-------------|--------|-----|-------------|----------|------------|-------|---------|-------------|-----------|---------------|------------|----------------|-----------|--------|')
+
+    for i, r in enumerate(all_rows, 1):
+        p(f'| {i} | {_fmt_url(r["url"])} | {r["classification"]} | {_fmt_num(r["business_score"], 2)} | {_fmt_num(r["opportunity_score"], 4)} | {_fmt_num(r["confidence"], 6)} | {_fmt_num(r["forecast_score"], 4)} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["sessions"]} | {_fmt_num(r["engagement"], 4)} | {r["calls"]} | ${r["revenue"]:.2f} | {_fmt_rank_change(r["rank_change"])} | {_fmt_change(r["ctr_change"], "%")} | {_fmt_change(r["traffic_change"], "%")} | {_fmt_change(r["call_change"], "%")} | {_fmt_change(r["revenue_change"], "%")} | {r["reasons"]} | {r["status"]} |')
+
+    p()
+    p('---')
+    p()
+
+    # ============================================================
+    # Section 1: Top 20 Highest Opportunity URLs
+    # ============================================================
+    p('## 1. Top 20 Highest Opportunity URLs')
+    p()
+    p('Sorted by Opportunity Score descending.')
+    p()
+    opp_sorted = sorted(all_rows, key=lambda r: r['opportunity_score'], reverse=True)[:20]
+    p('| # | URL | Classification | Opportunity Score | Impressions | Clicks | CTR | Avg Position | Reason(s) | Status |')
+    p('|---|-----|----------------|-------------------|-------------|--------|-----|-------------|-----------|--------|')
+    for i, r in enumerate(opp_sorted, 1):
+        p(f'| {i} | {_fmt_url(r["url"])} | {r["classification"]} | {_fmt_num(r["opportunity_score"], 4)} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["reasons"]} | {r["status"]} |')
+    p()
+
+    # ============================================================
+    # Section 2: Top 20 Underperforming URLs
+    # ============================================================
+    p('## 2. Top 20 Underperforming URLs')
+    p()
+    p('Sorted by Business Score descending. Only URLs classified as Underperforming.')
+    p()
+    under = [r for r in all_rows if r['classification'] == 'Underperforming'][:20]
+    p('| # | URL | Business Score | Impressions | Clicks | CTR | Avg Position | Reason(s) | Status |')
+    p('|---|-----|---------------|-------------|--------|-----|-------------|-----------|--------|')
+    for i, r in enumerate(under, 1):
+        p(f'| {i} | {_fmt_url(r["url"])} | {_fmt_num(r["business_score"], 2)} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["reasons"]} | {r["status"]} |')
+    p()
+
+    # ============================================================
+    # Section 3: Top 20 Strongest URLs
+    # ============================================================
+    p('## 3. Top 20 Strongest URLs')
+    p()
+    p('Sorted by Business Score descending. Only URLs classified as Strong Performer or Stable Performer.')
+    p()
+    strong = [r for r in all_rows if r['classification'] in ('Strong Performer', 'Stable Performer')][:20]
+    if strong:
+        p('| # | URL | Classification | Business Score | Impressions | Clicks | CTR | Avg Position | Status |')
+        p('|---|-----|----------------|---------------|-------------|--------|-----|-------------|--------|')
+        for i, r in enumerate(strong, 1):
+            p(f'| {i} | {_fmt_url(r["url"])} | {r["classification"]} | {_fmt_num(r["business_score"], 2)} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["status"]} |')
+    else:
+        p('No Strong or Stable Performers found in current data.')
+    p()
+
+    # ============================================================
+    # Section 4: Top 20 Fastest Improving URLs
+    # ============================================================
+    p('## 4. Top 20 Fastest Improving URLs')
+    p()
+    p('Sorted by combined improvement signal (CTR change + traffic change + rank improvement).')
+    p()
+    def _improvement_score(r):
+        score = 0
+        if r['ctr_change'] is not None and r['ctr_change'] > 0:
+            score += r['ctr_change']
+        if r['traffic_change'] is not None and r['traffic_change'] > 0:
+            score += r['traffic_change']
+        if r['rank_change'] is not None and r['rank_change'] < 0:
+            score += abs(r['rank_change']) * 10  # weight rank improvement
+        return score
+
+    improving = sorted(all_rows, key=_improvement_score, reverse=True)[:20]
+    p('| # | URL | Rank Change | CTR Change | Traffic Change | Impressions | Clicks | CTR | Avg Position | Status |')
+    p('|---|-----|-------------|-----------|---------------|-------------|--------|-----|-------------|--------|')
+    for i, r in enumerate(improving, 1):
+        p(f'| {i} | {_fmt_url(r["url"])} | {_fmt_rank_change(r["rank_change"])} | {_fmt_change(r["ctr_change"], "%")} | {_fmt_change(r["traffic_change"], "%")} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["status"]} |')
+    p()
+
+    # ============================================================
+    # Section 5: Top 20 Biggest Declining URLs
+    # ============================================================
+    p('## 5. Top 20 Biggest Declining URLs')
+    p()
+    p('Sorted by combined decline signal (CTR decline + traffic decline + rank decline).')
+    p()
+    def _decline_score(r):
+        score = 0
+        if r['ctr_change'] is not None and r['ctr_change'] < 0:
+            score += abs(r['ctr_change'])
+        if r['traffic_change'] is not None and r['traffic_change'] < 0:
+            score += abs(r['traffic_change'])
+        if r['rank_change'] is not None and r['rank_change'] > 0:
+            score += r['rank_change'] * 10
+        return score
+
+    declining = sorted(all_rows, key=_decline_score, reverse=True)[:20]
+    p('| # | URL | Rank Change | CTR Change | Traffic Change | Impressions | Clicks | CTR | Avg Position | Status |')
+    p('|---|-----|-------------|-----------|---------------|-------------|--------|-----|-------------|--------|')
+    for i, r in enumerate(declining, 1):
+        p(f'| {i} | {_fmt_url(r["url"])} | {_fmt_rank_change(r["rank_change"])} | {_fmt_change(r["ctr_change"], "%")} | {_fmt_change(r["traffic_change"], "%")} | {r["impressions"]:,} | {r["clicks"]} | {r["ctr"]:.4%} | {_fmt_num(r["position"], 1)} | {r["status"]} |')
+    p()
+
+    p('---')
+    p()
+
+    # Summary
+    p('## Summary')
+    p()
+    p(f'- **Total URLs analyzed:** {len(all_rows)}')
+    p(f'- **Strong Performer:** {cls_counts.get("Strong Performer", 0)}')
+    p(f'- **Stable Performer:** {cls_counts.get("Stable Performer", 0)}')
+    p(f'- **Underperforming:** {cls_counts.get("Underperforming", 0)}')
+    p(f'- **High Opportunity:** {cls_counts.get("High Opportunity", 0)}')
+    p(f'- **Monitor:** {cls_counts.get("Monitor", 0)}')
+    p(f'- **Learning records:** {learning.get("record_count", 0)}')
+    p(f'- **Suppressed actions:** {len(learning.get("suppressed_actions", []))}')
+    p()
+
+    p('### What This Report Does NOT Do')
+    p()
+    p('- Does NOT generate replacement titles, meta descriptions, H1s, FAQs, or schema')
+    p('- Does NOT evaluate content quality')
+    p('- Does NOT prescribe specific SEO changes')
+    p('- Does NOT crawl or inspect page HTML')
+    p('- Does NOT claim to know what content is "good" or "bad"')
+    p()
+    p('The human SEO workflow decides HOW to improve each page.')
+    p('The engine only decides WHICH pages deserve attention and WHY based on evidence.')
+    p()
+
+    p('---')
+    p()
+    p(f'*Generated by Weekly Optimization System at {datetime.now(timezone.utc).isoformat()}*')
+    p(f'*Uses only existing engine outputs. No new mathematical models.*')
+
+    return '\n'.join(lines)
+
+
+# ============================================================
 # Main
 # ============================================================
 
@@ -1042,57 +1004,28 @@ def run(force_collect=False):
     ctx = _run_weekly_pipeline(force_collect=force_collect)
     revenue_per_call = ctx.get('revenue_per_call') or 0
 
-    # Run Business Priority Intelligence to select top pages
+    # Run Business Priority Intelligence — get ALL pages (no top_n limit)
     print()
     print('Business Priority Intelligence')
     top_queries = identify_top_commercial_queries(ctx['queries'], top_n=20)
     money_pages = rank_money_pages(
-        ctx['page_reports'], revenue_per_call, ctx['recs'], top_n=20,
+        ctx['page_reports'], revenue_per_call, ctx['recs'], top_n=len(ctx['page_reports']),
     )
     opp_loss = calculate_opportunity_loss(
-        ctx['page_reports'], revenue_per_call, top_n=20,
+        ctx['page_reports'], revenue_per_call, top_n=len(ctx['page_reports']),
     )
     survivors, killed = filter_low_roi(ctx['recs'], revenue_per_call)
     prioritized = assign_business_priorities(survivors, revenue_per_call)
 
-    # Select top 20 pages
-    rec_by_target = {}
-    for pr in prioritized:
-        target = pr['recommendation'].target
-        if target not in rec_by_target:
-            rec_by_target[target] = pr
-
-    mp_by_page = {mp['page']: mp for mp in money_pages}
-    ol_by_page = {ol['page']: ol for ol in opp_loss}
-
-    selected_pages = []
-    for pr in prioritized[:20]:
-        target = pr['recommendation'].target
-        selected_pages.append({
-            'page': target,
-            'recommendation': pr['recommendation'],
-            'priority': pr,
-            'money_page': mp_by_page.get(target, {}),
-            'opp_loss': ol_by_page.get(target, {}),
-        })
-
-    existing = {p['page'] for p in selected_pages}
-    for mp in money_pages:
-        if len(selected_pages) >= 20:
-            break
-        if mp['page'] not in existing:
-            selected_pages.append({
-                'page': mp['page'],
-                'recommendation': rec_by_target.get(mp['page'], {}).get('recommendation'),
-                'priority': rec_by_target.get(mp['page'], {}),
-                'money_page': mp,
-                'opp_loss': ol_by_page.get(mp['page'], {}),
-            })
+    # Build URL rows for ALL analyzed pages
+    print()
+    print('Building URL rows for all pages...')
+    all_rows = _build_url_rows(ctx, money_pages, opp_loss)
 
     # Generate report
     print()
     print('Generating WEEKLY_ACTION_PLAN.md')
-    report = generate_weekly_action_plan(selected_pages, ctx)
+    report = generate_weekly_action_plan(all_rows, ctx)
 
     with open('WEEKLY_ACTION_PLAN.md', 'w', encoding='utf-8') as f:
         f.write(report)
@@ -1102,7 +1035,7 @@ def run(force_collect=False):
     print('=' * 60)
     print('Weekly Optimization System — Complete')
     print(f'  Pages analyzed:       {ctx["n_pages"]}')
-    print(f'  Pages selected:       {len(selected_pages)}')
+    print(f'  URLs in report:       {len(all_rows)}')
     print(f'  Recommendations:      {len(ctx["recs"])}')
     print(f'  Killed (low ROI):     {len(killed)}')
     print(f'  Active (survivors):   {len(survivors)}')
