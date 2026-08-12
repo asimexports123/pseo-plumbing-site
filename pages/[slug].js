@@ -1,8 +1,8 @@
 import { parseSlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { getCityBySlug } from '../lib/cities-server';
 import { generatePageContent } from '../lib/contentGenerator';
-import { getNearbyPlaces } from '../lib/nationwidePlaces';
-import { getZctasByCity } from '../lib/hyperlocalPlaces-server';
+import { getNearbyPlacesSync, ensurePlacesLoaded } from '../lib/nationwidePlaces';
+import { getZctasByCitySync, ensureZctasLoaded } from '../lib/hyperlocalPlaces-server';
 import { getPageDate } from '../lib/contentVersioning';
 import { PRIORITY_SEO } from '../lib/prioritySeo';
 import PlumberPage from '../components/PlumberPage';
@@ -30,6 +30,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  await ensurePlacesLoaded();
+  await ensureZctasLoaded();
   try {
     const rawSlug = params.slug;
 
@@ -75,7 +77,7 @@ export async function getStaticProps({ params }) {
         .filter(Boolean)
         .slice(0, 8);
     } else if (stateCode) {
-      nearbyCities = getNearbyPlaces(citySlug, stateCode, 8).map(p => ({
+      nearbyCities = getNearbyPlacesSync(citySlug, stateCode, 8).map(p => ({
         slug: p.slug,
         name: p.name,
         stateCode: p.stateCode,
@@ -85,7 +87,7 @@ export async function getStaticProps({ params }) {
     }
 
     // Pre-compute ZCTAs for this city (for AreasWeServe component)
-    const cityZctas = getZctasByCity(cityToSlug(cityName));
+    const cityZctas = getZctasByCitySync(cityToSlug(cityName));
 
     const lastReviewed = await getPageDate(`city-service:${rawSlug}`);
 

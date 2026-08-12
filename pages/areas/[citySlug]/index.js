@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../../../lib/cities';
 import { getCityBySlug } from '../../../lib/cities-server';
-import { getZctasByCity, getCitiesWithZctas } from '../../../lib/hyperlocalPlaces-server';
+import { getZctasByCitySync, getCitiesWithZctasSync, ensureZctasLoaded } from '../../../lib/hyperlocalPlaces-server';
 import { Footer } from '../../../components/Footer';
 import { EditorialFooter } from '../../../components/EditorialFooter';
 import { Author } from '../../../components/Author';
@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  await ensureZctasLoaded();
   try {
     const { citySlug } = params;
 
@@ -21,7 +22,7 @@ export async function getStaticProps({ params }) {
       return { notFound: true };
     }
 
-    const zctas = getZctasByCity(citySlug);
+    const zctas = getZctasByCitySync(citySlug);
     if (zctas.length === 0) {
       return { notFound: true };
     }
@@ -51,7 +52,7 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
   const description = `YoHomeFix serves ${zipCount} ZIP Code areas in ${cityName}, ${stateCode}. Find plumbing services in your neighborhood — emergency plumber, leak repair, drain cleaning, and more.`;
   const canonical = `https://yohomefix.com/areas/${citySlug}`;
   const stateHubSlug = `plumber-${getStateSlug(stateCode)}`;
-  const cityServiceSlug = buildSlug(cityToSlug(cityName), 'emergency');
+  const cityServiceSlug = buildSlug(citySlug, 'emergency');
 
   return (
     <>
@@ -93,21 +94,49 @@ export default function CityZipDirectory({ cityName, stateCode, stateName, cityS
         </nav>
 
         {/* Hero */}
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-              ZIP Codes Served in {cityName}, {stateCode}
-            </h1>
-            <p className="text-lg text-blue-50 mb-2">
-              {zipCount} ZIP Code areas in {cityName}, {stateName}
-            </p>
-            <p className="text-sm text-blue-100 mb-2">
-              Select your ZIP Code to find plumbing services in your area of {cityName}.
-            </p>
-            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
-            <a href="tel:1" data-track="zip-dir-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
-              <span aria-hidden="true">📞</span> Get Emergency Help
-            </a>
+        <section className="relative w-full overflow-hidden text-white" style={{ backgroundColor: '#172554' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch">
+            <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 py-10 md:py-20 lg:py-14">
+              <div className="w-full max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+                <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+                  ZIP Codes Served in {cityName}, {stateCode}
+                </h1>
+                <p className="text-lg text-blue-50 mb-2">
+                  {zipCount} ZIP Code areas in {cityName}, {stateName}
+                </p>
+                <p className="text-sm text-blue-100 mb-2">
+                  Select your ZIP Code to find plumbing services in your area of {cityName}.
+                </p>
+                <p className="text-white text-sm mb-5 max-w-2xl mx-auto md:mx-0">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
+                <a href="tel:1" data-track="zip-dir-hero" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+                  <span aria-hidden="true">📞</span> Get Emergency Help
+                </a>
+              </div>
+              <div
+                className="absolute top-full left-0 right-0 h-32 pointer-events-none md:hidden"
+                style={{ background: 'linear-gradient(to bottom, rgba(23,37,84,1) 0%, rgba(23,37,84,0.85) 15%, rgba(23,37,84,0.55) 30%, rgba(23,37,84,0.3) 45%, rgba(23,37,84,0.12) 60%, rgba(23,37,84,0.03) 75%, rgba(23,37,84,0) 100%)' }}
+              />
+            </div>
+            <div className="relative w-full md:w-[40%] md:flex-shrink-0 lg:w-[38%] pointer-events-none select-none">
+              <img
+                src="/images/plumber-service-hero.jpg"
+                alt="Licensed plumber repairing pipes with professional tools"
+                width={720}
+                height={915}
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-auto object-contain"
+                aria-hidden="true"
+                style={{ display: 'block' }}
+              />
+              <div
+                className="absolute inset-y-0 left-0 pointer-events-none hidden md:block"
+                style={{
+                  width: '42%',
+                  background: 'linear-gradient(to right, #172554 0%, rgba(23,37,84,0.98) 10%, rgba(23,37,84,0.92) 25%, rgba(23,37,84,0.8) 40%, rgba(23,37,84,0.6) 55%, rgba(23,37,84,0.4) 70%, rgba(23,37,84,0.2) 85%, rgba(23,37,84,0) 100%)',
+                }}
+              />
+            </div>
           </div>
         </section>
 

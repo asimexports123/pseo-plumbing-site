@@ -6,7 +6,7 @@ import {
   STATES, SEED_CITIES, SERVICES,
   cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, isStateQualifiedForService, COST_PAGE_CITIES,
 } from '../../lib/cities';
-import { getPlacesByState } from '../../lib/nationwidePlaces';
+import { getPlacesByStateSync, ensurePlacesLoaded } from '../../lib/nationwidePlaces';
 import { getCrawlHubPath, groupPlacesByLetter } from '../../lib/crawl';
 
 import { RelatedGuides } from '../../components/RelatedGuides';
@@ -49,6 +49,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
+  await ensurePlacesLoaded();
   try {
     const stateObj = STATES.find((s) => s.slug === params.state);
     if (!stateObj) return { notFound: true };
@@ -57,7 +58,7 @@ export async function getStaticProps({ params }) {
 
     // Get nationwide places for this state (excluding enriched SEED_CITIES)
     const seedCityNames = new Set(stateCities.map(c => c.name));
-    const additionalPlaces = getPlacesByState(stateObj.code)
+    const additionalPlaces = getPlacesByStateSync(stateObj.code)
       .filter(p => !seedCityNames.has(p.name))
       .map(p => ({ name: p.name, stateCode: p.stateCode, slug: p.slug }))
       .sort((a, b) => a.name.localeCompare(b.name));

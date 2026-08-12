@@ -165,34 +165,67 @@ export default function Home({ totalPlaces }) {
         <main className="flex-1">
 
         {/* ── HERO ──────────────────────────────────────────────── */}
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-14 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
-              ⚡ 24/7 Emergency Dispatch — Live Operators Standing By
+        <section className="relative w-full overflow-hidden text-white" style={{ backgroundColor: '#172554' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch">
+            {/* Left: existing homepage content */}
+            <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 py-10 md:py-20 lg:py-14">
+              <div className="w-full max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+                <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+                  ⚡ 24/7 Emergency Dispatch — Live Operators Standing By
+                </div>
+                <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+                  24/7 Emergency Plumbing Service
+                </h1>
+                <p className="speakable-intro text-lg text-white mb-2 max-w-2xl mx-auto">
+                  Burst pipe? Flooding? No hot water? Get a licensed local plumber to your door in under 60 minutes — no hold queues, no automated menus.
+                </p>
+                <p className="text-white text-sm mb-5 max-w-2xl mx-auto">
+                  Serving homeowners across the USA with ZIP code–based local plumber matching.
+                </p>
+                <a
+                  href="tel:1"
+                  onClick={() => trackCall('hero-home')}
+                  data-track="hero-home"
+                  className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline"
+                  aria-label="Call emergency dispatch"
+                >
+                  📞 Get Emergency Help Now
+                </a>
+                <p className="text-white text-sm mt-3">Tap to call — live operator answers 24/7</p>
+                <div className="flex flex-wrap gap-4 mt-6 text-sm justify-center md:justify-start">
+                  {['✅ Licensed & Insured', '⏱️ 60-Min Response Target', '💰 Upfront Pricing', '📞 No Hold Queues', '🏅 Verified Technicians'].map((b) => (
+                    <span key={b} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{b}</span>
+                  ))}
+                </div>
+              </div>
+              <div
+                className="absolute top-full left-0 right-0 h-32 pointer-events-none md:hidden"
+                style={{ background: 'linear-gradient(to bottom, rgba(23,37,84,1) 0%, rgba(23,37,84,0.85) 15%, rgba(23,37,84,0.55) 30%, rgba(23,37,84,0.3) 45%, rgba(23,37,84,0.12) 60%, rgba(23,37,84,0.03) 75%, rgba(23,37,84,0) 100%)' }}
+              />
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-              24/7 Emergency Plumbing Service
-            </h1>
-            <p className="speakable-intro text-xl text-white mb-2 max-w-2xl mx-auto">
-              Burst pipe? Flooding? No hot water? Get a licensed local plumber to your door in under 60 minutes — no hold queues, no automated menus.
-            </p>
-            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">
-              Serving homeowners across the USA with ZIP code–based local plumber matching.
-            </p>
-            <a
-              href="tel:1"
-              onClick={() => trackCall('hero-home')}
-              data-track="hero-home"
-              className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-5 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105"
-              aria-label="Call emergency dispatch"
-            >
-              📞 Get Emergency Help Now
-            </a>
-            <p className="text-white text-sm mt-3">Tap to call — live operator answers 24/7</p>
-            <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
-              {['✅ Licensed & Insured', '⏱️ 60-Min Response Target', '💰 Upfront Pricing', '📞 No Hold Queues', '🏅 Verified Technicians'].map((b) => (
-                <span key={b} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{b}</span>
-              ))}
+
+            {/* Right: photograph with smooth gradient blend on left edge */}
+            <div className="relative w-full md:w-[40%] md:flex-shrink-0 lg:w-[38%] pointer-events-none select-none">
+              <img
+                src="/images/plumber-service-hero.jpg"
+                alt="Licensed plumber repairing pipes with professional tools"
+                width={720}
+                height={915}
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-auto object-contain"
+                aria-hidden="true"
+                style={{ display: 'block' }}
+              />
+              {/* Mobile-only: blue fade on top of image */}
+              {/* Desktop-only: left-edge gradient blend */}
+              <div
+                className="absolute inset-y-0 left-0 pointer-events-none hidden md:block"
+                style={{
+                  width: '42%',
+                  background: 'linear-gradient(to right, #172554 0%, rgba(23,37,84,0.98) 10%, rgba(23,37,84,0.92) 25%, rgba(23,37,84,0.8) 40%, rgba(23,37,84,0.6) 55%, rgba(23,37,84,0.4) 70%, rgba(23,37,84,0.2) 85%, rgba(23,37,84,0) 100%)',
+                }}
+              />
             </div>
           </div>
         </section>
@@ -663,10 +696,11 @@ export default function Home({ totalPlaces }) {
 }
 
 export async function getStaticProps() {
-  const { TOTAL_PLACES } = require('../lib/nationwidePlaces');
+  const { getTotalPlacesSync, ensurePlacesLoaded } = require('../lib/nationwidePlaces');
+  await ensurePlacesLoaded();
   return {
     props: {
-      totalPlaces: TOTAL_PLACES,
+      totalPlaces: getTotalPlacesSync(),
     },
   };
 }

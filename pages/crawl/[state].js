@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { STATES, cityToSlug, buildSlug } from '../../lib/cities';
 import { getSeedCitiesForState, getAdditionalPlacesForState, groupPlacesByLetter } from '../../lib/crawl';
+import { ensurePlacesLoaded } from '../../lib/nationwidePlaces';
 import { Footer } from '../../components/Footer';
 
 const MAX_SEED_ON_HUB = 50;
@@ -110,6 +111,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  await ensurePlacesLoaded();
   try {
     const stateObj = STATES.find((s) => s.slug === params.state);
     if (!stateObj) return { notFound: true };

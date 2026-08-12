@@ -1,8 +1,8 @@
 import { SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
 import { getCityBySlug } from '../../../../lib/cities-server';
 import { generatePageContent } from '../../../../lib/contentGenerator';
-import { getZctaByZip, getZctasByCity, getNearbyZctas, isZctaQualifiedForService } from '../../../../lib/hyperlocalPlaces-server';
-import { getNearbyPlaces } from '../../../../lib/nationwidePlaces';
+import { getZctaByZipSync, getZctasByCitySync, getNearbyZctasSync, isZctaQualifiedForService, ensureZctasLoaded } from '../../../../lib/hyperlocalPlaces-server';
+import { getNearbyPlacesSync, ensurePlacesLoaded } from '../../../../lib/nationwidePlaces';
 import { getPageDate } from '../../../../lib/contentVersioning';
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 
@@ -13,11 +13,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  await ensurePlacesLoaded();
+  await ensureZctasLoaded();
   try {
     const { citySlug, zip, service } = params;
 
     // Validate ZIP is a real ZCTA mapped to this city
-    const zcta = getZctaByZip(zip);
+    const zcta = getZctaByZipSync(zip);
     if (!zcta) {
       return { notFound: true };
     }
@@ -58,7 +60,7 @@ export async function getStaticProps({ params }) {
     }
 
     // Get nearby ZIPs
-    const nearbyZips = getNearbyZctas(zip, 6).map(nz => ({
+    const nearbyZips = getNearbyZctasSync(zip, 6).map(nz => ({
       zip: nz.zip,
       parentCity: nz.parentCity,
       parentCitySlug: nz.parentCitySlug,
@@ -66,14 +68,14 @@ export async function getStaticProps({ params }) {
     }));
 
     // Nearby cities for the same service
-    const nearbyCities = getNearbyPlaces(citySlug, stateCode, 8).map(p => ({
+    const nearbyCities = getNearbyPlacesSync(citySlug, stateCode, 8).map(p => ({
       slug: p.slug,
       name: p.name,
       stateCode: p.stateCode,
     }));
 
     // Get total ZIP count for this city
-    const cityZips = getZctasByCity(citySlug);
+    const cityZips = getZctasByCitySync(citySlug);
 
     const pageSlug = `${citySlug}/${zip}/${svc.slug}`;
     const lastReviewed = await getPageDate(`zcta-service:${citySlug}:${zip}:${svc.slug}`);

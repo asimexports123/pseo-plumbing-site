@@ -8,6 +8,8 @@ import {
   getStateSitemapChunks,
   getZctaSitemapChunks,
 } from '../lib/sitemap';
+import { ensurePlacesLoaded } from '../lib/nationwidePlaces';
+import { ensureZctasLoaded } from '../lib/hyperlocalPlaces-server';
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 
@@ -22,6 +24,8 @@ function writePublic(filePath, content) {
 }
 
 export async function getStaticProps() {
+  await ensurePlacesLoaded();
+  await ensureZctasLoaded();
   const today = getToday();
 
   const staticChunks = getStaticSitemapChunks();
