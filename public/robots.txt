@@ -35,13 +35,28 @@ User-agent: DuckDuckBot
 Disallow: /dashboard
 Disallow: /api/
 
-# ── User-driven AI search fetchers — allow with restrictions ──
-# Middleware enforces GET/HEAD only; rate limits handled at Cloudflare
+# ── AI crawlers — allow with restrictions (no dashboard/API) ──
+User-agent: GPTBot
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Disallow: /dashboard
+Disallow: /api/
+
 User-agent: ChatGPT-User
 Disallow: /dashboard
 Disallow: /api/
 
-User-agent: PerplexityBot
+User-agent: Google-Extended
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: ClaudeBot
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: anthropic-ai
 Disallow: /dashboard
 Disallow: /api/
 
@@ -49,32 +64,40 @@ User-agent: Claude-SearchBot
 Disallow: /dashboard
 Disallow: /api/
 
-# ── AI training / aggressive crawlers — fully blocked ──
-User-agent: GPTBot
-Disallow: /
+User-agent: PerplexityBot
+Disallow: /dashboard
+Disallow: /api/
 
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
+User-agent: Perplexity-User
+Disallow: /dashboard
+Disallow: /api/
 
 User-agent: CCBot
-Disallow: /
+Disallow: /dashboard
+Disallow: /api/
 
 User-agent: Bytespider
-Disallow: /
-
-User-agent: Applebot
-Disallow: /
-
-User-agent: Applebot-Extended
-Disallow: /
+Disallow: /dashboard
+Disallow: /api/
 
 User-agent: Amazonbot
-Disallow: /
+Disallow: /dashboard
+Disallow: /api/
 
-User-agent: meta-externalagent
+User-agent: Applebot-Extended
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: Meta-ExternalAgent
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: cohere-ai
+Disallow: /dashboard
+Disallow: /api/
+
+# ── Applebot — fully blocked (not in allow list) ──
+User-agent: Applebot
 Disallow: /
 
 # ── Default: deny all other crawlers ──

@@ -6,7 +6,7 @@ import {
   STATES, SEED_CITIES, SERVICES,
   cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, isStateQualifiedForService, COST_PAGE_CITIES,
 } from '../../lib/cities';
-import { getPlacesByStateSync, ensurePlacesLoaded } from '../../lib/nationwidePlaces';
+import { getPlacesByStateSync, ensurePlacesForStateLoaded } from '../../lib/nationwidePlaces';
 import { getCrawlHubPath, groupPlacesByLetter } from '../../lib/crawl';
 
 import { RelatedGuides } from '../../components/RelatedGuides';
@@ -49,10 +49,10 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
-  await ensurePlacesLoaded();
   try {
     const stateObj = STATES.find((s) => s.slug === params.state);
     if (!stateObj) return { notFound: true };
+    await ensurePlacesForStateLoaded(stateObj.code);
 
     const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);
 

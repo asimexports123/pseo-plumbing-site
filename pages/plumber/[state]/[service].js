@@ -4,7 +4,7 @@ import {
   STATES, SEED_CITIES, SERVICES, PHONE_NUMBER,
   cityToSlug, buildSlug, CITY_DATA, isCityQualifiedForService, isStateQualifiedForService,
 } from '../../../lib/cities';
-import { getPlacesByStateSync, ensurePlacesLoaded } from '../../../lib/nationwidePlaces';
+import { getPlacesByStateSync, ensurePlacesForStateLoaded } from '../../../lib/nationwidePlaces';
 import { RelatedGuides } from '../../../components/RelatedGuides';
 import { EditorialFooter } from '../../../components/EditorialFooter';
 import { Footer } from '../../../components/Footer';
@@ -111,11 +111,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  await ensurePlacesLoaded();
   try {
     const { state: stateSlug, service: serviceSlug } = params;
     const stateObj = STATES.find((s) => s.slug === stateSlug);
     if (!stateObj) return { notFound: true };
+    await ensurePlacesForStateLoaded(stateObj.code);
     const serviceObj = SERVICES.find((s) => s.slug === serviceSlug);
     if (!serviceObj) return { notFound: true };
     const stateCities = SEED_CITIES.filter((c) => c.stateCode === stateObj.code);

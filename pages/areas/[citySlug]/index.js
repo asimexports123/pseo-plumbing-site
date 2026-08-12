@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../../../lib/cities';
+import { SERVICES, SEED_CITIES, cityToSlug, buildSlug, getStateSlug } from '../../../lib/cities';
 import { getCityBySlug } from '../../../lib/cities-server';
-import { getZctasByCitySync, getCitiesWithZctasSync, ensureZctasLoaded } from '../../../lib/hyperlocalPlaces-server';
+import { getZctasByCitySync, ensureZctasForStateLoaded } from '../../../lib/hyperlocalPlaces-server';
+import { ensurePlacesMetaLoaded, getStateCodeForSlugSync, ensurePlacesForStateLoaded } from '../../../lib/nationwidePlaces';
 import { Footer } from '../../../components/Footer';
 import { EditorialFooter } from '../../../components/EditorialFooter';
 import { Author } from '../../../components/Author';
@@ -13,9 +14,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  await ensureZctasLoaded();
   try {
     const { citySlug } = params;
+
+    // Determine stateCode with minimal data loading
+    let stateCode = null;
+    const seedCity = SEED_CITIES.find(c => cityToSlug(c.name) === citySlug);
+    if (seedCity) {
+      stateCode = seedCity.stateCode;
+    } else {
+      await ensurePlacesMetaLoaded();
+      stateCode = getStateCodeForSlugSync(citySlug);
+    }
+
+    // Load only this state's data shards
+    if (stateCode) {
+      await ensurePlacesForStateLoaded(stateCode);
+      await ensureZctasForStateLoaded(stateCode);
+    }
 
     const knownCity = getCityBySlug(citySlug);
     if (!knownCity) {
@@ -28,7 +44,6 @@ export async function getStaticProps({ params }) {
     }
 
     const cityName = knownCity.name;
-    const stateCode = knownCity.stateCode;
     const stateName = zctas[0].state;
 
     return {

@@ -1,8 +1,8 @@
-import { SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
+import { SERVICES, SEED_CITIES, cityToSlug, buildSlug, isCityQualifiedForService } from '../../../../lib/cities';
 import { getCityBySlug } from '../../../../lib/cities-server';
 import { generatePageContent } from '../../../../lib/contentGenerator';
-import { getZctaByZipSync, getZctasByCitySync, getNearbyZctasSync, isZctaQualifiedForService, ensureZctasLoaded } from '../../../../lib/hyperlocalPlaces-server';
-import { getNearbyPlacesSync, ensurePlacesLoaded } from '../../../../lib/nationwidePlaces';
+import { getZctaByZipSync, getZctasByCitySync, getNearbyZctasSync, isZctaQualifiedForService, ensureZctasForStateLoaded } from '../../../../lib/hyperlocalPlaces-server';
+import { getNearbyPlacesSync, ensurePlacesMetaLoaded, getStateCodeForSlugSync, ensurePlacesForStateLoaded } from '../../../../lib/nationwidePlaces';
 import { getPageDate } from '../../../../lib/contentVersioning';
 import { ZipServicePage } from '../../../../components/ZipServicePage';
 
@@ -13,10 +13,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  await ensurePlacesLoaded();
-  await ensureZctasLoaded();
   try {
     const { citySlug, zip, service } = params;
+
+    // Determine stateCode with minimal data loading
+    let stateCode = null;
+    const seedCity = SEED_CITIES.find(c => cityToSlug(c.name) === citySlug);
+    if (seedCity) {
+      stateCode = seedCity.stateCode;
+    } else {
+      await ensurePlacesMetaLoaded();
+      stateCode = getStateCodeForSlugSync(citySlug);
+    }
+
+    // Load only this state's data shards (not the full 6MB datasets)
+    if (stateCode) {
+      await ensurePlacesForStateLoaded(stateCode);
+      await ensureZctasForStateLoaded(stateCode);
+    }
 
     // Validate ZIP is a real ZCTA mapped to this city
     const zcta = getZctaByZipSync(zip);
@@ -36,7 +50,7 @@ export async function getStaticProps({ params }) {
     }
 
     const cityName = knownCity.name;
-    const stateCode = knownCity.stateCode || zcta.stateCode;
+    stateCode = knownCity.stateCode || zcta.stateCode;
     const stateName = zcta.state;
 
     // Find the service

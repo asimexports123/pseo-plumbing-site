@@ -307,12 +307,12 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
 }
 
 export async function getStaticProps() {
-  const { getTotalPlacesSync, getNationwideServiceCountsSync, ensurePlacesLoaded } = require('../lib/nationwidePlaces');
-  await ensurePlacesLoaded();
+  const { getTotalPlacesFromMetaSync, getNationwideServiceCountsFromMetaSync, ensurePlacesMetaLoaded } = require('../lib/nationwidePlaces');
+  await ensurePlacesMetaLoaded();
   return {
     props: {
-      totalPlaces: getTotalPlacesSync(),
-      serviceCityCounts: getNationwideServiceCountsSync(),
+      totalPlaces: getTotalPlacesFromMetaSync(),
+      serviceCityCounts: getNationwideServiceCountsFromMetaSync(),
     },
   };
 }

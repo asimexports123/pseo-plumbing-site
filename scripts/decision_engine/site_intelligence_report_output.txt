@@ -1,0 +1,1085 @@
+====================================================================================================
+  MATHEMATICAL SITE INTELLIGENCE REPORT
+  YoHomeFix.com
+  Generated: 2026-08-06T23:02:07.331363+00:00
+====================================================================================================
+
+  Based only on the existing mathematical engines and real production data.
+  No new models. No new theories. If evidence is insufficient, this report says so.
+
+  ENGINES USED:
+    - Google Search Console
+    - Marketcall
+    - GA4
+    - Attribution Engine
+    - Bayesian Engine
+    - Gott Temporal Prior Engine
+    - Learning Engine
+    - Opportunity Score Engine
+    - Graph Engine
+    - Recommendation Engine
+    - Monte Carlo Engine
+
+
+====================================================================================================
+  SECTION 1: SITE-LEVEL ANALYSIS
+====================================================================================================
+
+  Overall Site Health Score:    0.0003  ..........
+    Formula: geometric_mean(click_through_rate, link_coverage, funnel_conversion, recommendation_confidence)
+    click_through_rate:       0.0090  (1 - zero_click_rate)
+    link_coverage:            1.0000  (1 - orphan_rate)
+    funnel_conversion:        0.000000  (Markov expected_conversion_path)
+    recommendation_confidence:0.8782  (mean rec confidence)
+    Contributing engines: GSC, Graph, Markov, Recommendation
+
+  Overall Opportunity Score:    0.0024  ..........
+    Formula: mean(opportunity_gap_score_i) across all 1000 pages
+    opportunity_gap_score = percentile(impressions) * (1 - percentile(ctr)) * (1 - percentile(calls))
+    Mean: 0.0024  Median: 0.0025  Top-decile mean: 0.0043
+    Contributing engine: Opportunity Score
+
+  Overall Risk Score:           0.4955  #####.....
+    Formula: 0.3*(bottom_decile/n) + 0.2*(orphans/n) + 0.5*(zero_click/n)
+    bottom_decile_pages: 0
+    orphan_pages:         0
+    zero_click_pages:     991
+    weak_components:      0
+    Contributing engines: Opportunity Score, Graph, GSC
+
+  Overall Confidence Score:     0.9033  #########.
+    Formula: sum(confidence_i * business_value_i) / sum(business_value_i)
+    Weighted: True
+    Recommendations: 155
+    Contributing engine: Recommendation Engine
+
+  Growth Readiness:             0.0000  ..........
+    Formula: |0 high-opp pages AND 155 high-conf pages| / 1000 total
+    Ready pages: 0
+    Contributing engines: Opportunity Score, Recommendation
+
+  Business Readiness:           0.7500  ########..
+    Formula: 0.25*(revenue>0) + 0.25*(sessions>0) + 0.25*(funnel>0) + 0.25*(high_recs>0)
+    has_revenue:     True
+    has_sessions:    True
+    has_funnel:      False
+    high_conf_recs:  155
+    Contributing engines: Marketcall, GA4, Markov, Recommendation
+
+  Learning Readiness:           0.3000  ###.......
+    Formula: 0.4*(records>0) + 0.3*(tp_ready/100) + 0.3*(tp_total/1000)
+    learning_records:       0
+    temporal_priors_total:  1000
+    temporal_priors_ready:  0
+    NOTE: Learning requires >= 2 snapshots 30 days apart. Currently 1 snapshot exists.
+    Contributing engines: Learning, Gott
+
+  Model Confidence:             0.7233  #######...
+    Formula: mean(1 - CI_width) across all Bayesian posteriors
+    Posteriors: 1000
+    Mean CI width: 0.276657
+    Contributing engine: Bayesian
+
+  Data Quality Score:           0.5117  #####.....
+    Formula: 0.3*gsc_cov + 0.3*ga4_cov + 0.2*mc_cov + 0.2*crawl_cov
+    GSC coverage:       100.0%  (1.0000)
+    GA4 coverage:       3.9%  (0.0390)
+    Marketcall coverage:100.0%  (1.0000)
+    Crawl coverage:     0.0%  (0.0000)
+    Contributing engines: GSC, GA4, Marketcall, Link Graph
+
+
+====================================================================================================
+  SECTION 2: PROBABILITY REPORT
+====================================================================================================
+
+  Estimated probabilities based on existing engine outputs.
+  These are relative distributions, not absolute forecasts.
+  Calibration is NOT possible with 0 learning records and 1 snapshot.
+
+  Traffic Growth:      42.3%
+  Traffic Stagnation:  18.1%
+  Traffic Decline:     39.6%
+    Engines: Bayesian (CTR posteriors)
+    Note: Population-level CTR posterior distribution split at +/-10% of median. This is a relative ranking, not an absolute forecast. True trend detection requires >= 2 snapshots over time.
+
+  Call Growth:      5.2%
+  Call Stagnation:  70.3%
+  Call Decline:     24.5%
+    Engines: Monte Carlo, Bayesian, Recommendation Engine
+    Note: Based on Monte Carlo expected_calls distribution from recommendations. Beta(1,1) priors for call_cvr and approval_rate on 99.1% of pages with zero clicks make these estimates weak. Calibration not possible with 0 learning records.
+
+  Revenue Growth:      9.0%
+  Revenue Stagnation:  70.3%
+  Revenue Decline:     20.6%
+    Engines: Monte Carlo, Marketcall, Recommendation Engine
+    Note: Revenue = expected_approved_calls * $47.23 (single observed revenue/approved-call). With 1 approved call in Marketcall, the revenue_per_call estimate has zero statistical confidence. All revenue probabilities inherit this weakness.
+
+
+====================================================================================================
+  SECTION 3: PAGE-LEVEL REPORT
+====================================================================================================
+
+  Total pages: 1000
+  Showing top 50 by business_value_score (full data in all pages below)
+
+    # Page                                                       Opp   Risk   Conf  Bayes   Gott  Learn                            Rec Priority
+                                                                                                                                               
+  --------------------------------------------------------------------------------------------------
+    1 /plumber-oklahoma                                       0.0045 0.5000 0.9971 0.9971   WAIT 0.0000        increase_internal_links     High
+    2 /plumber-philadelphia-emergency                         0.0044 0.5000 0.9912 0.9912   WAIT 0.0000   general_content_and_ux_audit     High
+    3 /plumber-tennessee                                      0.0043 0.5000 0.9882 0.9882   WAIT 0.0000        increase_internal_links     High
+    4 /plumber-austin-emergency                               0.0044 0.5000 0.9957 0.9957   WAIT 0.0000   general_content_and_ux_audit     High
+    5 /plumber-houston-emergency                              0.0044 0.5000 0.9946 0.9946   WAIT 0.0000   general_content_and_ux_audit     High
+    6 /plumber-charlotte-leak-repair                          0.0043 0.5000 0.9734 0.9734   WAIT 0.0000   general_content_and_ux_audit     High
+    7 /plumber-cincinnati-emergency                           0.0045 0.5000 0.9964 0.9964   WAIT 0.0000   general_content_and_ux_audit     High
+    8 /plumber-jacksonville-emergency                         0.0043 0.5000 0.9847 0.9847   WAIT 0.0000   general_content_and_ux_audit     High
+    9 /plumber-denver-emergency                               0.0043 0.5000 0.9885 0.9885   WAIT 0.0000   general_content_and_ux_audit     High
+   10 /plumber-pittsburgh-emergency                           0.0042 0.5000 0.9675 0.9675   WAIT 0.0000   general_content_and_ux_audit     High
+   11 /plumber-ohio                                           0.0042 0.5000 0.9673 0.9673   WAIT 0.0000        increase_internal_links     High
+   12 /plumber-sacramento-emergency                           0.0045 0.5000 0.9968 0.9968   WAIT 0.0000   general_content_and_ux_audit     High
+   13 /plumber-new-york-emergency                             0.0043 0.5000 0.9745 0.9745   WAIT 0.0000   general_content_and_ux_audit     High
+   14 /plumber-phoenix-emergency                              0.0045 0.5000 0.9980 0.9980   WAIT 0.0000   general_content_and_ux_audit     High
+   15 /plumber-oklahoma-city-drain-cleaning                   0.0045 0.5000 0.9998 0.9998   WAIT 0.0000   general_content_and_ux_audit     High
+   16 /plumber-atlanta-emergency                              0.0044 0.5000 0.9914 0.9914   WAIT 0.0000   general_content_and_ux_audit     High
+   17 /plumber-seattle-leak-repair                            0.0044 0.5000 0.9939 0.9939   WAIT 0.0000   general_content_and_ux_audit     High
+   18 /plumber-los-angeles-emergency                          0.0044 0.5000 0.9953 0.9953   WAIT 0.0000   general_content_and_ux_audit     High
+   19 /plumber-san-francisco-emergency                        0.0044 0.5000 0.9931 0.9931   WAIT 0.0000   general_content_and_ux_audit     High
+   20 /plumber-san-diego-emergency                            0.0045 0.5000 0.9983 0.9983   WAIT 0.0000   general_content_and_ux_audit     High
+   21 /plumber-minneapolis-water-heater-repair                0.0044 0.5000 0.9948 0.9948   WAIT 0.0000   general_content_and_ux_audit     High
+   22 /plumber-cleveland-water-heater-repair                  0.0044 0.5000 0.9946 0.9946   WAIT 0.0000   general_content_and_ux_audit     High
+   23 /plumber-columbus-emergency                             0.0043 0.5000 0.9853 0.9853   WAIT 0.0000   general_content_and_ux_audit     High
+   24 /plumber-st.-louis-water-heater-repair                  0.0044 0.5000 0.9928 0.9928   WAIT 0.0000   general_content_and_ux_audit     High
+   25 /plumber-san-jose-emergency                             0.0045 0.5000 0.9970 0.9970   WAIT 0.0000   general_content_and_ux_audit     High
+   26 /plumber-nevada                                         0.0043 0.5000 0.9817 0.9817   WAIT 0.0000        increase_internal_links     High
+   27 /plumber-fresno-emergency                               0.0042 0.5000 0.9689 0.9689   WAIT 0.0000   general_content_and_ux_audit     High
+   28 /plumber-dallas-emergency                               0.0045 0.5000 0.9960 0.9960   WAIT 0.0000   general_content_and_ux_audit     High
+   29 /plumber-missouri                                       0.0042 0.5000 0.9588 0.9588   WAIT 0.0000        increase_internal_links     High
+   30 /plumber-elgin-water-heater-repair                      0.0042 0.5000 0.9583 0.9583   WAIT 0.0000   general_content_and_ux_audit     High
+   31 /plumber-las-vegas-emergency                            0.0043 0.5000 0.9882 0.9882   WAIT 0.0000   general_content_and_ux_audit     High
+   32 /plumber-detroit-emergency                              0.0042 0.5000 0.9553 0.9553   WAIT 0.0000   general_content_and_ux_audit     High
+   33 /plumber-chicago-emergency                              0.0044 0.5000 0.9954 0.9954   WAIT 0.0000   general_content_and_ux_audit     High
+   34 /plumber-indiana                                        0.0043 0.5000 0.9841 0.9841   WAIT 0.0000        increase_internal_links     High
+   35 /plumber-houston-pipe-burst-repair                      0.0043 0.5000 0.9740 0.9740   WAIT 0.0000   general_content_and_ux_audit     High
+   36 /plumber-oklahoma-city-emergency                        0.0043 0.5000 0.9865 0.9865   WAIT 0.0000   general_content_and_ux_audit     High
+   37 /plumber-san-antonio-emergency                          0.0045 0.5000 0.9973 0.9973   WAIT 0.0000   general_content_and_ux_audit     High
+   38 /plumber-california                                     0.0043 0.5000 0.9823 0.9823   WAIT 0.0000        increase_internal_links     High
+   39 /plumber-usa                                            0.0041 0.5000 0.9266 0.9266   WAIT 0.0000        increase_internal_links     High
+   40 /plumber-coeur-d-alene-water-heater-repair              0.0042 0.5000 0.9344 0.9344   WAIT 0.0000   general_content_and_ux_audit     High
+   41 /plumber-fresno-water-heater-repair                     0.0044 0.5000 0.9896 0.9896   WAIT 0.0000   general_content_and_ux_audit     High
+   42 /areas/las-vegas/89131/emergency                        0.0041 0.5000 0.9033 0.9033   WAIT 0.0000        increase_internal_links     High
+   43 /cost/houston                                           0.0044 0.5000 0.9903 0.9903   WAIT 0.0000        increase_internal_links     High
+   44 /plumber-jacksonville-leak-repair                       0.0043 0.5000 0.9806 0.9806   WAIT 0.0000   general_content_and_ux_audit     High
+   45 /plumber-nebraska                                       0.0043 0.5000 0.9857 0.9857   WAIT 0.0000        increase_internal_links     High
+   46 /plumber-baltimore-emergency                            0.0044 0.5000 0.9947 0.9947   WAIT 0.0000   general_content_and_ux_audit     High
+   47 /plumber-kansas-city-drain-cleaning                     0.0044 0.5000 0.9890 0.9890   WAIT 0.0000   general_content_and_ux_audit     High
+   48 /plumber-burns-harbor-pipe-burst-repair                 0.0042 0.5000 0.9344 0.9344   WAIT 0.0000   general_content_and_ux_audit     High
+   49 /plumber-cleveland-emergency                            0.0043 0.5000 0.9797 0.9797   WAIT 0.0000   general_content_and_ux_audit     High
+   50 /plumber-columbus-leak-repair                           0.0042 0.5000 0.9654 0.9654   WAIT 0.0000   general_content_and_ux_audit     High
+
+  Full page-level details (all pages with recommendations):
+
+  Page: /plumber-oklahoma
+    Impressions: 1,255  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000796  CI=[0.000020, 0.002933]  n_obs=1255  confidence=0.9971
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: increase_internal_links
+    Confidence: 0.9971  Business Value: 13.8687
+    Expected calls: 0.56  Expected revenue: $13.91
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: PageRank 0.0004 i
+
+  Page: /plumber-philadelphia-emergency
+    Impressions: 414  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.002404  CI=[0.000061, 0.008849]  n_obs=414  confidence=0.9912
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9912  Business Value: 13.2252
+    Expected calls: 0.5505  Expected revenue: $13.34
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-tennessee
+    Impressions: 307  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0043  Performance: N/A
+    Bayesian: mean=0.003236  CI=[0.000082, 0.011905]  n_obs=307  confidence=0.9882
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: increase_internal_links
+    Confidence: 0.9882  Business Value: 12.6713
+    Expected calls: 0.526  Expected revenue: $12.82
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: PageRank 0.0004 i
+
+  Page: /plumber-austin-emergency
+    Impressions: 847  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.001178  CI=[0.000030, 0.004341]  n_obs=847  confidence=0.9957
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9957  Business Value: 12.5325
+    Expected calls: 0.5245  Expected revenue: $12.59
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-houston-emergency
+    Impressions: 671  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.001486  CI=[0.000038, 0.005474]  n_obs=671  confidence=0.9946
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9946  Business Value: 12.5184
+    Expected calls: 0.5285  Expected revenue: $12.59
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-charlotte-leak-repair
+    Impressions: 135  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0043  Performance: N/A
+    Bayesian: mean=0.007299  CI=[0.000186, 0.026760]  n_obs=135  confidence=0.9734
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9734  Business Value: 12.4132
+    Expected calls: 0.5185  Expected revenue: $12.75
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-cincinnati-emergency
+    Impressions: 1,001  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000997  CI=[0.000025, 0.003675]  n_obs=1001  confidence=0.9964
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9964  Business Value: 12.3997
+    Expected calls: 0.5115  Expected revenue: $12.45
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-jacksonville-emergency
+    Impressions: 236  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0043  Performance: N/A
+    Bayesian: mean=0.004202  CI=[0.000107, 0.015444]  n_obs=236  confidence=0.9847
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9847  Business Value: 12.3240
+    Expected calls: 0.521  Expected revenue: $12.52
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-denver-emergency
+    Impressions: 316  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0043  Performance: N/A
+    Bayesian: mean=0.003145  CI=[0.000080, 0.011569]  n_obs=316  confidence=0.9885
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9885  Business Value: 12.2788
+    Expected calls: 0.492  Expected revenue: $12.42
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-pittsburgh-emergency
+    Impressions: 110  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0042  Performance: N/A
+    Bayesian: mean=0.008929  CI=[0.000228, 0.032687]  n_obs=110  confidence=0.9675
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9675  Business Value: 12.1325
+    Expected calls: 0.519  Expected revenue: $12.54
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-ohio
+    Impressions: 109  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0042  Performance: N/A
+    Bayesian: mean=0.009009  CI=[0.000230, 0.032979]  n_obs=109  confidence=0.9673
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: increase_internal_links
+    Confidence: 0.9673  Business Value: 12.0604
+    Expected calls: 0.49  Expected revenue: $12.47
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: PageRank 0.0004 i
+
+  Page: /plumber-sacramento-emergency
+    Impressions: 1,143  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000873  CI=[0.000022, 0.003219]  n_obs=1143  confidence=0.9968
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9968  Business Value: 12.0522
+    Expected calls: 0.5095  Expected revenue: $12.09
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-new-york-emergency
+    Impressions: 141  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0043  Performance: N/A
+    Bayesian: mean=0.006993  CI=[0.000178, 0.025643]  n_obs=141  confidence=0.9745
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9745  Business Value: 12.0131
+    Expected calls: 0.5125  Expected revenue: $12.33
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-phoenix-emergency
+    Impressions: 1,829  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000546  CI=[0.000014, 0.002014]  n_obs=1829  confidence=0.9980
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9980  Business Value: 11.9724
+    Expected calls: 0.519  Expected revenue: $12.00
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-oklahoma-city-drain-cleaning
+    Impressions: 22,639  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000044  CI=[0.000001, 0.000163]  n_obs=22639  confidence=0.9998
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9998  Business Value: 11.9709
+    Expected calls: 0.5005  Expected revenue: $11.97
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-atlanta-emergency
+    Impressions: 421  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.002364  CI=[0.000060, 0.008703]  n_obs=421  confidence=0.9914
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9914  Business Value: 11.9630
+    Expected calls: 0.507  Expected revenue: $12.07
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-seattle-leak-repair
+    Impressions: 602  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.001656  CI=[0.000042, 0.006099]  n_obs=602  confidence=0.9939
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9939  Business Value: 11.9472
+    Expected calls: 0.498  Expected revenue: $12.02
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-los-angeles-emergency
+    Impressions: 771  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.001294  CI=[0.000033, 0.004767]  n_obs=771  confidence=0.9953
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9953  Business Value: 11.9396
+    Expected calls: 0.5075  Expected revenue: $12.00
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-san-francisco-emergency
+    Impressions: 526  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0044  Performance: N/A
+    Bayesian: mean=0.001894  CI=[0.000048, 0.006975]  n_obs=526  confidence=0.9931
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9931  Business Value: 11.9368
+    Expected calls: 0.512  Expected revenue: $12.02
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+  Page: /plumber-san-diego-emergency
+    Impressions: 2,114  Clicks: 0  CTR: 0.0000  Position: N/A
+    Opportunity Score: 0.0045  Performance: N/A
+    Bayesian: mean=0.000473  CI=[0.000012, 0.001743]  n_obs=2114  confidence=0.9983
+    Gott: maturity=0.0000  growth_prob=1.0000  wait_days=30  readiness=False
+    Recommendation: general_content_and_ux_audit
+    Confidence: 0.9983  Business Value: 11.9285
+    Expected calls: 0.492  Expected revenue: $11.95
+    Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosis: High opportunity-
+
+
+====================================================================================================
+  SECTION 4: FORECAST (30/60/90 DAY OUTLOOK)
+====================================================================================================
+
+  Uses: Bayesian posteriors, Monte Carlo simulation, Gott temporal priors, Markov funnel.
+  Does NOT invent new forecasting models.
+  Clearly separates MEASURED DATA from MODEL ESTIMATE.
+
+  SITE-LEVEL FORECAST
+  --------------------------------------------------------------------------------------------------
+  Markov Funnel: insufficient data
+
+  PAGE-LEVEL FORECASTS (Top 20 by business value)
+  --------------------------------------------------------------------------------------------------
+
+  Page: /plumber-oklahoma
+    MEASURED DATA:
+      Impressions: 1,255  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.494  CI=[0.0, 3.0]  expected_revenue=$10.39
+      60D: expected_calls=1.012  CI=[0.0, 6.0]  expected_revenue=$22.01
+      90D: expected_calls=1.576  CI=[0.0, 7.0]  expected_revenue=$32.40
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 1255/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-philadelphia-emergency
+    MEASURED DATA:
+      Impressions: 414  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.514  CI=[0.0, 3.0]  expected_revenue=$12.94
+      60D: expected_calls=1.116  CI=[0.0, 6.0]  expected_revenue=$26.83
+      90D: expected_calls=1.54  CI=[0.0, 8.0]  expected_revenue=$35.42
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 414/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-tennessee
+    MEASURED DATA:
+      Impressions: 307  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.536  CI=[0.0, 3.0]  expected_revenue=$13.70
+      60D: expected_calls=0.958  CI=[0.0, 5.0]  expected_revenue=$22.86
+      90D: expected_calls=1.528  CI=[0.0, 8.0]  expected_revenue=$39.39
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 307/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-austin-emergency
+    MEASURED DATA:
+      Impressions: 847  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.464  CI=[0.0, 3.0]  expected_revenue=$13.41
+      60D: expected_calls=1.014  CI=[0.0, 5.0]  expected_revenue=$25.22
+      90D: expected_calls=1.45  CI=[0.0, 7.0]  expected_revenue=$33.72
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 847/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-houston-emergency
+    MEASURED DATA:
+      Impressions: 671  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.506  CI=[0.0, 3.0]  expected_revenue=$13.04
+      60D: expected_calls=1.02  CI=[0.0, 5.0]  expected_revenue=$23.99
+      90D: expected_calls=1.346  CI=[0.0, 8.0]  expected_revenue=$34.48
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 671/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-charlotte-leak-repair
+    MEASURED DATA:
+      Impressions: 135  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.474  CI=[0.0, 3.0]  expected_revenue=$12.19
+      60D: expected_calls=1.008  CI=[0.0, 6.0]  expected_revenue=$25.50
+      90D: expected_calls=1.386  CI=[0.0, 8.0]  expected_revenue=$32.31
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 135/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-cincinnati-emergency
+    MEASURED DATA:
+      Impressions: 1,001  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.488  CI=[0.0, 3.0]  expected_revenue=$9.92
+      60D: expected_calls=0.948  CI=[0.0, 5.0]  expected_revenue=$22.48
+      90D: expected_calls=1.588  CI=[0.0, 7.525]  expected_revenue=$41.28
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 1001/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-jacksonville-emergency
+    MEASURED DATA:
+      Impressions: 236  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.478  CI=[0.0, 3.0]  expected_revenue=$11.15
+      60D: expected_calls=0.968  CI=[0.0, 5.0]  expected_revenue=$23.43
+      90D: expected_calls=1.432  CI=[0.0, 7.525]  expected_revenue=$35.80
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 236/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-denver-emergency
+    MEASURED DATA:
+      Impressions: 316  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.458  CI=[0.0, 2.0]  expected_revenue=$9.92
+      60D: expected_calls=1.11  CI=[0.0, 6.0]  expected_revenue=$27.11
+      90D: expected_calls=1.478  CI=[0.0, 8.0]  expected_revenue=$35.23
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 316/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-pittsburgh-emergency
+    MEASURED DATA:
+      Impressions: 110  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.498  CI=[0.0, 3.0]  expected_revenue=$12.56
+      60D: expected_calls=1.016  CI=[0.0, 6.0]  expected_revenue=$26.45
+      90D: expected_calls=1.48  CI=[0.0, 8.0]  expected_revenue=$33.82
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 110/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-ohio
+    MEASURED DATA:
+      Impressions: 109  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.462  CI=[0.0, 3.0]  expected_revenue=$11.52
+      60D: expected_calls=0.852  CI=[0.0, 5.0]  expected_revenue=$20.59
+      90D: expected_calls=1.446  CI=[0.0, 8.0]  expected_revenue=$33.25
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 109/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-sacramento-emergency
+    MEASURED DATA:
+      Impressions: 1,143  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.574  CI=[0.0, 3.0]  expected_revenue=$13.22
+      60D: expected_calls=1.058  CI=[0.0, 6.525]  expected_revenue=$24.18
+      90D: expected_calls=1.534  CI=[0.0, 9.0]  expected_revenue=$42.41
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 1143/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-new-york-emergency
+    MEASURED DATA:
+      Impressions: 141  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.468  CI=[0.0, 3.0]  expected_revenue=$9.73
+      60D: expected_calls=1.036  CI=[0.0, 5.0]  expected_revenue=$25.79
+      90D: expected_calls=1.526  CI=[0.0, 8.0]  expected_revenue=$30.70
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 141/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-phoenix-emergency
+    MEASURED DATA:
+      Impressions: 1,829  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.446  CI=[0.0, 3.0]  expected_revenue=$10.67
+      60D: expected_calls=1.02  CI=[0.0, 5.0]  expected_revenue=$20.97
+      90D: expected_calls=1.594  CI=[0.0, 9.0]  expected_revenue=$34.95
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 1829/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-oklahoma-city-drain-cleaning
+    MEASURED DATA:
+      Impressions: 22,639  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.512  CI=[0.0, 3.0]  expected_revenue=$11.52
+      60D: expected_calls=0.886  CI=[0.0, 5.0]  expected_revenue=$21.73
+      90D: expected_calls=1.548  CI=[0.0, 7.525]  expected_revenue=$34.01
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 22639/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-atlanta-emergency
+    MEASURED DATA:
+      Impressions: 421  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.542  CI=[0.0, 3.525]  expected_revenue=$12.66
+      60D: expected_calls=1.136  CI=[0.0, 5.525]  expected_revenue=$25.22
+      90D: expected_calls=1.564  CI=[0.0, 8.0]  expected_revenue=$37.69
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 421/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-seattle-leak-repair
+    MEASURED DATA:
+      Impressions: 602  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.52  CI=[0.0, 3.0]  expected_revenue=$11.90
+      60D: expected_calls=1.002  CI=[0.0, 6.0]  expected_revenue=$22.95
+      90D: expected_calls=1.332  CI=[0.0, 7.0]  expected_revenue=$31.46
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 602/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-los-angeles-emergency
+    MEASURED DATA:
+      Impressions: 771  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.514  CI=[0.0, 3.0]  expected_revenue=$11.15
+      60D: expected_calls=1.076  CI=[0.0, 6.0]  expected_revenue=$25.22
+      90D: expected_calls=1.518  CI=[0.0, 9.0]  expected_revenue=$30.42
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 771/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-san-francisco-emergency
+    MEASURED DATA:
+      Impressions: 526  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.488  CI=[0.0, 3.0]  expected_revenue=$11.15
+      60D: expected_calls=1.13  CI=[0.0, 7.0]  expected_revenue=$24.94
+      90D: expected_calls=1.508  CI=[0.0, 7.525]  expected_revenue=$36.93
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 526/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+  Page: /plumber-san-diego-emergency
+    MEASURED DATA:
+      Impressions: 2,114  Clicks: 0  CTR: 0.000000  Position: None
+    MODEL ESTIMATE:
+      Engines: Bayesian, Monte Carlo, Gott
+      Confidence: Low (zero clicks, uninformative Beta(1,1) for call_cvr)
+      Direction: Declining
+      30D: expected_calls=0.578  CI=[0.0, 4.0]  expected_revenue=$13.98
+      60D: expected_calls=1.012  CI=[0.0, 6.0]  expected_revenue=$22.67
+      90D: expected_calls=1.81  CI=[0.0, 9.0]  expected_revenue=$37.97
+      Gott: maturity=0.0000  growth_prob=1.0000  readiness=False
+    ASSUMPTIONS:
+      - Gott: low maturity (0.00) — page may still be in SEO maturation phase. Wait 30 days before evaluating.
+      - Impressions assumed constant at 2114/month. No trend data to project growth/decline in impressions.
+      - Call conversion rate posterior is Beta(1,1) (uninformative) — call estimates are dominated by this prior, not by evidence.
+
+
+====================================================================================================
+  SECTION 5: INVESTMENT REPORT
+====================================================================================================
+
+  Ranked by expected business ROI using only existing evidence.
+  ROI = business_value_score (expected_revenue * confidence) from Recommendation Engine.
+
+  IF YOU CAN WORK ON ONLY 5 PAGES:
+  --------------------------------------------------------------------------------------------------
+    1. /plumber-oklahoma
+       Action: increase_internal_links
+       Confidence: 0.9971  Business Value: 13.8687
+       Expected calls: 0.56  Expected revenue: $13.91
+       Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosi
+
+    2. /plumber-philadelphia-emergency
+       Action: general_content_and_ux_audit
+       Confidence: 0.9912  Business Value: 13.2252
+       Expected calls: 0.5505  Expected revenue: $13.34
+       Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosi
+
+    3. /plumber-tennessee
+       Action: increase_internal_links
+       Confidence: 0.9882  Business Value: 12.6713
+       Expected calls: 0.526  Expected revenue: $12.82
+       Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosi
+
+    4. /plumber-austin-emergency
+       Action: general_content_and_ux_audit
+       Confidence: 0.9957  Business Value: 12.5325
+       Expected calls: 0.5245  Expected revenue: $12.59
+       Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosi
+
+    5. /plumber-houston-emergency
+       Action: general_content_and_ux_audit
+       Confidence: 0.9946  Business Value: 12.5184
+       Expected calls: 0.5285  Expected revenue: $12.59
+       Reason: Opportunity-gap score 0.00 is in the top decile of this batch (>= 90th percentile). Primary diagnosi
+
+  IF YOU CAN WORK ON 10 PAGES:
+  --------------------------------------------------------------------------------------------------
+     1. /plumber-oklahoma
+        Action: increase_internal_links  Conf: 0.9971  BV: 13.8687  Rev: $13.91
+     2. /plumber-philadelphia-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9912  BV: 13.2252  Rev: $13.34
+     3. /plumber-tennessee
+        Action: increase_internal_links  Conf: 0.9882  BV: 12.6713  Rev: $12.82
+     4. /plumber-austin-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9957  BV: 12.5325  Rev: $12.59
+     5. /plumber-houston-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9946  BV: 12.5184  Rev: $12.59
+     6. /plumber-charlotte-leak-repair
+        Action: general_content_and_ux_audit  Conf: 0.9734  BV: 12.4132  Rev: $12.75
+     7. /plumber-cincinnati-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9964  BV: 12.3997  Rev: $12.45
+     8. /plumber-jacksonville-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9847  BV: 12.3240  Rev: $12.52
+     9. /plumber-denver-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9885  BV: 12.2788  Rev: $12.42
+    10. /plumber-pittsburgh-emergency
+        Action: general_content_and_ux_audit  Conf: 0.9675  BV: 12.1325  Rev: $12.54
+
+  IF YOU HAVE $100:
+  --------------------------------------------------------------------------------------------------
+  Allocate to the single highest-business-value recommendation.
+  With $100, focus on one page where the expected revenue justifies the effort.
+  Recommendation: increase_internal_links on /plumber-oklahoma
+  Expected revenue: $13.91
+  Confidence: 0.9971
+  Business Value Score: 13.8687
+  Estimated ROI: -86.1% (expected_revenue - $100) / $100
+  NOTE: This ROI is uncalibrated. Revenue estimate is based on 1 approved call ($47.23).
+
+  IF YOU HAVE $1000:
+  --------------------------------------------------------------------------------------------------
+  Distribute across top 5-10 pages by business_value_score.
+
+  Page                                                    Action                            Alloc       BV      Exp Rev
+  --------------------------------------------------------------------------------------------------
+  /plumber-oklahoma                                       increase_internal_links        $109.75  13.8687       $13.91
+  /plumber-philadelphia-emergency                         general_content_and_ux_audit   $104.66  13.2252       $13.34
+  /plumber-tennessee                                      increase_internal_links        $100.28  12.6713       $12.82
+  /plumber-austin-emergency                               general_content_and_ux_audit   $ 99.18  12.5325       $12.59
+  /plumber-houston-emergency                              general_content_and_ux_audit   $ 99.07  12.5184       $12.59
+  /plumber-charlotte-leak-repair                          general_content_and_ux_audit   $ 98.23  12.4132       $12.75
+  /plumber-cincinnati-emergency                           general_content_and_ux_audit   $ 98.13  12.3997       $12.45
+  /plumber-jacksonville-emergency                         general_content_and_ux_audit   $ 97.53  12.3240       $12.52
+  /plumber-denver-emergency                               general_content_and_ux_audit   $ 97.17  12.2788       $12.42
+  /plumber-pittsburgh-emergency                           general_content_and_ux_audit   $ 96.01  12.1325       $12.54
+
+  NOTE: All allocations are proportional to business_value_score. ROI estimates are
+  uncalibrated due to 0 learning records and Beta(1,1) priors on 99.1% of pages.
+
+
+====================================================================================================
+  SECTION 6: NO-INVESTMENT REPORT
+====================================================================================================
+
+  Pages where the mathematics suggests additional effort is unlikely
+  to produce meaningful business value.
+
+  Pages identified: 939 out of 1000
+
+  /plumber-new-orleans-water-heater-repair
+    - No recommendation generated — engine found no actionable signal
+
+  /plumber-missouri
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-elgin-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-detroit-emergency
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-austin-in-drain-cleaning
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-bloomington-il-drain-cleaning
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-denver-leak-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-bowling-green-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-rochester-emergency
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-kansas-city-ks-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-lowell-ar-main-water-shutoff-valve-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-el-cajon-emergency
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-arizona
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-virginia
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-brentwood-ca-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-burns-harbor-pipe-burst-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-coeur-d-alene-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-virginia-beach-emergency
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-tuscaloosa-drain-cleaning
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-wichita-sump-pump-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-parkdale-sewer-line-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+
+  /plumber-san-diego-leak-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-tulsa-toilet-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-durham-water-heater-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-buckeye-emergency
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-usa
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-madison-sewer-line-repair
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-elizabethtown-drain-cleaning
+    - Zero clicks with low impressions — not enough traffic to optimize
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /
+    - No recommendation generated — engine found no actionable signal
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  /plumber-des-moines-water-heater-repair
+    - No recommendation generated — engine found no actionable signal
+    - Gott: very low maturity (0.00) — page may still be in early SEO phase
+
+  ... and 909 more pages with similar profiles.
+
+
+====================================================================================================
+  SECTION 7: UNCERTAINTY REPORT
+====================================================================================================
+
+  Every conclusion above carries uncertainty. This section makes it explicit.
+
+  DATA CONFIDENCE:
+    GSC: 1000 pages, all with impressions. High coverage.
+    GA4: 39 pages out of 1000. Low coverage (3.9%).
+    Marketcall: 8 calls, 1 approved. Very small sample.
+    Crawl graph: ABSENT — edges.jsonl missing.
+
+  MODEL CONFIDENCE:
+    Bayesian: 1000 posteriors. Mean CI width: 0.276657.
+    For 99.1% of pages (zero clicks), CTR posterior is Beta(1, 1+impressions) —
+    technically valid but practically uninformative for conversion prediction.
+    Call conversion rate is Beta(1,1) for all zero-click pages — uniform prior,
+    meaning expected calls ~0.5 regardless of page quality.
+
+  EVIDENCE STRENGTH:
+    Clicks observed: 12 across 1000 pages.
+    Approved calls: 1. Revenue data points: 1.
+    Learning records: 0. Snapshots: 1 (date: 2026-08-06).
+    Evidence strength: VERY LOW for calibration, MODERATE for relative ranking.
+
+  UNKNOWN FACTORS:
+    - No historical trend data (1 snapshot only)
+    - No A/B test results
+    - No crawl data (internal link structure unknown)
+    - No per-page Marketcall attribution (campaign-level only)
+    - No seasonal adjustment
+    - No competitor data
+    - No content quality scores
+
+  MISSING DATA:
+    - edges.jsonl (crawl artifact) — link graph recommendations suppressed
+    - GA4 data for 96.1% of pages — engagement metrics unavailable
+    - >= 2 snapshots separated by 30 days — learning engine cannot evaluate
+    - Per-page call attribution — revenue estimates are population-level
+
+  EXPLICIT "I DO NOT KNOW" STATEMENTS:
+    - I do not know whether expected_calls forecasts are calibrated (0 learning records).
+    - I do not know whether traffic is growing or declining (1 snapshot, no trend).
+    - I do not know the true revenue per approved call ($47.23 from 1 data point).
+    - I do not know which internal links are broken (no crawl data).
+    - I do not know the true call conversion rate for 99.1% of pages (Beta(1,1) prior).
+    - I do not know whether recommendations have been effective (no outcome data).
+
+
+====================================================================================================
+  SECTION 8: LEARNING STATUS
+====================================================================================================
+
+
+  WHAT THE LEARNING ENGINE CURRENTLY KNOWS:
+    Learning records: 0
+    Successes: 0
+    Failures: 0
+    Confidence adjustments: 0
+    The Learning Engine knows NOTHING yet. It has never evaluated any recommendation.
+
+  WHAT IT CANNOT KNOW YET:
+    - Whether any recommendation has been followed
+    - Whether followed recommendations improved outcomes
+    - Whether confidence estimates are calibrated
+    - Which recommendation types are most effective
+    - Whether temporal maturity affects outcomes as predicted
+
+  WHAT ADDITIONAL HISTORICAL DATA IS REQUIRED:
+    1. A second pipeline run >= 30 days after the first (currently only 1 snapshot exists)
+    2. The recommendation must have been acted on (or not) between the two snapshots
+    3. At least 10-20 learning records per recommendation type for meaningful statistics
+    4. At least 100 learning records total for system-wide calibration
+
+  WHEN PREDICTIONS BECOME CALIBRATED:
+    - Minimum: 2 snapshots, 30 days apart, with outcome comparison
+    - Meaningful: 4-6 snapshots (4-6 months of weekly/biweekly runs)
+    - Calibrated: 100+ learning records with diverse recommendation types
+    - Currently: 0% of the way to calibration
+
+
+====================================================================================================
+  SECTION 9: VALIDATION
+====================================================================================================
+
+  Every reported number, its formula, inputs, and assumptions.
+
+  SITE-LEVEL SCORES:
+    Site Health Score:
+      Formula: (click_through_rate * link_coverage * funnel_conversion * rec_confidence)^(1/4)
+      Inputs: 1-zero_click_rate=0.0090, 1-orphan_rate=1.0000, funnel=0.000000, rec_conf=0.8782
+      Result: 0.0003
+      Engines: GSC, Graph, Markov, Recommendation
+
+    Opportunity Score:
+      Formula: mean(opportunity_gap_score_i) for all pages
+      opportunity_gap_score = percentile(impressions) * (1-ctr_pct) * (1-calls_pct)
+      Inputs: 1000 pages
+      Result: 0.0024
+      Engine: Opportunity Score
+
+    Risk Score:
+      Formula: 0.3*(bottom_decile/n) + 0.2*(orphans/n) + 0.5*(zero_click/n)
+      Inputs: 0 bottom-decile, 0 orphans, 991 zero-click, n=1000
+      Result: 0.4955
+      Engines: Opportunity Score, Graph, GSC
+
+  FORECAST VALIDATION:
+    Each page forecast uses:
+      Formula: Monte Carlo simulation (500 trials) through Beta-Binomial funnel
+        impressions -> Beta(ctr) -> Binomial -> clicks -> Beta(cvr) -> Binomial -> calls -> Beta(appr) -> Binomial -> approved
+      Inputs per page:
+        ctr_posterior = Beta(1+clicks, 1+impressions-clicks)
+        cvr_posterior = Beta(1+calls, 1+clicks-calls) [Beta(1,1) if clicks=0]
+        appr_posterior = Beta(1+approved, 1+calls-approved) [Beta(1,1) if calls=0]
+        revenue = expected_approved_calls * $47.23
+      Engines: Bayesian, Monte Carlo, Marketcall (revenue_per_call)
+      Assumptions:
+        - Impressions constant at current monthly rate (no trend data)
+        - 30d = 1x, 60d = 2x, 90d = 3x cumulative impressions
+        - No seasonal adjustment
+        - No competitor impact
+        - revenue_per_call = $47.23 (from 1 approved call)
+      Confidence: LOW for pages with 0 clicks (Beta(1,1) prior dominates)
+
+  PROBABILITY VALIDATION:
+    Traffic probabilities: relative CTR posterior distribution split at +/-10% of median
+      This is a RANKING, not a forecast. It says which pages are above/below average,
+      not whether traffic will actually grow or decline.
+    Call/Revenue probabilities: same approach on Monte Carlo expected values
+      Inherited weakness: Beta(1,1) on call_cvr for 99.1% of pages
+
+  INVESTMENT VALIDATION:
+    ROI = (expected_revenue - cost) / cost
+    expected_revenue = Monte Carlo expected_approved_calls * $47.23
+    With 1 approved call in the dataset, revenue_per_call has zero statistical confidence.
+    All ROI figures should be treated as ordinal rankings, not dollar forecasts.
+
+
+====================================================================================================
+  SUMMARY
+====================================================================================================
+
+
+  "If the mathematics is correct, what does it currently say about the future of YoHomeFix?"
+
+  The mathematics says:
+  1. YoHomeFix has 1,000 pages with 71,195 monthly impressions.
+  2. Only 12 clicks and 1 approved call(s) were observed.
+  3. The single biggest opportunity is improving click-through rate: 99.1% of pages get zero clicks.
+  4. The site has 155 actionable recommendations, but their confidence is uncalibrated.
+  5. The system cannot yet predict whether traffic will grow or decline (1 snapshot, 0 learning records).
+  6. The system cannot yet validate whether recommendations improve outcomes (no historical comparison).
+  7. Data quality is moderate for GSC, low for GA4, very low for Marketcall, absent for crawl data.
+
+  The honest mathematical answer is: the system has identified WHERE opportunity exists
+  (high-impression, zero-click pages), but cannot yet predict IF action will produce results.
+  Calibration requires 4-6 months of biweekly pipeline runs.
+
+====================================================================================================
+  END OF MATHEMATICAL SITE INTELLIGENCE REPORT
+====================================================================================================

@@ -1,0 +1,30 @@
+{
+  "fetched_at": "2026-08-07T01:13:19.970781+00:00",
+  "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+  "data": {
+    "attribution_level": "campaign",
+    "attribution_uncertainty_note": "Marketcall records contain no page/URL field in the confirmed API contract. All figures are campaign-level aggregates and cannot be reliably attributed to individual pages.",
+    "campaign_id": 348734,
+    "currency": "usd",
+    "date_from": "2026-07-08",
+    "date_to": "2026-08-07",
+    "calls": 8,
+    "qualified_calls": 1,
+    "approved_calls": 1,
+    "revenue": 47.23,
+    "payout": 47.23,
+    "revenue_per_approved_call": 47.23,
+    "revenue_per_call": 5.9037,
+    "approval_rate": 0.125,
+    "average_duration": 59.12,
+    "total_duration": 473,
+    "state_counts": {
+      "no-target": 5,
+      "non-key": 1,
+      "no-connect": 1,
+      "approved": 1
+    },
+    "source": "marketcall_api",
+    "fetched_at": "2026-08-07T01:13:19.970141+00:00"
+  }
+}

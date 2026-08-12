@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "manifest": "node scripts/generate-content-manifest.js",
-    "build": "next build",
+    "build": "node scripts/precompute-shards.js && next build --webpack",
     "start": "next start",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload"
+    "preview": "node scripts/precompute-shards.js && opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "node scripts/precompute-shards.js && opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "node scripts/precompute-shards.js && opennextjs-cloudflare build && opennextjs-cloudflare upload"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

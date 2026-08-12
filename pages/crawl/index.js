@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { STATES } from '../../lib/cities';
-import { getTotalPlacesSync, ensurePlacesLoaded } from '../../lib/nationwidePlaces';
+import { getTotalPlacesFromMetaSync, ensurePlacesMetaLoaded } from '../../lib/nationwidePlaces';
 import { Footer } from '../../components/Footer';
 
 export default function CrawlIndex({ totalPlaces, states }) {
@@ -63,10 +63,10 @@ export default function CrawlIndex({ totalPlaces, states }) {
 }
 
 export async function getStaticProps() {
-  await ensurePlacesLoaded();
+  await ensurePlacesMetaLoaded();
   return {
     props: {
-      totalPlaces: getTotalPlacesSync(),
+      totalPlaces: getTotalPlacesFromMetaSync(),
       states: STATES.map((s) => ({ name: s.name, code: s.code, slug: s.slug })),
     },
   };

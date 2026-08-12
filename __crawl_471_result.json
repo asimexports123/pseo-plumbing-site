@@ -1,0 +1,4712 @@
+[
+  {
+    "url": "https://yohomefix.com/areas/cambridge/02138/emergency",
+    "path": "/areas/cambridge/02138/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/cambridge-ma/02138/emergency",
+    "redirectTo": "/areas/cambridge-ma/02138/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56160/drain-cleaning",
+    "path": "/areas/odin/56160/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/odin-mn/56160/drain-cleaning",
+    "redirectTo": "/areas/odin-mn/56160/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/white-bird/83530/water-heater-repair",
+    "path": "/areas/white-bird/83530/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/grangeville/83530/water-heater-repair",
+    "redirectTo": "/areas/grangeville/83530/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84036/sump-pump-repair",
+    "path": "/areas/oakley/84036/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/kamas/84036/sump-pump-repair",
+    "redirectTo": "/areas/kamas/84036/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arden/19809/water-line-repair",
+    "path": "/areas/arden/19809/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wilmington-de/19809/water-line-repair",
+    "redirectTo": "/areas/wilmington-de/19809/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-charles-sump-pump-repair",
+    "path": "/plumber-st.-charles-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-charles-sump-pump-repair",
+    "redirectTo": "/plumber-st-charles-sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-atlanta-sump-pump-repair",
+    "path": "/plumber-atlanta-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-atlanta-emergency",
+    "redirectTo": "/plumber-atlanta-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/acworth/30189/faucet-repair",
+    "path": "/areas/acworth/30189/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/woodstock-ga/30189/faucet-repair",
+    "redirectTo": "/areas/woodstock-ga/30189/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hinckley/55037/faucet-repair",
+    "path": "/areas/hinckley/55037/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/hinckley-mn/55037/faucet-repair",
+    "redirectTo": "/areas/hinckley-mn/55037/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cajah's-mountain-water-line-repair",
+    "path": "/plumber-cajah's-mountain-water-line-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-cajah-s-mountain-water-line-repair",
+    "redirectTo": "/plumber-cajah-s-mountain-water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mooreton/58081/pipe-burst-repair",
+    "path": "/areas/mooreton/58081/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wyndmere/58081/pipe-burst-repair",
+    "redirectTo": "/areas/wyndmere/58081/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-augusta/55329/garbage-disposal-repair",
+    "path": "/areas/st.-augusta/55329/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city-from-unknown",
+    "status": 301,
+    "location": "/areas/eden-valley/55329/garbage-disposal-repair",
+    "redirectTo": "/areas/eden-valley/55329/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/labelle/33905/water-heater-repair",
+    "path": "/areas/labelle/33905/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/fort-myers/33905/water-heater-repair",
+    "redirectTo": "/areas/fort-myers/33905/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/smyrna/19938/slab-leak-repair",
+    "path": "/areas/smyrna/19938/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/clayton-de/19938/slab-leak-repair",
+    "redirectTo": "/areas/clayton-de/19938/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-joseph",
+    "path": "/areas/st.-joseph",
+    "category": "D",
+    "reason": "areas-normalized-slug",
+    "status": 301,
+    "location": "/areas/st-joseph",
+    "redirectTo": "/areas/st-joseph",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/channahon/60404/leak-repair",
+    "path": "/areas/channahon/60404/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/shorewood/60404/leak-repair",
+    "redirectTo": "/areas/shorewood/60404/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hartwell-sump-pump-repair",
+    "path": "/plumber-hartwell-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-hartwell-emergency",
+    "redirectTo": "/plumber-hartwell-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/center/58571/leak-repair",
+    "path": "/areas/center/58571/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/stanton-nd/58571/leak-repair",
+    "redirectTo": "/areas/stanton-nd/58571/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/marion/57043/sump-pump-repair",
+    "path": "/areas/marion/57043/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/marion-sd/57043/sump-pump-repair",
+    "redirectTo": "/areas/marion-sd/57043/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hatch/84718/sewer-line-repair",
+    "path": "/areas/hatch/84718/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/cannonville/84718/sewer-line-repair",
+    "redirectTo": "/areas/cannonville/84718/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56160/sump-pump-repair",
+    "path": "/areas/odin/56160/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/odin-mn/56160/sump-pump-repair",
+    "redirectTo": "/areas/odin-mn/56160/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ansonville/28135/toilet-repair",
+    "path": "/areas/ansonville/28135/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/polkton/28135/toilet-repair",
+    "redirectTo": "/areas/polkton/28135/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/custer/49449/whole-house-repiping",
+    "path": "/areas/custer/49449/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/pentwater/49449/whole-house-repiping",
+    "redirectTo": "/areas/pentwater/49449/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hollywood/35772/water-heater-repair",
+    "path": "/areas/hollywood/35772/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/stevenson/35772/water-heater-repair",
+    "redirectTo": "/areas/stevenson/35772/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oglethorpe/31057/emergency",
+    "path": "/areas/oglethorpe/31057/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/marshallville/31057/emergency",
+    "redirectTo": "/areas/marshallville/31057/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mandan/58504/drain-cleaning",
+    "path": "/areas/mandan/58504/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bismarck/58504/drain-cleaning",
+    "redirectTo": "/areas/bismarck/58504/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/harpersville/35147/emergency",
+    "path": "/areas/harpersville/35147/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/westover/35147/emergency",
+    "redirectTo": "/areas/westover/35147/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/florala/36420/water-heater-repair",
+    "path": "/areas/florala/36420/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/andalusia/36420/water-heater-repair",
+    "redirectTo": "/areas/andalusia/36420/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/leamington/84640/sewer-line-repair",
+    "path": "/areas/leamington/84640/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lynndyl/84640/sewer-line-repair",
+    "redirectTo": "/areas/lynndyl/84640/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oak-hill/37220/emergency",
+    "path": "/areas/oak-hill/37220/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/oak-hill-tn/37220/emergency",
+    "redirectTo": "/areas/oak-hill-tn/37220/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lexington/48450/whole-house-repiping",
+    "path": "/areas/lexington/48450/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lexington-mi/48450/whole-house-repiping",
+    "redirectTo": "/areas/lexington-mi/48450/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/loraine/62349/garbage-disposal-repair",
+    "path": "/areas/loraine/62349/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/loraine-il/62349/garbage-disposal-repair",
+    "redirectTo": "/areas/loraine-il/62349/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/marion/57043/sewer-line-repair",
+    "path": "/areas/marion/57043/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/marion-sd/57043/sewer-line-repair",
+    "redirectTo": "/areas/marion-sd/57043/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/atlantic-beach/28557/pipe-burst-repair",
+    "path": "/areas/atlantic-beach/28557/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/morehead-city/28557/pipe-burst-repair",
+    "redirectTo": "/areas/morehead-city/28557/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lindsay/68644/leak-repair",
+    "path": "/areas/lindsay/68644/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lindsay-ne/68644/leak-repair",
+    "redirectTo": "/areas/lindsay-ne/68644/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19716/main-water-shutoff-valve-repair",
+    "path": "/areas/newark/19716/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19716/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/newark-de/19716/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/waterloo/35634/emergency",
+    "path": "/areas/waterloo/35634/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/st-florian/35634/emergency",
+    "redirectTo": "/areas/st-florian/35634/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/crescent/51526/garbage-disposal-repair",
+    "path": "/areas/crescent/51526/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/crescent-ia/51526/garbage-disposal-repair",
+    "redirectTo": "/areas/crescent-ia/51526/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/acworth/30064/faucet-repair",
+    "path": "/areas/acworth/30064/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/marietta/30064/faucet-repair",
+    "redirectTo": "/areas/marietta/30064/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/crescent/51526/sump-pump-repair",
+    "path": "/areas/crescent/51526/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/crescent-ia/51526/sump-pump-repair",
+    "redirectTo": "/areas/crescent-ia/51526/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oak-hill/37220/drain-cleaning",
+    "path": "/areas/oak-hill/37220/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oak-hill-tn/37220/drain-cleaning",
+    "redirectTo": "/areas/oak-hill-tn/37220/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wentworth/57075/toilet-repair",
+    "path": "/areas/wentworth/57075/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wentworth-sd/57075/toilet-repair",
+    "redirectTo": "/areas/wentworth-sd/57075/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mooresboro/28040/garbage-disposal-repair",
+    "path": "/areas/mooresboro/28040/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ellenboro/28040/garbage-disposal-repair",
+    "redirectTo": "/areas/ellenboro/28040/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-faucet-repair",
+    "path": "/plumber-east-st.-louis-faucet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-east-st-louis-faucet-repair",
+    "redirectTo": "/plumber-east-st-louis-faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/loretto/15940/emergency",
+    "path": "/areas/loretto/15940/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/loretto-pa/15940/emergency",
+    "redirectTo": "/areas/loretto-pa/15940/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/stockholm/57263/drain-cleaning",
+    "path": "/areas/stockholm/57263/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/south-shore/57263/drain-cleaning",
+    "redirectTo": "/areas/south-shore/57263/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/scotia/12302/water-line-repair",
+    "path": "/areas/scotia/12302/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/scotia-ny/12302/water-line-repair",
+    "redirectTo": "/areas/scotia-ny/12302/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lehr/58440/water-heater-repair",
+    "path": "/areas/lehr/58440/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/fredonia-nd/58440/water-heater-repair",
+    "redirectTo": "/areas/fredonia-nd/58440/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/caraway/72354/sewer-line-repair",
+    "path": "/areas/caraway/72354/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lepanto/72354/sewer-line-repair",
+    "redirectTo": "/areas/lepanto/72354/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lindsay/68644/water-heater-repair",
+    "path": "/areas/lindsay/68644/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lindsay-ne/68644/water-heater-repair",
+    "redirectTo": "/areas/lindsay-ne/68644/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oak-hill/37220/water-softener-repair",
+    "path": "/areas/oak-hill/37220/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oak-hill-tn/37220/water-softener-repair",
+    "redirectTo": "/areas/oak-hill-tn/37220/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/main-water-shutoff-valve-repair",
+    "path": "/areas/oakley/84055/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/oakley-ut/84055/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cloquet/55711/water-heater-repair",
+    "path": "/areas/cloquet/55711/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/brookston-mn/55711/water-heater-repair",
+    "redirectTo": "/areas/brookston-mn/55711/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/alexandria/56308/main-water-shutoff-valve-repair",
+    "path": "/areas/alexandria/56308/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/alexandria-mn/56308/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/alexandria-mn/56308/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/salina/84654/leak-repair",
+    "path": "/areas/salina/84654/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/salina-ut/84654/leak-repair",
+    "redirectTo": "/areas/salina-ut/84654/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/atlantic-beach/28512/toilet-repair",
+    "path": "/areas/atlantic-beach/28512/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/atlantic-beach-nc/28512/toilet-repair",
+    "redirectTo": "/areas/atlantic-beach-nc/28512/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/doyline/71024/garbage-disposal-repair",
+    "path": "/areas/doyline/71024/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/dubberly/71024/garbage-disposal-repair",
+    "redirectTo": "/areas/dubberly/71024/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arnold/63053/garbage-disposal-repair",
+    "path": "/areas/arnold/63053/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/kimmswick/63053/garbage-disposal-repair",
+    "redirectTo": "/areas/kimmswick/63053/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-carthage-ar-sump-pump-repair",
+    "path": "/plumber-carthage-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-carthage-ar-emergency",
+    "redirectTo": "/plumber-carthage-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/paris/40361/water-softener-repair",
+    "path": "/areas/paris/40361/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/paris-ky/40361/water-softener-repair",
+    "redirectTo": "/areas/paris-ky/40361/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-jo-water-heater-repair",
+    "path": "/plumber-st.-jo-water-heater-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-st-jo-water-heater-repair",
+    "redirectTo": "/plumber-st-jo-water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mer-rouge/71220/main-water-shutoff-valve-repair",
+    "path": "/areas/mer-rouge/71220/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bastrop-la/71220/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/bastrop-la/71220/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/crescent/51548/drain-cleaning",
+    "path": "/areas/crescent/51548/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/mcclelland/51548/drain-cleaning",
+    "redirectTo": "/areas/mcclelland/51548/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mccrory/72074/pipe-burst-repair",
+    "path": "/areas/mccrory/72074/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/hunter-ar/72074/pipe-burst-repair",
+    "redirectTo": "/areas/hunter-ar/72074/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/willmar/56279/sewer-line-repair",
+    "path": "/areas/willmar/56279/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/pennock/56279/sewer-line-repair",
+    "redirectTo": "/areas/pennock/56279/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/elkton/55977/main-water-shutoff-valve-repair",
+    "path": "/areas/elkton/55977/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/taopi/55977/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/taopi/55977/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/evergreen/71333/drain-cleaning",
+    "path": "/areas/evergreen/71333/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/evergreen-la/71333/drain-cleaning",
+    "redirectTo": "/areas/evergreen-la/71333/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/north-johns/35111/leak-repair",
+    "path": "/areas/north-johns/35111/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/bessemer/35111/leak-repair",
+    "redirectTo": "/areas/bessemer/35111/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bridgeport/35740/pipe-burst-repair",
+    "path": "/areas/bridgeport/35740/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bridgeport-al/35740/pipe-burst-repair",
+    "redirectTo": "/areas/bridgeport-al/35740/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-alto-ga-sump-pump-repair",
+    "path": "/plumber-alto-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-alto-ga-emergency",
+    "redirectTo": "/plumber-alto-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-collins-sump-pump-repair",
+    "path": "/plumber-collins-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-collins-emergency",
+    "redirectTo": "/plumber-collins-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lexington/48450/water-softener-repair",
+    "path": "/areas/lexington/48450/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lexington-mi/48450/water-softener-repair",
+    "redirectTo": "/areas/lexington-mi/48450/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/dexter/48169/whole-house-repiping",
+    "path": "/areas/dexter/48169/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/pinckney/48169/whole-house-repiping",
+    "redirectTo": "/areas/pinckney/48169/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/barry/56210/toilet-repair",
+    "path": "/areas/barry/56210/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/barry-mn/56210/toilet-repair",
+    "redirectTo": "/areas/barry-mn/56210/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/paris/41031/water-heater-repair",
+    "path": "/areas/paris/41031/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/cynthiana/41031/water-heater-repair",
+    "redirectTo": "/areas/cynthiana/41031/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/athena/97801/drain-cleaning",
+    "path": "/areas/athena/97801/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/pendleton-or/97801/drain-cleaning",
+    "redirectTo": "/areas/pendleton-or/97801/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/caraway/72414/sewer-line-repair",
+    "path": "/areas/caraway/72414/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/black-oak/72414/sewer-line-repair",
+    "redirectTo": "/areas/black-oak/72414/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cayuga/58013/emergency",
+    "path": "/areas/cayuga/58013/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/cayuga-nd/58013/emergency",
+    "redirectTo": "/areas/cayuga-nd/58013/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/townsend/59644/faucet-repair",
+    "path": "/areas/townsend/59644/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/townsend-mt/59644/faucet-repair",
+    "redirectTo": "/areas/townsend-mt/59644/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/atlantic-beach/28512/leak-repair",
+    "path": "/areas/atlantic-beach/28512/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/atlantic-beach-nc/28512/leak-repair",
+    "redirectTo": "/areas/atlantic-beach-nc/28512/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/spring-city/84667/faucet-repair",
+    "path": "/areas/spring-city/84667/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wales-ut/84667/faucet-repair",
+    "redirectTo": "/areas/wales-ut/84667/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/seguin/78121/emergency",
+    "path": "/areas/seguin/78121/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/la-vernia/78121/emergency",
+    "redirectTo": "/areas/la-vernia/78121/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/page/58064/water-line-repair",
+    "path": "/areas/page/58064/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/page-nd/58064/water-line-repair",
+    "redirectTo": "/areas/page-nd/58064/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/crescent/51503/drain-cleaning",
+    "path": "/areas/crescent/51503/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/council-bluffs/51503/drain-cleaning",
+    "redirectTo": "/areas/council-bluffs/51503/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/galesburg/49053/water-softener-repair",
+    "path": "/areas/galesburg/49053/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/galesburg-mi/49053/water-softener-repair",
+    "redirectTo": "/areas/galesburg-mi/49053/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/dexter/48130/water-line-repair",
+    "path": "/areas/dexter/48130/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/dexter-mi/48130/water-line-repair",
+    "redirectTo": "/areas/dexter-mi/48130/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19716/faucet-repair",
+    "path": "/areas/newark/19716/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19716/faucet-repair",
+    "redirectTo": "/areas/newark-de/19716/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/delmont/57313/water-heater-repair",
+    "path": "/areas/delmont/57313/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/armour/57313/water-heater-repair",
+    "redirectTo": "/areas/armour/57313/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/adamsville/35073/pipe-burst-repair",
+    "path": "/areas/adamsville/35073/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/graysville/35073/pipe-burst-repair",
+    "redirectTo": "/areas/graysville/35073/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/harpersville/35185/emergency",
+    "path": "/areas/harpersville/35185/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/westover/35185/emergency",
+    "redirectTo": "/areas/westover/35185/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/creswell/27928/main-water-shutoff-valve-repair",
+    "path": "/areas/creswell/27928/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/creswell-nc/27928/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/creswell-nc/27928/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/claremont/62421/garbage-disposal-repair",
+    "path": "/areas/claremont/62421/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/claremont-il/62421/garbage-disposal-repair",
+    "redirectTo": "/areas/claremont-il/62421/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cashion/73016/sump-pump-repair",
+    "path": "/areas/cashion/73016/sump-pump-repair",
+    "category": "D",
+    "reason": "unqualified-service",
+    "status": 301,
+    "location": "/areas/cashion/73016/emergency",
+    "redirectTo": "/areas/cashion/73016/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/highland/72542/pipe-burst-repair",
+    "path": "/areas/highland/72542/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/highland-ar/72542/pipe-burst-repair",
+    "redirectTo": "/areas/highland-ar/72542/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/teague/75831/drain-cleaning",
+    "path": "/areas/teague/75831/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/buffalo-tx/75831/drain-cleaning",
+    "redirectTo": "/areas/buffalo-tx/75831/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/elba/14058/pipe-burst-repair",
+    "path": "/areas/elba/14058/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/elba-ny/14058/pipe-burst-repair",
+    "redirectTo": "/areas/elba-ny/14058/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/boardman/28438/toilet-repair",
+    "path": "/areas/boardman/28438/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/boardman-nc/28438/toilet-repair",
+    "redirectTo": "/areas/boardman-nc/28438/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bondville/61874/drain-cleaning",
+    "path": "/areas/bondville/61874/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/savoy/61874/drain-cleaning",
+    "redirectTo": "/areas/savoy/61874/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cecil/31627/water-softener-repair",
+    "path": "/areas/cecil/31627/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/cecil-ga/31627/water-softener-repair",
+    "redirectTo": "/areas/cecil-ga/31627/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/adamsville/35118/leak-repair",
+    "path": "/areas/adamsville/35118/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/sylvan-springs/35118/leak-repair",
+    "redirectTo": "/areas/sylvan-springs/35118/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cajah's-mountain-sump-pump-repair",
+    "path": "/plumber-cajah's-mountain-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-cajah-s-mountain-sump-pump-repair",
+    "redirectTo": "/plumber-cajah-s-mountain-sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/townsend/59644/pipe-burst-repair",
+    "path": "/areas/townsend/59644/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/townsend-mt/59644/pipe-burst-repair",
+    "redirectTo": "/areas/townsend-mt/59644/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eveleth/55751/emergency",
+    "path": "/areas/eveleth/55751/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/mountain-iron/55751/emergency",
+    "redirectTo": "/areas/mountain-iron/55751/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-mitchellville-ar-sump-pump-repair",
+    "path": "/plumber-mitchellville-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-mitchellville-ar-emergency",
+    "redirectTo": "/plumber-mitchellville-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/loraine/62349/water-softener-repair",
+    "path": "/areas/loraine/62349/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/loraine-il/62349/water-softener-repair",
+    "redirectTo": "/areas/loraine-il/62349/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/highland/72532/slab-leak-repair",
+    "path": "/areas/highland/72532/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/evening-shade/72532/slab-leak-repair",
+    "redirectTo": "/areas/evening-shade/72532/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/adamsville/35073/leak-repair",
+    "path": "/areas/adamsville/35073/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/graysville/35073/leak-repair",
+    "redirectTo": "/areas/graysville/35073/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/underwood/56576/water-line-repair",
+    "path": "/areas/underwood/56576/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/richville/56576/water-line-repair",
+    "redirectTo": "/areas/richville/56576/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/custer/49405/water-line-repair",
+    "path": "/areas/custer/49405/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/custer-mi/49405/water-line-repair",
+    "redirectTo": "/areas/custer-mi/49405/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/max/58735/sump-pump-repair",
+    "path": "/areas/max/58735/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/douglas-nd/58735/sump-pump-repair",
+    "redirectTo": "/areas/douglas-nd/58735/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-daytona-beach-sump-pump-repair",
+    "path": "/plumber-daytona-beach-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-daytona-beach-emergency",
+    "redirectTo": "/plumber-daytona-beach-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lake-st.-louis-drain-cleaning",
+    "path": "/plumber-lake-st.-louis-drain-cleaning",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-lake-st-louis-drain-cleaning",
+    "redirectTo": "/plumber-lake-st-louis-drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/townsend/59645/water-heater-repair",
+    "path": "/areas/townsend/59645/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/white-sulphur-springs-mt/59645/water-heater-repair",
+    "redirectTo": "/areas/white-sulphur-springs-mt/59645/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hamburg/71663/pipe-burst-repair",
+    "path": "/areas/hamburg/71663/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/portland-ar/71663/pipe-burst-repair",
+    "redirectTo": "/areas/portland-ar/71663/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/posen/48742/water-softener-repair",
+    "path": "/areas/posen/48742/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lincoln-mi/48742/water-softener-repair",
+    "redirectTo": "/areas/lincoln-mi/48742/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pringle/57773/main-water-shutoff-valve-repair",
+    "path": "/areas/pringle/57773/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/pringle-sd/57773/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/pringle-sd/57773/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/washburn/58577/slab-leak-repair",
+    "path": "/areas/washburn/58577/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/washburn-nd/58577/slab-leak-repair",
+    "redirectTo": "/areas/washburn-nd/58577/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/north-johns/35023/leak-repair",
+    "path": "/areas/north-johns/35023/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/hueytown/35023/leak-repair",
+    "redirectTo": "/areas/hueytown/35023/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/marion/57043/water-heater-repair",
+    "path": "/areas/marion/57043/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/marion-sd/57043/water-heater-repair",
+    "redirectTo": "/areas/marion-sd/57043/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/tabor-city/28430/garbage-disposal-repair",
+    "path": "/areas/tabor-city/28430/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/cerro-gordo/28430/garbage-disposal-repair",
+    "redirectTo": "/areas/cerro-gordo/28430/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cajah's-mountain-water-heater-repair",
+    "path": "/plumber-cajah's-mountain-water-heater-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-cajah-s-mountain-water-heater-repair",
+    "redirectTo": "/plumber-cajah-s-mountain-water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/spring-city/84662/toilet-repair",
+    "path": "/areas/spring-city/84662/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/spring-city-ut/84662/toilet-repair",
+    "redirectTo": "/areas/spring-city-ut/84662/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/towner/58313/drain-cleaning",
+    "path": "/areas/towner/58313/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/balta/58313/drain-cleaning",
+    "redirectTo": "/areas/balta/58313/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/dayton/99328/toilet-repair",
+    "path": "/areas/dayton/99328/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/dayton-wa/99328/toilet-repair",
+    "redirectTo": "/areas/dayton-wa/99328/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bonanza/97623/main-water-shutoff-valve-repair",
+    "path": "/areas/bonanza/97623/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bonanza-or/97623/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/bonanza-or/97623/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/florala/36455/water-heater-repair",
+    "path": "/areas/florala/36455/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lockhart-al/36455/water-heater-repair",
+    "redirectTo": "/areas/lockhart-al/36455/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilson/72330/slab-leak-repair",
+    "path": "/areas/wilson/72330/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/dyess/72330/slab-leak-repair",
+    "redirectTo": "/areas/dyess/72330/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bowling-green/22580/garbage-disposal-repair",
+    "path": "/areas/bowling-green/22580/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bowling-green-va/22580/garbage-disposal-repair",
+    "redirectTo": "/areas/bowling-green-va/22580/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/goldston/27559/sump-pump-repair",
+    "path": "/areas/goldston/27559/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/pittsboro/27559/sump-pump-repair",
+    "redirectTo": "/areas/pittsboro/27559/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/beresford/57073/emergency",
+    "path": "/areas/beresford/57073/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wakonda/57073/emergency",
+    "redirectTo": "/areas/wakonda/57073/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/gunnison/84652/water-heater-repair",
+    "path": "/areas/gunnison/84652/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/redmond-ut/84652/water-heater-repair",
+    "redirectTo": "/areas/redmond-ut/84652/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/dayton/99328/faucet-repair",
+    "path": "/areas/dayton/99328/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/dayton-wa/99328/faucet-repair",
+    "redirectTo": "/areas/dayton-wa/99328/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oglethorpe/31711/emergency",
+    "path": "/areas/oglethorpe/31711/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/andersonville/31711/emergency",
+    "redirectTo": "/areas/andersonville/31711/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/atlantic-beach/28532/pipe-burst-repair",
+    "path": "/areas/atlantic-beach/28532/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/havelock/28532/pipe-burst-repair",
+    "redirectTo": "/areas/havelock/28532/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lexington/48450/emergency",
+    "path": "/areas/lexington/48450/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lexington-mi/48450/emergency",
+    "redirectTo": "/areas/lexington-mi/48450/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/underwood/56586/emergency",
+    "path": "/areas/underwood/56586/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/underwood-mn/56586/emergency",
+    "redirectTo": "/areas/underwood-mn/56586/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bridgeport/35740/toilet-repair",
+    "path": "/areas/bridgeport/35740/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bridgeport-al/35740/toilet-repair",
+    "redirectTo": "/areas/bridgeport-al/35740/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bonanza/97624/emergency",
+    "path": "/areas/bonanza/97624/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/chiloquin/97624/emergency",
+    "redirectTo": "/areas/chiloquin/97624/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hanley-falls/56241/slab-leak-repair",
+    "path": "/areas/hanley-falls/56241/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/granite-falls-mn/56241/slab-leak-repair",
+    "redirectTo": "/areas/granite-falls-mn/56241/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/harrisburg/97327/drain-cleaning",
+    "path": "/areas/harrisburg/97327/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/brownsville-or/97327/drain-cleaning",
+    "redirectTo": "/areas/brownsville-or/97327/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/somersworth/03801/drain-cleaning",
+    "path": "/areas/somersworth/03801/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/portsmouth-nh/03801/drain-cleaning",
+    "redirectTo": "/areas/portsmouth-nh/03801/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-mooresville-al-sump-pump-repair",
+    "path": "/plumber-mooresville-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-mooresville-al-emergency",
+    "redirectTo": "/plumber-mooresville-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/delaware-city/19730/toilet-repair",
+    "path": "/areas/delaware-city/19730/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/odessa-de/19730/toilet-repair",
+    "redirectTo": "/areas/odessa-de/19730/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hollywood/35768/water-heater-repair",
+    "path": "/areas/hollywood/35768/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/scottsboro/35768/water-heater-repair",
+    "redirectTo": "/areas/scottsboro/35768/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/balta/58710/drain-cleaning",
+    "path": "/areas/balta/58710/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/anamoose/58710/drain-cleaning",
+    "redirectTo": "/areas/anamoose/58710/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/elaine/72342/emergency",
+    "path": "/areas/elaine/72342/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/helena-west-helena/72342/emergency",
+    "redirectTo": "/areas/helena-west-helena/72342/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-kilgore-sump-pump-repair",
+    "path": "/plumber-kilgore-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-kilgore-emergency",
+    "redirectTo": "/plumber-kilgore-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bridgeport/35740/sewer-line-repair",
+    "path": "/areas/bridgeport/35740/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bridgeport-al/35740/sewer-line-repair",
+    "redirectTo": "/areas/bridgeport-al/35740/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cavalier/58262/water-heater-repair",
+    "path": "/areas/cavalier/58262/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/mountain/58262/water-heater-repair",
+    "redirectTo": "/areas/mountain/58262/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-joseph/64506/slab-leak-repair",
+    "path": "/areas/st.-joseph/64506/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city-from-unknown",
+    "status": 301,
+    "location": "/areas/st-joseph/64506/slab-leak-repair",
+    "redirectTo": "/areas/st-joseph/64506/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/roberts/83444/slab-leak-repair",
+    "path": "/areas/roberts/83444/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/roberts-id/83444/slab-leak-repair",
+    "redirectTo": "/areas/roberts-id/83444/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/tekamah/68019/drain-cleaning",
+    "path": "/areas/tekamah/68019/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/craig-ne/68019/drain-cleaning",
+    "redirectTo": "/areas/craig-ne/68019/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/peck/83524/water-line-repair",
+    "path": "/areas/peck/83524/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/culdesac/83524/water-line-repair",
+    "redirectTo": "/areas/culdesac/83524/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/new-castle/16159/leak-repair",
+    "path": "/areas/new-castle/16159/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/hermitage/16159/leak-repair",
+    "redirectTo": "/areas/hermitage/16159/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bonanza/97633/emergency",
+    "path": "/areas/bonanza/97633/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/merrill-or/97633/emergency",
+    "redirectTo": "/areas/merrill-or/97633/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arnold/63128/garbage-disposal-repair",
+    "path": "/areas/arnold/63128/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/sunset-hills/63128/garbage-disposal-repair",
+    "redirectTo": "/areas/sunset-hills/63128/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bath-(berkeley-springs)-sewer-line-repair",
+    "path": "/plumber-bath-(berkeley-springs)-sewer-line-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-bath-berkeley-springs-sewer-line-repair",
+    "target_status": 308
+  },
+  {
+    "url": "https://yohomefix.com/areas/melbourne/41085/emergency",
+    "path": "/areas/melbourne/41085/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/silver-grove/41085/emergency",
+    "redirectTo": "/areas/silver-grove/41085/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sibley/64088/garbage-disposal-repair",
+    "path": "/areas/sibley/64088/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/sibley-mo/64088/garbage-disposal-repair",
+    "redirectTo": "/areas/sibley-mo/64088/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/grygla/56763/faucet-repair",
+    "path": "/areas/grygla/56763/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/warroad/56763/faucet-repair",
+    "redirectTo": "/areas/warroad/56763/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hollywood/35752/toilet-repair",
+    "path": "/areas/hollywood/35752/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/hollywood-al/35752/toilet-repair",
+    "redirectTo": "/areas/hollywood-al/35752/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lemmon/57641/leak-repair",
+    "path": "/areas/lemmon/57641/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/mcintosh-sd/57641/leak-repair",
+    "redirectTo": "/areas/mcintosh-sd/57641/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bowdon/58486/water-heater-repair",
+    "path": "/areas/bowdon/58486/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/sykeston/58486/water-heater-repair",
+    "redirectTo": "/areas/sykeston/58486/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/toilet-repair",
+    "path": "/areas/wilmington/19801/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19801/toilet-repair",
+    "redirectTo": "/areas/wilmington-de/19801/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wellman/79378/pipe-burst-repair",
+    "path": "/areas/wellman/79378/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wellman-tx/79378/pipe-burst-repair",
+    "redirectTo": "/areas/wellman-tx/79378/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/buxton/58201/leak-repair",
+    "path": "/areas/buxton/58201/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/grand-forks/58201/leak-repair",
+    "redirectTo": "/areas/grand-forks/58201/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/nashua/59248/sump-pump-repair",
+    "path": "/areas/nashua/59248/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/nashua-mt/59248/sump-pump-repair",
+    "redirectTo": "/areas/nashua-mt/59248/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bonanza/97623/faucet-repair",
+    "path": "/areas/bonanza/97623/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/bonanza-or/97623/faucet-repair",
+    "redirectTo": "/areas/bonanza-or/97623/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/alpena/49779/drain-cleaning",
+    "path": "/areas/alpena/49779/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/rogers-city/49779/drain-cleaning",
+    "redirectTo": "/areas/rogers-city/49779/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mooresboro/28152/garbage-disposal-repair",
+    "path": "/areas/mooresboro/28152/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/shelby/28152/garbage-disposal-repair",
+    "redirectTo": "/areas/shelby/28152/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/adamsville/35214/leak-repair",
+    "path": "/areas/adamsville/35214/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/birmingham/35214/leak-repair",
+    "redirectTo": "/areas/birmingham/35214/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hughes-ar-sump-pump-repair",
+    "path": "/plumber-hughes-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-hughes-ar-emergency",
+    "redirectTo": "/plumber-hughes-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ruso/58575/leak-repair",
+    "path": "/areas/ruso/58575/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/turtle-lake-nd/58575/leak-repair",
+    "redirectTo": "/areas/turtle-lake-nd/58575/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bath-(berkeley-springs)-whole-house-repiping",
+    "path": "/plumber-bath-(berkeley-springs)-whole-house-repiping",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-bath-berkeley-springs-whole-house-repiping",
+    "target_status": 308
+  },
+  {
+    "url": "https://yohomefix.com/areas/montrose/57048/emergency",
+    "path": "/areas/montrose/57048/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/montrose-sd/57048/emergency",
+    "redirectTo": "/areas/montrose-sd/57048/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/washburn/58577/leak-repair",
+    "path": "/areas/washburn/58577/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/washburn-nd/58577/leak-repair",
+    "redirectTo": "/areas/washburn-nd/58577/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lockhart/36455/whole-house-repiping",
+    "path": "/areas/lockhart/36455/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lockhart-al/36455/whole-house-repiping",
+    "redirectTo": "/areas/lockhart-al/36455/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/kendleton/77417/pipe-burst-repair",
+    "path": "/areas/kendleton/77417/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/beasley/77417/pipe-burst-repair",
+    "redirectTo": "/areas/beasley/77417/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-fayetteville-ga-sump-pump-repair",
+    "path": "/plumber-fayetteville-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-fayetteville-ga-emergency",
+    "redirectTo": "/plumber-fayetteville-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lynn-ar-sump-pump-repair",
+    "path": "/plumber-lynn-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-lynn-ar-emergency",
+    "redirectTo": "/plumber-lynn-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/bonanza/97603/emergency",
+    "path": "/areas/bonanza/97603/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/klamath-falls/97603/emergency",
+    "redirectTo": "/areas/klamath-falls/97603/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sherman-sump-pump-repair",
+    "path": "/plumber-sherman-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-sherman-emergency",
+    "redirectTo": "/plumber-sherman-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sparks-ga-sump-pump-repair",
+    "path": "/plumber-sparks-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-sparks-ga-emergency",
+    "redirectTo": "/plumber-sparks-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19716/sump-pump-repair",
+    "path": "/areas/newark/19716/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/newark-de/19716/sump-pump-repair",
+    "redirectTo": "/areas/newark-de/19716/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-augusta/55320/garbage-disposal-repair",
+    "path": "/areas/st.-augusta/55320/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city-from-unknown",
+    "status": 301,
+    "location": "/areas/st-augusta/55320/garbage-disposal-repair",
+    "redirectTo": "/areas/st-augusta/55320/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cairo-sump-pump-repair",
+    "path": "/plumber-cairo-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-cairo-emergency",
+    "redirectTo": "/plumber-cairo-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cecil/31632/leak-repair",
+    "path": "/areas/cecil/31632/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/hahira/31632/leak-repair",
+    "redirectTo": "/areas/hahira/31632/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/richland/97883/pipe-burst-repair",
+    "path": "/areas/richland/97883/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/union-or/97883/pipe-burst-repair",
+    "redirectTo": "/areas/union-or/97883/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/richland/97907/pipe-burst-repair",
+    "path": "/areas/richland/97907/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/huntington-or/97907/pipe-burst-repair",
+    "redirectTo": "/areas/huntington-or/97907/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-augusta",
+    "path": "/areas/st.-augusta",
+    "category": "D",
+    "reason": "areas-normalized-slug",
+    "status": 301,
+    "location": "/areas/st-augusta",
+    "redirectTo": "/areas/st-augusta",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-shiloh-al-sump-pump-repair",
+    "path": "/plumber-shiloh-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-shiloh-al-emergency",
+    "redirectTo": "/plumber-shiloh-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-norwalk-ca-sump-pump-repair",
+    "path": "/plumber-norwalk-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-norwalk-ca-emergency",
+    "redirectTo": "/plumber-norwalk-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-union-city-ga-sump-pump-repair",
+    "path": "/plumber-union-city-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-union-city-ga-emergency",
+    "redirectTo": "/plumber-union-city-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-warrenton-ga-sump-pump-repair",
+    "path": "/plumber-warrenton-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-warrenton-ga-emergency",
+    "redirectTo": "/plumber-warrenton-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bristol-fl-sump-pump-repair",
+    "path": "/plumber-bristol-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-bristol-fl-emergency",
+    "redirectTo": "/plumber-bristol-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-greenwood-ar-sump-pump-repair",
+    "path": "/plumber-greenwood-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-greenwood-ar-emergency",
+    "redirectTo": "/plumber-greenwood-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-wilson-ar-sump-pump-repair",
+    "path": "/plumber-wilson-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-wilson-ar-emergency",
+    "redirectTo": "/plumber-wilson-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-fairfax-ca-sump-pump-repair",
+    "path": "/plumber-fairfax-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-fairfax-ca-emergency",
+    "redirectTo": "/plumber-fairfax-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-washington-ga-sump-pump-repair",
+    "path": "/plumber-washington-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-washington-ga-emergency",
+    "redirectTo": "/plumber-washington-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-claremont-ca-sump-pump-repair",
+    "path": "/plumber-claremont-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-claremont-ca-emergency",
+    "redirectTo": "/plumber-claremont-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-warren-ar-sump-pump-repair",
+    "path": "/plumber-warren-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-warren-ar-emergency",
+    "redirectTo": "/plumber-warren-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/st.-joseph/64503/whole-house-repiping",
+    "path": "/areas/st.-joseph/64503/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city-from-unknown",
+    "status": 308,
+    "location": "/areas/st-joseph/64503/whole-house-repiping",
+    "redirectTo": "/areas/st-joseph/64503/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-waterford-ca-sump-pump-repair",
+    "path": "/plumber-waterford-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-waterford-ca-emergency",
+    "redirectTo": "/plumber-waterford-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-womelsdorf-(coalton)-toilet-repair",
+    "path": "/plumber-womelsdorf-(coalton)-toilet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-womelsdorf-coalton-toilet-repair",
+    "target_status": 308
+  },
+  {
+    "url": "https://yohomefix.com/areas/watkins/55353/garbage-disposal-repair",
+    "path": "/areas/watkins/55353/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/st-augusta/55353/garbage-disposal-repair",
+    "redirectTo": "/areas/st-augusta/55353/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sardis-ga-sump-pump-repair",
+    "path": "/plumber-sardis-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-sardis-ga-emergency",
+    "redirectTo": "/plumber-sardis-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-williamson-ga-sump-pump-repair",
+    "path": "/plumber-williamson-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-williamson-ga-emergency",
+    "redirectTo": "/plumber-williamson-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bath-(berkeley-springs)-drain-cleaning",
+    "path": "/plumber-bath-(berkeley-springs)-drain-cleaning",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-bath-berkeley-springs-drain-cleaning",
+    "target_status": 308
+  },
+  {
+    "url": "https://yohomefix.com/plumber-san-jose-sump-pump-repair",
+    "path": "/plumber-san-jose-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-san-jose-emergency",
+    "redirectTo": "/plumber-san-jose-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bath-(berkeley-springs)-slab-leak-repair",
+    "path": "/plumber-bath-(berkeley-springs)-slab-leak-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-bath-berkeley-springs-slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-edwardsville-al-sump-pump-repair",
+    "path": "/plumber-edwardsville-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-edwardsville-al-emergency",
+    "redirectTo": "/plumber-edwardsville-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-rogers-sump-pump-repair",
+    "path": "/plumber-rogers-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-rogers-emergency",
+    "redirectTo": "/plumber-rogers-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-monroe-ga-sump-pump-repair",
+    "path": "/plumber-monroe-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-monroe-ga-emergency",
+    "redirectTo": "/plumber-monroe-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/center/58530/main-water-shutoff-valve-repair",
+    "path": "/areas/center/58530/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/center-nd/58530/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/center-nd/58530/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-eudora-ar-sump-pump-repair",
+    "path": "/plumber-eudora-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-eudora-ar-emergency",
+    "redirectTo": "/plumber-eudora-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pindall/72685/faucet-repair",
+    "path": "/areas/pindall/72685/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/western-grove/72685/faucet-repair",
+    "redirectTo": "/areas/western-grove/72685/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cave-city-ar-sump-pump-repair",
+    "path": "/plumber-cave-city-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-cave-city-ar-emergency",
+    "redirectTo": "/plumber-cave-city-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-wooster-ar-sump-pump-repair",
+    "path": "/plumber-wooster-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-wooster-ar-emergency",
+    "redirectTo": "/plumber-wooster-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-john-sump-pump-repair",
+    "path": "/plumber-st.-john-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-john-sump-pump-repair",
+    "redirectTo": "/plumber-st-john-sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-gonzales-tx-sump-pump-repair",
+    "path": "/plumber-gonzales-tx-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-gonzales-tx-emergency",
+    "redirectTo": "/plumber-gonzales-tx-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-fulton-ar-sump-pump-repair",
+    "path": "/plumber-fulton-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-fulton-ar-emergency",
+    "redirectTo": "/plumber-fulton-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-arkansas-city-ar-sump-pump-repair",
+    "path": "/plumber-arkansas-city-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-arkansas-city-ar-emergency",
+    "redirectTo": "/plumber-arkansas-city-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-belmont-ca-sump-pump-repair",
+    "path": "/plumber-belmont-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-belmont-ca-emergency",
+    "redirectTo": "/plumber-belmont-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-vernon-ca-sump-pump-repair",
+    "path": "/plumber-vernon-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-vernon-ca-emergency",
+    "redirectTo": "/plumber-vernon-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-dodge-city-al-sump-pump-repair",
+    "path": "/plumber-dodge-city-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-dodge-city-al-emergency",
+    "redirectTo": "/plumber-dodge-city-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-oak-grove-al-sump-pump-repair",
+    "path": "/plumber-oak-grove-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-oak-grove-al-emergency",
+    "redirectTo": "/plumber-oak-grove-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-brighton-al-sump-pump-repair",
+    "path": "/plumber-brighton-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-brighton-al-emergency",
+    "redirectTo": "/plumber-brighton-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-alexander-ar-sump-pump-repair",
+    "path": "/plumber-alexander-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-alexander-ar-emergency",
+    "redirectTo": "/plumber-alexander-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-roanoke-al-sump-pump-repair",
+    "path": "/plumber-roanoke-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-roanoke-al-emergency",
+    "redirectTo": "/plumber-roanoke-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-moorefield-ar-sump-pump-repair",
+    "path": "/plumber-moorefield-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-moorefield-ar-emergency",
+    "redirectTo": "/plumber-moorefield-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lenox-ga-sump-pump-repair",
+    "path": "/plumber-lenox-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-lenox-ga-emergency",
+    "redirectTo": "/plumber-lenox-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-avalon-ca-sump-pump-repair",
+    "path": "/plumber-avalon-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-avalon-ca-emergency",
+    "redirectTo": "/plumber-avalon-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hull-ga-sump-pump-repair",
+    "path": "/plumber-hull-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-hull-ga-emergency",
+    "redirectTo": "/plumber-hull-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-zebulon-ga-sump-pump-repair",
+    "path": "/plumber-zebulon-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-zebulon-ga-emergency",
+    "redirectTo": "/plumber-zebulon-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-morganton-ga-sump-pump-repair",
+    "path": "/plumber-morganton-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-morganton-ga-emergency",
+    "redirectTo": "/plumber-morganton-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-greenville-fl-sump-pump-repair",
+    "path": "/plumber-greenville-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-greenville-fl-emergency",
+    "redirectTo": "/plumber-greenville-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-plymouth-ca-sump-pump-repair",
+    "path": "/plumber-plymouth-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-plymouth-ca-emergency",
+    "redirectTo": "/plumber-plymouth-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-rogersville-al-sump-pump-repair",
+    "path": "/plumber-rogersville-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-rogersville-al-emergency",
+    "redirectTo": "/plumber-rogersville-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-summit-ar-sump-pump-repair",
+    "path": "/plumber-summit-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-summit-ar-emergency",
+    "redirectTo": "/plumber-summit-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-la-crosse-fl-sump-pump-repair",
+    "path": "/plumber-la-crosse-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-la-crosse-fl-emergency",
+    "redirectTo": "/plumber-la-crosse-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-providence-al-sump-pump-repair",
+    "path": "/plumber-providence-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-providence-al-emergency",
+    "redirectTo": "/plumber-providence-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-ardmore-al-sump-pump-repair",
+    "path": "/plumber-ardmore-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-ardmore-al-emergency",
+    "redirectTo": "/plumber-ardmore-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cudahy-ca-sump-pump-repair",
+    "path": "/plumber-cudahy-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-cudahy-ca-emergency",
+    "redirectTo": "/plumber-cudahy-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-jennings-fl-sump-pump-repair",
+    "path": "/plumber-jennings-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-jennings-fl-emergency",
+    "redirectTo": "/plumber-jennings-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-franklin-al-sump-pump-repair",
+    "path": "/plumber-franklin-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-franklin-al-emergency",
+    "redirectTo": "/plumber-franklin-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lakewood-ca-sump-pump-repair",
+    "path": "/plumber-lakewood-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-lakewood-ca-emergency",
+    "redirectTo": "/plumber-lakewood-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-duncan-az-sump-pump-repair",
+    "path": "/plumber-duncan-az-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-duncan-az-emergency",
+    "redirectTo": "/plumber-duncan-az-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-central-city-ar-sump-pump-repair",
+    "path": "/plumber-central-city-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-central-city-ar-emergency",
+    "redirectTo": "/plumber-central-city-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/apple-valley/55306/main-water-shutoff-valve-repair",
+    "path": "/areas/apple-valley/55306/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/burnsville/55306/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/burnsville/55306/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-trenton-ga-sump-pump-repair",
+    "path": "/plumber-trenton-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-trenton-ga-emergency",
+    "redirectTo": "/plumber-trenton-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-james-main-water-shutoff-valve-repair",
+    "path": "/plumber-st.-james-main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-james-main-water-shutoff-valve-repair",
+    "redirectTo": "/plumber-st-james-main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-smyrna-ga-sump-pump-repair",
+    "path": "/plumber-smyrna-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-smyrna-ga-emergency",
+    "redirectTo": "/plumber-smyrna-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/willmar/56216/sewer-line-repair",
+    "path": "/areas/willmar/56216/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/blomkest/56216/sewer-line-repair",
+    "redirectTo": "/areas/blomkest/56216/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ellendale/56016/leak-repair",
+    "path": "/areas/ellendale/56016/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/clarks-grove/56016/leak-repair",
+    "redirectTo": "/areas/clarks-grove/56016/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-arlington-sump-pump-repair",
+    "path": "/plumber-arlington-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-arlington-emergency",
+    "redirectTo": "/plumber-arlington-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-david-emergency",
+    "path": "/plumber-st.-david-emergency",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-st-david-emergency",
+    "redirectTo": "/plumber-st-david-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sigurd/84654/sump-pump-repair",
+    "path": "/areas/sigurd/84654/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/salina-ut/84654/sump-pump-repair",
+    "redirectTo": "/areas/salina-ut/84654/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ogden/71853/leak-repair",
+    "path": "/areas/ogden/71853/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ogden-ar/71853/leak-repair",
+    "redirectTo": "/areas/ogden-ar/71853/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/houston/19954/sewer-line-repair",
+    "path": "/areas/houston/19954/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/houston-de/19954/sewer-line-repair",
+    "redirectTo": "/areas/houston-de/19954/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84749/sewer-line-repair",
+    "path": "/areas/lyman/84749/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lyman-ut/84749/sewer-line-repair",
+    "redirectTo": "/areas/lyman-ut/84749/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84061/sump-pump-repair",
+    "path": "/areas/oakley/84061/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/oakley-ut/84061/sump-pump-repair",
+    "redirectTo": "/areas/oakley-ut/84061/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84648/leak-repair",
+    "path": "/areas/eureka/84648/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/nephi/84648/leak-repair",
+    "redirectTo": "/areas/nephi/84648/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/henning/56515/whole-house-repiping",
+    "path": "/areas/henning/56515/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/battle-lake/56515/whole-house-repiping",
+    "redirectTo": "/areas/battle-lake/56515/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19717/pipe-burst-repair",
+    "path": "/areas/newark/19717/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/newark-de/19717/pipe-burst-repair",
+    "redirectTo": "/areas/newark-de/19717/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odessa/19730/whole-house-repiping",
+    "path": "/areas/odessa/19730/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/odessa-de/19730/whole-house-repiping",
+    "redirectTo": "/areas/odessa-de/19730/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ogden/71853/faucet-repair",
+    "path": "/areas/ogden/71853/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ogden-ar/71853/faucet-repair",
+    "redirectTo": "/areas/ogden-ar/71853/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84017/sump-pump-repair",
+    "path": "/areas/oakley/84017/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/coalville/84017/sump-pump-repair",
+    "redirectTo": "/areas/coalville/84017/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/parkin/72396/drain-cleaning",
+    "path": "/areas/parkin/72396/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wynne/72396/drain-cleaning",
+    "redirectTo": "/areas/wynne/72396/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/potlatch/83871/faucet-repair",
+    "path": "/areas/potlatch/83871/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/troy-id/83871/faucet-repair",
+    "redirectTo": "/areas/troy-id/83871/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/willmar/56288/sewer-line-repair",
+    "path": "/areas/willmar/56288/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/spicer/56288/sewer-line-repair",
+    "redirectTo": "/areas/spicer/56288/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/palisade/56469/pipe-burst-repair",
+    "path": "/areas/palisade/56469/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/palisade-mn/56469/pipe-burst-repair",
+    "redirectTo": "/areas/palisade-mn/56469/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ranier/56653/water-heater-repair",
+    "path": "/areas/ranier/56653/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/littlefork/56653/water-heater-repair",
+    "redirectTo": "/areas/littlefork/56653/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84655/leak-repair",
+    "path": "/areas/eureka/84655/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/genola/84655/leak-repair",
+    "redirectTo": "/areas/genola/84655/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84749/main-water-shutoff-valve-repair",
+    "path": "/areas/lyman/84749/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lyman-ut/84749/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/lyman-ut/84749/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84749/water-heater-repair",
+    "path": "/areas/lyman/84749/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lyman-ut/84749/water-heater-repair",
+    "redirectTo": "/areas/lyman-ut/84749/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/glyndon/56560/drain-cleaning",
+    "path": "/areas/glyndon/56560/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/moorhead/56560/drain-cleaning",
+    "redirectTo": "/areas/moorhead/56560/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/scandia/55074/sewer-line-repair",
+    "path": "/areas/scandia/55074/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/shafer/55074/sewer-line-repair",
+    "redirectTo": "/areas/shafer/55074/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/emergency",
+    "path": "/areas/wilmington/19801/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19801/emergency",
+    "redirectTo": "/areas/wilmington-de/19801/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ada/56545/slab-leak-repair",
+    "path": "/areas/ada/56545/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/gary-mn/56545/slab-leak-repair",
+    "redirectTo": "/areas/gary-mn/56545/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pindall/72636/faucet-repair",
+    "path": "/areas/pindall/72636/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/gilbert-ar/72636/faucet-repair",
+    "redirectTo": "/areas/gilbert-ar/72636/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/smyrna/19734/slab-leak-repair",
+    "path": "/areas/smyrna/19734/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/townsend-de/19734/slab-leak-repair",
+    "redirectTo": "/areas/townsend-de/19734/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greenfield/55357/sump-pump-repair",
+    "path": "/areas/greenfield/55357/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/greenfield-mn/55357/sump-pump-repair",
+    "redirectTo": "/areas/greenfield-mn/55357/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hallock/56720/main-water-shutoff-valve-repair",
+    "path": "/areas/hallock/56720/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/donaldson-mn/56720/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/donaldson-mn/56720/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sigurd/84652/sump-pump-repair",
+    "path": "/areas/sigurd/84652/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/redmond-ut/84652/sump-pump-repair",
+    "redirectTo": "/areas/redmond-ut/84652/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/zimmerman/55308/slab-leak-repair",
+    "path": "/areas/zimmerman/55308/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/becker/55308/slab-leak-repair",
+    "redirectTo": "/areas/becker/55308/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/smyrna/19904/slab-leak-repair",
+    "path": "/areas/smyrna/19904/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/dover-de/19904/slab-leak-repair",
+    "redirectTo": "/areas/dover-de/19904/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/spring-grove/55974/sump-pump-repair",
+    "path": "/areas/spring-grove/55974/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/spring-grove-mn/55974/sump-pump-repair",
+    "redirectTo": "/areas/spring-grove-mn/55974/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19805/main-water-shutoff-valve-repair",
+    "path": "/areas/wilmington/19805/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19805/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/wilmington-de/19805/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greers-ferry/72088/water-heater-repair",
+    "path": "/areas/greers-ferry/72088/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/fairfield-bay/72088/water-heater-repair",
+    "redirectTo": "/areas/fairfield-bay/72088/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greers-ferry/72153/water-heater-repair",
+    "path": "/areas/greers-ferry/72153/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/shirley/72153/water-heater-repair",
+    "redirectTo": "/areas/shirley/72153/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/white-bird/83549/water-heater-repair",
+    "path": "/areas/white-bird/83549/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/riggins/83549/water-heater-repair",
+    "redirectTo": "/areas/riggins/83549/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ada/56510/main-water-shutoff-valve-repair",
+    "path": "/areas/ada/56510/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ada-mn/56510/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/ada-mn/56510/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84628/toilet-repair",
+    "path": "/areas/eureka/84628/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/eureka-ut/84628/toilet-repair",
+    "redirectTo": "/areas/eureka-ut/84628/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hatch/84759/sewer-line-repair",
+    "path": "/areas/hatch/84759/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/panguitch/84759/sewer-line-repair",
+    "redirectTo": "/areas/panguitch/84759/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/monroe/84724/slab-leak-repair",
+    "path": "/areas/monroe/84724/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/elsinore/84724/slab-leak-repair",
+    "redirectTo": "/areas/elsinore/84724/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pindall/72633/faucet-repair",
+    "path": "/areas/pindall/72633/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/everton/72633/faucet-repair",
+    "redirectTo": "/areas/everton/72633/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/spring-grove/55922/water-line-repair",
+    "path": "/areas/spring-grove/55922/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/canton-mn/55922/water-line-repair",
+    "redirectTo": "/areas/canton-mn/55922/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/emmitsburg/21783/water-line-repair",
+    "path": "/areas/emmitsburg/21783/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/smithsburg/21783/water-line-repair",
+    "redirectTo": "/areas/smithsburg/21783/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hallock/56731/main-water-shutoff-valve-repair",
+    "path": "/areas/hallock/56731/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/humboldt-mn/56731/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/humboldt-mn/56731/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/henning/56527/whole-house-repiping",
+    "path": "/areas/henning/56527/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/deer-creek/56527/whole-house-repiping",
+    "redirectTo": "/areas/deer-creek/56527/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56162/sewer-line-repair",
+    "path": "/areas/odin/56162/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ormsby/56162/sewer-line-repair",
+    "redirectTo": "/areas/ormsby/56162/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/scandia/55038/sewer-line-repair",
+    "path": "/areas/scandia/55038/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/hugo/55038/sewer-line-repair",
+    "redirectTo": "/areas/hugo/55038/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84775/toilet-repair",
+    "path": "/areas/lyman/84775/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/torrey/84775/toilet-repair",
+    "redirectTo": "/areas/torrey/84775/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/rockville/20854/sump-pump-repair",
+    "path": "/areas/rockville/20854/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/rockville-md/20854/sump-pump-repair",
+    "redirectTo": "/areas/rockville-md/20854/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/danville/72833/sewer-line-repair",
+    "path": "/areas/danville/72833/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/danville-ar/72833/sewer-line-repair",
+    "redirectTo": "/areas/danville-ar/72833/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sharpsburg-ga-sump-pump-repair",
+    "path": "/plumber-sharpsburg-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-sharpsburg-ga-emergency",
+    "redirectTo": "/plumber-sharpsburg-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ada/56510/whole-house-repiping",
+    "path": "/areas/ada/56510/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ada-mn/56510/whole-house-repiping",
+    "redirectTo": "/areas/ada-mn/56510/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/henning/56588/whole-house-repiping",
+    "path": "/areas/henning/56588/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/vining/56588/whole-house-repiping",
+    "redirectTo": "/areas/vining/56588/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lucas/75002/sump-pump-repair",
+    "path": "/areas/lucas/75002/sump-pump-repair",
+    "category": "D",
+    "reason": "unqualified-service",
+    "status": 308,
+    "location": "/areas/lucas/75002/emergency",
+    "redirectTo": "/areas/lucas/75002/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/drain-cleaning",
+    "path": "/areas/oakley/84055/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/drain-cleaning",
+    "redirectTo": "/areas/oakley-ut/84055/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84628/water-line-repair",
+    "path": "/areas/eureka/84628/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/eureka-ut/84628/water-line-repair",
+    "redirectTo": "/areas/eureka-ut/84628/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84716/toilet-repair",
+    "path": "/areas/lyman/84716/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/boulder-ut/84716/toilet-repair",
+    "redirectTo": "/areas/boulder-ut/84716/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84749/pipe-burst-repair",
+    "path": "/areas/lyman/84749/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lyman-ut/84749/pipe-burst-repair",
+    "redirectTo": "/areas/lyman-ut/84749/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/sewer-line-repair",
+    "path": "/areas/wilmington/19801/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wilmington-de/19801/sewer-line-repair",
+    "redirectTo": "/areas/wilmington-de/19801/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mapleton/84663/whole-house-repiping",
+    "path": "/areas/mapleton/84663/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/springville/84663/whole-house-repiping",
+    "redirectTo": "/areas/springville/84663/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greenfield/55357/water-line-repair",
+    "path": "/areas/greenfield/55357/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/greenfield-mn/55357/water-line-repair",
+    "redirectTo": "/areas/greenfield-mn/55357/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/hallock/56734/main-water-shutoff-valve-repair",
+    "path": "/areas/hallock/56734/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/lake-bronson/56734/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/lake-bronson/56734/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ellendale/56026/main-water-shutoff-valve-repair",
+    "path": "/areas/ellendale/56026/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ellendale-mn/56026/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/ellendale-mn/56026/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/monroe/84754/faucet-repair",
+    "path": "/areas/monroe/84754/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/monroe-ut/84754/faucet-repair",
+    "redirectTo": "/areas/monroe-ut/84754/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/parkin/72394/drain-cleaning",
+    "path": "/areas/parkin/72394/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/widener/72394/drain-cleaning",
+    "redirectTo": "/areas/widener/72394/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lyman/84749/sump-pump-repair",
+    "path": "/areas/lyman/84749/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/lyman-ut/84749/sump-pump-repair",
+    "redirectTo": "/areas/lyman-ut/84749/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ratcliff/72855/sewer-line-repair",
+    "path": "/areas/ratcliff/72855/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/paris-ar/72855/sewer-line-repair",
+    "redirectTo": "/areas/paris-ar/72855/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/houston/19954/water-line-repair",
+    "path": "/areas/houston/19954/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/houston-de/19954/water-line-repair",
+    "redirectTo": "/areas/houston-de/19954/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/houston/19954/whole-house-repiping",
+    "path": "/areas/houston/19954/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/houston-de/19954/whole-house-repiping",
+    "redirectTo": "/areas/houston-de/19954/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56120/sewer-line-repair",
+    "path": "/areas/odin/56120/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/butterfield-mn/56120/sewer-line-repair",
+    "redirectTo": "/areas/butterfield-mn/56120/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/independence/55359/main-water-shutoff-valve-repair",
+    "path": "/areas/independence/55359/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/independence-mn/55359/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/independence-mn/55359/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greenfield/55357/water-softener-repair",
+    "path": "/areas/greenfield/55357/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/greenfield-mn/55357/water-softener-repair",
+    "redirectTo": "/areas/greenfield-mn/55357/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/emmitsburg/21787/water-line-repair",
+    "path": "/areas/emmitsburg/21787/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/taneytown/21787/water-line-repair",
+    "redirectTo": "/areas/taneytown/21787/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/houston/19941/pipe-burst-repair",
+    "path": "/areas/houston/19941/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ellendale-de/19941/pipe-burst-repair",
+    "redirectTo": "/areas/ellendale-de/19941/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/searcy/72178/slab-leak-repair",
+    "path": "/areas/searcy/72178/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/west-point-ar/72178/slab-leak-repair",
+    "redirectTo": "/areas/west-point-ar/72178/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/leamington/84648/sewer-line-repair",
+    "path": "/areas/leamington/84648/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/nephi/84648/sewer-line-repair",
+    "redirectTo": "/areas/nephi/84648/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/brooklyn-center/55432/slab-leak-repair",
+    "path": "/areas/brooklyn-center/55432/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/fridley/55432/slab-leak-repair",
+    "redirectTo": "/areas/fridley/55432/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/palisade/55748/drain-cleaning",
+    "path": "/areas/palisade/55748/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/hill-city-mn/55748/drain-cleaning",
+    "redirectTo": "/areas/hill-city-mn/55748/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84628/faucet-repair",
+    "path": "/areas/eureka/84628/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/eureka-ut/84628/faucet-repair",
+    "redirectTo": "/areas/eureka-ut/84628/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sigurd/84730/sump-pump-repair",
+    "path": "/areas/sigurd/84730/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/glenwood-ut/84730/sump-pump-repair",
+    "redirectTo": "/areas/glenwood-ut/84730/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/emmitsburg/21793/water-line-repair",
+    "path": "/areas/emmitsburg/21793/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/walkersville/21793/water-line-repair",
+    "redirectTo": "/areas/walkersville/21793/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/emmitsburg/21788/water-line-repair",
+    "path": "/areas/emmitsburg/21788/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/thurmont/21788/water-line-repair",
+    "redirectTo": "/areas/thurmont/21788/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/glyndon/56562/drain-cleaning",
+    "path": "/areas/glyndon/56562/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/moorhead/56562/drain-cleaning",
+    "redirectTo": "/areas/moorhead/56562/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/garbage-disposal-repair",
+    "path": "/areas/oakley/84055/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/garbage-disposal-repair",
+    "redirectTo": "/areas/oakley-ut/84055/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/sewer-line-repair",
+    "path": "/areas/oakley/84055/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/sewer-line-repair",
+    "redirectTo": "/areas/oakley-ut/84055/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/whole-house-repiping",
+    "path": "/areas/oakley/84055/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/whole-house-repiping",
+    "redirectTo": "/areas/oakley-ut/84055/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56160/slab-leak-repair",
+    "path": "/areas/odin/56160/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/odin-mn/56160/slab-leak-repair",
+    "redirectTo": "/areas/odin-mn/56160/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sigurd/84711/sump-pump-repair",
+    "path": "/areas/sigurd/84711/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/annabella/84711/sump-pump-repair",
+    "redirectTo": "/areas/annabella/84711/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/elaine/72390/emergency",
+    "path": "/areas/elaine/72390/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/helena-west-helena/72390/emergency",
+    "redirectTo": "/areas/helena-west-helena/72390/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mccrory/72006/pipe-burst-repair",
+    "path": "/areas/mccrory/72006/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/augusta-ar/72006/pipe-burst-repair",
+    "redirectTo": "/areas/augusta-ar/72006/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-anthony-water-line-repair",
+    "path": "/plumber-st.-anthony-water-line-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-anthony-water-line-repair",
+    "redirectTo": "/plumber-st-anthony-water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-francisville-main-water-shutoff-valve-repair",
+    "path": "/plumber-st.-francisville-main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-st-francisville-main-water-shutoff-valve-repair",
+    "redirectTo": "/plumber-st-francisville-main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/parkin/72327/drain-cleaning",
+    "path": "/areas/parkin/72327/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/jennette/72327/drain-cleaning",
+    "redirectTo": "/areas/jennette/72327/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/willmar/56251/sewer-line-repair",
+    "path": "/areas/willmar/56251/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/kandiyohi/56251/sewer-line-repair",
+    "redirectTo": "/areas/kandiyohi/56251/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19711/sewer-line-repair",
+    "path": "/areas/newark/19711/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19711/sewer-line-repair",
+    "redirectTo": "/areas/newark-de/19711/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/slab-leak-repair",
+    "path": "/areas/oakley/84055/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/slab-leak-repair",
+    "redirectTo": "/areas/oakley-ut/84055/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84628/sewer-line-repair",
+    "path": "/areas/eureka/84628/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/eureka-ut/84628/sewer-line-repair",
+    "redirectTo": "/areas/eureka-ut/84628/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/spring-grove/55974/water-softener-repair",
+    "path": "/areas/spring-grove/55974/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/spring-grove-mn/55974/water-softener-repair",
+    "redirectTo": "/areas/spring-grove-mn/55974/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ellendale/56026/whole-house-repiping",
+    "path": "/areas/ellendale/56026/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ellendale-mn/56026/whole-house-repiping",
+    "redirectTo": "/areas/ellendale-mn/56026/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/millington/21635/water-softener-repair",
+    "path": "/areas/millington/21635/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/galena-md/21635/water-softener-repair",
+    "redirectTo": "/areas/galena-md/21635/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/palisade/55760/drain-cleaning",
+    "path": "/areas/palisade/55760/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/mcgregor-mn/55760/drain-cleaning",
+    "redirectTo": "/areas/mcgregor-mn/55760/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/greers-ferry/72543/water-heater-repair",
+    "path": "/areas/greers-ferry/72543/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/heber-springs/72543/water-heater-repair",
+    "redirectTo": "/areas/heber-springs/72543/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ada/56548/slab-leak-repair",
+    "path": "/areas/ada/56548/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/halstad/56548/slab-leak-repair",
+    "redirectTo": "/areas/halstad/56548/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56160/faucet-repair",
+    "path": "/areas/odin/56160/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/odin-mn/56160/faucet-repair",
+    "redirectTo": "/areas/odin-mn/56160/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-riverview-al-sump-pump-repair",
+    "path": "/plumber-riverview-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-riverview-al-emergency",
+    "redirectTo": "/plumber-riverview-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-maysville-ga-sump-pump-repair",
+    "path": "/plumber-maysville-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-maysville-ga-emergency",
+    "redirectTo": "/plumber-maysville-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/zimmerman/55303/slab-leak-repair",
+    "path": "/areas/zimmerman/55303/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ramsey/55303/slab-leak-repair",
+    "redirectTo": "/areas/ramsey/55303/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ellendale/56026/water-line-repair",
+    "path": "/areas/ellendale/56026/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ellendale-mn/56026/water-line-repair",
+    "redirectTo": "/areas/ellendale-mn/56026/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odessa/19730/slab-leak-repair",
+    "path": "/areas/odessa/19730/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/odessa-de/19730/slab-leak-repair",
+    "redirectTo": "/areas/odessa-de/19730/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/eureka/84628/emergency",
+    "path": "/areas/eureka/84628/emergency",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/eureka-ut/84628/emergency",
+    "redirectTo": "/areas/eureka-ut/84628/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mccrory/72169/pipe-burst-repair",
+    "path": "/areas/mccrory/72169/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/tupelo-ar/72169/pipe-burst-repair",
+    "redirectTo": "/areas/tupelo-ar/72169/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odin/56160/leak-repair",
+    "path": "/areas/odin/56160/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/odin-mn/56160/leak-repair",
+    "redirectTo": "/areas/odin-mn/56160/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/water-softener-repair",
+    "path": "/areas/wilmington/19801/water-softener-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wilmington-de/19801/water-softener-repair",
+    "redirectTo": "/areas/wilmington-de/19801/water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ada/56519/slab-leak-repair",
+    "path": "/areas/ada/56519/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/borup/56519/slab-leak-repair",
+    "redirectTo": "/areas/borup/56519/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/independence/55359/whole-house-repiping",
+    "path": "/areas/independence/55359/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/independence-mn/55359/whole-house-repiping",
+    "redirectTo": "/areas/independence-mn/55359/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/mccrory/72347/pipe-burst-repair",
+    "path": "/areas/mccrory/72347/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/hickory-ridge/72347/pipe-burst-repair",
+    "redirectTo": "/areas/hickory-ridge/72347/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ogden/71853/whole-house-repiping",
+    "path": "/areas/ogden/71853/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ogden-ar/71853/whole-house-repiping",
+    "redirectTo": "/areas/ogden-ar/71853/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ogden/71862/faucet-repair",
+    "path": "/areas/ogden/71862/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/washington-ar/71862/faucet-repair",
+    "redirectTo": "/areas/washington-ar/71862/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sigurd/84620/sump-pump-repair",
+    "path": "/areas/sigurd/84620/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/aurora-ut/84620/sump-pump-repair",
+    "redirectTo": "/areas/aurora-ut/84620/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/parkin/72324/drain-cleaning",
+    "path": "/areas/parkin/72324/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/cherry-valley-ar/72324/drain-cleaning",
+    "redirectTo": "/areas/cherry-valley-ar/72324/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/sandstone/55704/leak-repair",
+    "path": "/areas/sandstone/55704/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/askov/55704/leak-repair",
+    "redirectTo": "/areas/askov/55704/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-pipe-burst-repair",
+    "path": "/plumber-east-st.-louis-pipe-burst-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-east-st-louis-pipe-burst-repair",
+    "redirectTo": "/plumber-east-st-louis-pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/zimmerman/55309/slab-leak-repair",
+    "path": "/areas/zimmerman/55309/slab-leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/big-lake/55309/slab-leak-repair",
+    "redirectTo": "/areas/big-lake/55309/slab-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/palisade/56469/sump-pump-repair",
+    "path": "/areas/palisade/56469/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/palisade-mn/56469/sump-pump-repair",
+    "redirectTo": "/areas/palisade-mn/56469/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pine-bluff/71665/drain-cleaning",
+    "path": "/areas/pine-bluff/71665/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/rison/71665/drain-cleaning",
+    "redirectTo": "/areas/rison/71665/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/pindall/72677/faucet-repair",
+    "path": "/areas/pindall/72677/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/summit-ar/72677/faucet-repair",
+    "redirectTo": "/areas/summit-ar/72677/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-port-st.-joe-faucet-repair",
+    "path": "/plumber-port-st.-joe-faucet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-port-st-joe-faucet-repair",
+    "redirectTo": "/plumber-port-st-joe-faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84055/water-line-repair",
+    "path": "/areas/oakley/84055/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/oakley-ut/84055/water-line-repair",
+    "redirectTo": "/areas/oakley-ut/84055/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/oakley/84033/sump-pump-repair",
+    "path": "/areas/oakley/84033/sump-pump-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/henefer/84033/sump-pump-repair",
+    "redirectTo": "/areas/henefer/84033/sump-pump-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/palisade/56431/drain-cleaning",
+    "path": "/areas/palisade/56431/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/aitkin/56431/drain-cleaning",
+    "redirectTo": "/areas/aitkin/56431/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19806/main-water-shutoff-valve-repair",
+    "path": "/areas/wilmington/19806/main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19806/main-water-shutoff-valve-repair",
+    "redirectTo": "/areas/wilmington-de/19806/main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-main-water-shutoff-valve-repair",
+    "path": "/plumber-east-st.-louis-main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-east-st-louis-main-water-shutoff-valve-repair",
+    "redirectTo": "/plumber-east-st-louis-main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cheverly/20722/toilet-repair",
+    "path": "/areas/cheverly/20722/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/colmar-manor/20722/toilet-repair",
+    "redirectTo": "/areas/colmar-manor/20722/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19713/pipe-burst-repair",
+    "path": "/areas/newark/19713/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19713/pipe-burst-repair",
+    "redirectTo": "/areas/newark-de/19713/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sunset-ar-sump-pump-repair",
+    "path": "/plumber-sunset-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-sunset-ar-emergency",
+    "redirectTo": "/plumber-sunset-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-oakley-sump-pump-repair",
+    "path": "/plumber-oakley-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-oakley-emergency",
+    "redirectTo": "/plumber-oakley-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-john-main-water-shutoff-valve-repair",
+    "path": "/plumber-st.-john-main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-st-john-main-water-shutoff-valve-repair",
+    "redirectTo": "/plumber-st-john-main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-san-luis-sump-pump-repair",
+    "path": "/plumber-san-luis-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-san-luis-emergency",
+    "redirectTo": "/plumber-san-luis-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/drain-cleaning",
+    "path": "/areas/wilmington/19801/drain-cleaning",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/wilmington-de/19801/drain-cleaning",
+    "redirectTo": "/areas/wilmington-de/19801/drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/odessa/19709/garbage-disposal-repair",
+    "path": "/areas/odessa/19709/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/middletown-de/19709/garbage-disposal-repair",
+    "redirectTo": "/areas/middletown-de/19709/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-john-leak-repair",
+    "path": "/plumber-st.-john-leak-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-john-leak-repair",
+    "redirectTo": "/plumber-st-john-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-john-toilet-repair",
+    "path": "/plumber-st.-john-toilet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-john-toilet-repair",
+    "redirectTo": "/plumber-st-john-toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lynn-al-sump-pump-repair",
+    "path": "/plumber-lynn-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-lynn-al-emergency",
+    "redirectTo": "/plumber-lynn-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/ogden/71853/water-heater-repair",
+    "path": "/areas/ogden/71853/water-heater-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/ogden-ar/71853/water-heater-repair",
+    "redirectTo": "/areas/ogden-ar/71853/water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arden/19802/water-line-repair",
+    "path": "/areas/arden/19802/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19802/water-line-repair",
+    "redirectTo": "/areas/wilmington-de/19802/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hayden-az-sump-pump-repair",
+    "path": "/plumber-hayden-az-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-hayden-az-emergency",
+    "redirectTo": "/plumber-hayden-az-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-quincy-fl-sump-pump-repair",
+    "path": "/plumber-quincy-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-quincy-fl-emergency",
+    "redirectTo": "/plumber-quincy-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19717/sewer-line-repair",
+    "path": "/areas/newark/19717/sewer-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19717/sewer-line-repair",
+    "redirectTo": "/areas/newark-de/19717/sewer-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-water-softener-repair",
+    "path": "/plumber-east-st.-louis-water-softener-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-east-st-louis-water-softener-repair",
+    "redirectTo": "/plumber-east-st-louis-water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-water-line-repair",
+    "path": "/plumber-east-st.-louis-water-line-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-east-st-louis-water-line-repair",
+    "redirectTo": "/plumber-east-st-louis-water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-danville-ca-sump-pump-repair",
+    "path": "/plumber-danville-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-danville-ca-emergency",
+    "redirectTo": "/plumber-danville-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st-francis-ar-sump-pump-repair",
+    "path": "/plumber-st-francis-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-st-francis-ar-emergency",
+    "redirectTo": "/plumber-st-francis-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/independence/55359/pipe-burst-repair",
+    "path": "/areas/independence/55359/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/independence-mn/55359/pipe-burst-repair",
+    "redirectTo": "/areas/independence-mn/55359/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-florence-sump-pump-repair",
+    "path": "/plumber-florence-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-florence-emergency",
+    "redirectTo": "/plumber-florence-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-islamorada,-village-of-islands-garbage-disposal-repair",
+    "path": "/plumber-islamorada,-village-of-islands-garbage-disposal-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-islamorada-village-of-islands-garbage-disposal-repair",
+    "redirectTo": "/plumber-islamorada-village-of-islands-garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-helena-emergency",
+    "path": "/plumber-st.-helena-emergency",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-helena-emergency",
+    "redirectTo": "/plumber-st-helena-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-el-paso-de-robles-(paso-robles)-water-heater-repair",
+    "path": "/plumber-el-paso-de-robles-(paso-robles)-water-heater-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-el-paso-de-robles-paso-robles-water-heater-repair",
+    "target_status": 308
+  },
+  {
+    "url": "https://yohomefix.com/areas/wilmington/19801/leak-repair",
+    "path": "/areas/wilmington/19801/leak-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19801/leak-repair",
+    "redirectTo": "/areas/wilmington-de/19801/leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-leak-repair",
+    "path": "/plumber-east-st.-louis-leak-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-east-st-louis-leak-repair",
+    "redirectTo": "/plumber-east-st-louis-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-port-st.-joe-toilet-repair",
+    "path": "/plumber-port-st.-joe-toilet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-port-st-joe-toilet-repair",
+    "redirectTo": "/plumber-port-st-joe-toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-montezuma-sump-pump-repair",
+    "path": "/plumber-montezuma-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-montezuma-emergency",
+    "redirectTo": "/plumber-montezuma-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-harrison-ar-sump-pump-repair",
+    "path": "/plumber-harrison-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-harrison-ar-emergency",
+    "redirectTo": "/plumber-harrison-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/potlatch/83843/faucet-repair",
+    "path": "/areas/potlatch/83843/faucet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/moscow/83843/faucet-repair",
+    "redirectTo": "/areas/moscow/83843/faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-eagle-lake-sump-pump-repair",
+    "path": "/plumber-eagle-lake-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-eagle-lake-emergency",
+    "redirectTo": "/plumber-eagle-lake-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-mulberry-sump-pump-repair",
+    "path": "/plumber-mulberry-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-mulberry-emergency",
+    "redirectTo": "/plumber-mulberry-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-meridian-sump-pump-repair",
+    "path": "/plumber-meridian-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-meridian-emergency",
+    "redirectTo": "/plumber-meridian-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-anthony-toilet-repair",
+    "path": "/plumber-st.-anthony-toilet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-anthony-toilet-repair",
+    "redirectTo": "/plumber-st-anthony-toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-augustine-water-softener-repair",
+    "path": "/plumber-st.-augustine-water-softener-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-augustine-water-softener-repair",
+    "redirectTo": "/plumber-st-augustine-water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lucas-sump-pump-repair",
+    "path": "/plumber-lucas-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-lucas-emergency",
+    "redirectTo": "/plumber-lucas-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/delaware-city/19713/toilet-repair",
+    "path": "/areas/delaware-city/19713/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19713/toilet-repair",
+    "redirectTo": "/areas/newark-de/19713/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arden/19807/water-line-repair",
+    "path": "/areas/arden/19807/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/wilmington-de/19807/water-line-repair",
+    "redirectTo": "/areas/wilmington-de/19807/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-port-st.-joe-water-heater-repair",
+    "path": "/plumber-port-st.-joe-water-heater-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-port-st-joe-water-heater-repair",
+    "redirectTo": "/plumber-port-st-joe-water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-san-buenaventura-(ventura)-main-water-shutoff-valve-repair",
+    "path": "/plumber-san-buenaventura-(ventura)-main-water-shutoff-valve-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 404,
+    "location": "",
+    "redirectTo": "/plumber-san-buenaventura-ventura-main-water-shutoff-valve-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bradford-ar-sump-pump-repair",
+    "path": "/plumber-bradford-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-bradford-ar-emergency",
+    "redirectTo": "/plumber-bradford-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-salem-ar-sump-pump-repair",
+    "path": "/plumber-salem-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-salem-ar-emergency",
+    "redirectTo": "/plumber-salem-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-sedgwick-ar-sump-pump-repair",
+    "path": "/plumber-sedgwick-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-sedgwick-ar-emergency",
+    "redirectTo": "/plumber-sedgwick-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/arden/19703/water-line-repair",
+    "path": "/areas/arden/19703/water-line-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/ardentown/19703/water-line-repair",
+    "redirectTo": "/areas/ardentown/19703/water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-waldo-sump-pump-repair",
+    "path": "/plumber-waldo-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-waldo-emergency",
+    "redirectTo": "/plumber-waldo-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-leon-water-softener-repair",
+    "path": "/plumber-st.-leon-water-softener-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-leon-water-softener-repair",
+    "redirectTo": "/plumber-st-leon-water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bridgeport-al-sump-pump-repair",
+    "path": "/plumber-bridgeport-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-bridgeport-al-emergency",
+    "redirectTo": "/plumber-bridgeport-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-johns-leak-repair",
+    "path": "/plumber-st.-johns-leak-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-johns-leak-repair",
+    "redirectTo": "/plumber-st-johns-leak-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-union-grove-al-sump-pump-repair",
+    "path": "/plumber-union-grove-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-union-grove-al-emergency",
+    "redirectTo": "/plumber-union-grove-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-port-st.-joe-pipe-burst-repair",
+    "path": "/plumber-port-st.-joe-pipe-burst-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-port-st-joe-pipe-burst-repair",
+    "redirectTo": "/plumber-port-st-joe-pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-cuba-sump-pump-repair",
+    "path": "/plumber-cuba-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-cuba-emergency",
+    "redirectTo": "/plumber-cuba-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/cheverly/20737/toilet-repair",
+    "path": "/areas/cheverly/20737/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/riverdale-park/20737/toilet-repair",
+    "redirectTo": "/areas/riverdale-park/20737/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-mckenzie-al-sump-pump-repair",
+    "path": "/plumber-mckenzie-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-mckenzie-al-emergency",
+    "redirectTo": "/plumber-mckenzie-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-helena-water-softener-repair",
+    "path": "/plumber-st.-helena-water-softener-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-helena-water-softener-repair",
+    "redirectTo": "/plumber-st-helena-water-softener-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-helena-drain-cleaning",
+    "path": "/plumber-st.-helena-drain-cleaning",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-helena-drain-cleaning",
+    "redirectTo": "/plumber-st-helena-drain-cleaning",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/lake-providence/71254/sump-pump-repair",
+    "path": "/areas/lake-providence/71254/sump-pump-repair",
+    "category": "D",
+    "reason": "unqualified-service",
+    "status": 308,
+    "location": "/areas/lake-providence/71254/emergency",
+    "redirectTo": "/areas/lake-providence/71254/emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/delaware-city/19709/toilet-repair",
+    "path": "/areas/delaware-city/19709/toilet-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 308,
+    "location": "/areas/middletown-de/19709/toilet-repair",
+    "redirectTo": "/areas/middletown-de/19709/toilet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-libory-faucet-repair",
+    "path": "/plumber-st.-libory-faucet-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-libory-faucet-repair",
+    "redirectTo": "/plumber-st-libory-faucet-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lake-city-sump-pump-repair",
+    "path": "/plumber-lake-city-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-lake-city-emergency",
+    "redirectTo": "/plumber-lake-city-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-lowell-ar-sump-pump-repair",
+    "path": "/plumber-lowell-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-lowell-ar-emergency",
+    "redirectTo": "/plumber-lowell-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hatfield-ar-sump-pump-repair",
+    "path": "/plumber-hatfield-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-hatfield-ar-emergency",
+    "redirectTo": "/plumber-hatfield-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-vernon-fl-sump-pump-repair",
+    "path": "/plumber-vernon-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-vernon-fl-emergency",
+    "redirectTo": "/plumber-vernon-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19711/pipe-burst-repair",
+    "path": "/areas/newark/19711/pipe-burst-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19711/pipe-burst-repair",
+    "redirectTo": "/areas/newark-de/19711/pipe-burst-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19716/whole-house-repiping",
+    "path": "/areas/newark/19716/whole-house-repiping",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19716/whole-house-repiping",
+    "redirectTo": "/areas/newark-de/19716/whole-house-repiping",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-hampton-ar-sump-pump-repair",
+    "path": "/plumber-hampton-ar-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-hampton-ar-emergency",
+    "redirectTo": "/plumber-hampton-ar-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-waverly-al-sump-pump-repair",
+    "path": "/plumber-waverly-al-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-waverly-al-emergency",
+    "redirectTo": "/plumber-waverly-al-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-seneca-sump-pump-repair",
+    "path": "/plumber-seneca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-seneca-emergency",
+    "redirectTo": "/plumber-seneca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-augustine-garbage-disposal-repair",
+    "path": "/plumber-st.-augustine-garbage-disposal-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-augustine-garbage-disposal-repair",
+    "redirectTo": "/plumber-st-augustine-garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-plainville-ga-sump-pump-repair",
+    "path": "/plumber-plainville-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-plainville-ga-emergency",
+    "redirectTo": "/plumber-plainville-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-ellisville-sump-pump-repair",
+    "path": "/plumber-ellisville-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-ellisville-emergency",
+    "redirectTo": "/plumber-ellisville-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-robinson-sump-pump-repair",
+    "path": "/plumber-robinson-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-robinson-emergency",
+    "redirectTo": "/plumber-robinson-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-glencoe-sump-pump-repair",
+    "path": "/plumber-glencoe-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-glencoe-emergency",
+    "redirectTo": "/plumber-glencoe-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-climax-ga-sump-pump-repair",
+    "path": "/plumber-climax-ga-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-climax-ga-emergency",
+    "redirectTo": "/plumber-climax-ga-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bowling-green-fl-sump-pump-repair",
+    "path": "/plumber-bowling-green-fl-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-bowling-green-fl-emergency",
+    "redirectTo": "/plumber-bowling-green-fl-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-port-st.-joe-water-line-repair",
+    "path": "/plumber-port-st.-joe-water-line-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-port-st-joe-water-line-repair",
+    "redirectTo": "/plumber-port-st-joe-water-line-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/areas/newark/19716/garbage-disposal-repair",
+    "path": "/areas/newark/19716/garbage-disposal-repair",
+    "category": "D",
+    "reason": "wrong-city",
+    "status": 301,
+    "location": "/areas/newark-de/19716/garbage-disposal-repair",
+    "redirectTo": "/areas/newark-de/19716/garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-chandler-sump-pump-repair",
+    "path": "/plumber-chandler-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 308,
+    "location": "/plumber-chandler-emergency",
+    "redirectTo": "/plumber-chandler-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-pleasant-hill-ca-sump-pump-repair",
+    "path": "/plumber-pleasant-hill-ca-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-pleasant-hill-ca-emergency",
+    "redirectTo": "/plumber-pleasant-hill-ca-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-emergency",
+    "path": "/plumber-east-st.-louis-emergency",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-east-st-louis-emergency",
+    "redirectTo": "/plumber-east-st-louis-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-east-st.-louis-garbage-disposal-repair",
+    "path": "/plumber-east-st.-louis-garbage-disposal-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 308,
+    "location": "/plumber-east-st-louis-garbage-disposal-repair",
+    "redirectTo": "/plumber-east-st-louis-garbage-disposal-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-bethune-sump-pump-repair",
+    "path": "/plumber-bethune-sump-pump-repair",
+    "category": "D",
+    "reason": "plumber-unqualified-service",
+    "status": 301,
+    "location": "/plumber-bethune-emergency",
+    "redirectTo": "/plumber-bethune-emergency",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/plumber-st.-anthony-water-heater-repair",
+    "path": "/plumber-st.-anthony-water-heater-repair",
+    "category": "D",
+    "reason": "plumber-normalized-slug",
+    "status": 301,
+    "location": "/plumber-st-anthony-water-heater-repair",
+    "redirectTo": "/plumber-st-anthony-water-heater-repair",
+    "target_status": 200
+  },
+  {
+    "url": "https://yohomefix.com/cost/oklahoma-city",
+    "path": "/cost/oklahoma-city",
+    "category": "B",
+    "reason": "cost-not-eligible",
+    "status": 404,
+    "location": "",
+    "redirectTo": null,
+    "target_status": null
+  }
+]

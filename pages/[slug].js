@@ -1,8 +1,8 @@
 import { parseSlug, getStateSlug, SEED_CITIES, SERVICES, cityToSlug, buildSlug, isCityQualifiedForService } from '../lib/cities';
 import { getCityBySlug } from '../lib/cities-server';
 import { generatePageContent } from '../lib/contentGenerator';
-import { getNearbyPlacesSync, ensurePlacesLoaded } from '../lib/nationwidePlaces';
-import { getZctasByCitySync, ensureZctasLoaded } from '../lib/hyperlocalPlaces-server';
+import { getNearbyPlacesSync, ensurePlacesMetaLoaded, getStateCodeForSlugSync, ensurePlacesForStateLoaded } from '../lib/nationwidePlaces';
+import { getZctasByCitySync, ensureZctasForStateLoaded } from '../lib/hyperlocalPlaces-server';
 import { getPageDate } from '../lib/contentVersioning';
 import { PRIORITY_SEO } from '../lib/prioritySeo';
 import PlumberPage from '../components/PlumberPage';
@@ -30,8 +30,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  await ensurePlacesLoaded();
-  await ensureZctasLoaded();
   try {
     const rawSlug = params.slug;
 
@@ -42,6 +40,22 @@ export async function getStaticProps({ params }) {
 
     const { citySlug, service } = parsed;
 
+    // Determine stateCode with minimal data loading
+    let stateCode = null;
+    const seedCity = SEED_CITIES.find(c => cityToSlug(c.name) === citySlug);
+    if (seedCity) {
+      stateCode = seedCity.stateCode;
+    } else {
+      await ensurePlacesMetaLoaded();
+      stateCode = getStateCodeForSlugSync(citySlug);
+    }
+
+    // Load only this state's data shards (not the full 6MB datasets)
+    if (stateCode) {
+      await ensurePlacesForStateLoaded(stateCode);
+      await ensureZctasForStateLoaded(stateCode);
+    }
+
     // Look up city — checks SEED_CITIES first, then nationwide places dataset
     const knownCity = getCityBySlug(citySlug);
     if (!knownCity) {
@@ -49,7 +63,7 @@ export async function getStaticProps({ params }) {
     }
 
     const cityName = knownCity.name;
-    const stateCode = knownCity.stateCode || '';
+    stateCode = knownCity.stateCode || '';
 
     // Verify service qualification (e.g., sump-pump only in qualifying states)
     if (service && !isCityQualifiedForService(cityName, service.slug, stateCode)) {

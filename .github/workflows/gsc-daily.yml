@@ -1,0 +1,48 @@
+name: GSC Daily Report
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC (after GSC data becomes available)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch-and-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch GSC data
+        env:
+          GSC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GSC_SERVICE_ACCOUNT_EMAIL }}
+          GSC_PRIVATE_KEY: ${{ secrets.GSC_PRIVATE_KEY }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: node scripts/gsc-report.js fetch
+
+      - name: Generate 7-day report
+        env:
+          GSC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GSC_SERVICE_ACCOUNT_EMAIL }}
+          GSC_PRIVATE_KEY: ${{ secrets.GSC_PRIVATE_KEY }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: |
+          node scripts/gsc-report.js report 7 > gsc-data/report-$(date -u +%Y-%m-%d).txt
+          cat gsc-data/report-$(date -u +%Y-%m-%d).txt
+
+      - name: Commit snapshot and report
+        run: |
+          git config user.name "GSC Bot"
+          git config user.email "gsc-bot@yohomefix.com"
+          git add gsc-data/
+          git diff --staged --quiet || git commit -m "GSC daily snapshot $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gsc-report-${{ github.run_id }}
+          path: gsc-data/report-*.txt
+          retention-days: 90

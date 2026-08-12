@@ -1,0 +1,482 @@
+{
+  "GPTBot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adaf6eec89905-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adaf9b97f146a-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 403,
+      "cf_ray": "a27adafcf85947b6-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    }
+  ],
+  "OAI-SearchBot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adaffeb141c69-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adb02dea9c0d9-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb05fbaff4a3-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "ChatGPT-User": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb09a940160c-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb0c79213486-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb104fe6837b-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "ClaudeBot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb1359d63a8d-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb166edbcc07-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb19596094dd-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "anthropic-ai": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb1c2f733bbc-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adb1f2cd41f8a-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": "403: Forbidden"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 403,
+      "cf_ray": "a27adb220ceadeba-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": "403: Forbidden"
+    }
+  ],
+  "PerplexityBot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb253ba3ff6a-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb282c8c3b85-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb2b391cffaa-BOM",
+      "cf_cache": "MISS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Perplexity-User": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb2e4e5a1432-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb3118377143-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb34395557ad-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Google-Extended": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb371944e40f-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb39ff0cdc57-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb3cdd424bfa-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "CCBot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb3fe82bff65-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb429a650de6-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb454d770de6-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Bytespider": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb4838933b73-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adb4aef972c7b-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb4e6c572ce4-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Amazonbot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb51393fd20d-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adb53ff753037-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb574f811c69-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Applebot-Extended": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb5a1896b6fe-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb5d5c00cb6e-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb606e43117e-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Meta-ExternalAgent": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb638f6c90f3-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb663c1b17d7-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb6938d03a28-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "cohere-ai": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb6cad30ff61-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 403,
+      "cf_ray": "a27adb6f9eba41d4-BOM",
+      "cf_cache": "BYPASS",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": false,
+      "title": ""
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb72adf23d26-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ],
+  "Googlebot": [
+    {
+      "url": "https://yohomefix.com/",
+      "status": 200,
+      "cf_ray": "a27adb75785db66f-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber | 24 Hour Plumbing Service | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/plumber-oklahoma-city-emergency",
+      "status": 200,
+      "cf_ray": "a27adb785b9d3a9f-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumber Oklahoma City OK | 24/7 | YoHomeFix"
+    },
+    {
+      "url": "https://yohomefix.com/areas/oklahoma-city/73102/emergency",
+      "status": 200,
+      "cf_ray": "a27adb7b3c8cff75-BOM",
+      "cf_cache": "HIT",
+      "server": "cloudflare",
+      "cf_block": false,
+      "html_returned": true,
+      "title": "Emergency Plumbing Oklahoma City OK 73102 | YoHomeFix"
+    }
+  ]
+}

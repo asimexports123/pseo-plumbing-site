@@ -3,15 +3,11 @@ Read-only Google Search Console client.
 Fetches performance by page/query and indexing/crawl stats.
 """
 from googleapiclient.discovery import build
-from google.oauth2 import service_account
-from config import GSC_PROPERTY, GOOGLE_SERVICE_ACCOUNT_JSON
+from config import GSC_PROPERTY, load_google_credentials
 
 
 def _get_service():
-    creds = service_account.Credentials.from_service_account_file(
-        GOOGLE_SERVICE_ACCOUNT_JSON,
-        scopes=['https://www.googleapis.com/auth/webmasters.readonly'],
-    )
+    creds = load_google_credentials(scopes=['https://www.googleapis.com/auth/webmasters.readonly'])
     return build('webmasters', 'v3', credentials=creds)
 
 

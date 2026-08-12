@@ -696,11 +696,11 @@ export default function Home({ totalPlaces }) {
 }
 
 export async function getStaticProps() {
-  const { getTotalPlacesSync, ensurePlacesLoaded } = require('../lib/nationwidePlaces');
-  await ensurePlacesLoaded();
+  const { getTotalPlacesFromMetaSync, ensurePlacesMetaLoaded } = require('../lib/nationwidePlaces');
+  await ensurePlacesMetaLoaded();
   return {
     props: {
-      totalPlaces: getTotalPlacesSync(),
+      totalPlaces: getTotalPlacesFromMetaSync(),
     },
   };
 }

@@ -1,0 +1,282 @@
+[
+  {
+    "timestamp": "2026-08-07T01:13:19.972165+00:00",
+    "source": "marketcall",
+    "action": "fetched",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:13:19.992962+00:00",
+    "source": "gsc_pages",
+    "action": "fetched",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:13:20.029148+00:00",
+    "source": "gsc_queries",
+    "action": "fetched",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:13:24.582184+00:00",
+    "source": "ga4",
+    "action": "fetched",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:14:18.319263+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:14:18.333726+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:14:18.348584+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:14:18.362914+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:41:50.877930+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:41:50.904597+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:41:50.920091+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:41:50.934092+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:55:03.243760+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:55:03.266138+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:55:03.282980+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T01:55:03.297120+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:28:46.544815+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:28:46.570440+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:28:46.591632+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:28:46.609007+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:38:26.334804+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:38:26.366479+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:38:26.385696+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:38:26.408786+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:53:49.515425+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:53:49.543350+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:53:49.561158+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:53:49.577902+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:27.705682+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:27.723434+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:27.737065+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:27.750200+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:52.752239+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:52.765890+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:52.779289+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:55:52.792435+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:56:05.834547+00:00",
+    "source": "marketcall",
+    "action": "cache_hit",
+    "data_hash": "12d9dc8e6a80e147780c4e1bc7f5d2bb9f18311e4c914bda92de6bda754aca89",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:56:05.850987+00:00",
+    "source": "gsc_pages",
+    "action": "cache_hit",
+    "data_hash": "6fc60793c5c67ab7a48f34d921cbff25afdcd402c07107563d3da500f0acb257",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:56:05.864352+00:00",
+    "source": "gsc_queries",
+    "action": "cache_hit",
+    "data_hash": "49a6680c7c45058bf5403c150f4c27a753106e1322e39993c5777fb43dc2cddd",
+    "error": null
+  },
+  {
+    "timestamp": "2026-08-07T02:56:05.876943+00:00",
+    "source": "ga4",
+    "action": "cache_hit",
+    "data_hash": "9cd47a2c45a94f2c5c09f1bac98611520e194f7659186eeb99bebf85fc7de592",
+    "error": null
+  }
+]
