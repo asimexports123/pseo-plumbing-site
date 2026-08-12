@@ -1,0 +1,32 @@
+name: Rollback Production Route
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List and delete Workers route yohomefix.com/*
+        run: |
+          # List all routes to find the route ID
+          ROUTES=$(curl -s "https://api.cloudflare.com/client/v4/zones/cb7b2bc2dedd183daf447a65894c61c6/workers/routes" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}")
+          echo "Current routes: $ROUTES"
+          # Extract route ID for yohomefix.com/*
+          ROUTE_ID=$(echo "$ROUTES" | jq -r '.result[] | select(.pattern=="yohomefix.com/*") | .id')
+          if [ -z "$ROUTE_ID" ]; then
+            echo "No route found for yohomefix.com/* — already rolled back"
+            exit 0
+          fi
+          echo "Deleting route ID: $ROUTE_ID"
+          DELETE_RESPONSE=$(curl -s -X DELETE "https://api.cloudflare.com/client/v4/zones/cb7b2bc2dedd183daf447a65894c61c6/workers/routes/$ROUTE_ID" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}")
+          echo "$DELETE_RESPONSE"
+          SUCCESS=$(echo "$DELETE_RESPONSE" | jq -r '.success')
+          if [ "$SUCCESS" = "true" ]; then
+            echo "Route deleted successfully — production traffic now goes to Vercel"
+          else
+            echo "Failed to delete route"
+            exit 1
+          fi
