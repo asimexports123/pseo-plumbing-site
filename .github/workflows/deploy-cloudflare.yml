@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: '--max-old-space-size=6144'
+      NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
+      NODE_ENV: 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,10 +26,6 @@ jobs:
 
       - name: Build with OpenNext
         run: npx opennextjs-cloudflare build
-        env:
-          NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
-          NODE_ENV: 'production'
-          NODE_OPTIONS: '--max-old-space-size=8192'
 
       - name: Deploy to Cloudflare Workers (staging)
         run: npx wrangler deploy
