@@ -9,7 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      NODE_OPTIONS: '--max-old-space-size=6144'
       NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
     steps:
       - name: Checkout
@@ -25,6 +24,8 @@ jobs:
 
       - name: Build with OpenNext
         run: npx opennextjs-cloudflare build
+        env:
+          NODE_OPTIONS: '--max-old-space-size=8192'
 
       - name: Deploy to Cloudflare Workers (staging)
         run: npx wrangler deploy
