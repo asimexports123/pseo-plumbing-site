@@ -145,6 +145,12 @@ export function middleware(request) {
   const path = request.nextUrl.pathname || '';
   const method = request.method;
 
+  // Skip ISR guard for Next.js data/prefetch requests — OpenNext rewrites
+  // _next/data/{buildId}/plumber-* to /plumber-* before middleware sees it,
+  // so we check the original URL to detect data requests and let them through.
+  const originalUrl = request.url || '';
+  const isDataRequest = originalUrl.includes('/_next/data/');
+
   // 1. Fast block for known bad crawlers and HTTP libraries.
   //    Exempt the homepage (static, no ISR cost) to prevent cached
   //    text/plain 403 responses from being served to real users.
@@ -169,7 +175,7 @@ export function middleware(request) {
   // 3. ISR route protection — only real browsers, search, and allowed AI
   //    Error responses use no-store to prevent edge caching of text/plain.
   const isISRRoute = ISR_ROUTE_PATTERNS.some(pattern => pattern.test(path));
-  if (isISRRoute && !isAllowedSearchOrAIBot(userAgent)) {
+  if (isISRRoute && !isDataRequest && !isAllowedSearchOrAIBot(userAgent)) {
     return blockResponse('Forbidden', 403, { 'Cache-Control': 'no-store, no-cache, must-revalidate' });
   }
 
