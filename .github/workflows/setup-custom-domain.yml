@@ -1,0 +1,30 @@
+name: Setup Production Custom Domain
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-custom-domain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add custom domain yohomefix.com to Worker
+        run: |
+          RESPONSE=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/accounts/4f98884c905792ecc294a9d77b3c17fd/workers/domains" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"environment":"production","hostname":"yohomefix.com","service":"pseo-plumbing-site","zone_id":"cb7b2bc2dedd183daf447a65894c61c6"}')
+          echo "$RESPONSE"
+          SUCCESS=$(echo "$RESPONSE" | jq -r '.success')
+          if [ "$SUCCESS" = "true" ]; then
+            echo "Custom domain created successfully"
+            exit 0
+          fi
+          # Check if already exists
+          EXISTING=$(curl -s "https://api.cloudflare.com/client/v4/accounts/4f98884c905792ecc294a9d77b3c17fd/workers/domains" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}")
+          echo "Existing domains: $EXISTING"
+          if echo "$EXISTING" | jq -e '.result[] | select(.hostname=="yohomefix.com")' > /dev/null 2>&1; then
+            echo "Custom domain already exists — success"
+            exit 0
+          fi
+          exit 1
