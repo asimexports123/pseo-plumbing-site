@@ -8,8 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,13 +18,14 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       - name: Build with OpenNext
         run: npx opennextjs-cloudflare build
         env:
+          NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
+          NODE_ENV: 'production'
           NODE_OPTIONS: '--max-old-space-size=8192'
-          NEXT_DISABLE_TURBOPACK: '1'
 
       - name: Deploy to Cloudflare Workers (staging)
         run: npx wrangler deploy
