@@ -26,6 +26,7 @@ jobs:
         run: npx opennextjs-cloudflare build
         env:
           NODE_OPTIONS: '--max-old-space-size=8192'
+          NEXT_DISABLE_TURBOPACK: '1'
 
       - name: Deploy to Cloudflare Workers (staging)
         run: npx wrangler deploy
