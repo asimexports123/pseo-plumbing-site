@@ -58,7 +58,7 @@ const faqs = [
 ];
 
 export async function getStaticProps() {
-  const lastReviewed = getPageDate('static:plumbing-cost-guide');
+  const lastReviewed = await getPageDate('static:plumbing-cost-guide');
   return { props: { lastReviewed } };
 }
 
@@ -130,12 +130,40 @@ export default function PlumbingCostGuide({ lastReviewed }) {
             <li><span className="text-gray-700 font-medium">Plumbing Cost Guide</span></li>
           </ol>
         </nav>
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-12 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Plumbing Cost Guide</h1>
-            <p className="speakable-intro text-lg text-white mb-2">Typical national plumbing price ranges, the factors behind your quote, and how to evaluate repair versus replacement.</p>
-            <p className="text-white text-sm mb-6 max-w-2xl mx-auto">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
-            <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl" aria-label="Call for an upfront plumbing quote">📞 Get an Upfront Quote</a>
+        <section className="relative w-full overflow-hidden text-white" style={{ backgroundColor: '#172554' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch">
+            <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 py-10 md:py-20 lg:py-14">
+              <div className="w-full max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+                <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">Plumbing Cost Guide</h1>
+                <p className="speakable-intro text-lg text-white mb-2">Typical national plumbing price ranges, the factors behind your quote, and how to evaluate repair versus replacement.</p>
+                <p className="text-white text-sm mb-5 max-w-2xl mx-auto md:mx-0">Serving homeowners across the USA with ZIP code–based local plumber matching.</p>
+                <a href="tel:1" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-extrabold shadow-xl no-underline" aria-label="Call for an upfront plumbing quote">📞 Get an Upfront Quote</a>
+              </div>
+              <div
+                className="absolute top-full left-0 right-0 h-32 pointer-events-none md:hidden"
+                style={{ background: 'linear-gradient(to bottom, rgba(23,37,84,1) 0%, rgba(23,37,84,0.85) 15%, rgba(23,37,84,0.55) 30%, rgba(23,37,84,0.3) 45%, rgba(23,37,84,0.12) 60%, rgba(23,37,84,0.03) 75%, rgba(23,37,84,0) 100%)' }}
+              />
+            </div>
+            <div className="relative w-full md:w-[40%] md:flex-shrink-0 lg:w-[38%] pointer-events-none select-none">
+              <img
+                src="/images/plumber-service-hero.jpg"
+                alt="Licensed plumber repairing pipes with professional tools"
+                width={720}
+                height={915}
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-auto object-contain"
+                aria-hidden="true"
+                style={{ display: 'block' }}
+              />
+              <div
+                className="absolute inset-y-0 left-0 pointer-events-none hidden md:block"
+                style={{
+                  width: '42%',
+                  background: 'linear-gradient(to right, #172554 0%, rgba(23,37,84,0.98) 10%, rgba(23,37,84,0.92) 25%, rgba(23,37,84,0.8) 40%, rgba(23,37,84,0.6) 55%, rgba(23,37,84,0.4) 70%, rgba(23,37,84,0.2) 85%, rgba(23,37,84,0) 100%)',
+                }}
+              />
+            </div>
           </div>
         </section>
         <main className="max-w-4xl mx-auto w-full px-4 py-10">

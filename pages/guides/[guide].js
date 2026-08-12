@@ -121,7 +121,7 @@ export async function getStaticProps({ params }) {
   try {
     const guide = GUIDES[params.guide];
     if (!guide) return { notFound: true };
-    const lastReviewed = getPageDate(`guide:${params.guide}`);
+    const lastReviewed = await getPageDate(`guide:${params.guide}`);
     return { props: { guide, slug: params.guide, lastReviewed } };
   } catch (err) {
     console.error(`[guides/[guide]] getStaticProps error for ${params.guide}:`, err.message);

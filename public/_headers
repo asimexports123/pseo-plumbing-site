@@ -1,0 +1,11 @@
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+
+/content-dates.json
+  Cache-Control: public,max-age=0,s-maxage=31536000,must-revalidate
+
+/nationwide-places.json
+  Cache-Control: public,max-age=0,s-maxage=31536000,must-revalidate
+
+/zcta-search.json
+  Cache-Control: public,max-age=0,s-maxage=31536000,must-revalidate

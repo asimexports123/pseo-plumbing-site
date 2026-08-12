@@ -76,7 +76,7 @@ export async function getStaticProps({ params }) {
     const cityZips = getZctasByCity(citySlug);
 
     const pageSlug = `${citySlug}/${zip}/${svc.slug}`;
-    const lastReviewed = getPageDate(`zcta-service:${citySlug}:${zip}:${svc.slug}`);
+    const lastReviewed = await getPageDate(`zcta-service:${citySlug}:${zip}:${svc.slug}`);
 
     return {
       props: {

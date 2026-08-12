@@ -13,7 +13,7 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN || 'https://yohomefix.com';
 export async function getStaticProps() {
   const dataset = buildResearchDataset();
   const findings = computeFindings(dataset);
-  const lastReviewed = getPageDate('static:research-us-water-hardness');
+  const lastReviewed = await getPageDate('static:research-us-water-hardness');
   return {
     props: {
       dataset,

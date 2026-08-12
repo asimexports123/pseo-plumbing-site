@@ -87,7 +87,7 @@ export async function getStaticProps({ params }) {
     // Pre-compute ZCTAs for this city (for AreasWeServe component)
     const cityZctas = getZctasByCity(cityToSlug(cityName));
 
-    const lastReviewed = getPageDate(`city-service:${rawSlug}`);
+    const lastReviewed = await getPageDate(`city-service:${rawSlug}`);
 
     return {
       props: {

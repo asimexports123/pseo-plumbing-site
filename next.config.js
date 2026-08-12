@@ -78,11 +78,22 @@ const nextConfig = {
     };
   },
 
+  // 301 redirects for GSC 404 URLs from the Coverage Drilldown audit
+  async redirects() {
+    return require('./lib/redirects.json');
+  },
+
   // Reduce Vercel Fast Origin Transfer by caching large public assets at the
   // edge (s-maxage) and in browsers (max-age). _next/static already gets
   // immutable long caching; this fixes public/ JSON and image assets.
   async headers() {
     return [
+      {
+        source: '/content-dates.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=31536000, must-revalidate' },
+        ],
+      },
       {
         source: '/nationwide-places.json',
         headers: [
