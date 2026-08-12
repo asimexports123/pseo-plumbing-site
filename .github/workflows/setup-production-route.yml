@@ -9,9 +9,21 @@ jobs:
     steps:
       - name: Create Workers route for yohomefix.com
         run: |
-          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/cb7b2bc2dedd183daf447a65894c61c6/workers/routes" \
+          RESPONSE=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/cb7b2bc2dedd183daf447a65894c61c6/workers/routes" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}" \
             -H "Content-Type: application/json" \
-            --data '{"pattern":"yohomefix.com/*","script":"pseo-plumbing-site"}'
-        env:
-          CLOUDFLARE_ACCOUNT_TOKEN: ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}
+            --data '{"pattern":"yohomefix.com/*","script":"pseo-plumbing-site"}')
+          echo "$RESPONSE"
+          SUCCESS=$(echo "$RESPONSE" | jq -r '.success')
+          if [ "$SUCCESS" != "true" ]; then
+            # Check if route already exists
+            EXISTING=$(curl -s "https://api.cloudflare.com/client/v4/zones/cb7b2bc2dedd183daf447a65894c61c6/workers/routes" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}")
+            echo "Existing routes: $EXISTING"
+            # If route already exists, that's fine
+            if echo "$EXISTING" | jq -e '.result[] | select(.pattern=="yohomefix.com/*")' > /dev/null 2>&1; then
+              echo "Route already exists — success"
+              exit 0
+            fi
+            exit 1
+          fi
