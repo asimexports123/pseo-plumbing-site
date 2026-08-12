@@ -25,6 +25,7 @@ jobs:
         env:
           NEXT_PUBLIC_DOMAIN: 'https://yohomefix.com'
           NODE_ENV: 'production'
+          NODE_OPTIONS: '--max-old-space-size=4096'
 
       - name: Deploy to Cloudflare Workers (staging)
         run: npx wrangler deploy --name yohomefix-staging
