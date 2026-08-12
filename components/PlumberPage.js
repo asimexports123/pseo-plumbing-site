@@ -618,37 +618,68 @@ export default function PlumberPage({ cityName, stateCode, service, content, pag
 
         <main className="flex-1">
 
-        {/* Hero — py reduced to py-6 so CTA is above fold on 1366x768 */}
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-5 md:py-6 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
-              ⚡ Emergency Available — 24/7
+        {/* Hero — approved design with integrated plumber image */}
+        <section className="relative w-full overflow-hidden text-white" style={{ backgroundColor: '#172554' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch">
+            {/* Left: existing content */}
+            <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 py-10 md:py-20 lg:py-14">
+              <div className="w-full max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+                <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+                  ⚡ Emergency Available — 24/7
+                </div>
+                <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+                  {serviceSlug === 'emergency'
+                    ? `Emergency Plumber in ${location}`
+                    : serviceSlug === 'drain-cleaning'
+                    ? `Emergency Drain Service in ${location}`
+                    : serviceSlug === 'water-heater-repair'
+                    ? `Water Heater Repair in ${location} — Emergency 24/7`
+                    : `Emergency Plumber in ${location} — ${service?.shortName || serviceName}`}
+                </h1>
+                <p className="speakable-intro text-lg text-white mb-2 max-w-2xl mx-auto md:mx-0">
+                  {serviceSlug === 'drain-cleaning'
+                    ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
+                    : serviceSlug === 'water-heater-repair'
+                    ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber on the way fast. Upfront pricing.`
+                    : `Licensed plumber on the way fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
+                </p>
+                <p className="text-white text-sm mb-5 max-w-2xl mx-auto md:mx-0">
+                  Serving homeowners across the USA with ZIP code–based local plumber matching.
+                </p>
+                <CallButton label="hero" city={cityName} service={serviceName} />
+                <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live operator, 24/7</p>
+                <div className="flex flex-wrap gap-3 text-sm justify-center md:justify-start">
+                  {['✅ Licensed & Insured', '⏱️ Fast Response', '💰 Upfront Pricing', '🔧 All Plumbing Jobs'].map((badge) => (
+                    <span key={badge} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{badge}</span>
+                  ))}
+                </div>
+              </div>
+              <div
+                className="absolute top-full left-0 right-0 h-32 pointer-events-none md:hidden"
+                style={{ background: 'linear-gradient(to bottom, rgba(23,37,84,1) 0%, rgba(23,37,84,0.85) 15%, rgba(23,37,84,0.55) 30%, rgba(23,37,84,0.3) 45%, rgba(23,37,84,0.12) 60%, rgba(23,37,84,0.03) 75%, rgba(23,37,84,0) 100%)' }}
+              />
             </div>
-            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-              {serviceSlug === 'emergency'
-                ? `Emergency Plumber in ${location}`
-                : serviceSlug === 'drain-cleaning'
-                ? `Emergency Drain Service in ${location}`
-                : serviceSlug === 'water-heater-repair'
-                ? `Water Heater Repair in ${location} — Emergency 24/7`
-                : `Emergency Plumber in ${location} — ${service?.shortName || serviceName}`}
-            </h1>
-            <p className="speakable-intro text-base md:text-xl text-white mb-4 max-w-2xl mx-auto">
-              {serviceSlug === 'drain-cleaning'
-                ? `Emergency drain service available 24/7. Clogged drains, sewer backups, and blockages cleared fast. Upfront pricing before any work begins.`
-                : serviceSlug === 'water-heater-repair'
-                ? `No hot water? Emergency water heater repair 24/7 — tank and tankless repair, same-day replacement available. Licensed plumber on the way fast. Upfront pricing.`
-                : `Licensed plumber on the way fast. We aim for 60-minute response. Upfront pricing before any work begins.`}
-            </p>
-            <p className="text-white text-sm mb-3 max-w-2xl mx-auto">
-              Serving homeowners across the USA with ZIP code–based local plumber matching.
-            </p>
-            <CallButton label="hero" city={cityName} service={serviceName} />
-            <p className="text-white text-sm mt-2 mb-4">Tap to call — answered by a live operator, 24/7</p>
-            <div className="flex flex-wrap justify-center gap-3 text-sm">
-              {['✅ Licensed & Insured', '⏱️ Fast Response', '💰 Upfront Pricing', '🔧 All Plumbing Jobs'].map((badge) => (
-                <span key={badge} className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full">{badge}</span>
-              ))}
+
+            {/* Right: photograph with smooth gradient blend on left edge */}
+            <div className="relative w-full md:w-[40%] md:flex-shrink-0 lg:w-[38%] pointer-events-none select-none">
+              <img
+                src="/images/plumber-service-hero.jpg"
+                alt="Licensed plumber repairing pipes with professional tools"
+                width={720}
+                height={915}
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-auto object-contain"
+                aria-hidden="true"
+                style={{ display: 'block' }}
+              />
+              <div
+                className="absolute inset-y-0 left-0 pointer-events-none hidden md:block"
+                style={{
+                  width: '42%',
+                  background: 'linear-gradient(to right, #172554 0%, rgba(23,37,84,0.98) 10%, rgba(23,37,84,0.92) 25%, rgba(23,37,84,0.8) 40%, rgba(23,37,84,0.6) 55%, rgba(23,37,84,0.4) 70%, rgba(23,37,84,0.2) 85%, rgba(23,37,84,0) 100%)',
+                }}
+              />
             </div>
           </div>
         </section>

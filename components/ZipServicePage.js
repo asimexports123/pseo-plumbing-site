@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { SERVICES, cityToSlug, buildSlug, getStateSlug } from '../lib/cities';
+import { SERVICES, buildSlug, getStateSlug } from '../lib/cities';
 import { isZctaQualifiedForService } from '../lib/hyperlocalPlaces';
 import { CrawlLinks } from './CrawlLinks';
 import { TrustBar } from './ConversionLayer';
@@ -72,7 +72,8 @@ export function ZipServicePage({
   const description = buildZipDescription(serviceSlug, serviceName, zip, cityName, stateCode);
   const canonical = `${domain}/areas/${pageSlug}`;
   const stateHubSlug = stateCode ? `plumber-${getStateSlug(stateCode)}` : null;
-  const cityServiceSlug = buildSlug(cityToSlug(cityName), serviceSlug);
+  const citySlug = pageSlug.split('/')[0];
+  const cityServiceSlug = buildSlug(citySlug, serviceSlug);
   const orgSchema = buildOrganizationSchema();
   const webSchema = buildWebSiteSchema();
 
@@ -190,27 +191,59 @@ export function ZipServicePage({
           </ol>
         </nav>
 
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white px-4 py-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
-              ⚡ 24/7 Emergency Available
+        {/* Hero — continuous blue with integrated right-side photo */}
+        <section className="relative w-full overflow-hidden text-white" style={{ backgroundColor: '#172554' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch">
+            {/* Left: content */}
+            <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 py-10 md:py-20 lg:py-14 pb-0 md:pb-20 lg:pb-14">
+              <div className="w-full max-w-2xl mx-auto md:mx-0 text-center md:text-left pb-0 md:pb-0">
+                <div className="inline-block bg-brand text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
+                  ⚡ 24/7 Emergency Available
+                </div>
+                <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight text-white">
+                  {serviceName} in {cityName}, {stateCode} {zip}
+                </h1>
+                <p className="text-lg text-blue-50 mb-2">
+                  Licensed plumbers serving the {zip} area of {cityName}. Available 24/7 with transparent pricing from participating providers.
+                </p>
+                <p className="text-sm text-blue-100 mb-5">
+                  ZIP Code {zip} is part of {cityName}, {stateName}. We connect homeowners in this area with local plumbing professionals.
+                </p>
+                <p className="text-white text-sm mb-5 max-w-2xl mx-auto md:mx-0">
+                  Serving homeowners across the USA with ZIP code–based local plumber matching.
+                </p>
+                <a href="tel:1" data-track="zip-hero" className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
+                  <span aria-hidden="true">📞</span> Get Emergency Help
+                </a>
+              </div>
+              <div
+                className="absolute top-full left-0 right-0 h-32 pointer-events-none md:hidden"
+                style={{ background: 'linear-gradient(to bottom, rgba(23,37,84,1) 0%, rgba(23,37,84,0.85) 15%, rgba(23,37,84,0.55) 30%, rgba(23,37,84,0.3) 45%, rgba(23,37,84,0.12) 60%, rgba(23,37,84,0.03) 75%, rgba(23,37,84,0) 100%)' }}
+              />
             </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-              {serviceName} in {cityName}, {stateCode} {zip}
-            </h1>
-            <p className="text-lg text-blue-50 mb-2">
-              Licensed plumbers serving the {zip} area of {cityName}. Available 24/7 with transparent pricing from participating providers.
-            </p>
-            <p className="text-sm text-blue-100 mb-5">
-              ZIP Code {zip} is part of {cityName}, {stateName}. We connect homeowners in this area with local plumbing professionals.
-            </p>
-            <p className="text-white text-sm mb-5 max-w-2xl mx-auto">
-              Serving homeowners across the USA with ZIP code–based local plumber matching.
-            </p>
-            <a href="tel:1" data-track="zip-hero" className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-xl font-extrabold shadow-xl transition-transform hover:scale-105 no-underline" aria-label="Call emergency dispatch now">
-              <span aria-hidden="true">📞</span> Get Emergency Help
-            </a>
+
+            {/* Right: photograph */}
+            <div className="relative w-full md:w-[40%] md:flex-shrink-0 lg:w-[38%] pointer-events-none select-none">
+              <img
+                src="/images/plumber-service-hero.jpg"
+                alt="Licensed plumber repairing pipes with professional tools"
+                width={720}
+                height={915}
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-auto object-contain"
+                aria-hidden="true"
+                style={{ display: 'block' }}
+              />
+              {/* Mobile-only: blue fade on top of image - starts from CTA area */}
+              <div
+                className="absolute inset-y-0 left-0 pointer-events-none hidden md:block"
+                style={{
+                  width: '42%',
+                  background: 'linear-gradient(to right, #172554 0%, rgba(23,37,84,0.98) 10%, rgba(23,37,84,0.92) 25%, rgba(23,37,84,0.8) 40%, rgba(23,37,84,0.6) 55%, rgba(23,37,84,0.4) 70%, rgba(23,37,84,0.2) 85%, rgba(23,37,84,0) 100%)',
+                }}
+              />
+            </div>
           </div>
         </section>
 
@@ -279,7 +312,7 @@ export function ZipServicePage({
               {SERVICES.filter(svc => !zcta || isZctaQualifiedForService(zcta, svc.slug)).map(svc => (
                 <Link
                   key={svc.slug}
-                  href={`/areas/${cityToSlug(cityName)}/${zip}/${svc.slug}`}
+                  href={`/areas/${citySlug}/${zip}/${svc.slug}`}
                   className="px-3 py-2 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center"
                 >
                   {svc.name}
@@ -298,7 +331,7 @@ export function ZipServicePage({
                 }).map(nz => (
                   <Link
                     key={nz.zip}
-                    href={`/areas/${nz.parentCitySlug || cityToSlug(cityName)}/${nz.zip}/${serviceSlug}`}
+                    href={`/areas/${nz.parentCitySlug || citySlug}/${nz.zip}/${serviceSlug}`}
                     className="px-3 py-2 bg-gray-50 hover:bg-blue-50 text-gray-700 rounded-lg text-sm no-underline transition-colors font-medium text-center"
                   >
                     ZIP {nz.zip} — {nz.parentCity}
@@ -359,7 +392,7 @@ export function ZipServicePage({
               </Link>
               {cityZipCount > 1 && (
                 <Link
-                  href={`/areas/${cityToSlug(cityName)}`}
+                  href={`/areas/${citySlug}`}
                   className="inline-block bg-white text-blue-900 border border-blue-300 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors no-underline"
                 >
                   All ZIP Codes in {cityName} →
