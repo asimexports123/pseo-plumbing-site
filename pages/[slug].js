@@ -121,6 +121,7 @@ export async function getStaticProps({ params }) {
         metaTitle: prioritySeo ? prioritySeo.title : '',
         metaDescription: prioritySeo ? prioritySeo.meta : '',
       },
+      revalidate: 3600,
     };
   } catch (err) {
     console.error(`[slug].js getStaticProps error for ${params.slug}:`, err.message);

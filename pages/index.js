@@ -697,10 +697,15 @@ export default function Home({ totalPlaces }) {
 
 export async function getStaticProps() {
   const { getTotalPlacesFromMetaSync, ensurePlacesMetaLoaded } = require('../lib/nationwidePlaces');
-  await ensurePlacesMetaLoaded();
+  try {
+    await ensurePlacesMetaLoaded();
+  } catch {
+    // Build-time: fs and getCloudflareContext unavailable. ISR will regenerate at runtime.
+  }
   return {
     props: {
       totalPlaces: getTotalPlacesFromMetaSync(),
     },
+    revalidate: 3600,
   };
 }

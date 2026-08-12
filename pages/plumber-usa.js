@@ -308,11 +308,16 @@ export default function PlumberUSA({ totalPlaces, serviceCityCounts }) {
 
 export async function getStaticProps() {
   const { getTotalPlacesFromMetaSync, getNationwideServiceCountsFromMetaSync, ensurePlacesMetaLoaded } = require('../lib/nationwidePlaces');
-  await ensurePlacesMetaLoaded();
+  try {
+    await ensurePlacesMetaLoaded();
+  } catch {
+    // Build-time: fs and getCloudflareContext unavailable. ISR will regenerate at runtime.
+  }
   return {
     props: {
       totalPlaces: getTotalPlacesFromMetaSync(),
       serviceCityCounts: getNationwideServiceCountsFromMetaSync(),
     },
+    revalidate: 3600,
   };
 }
