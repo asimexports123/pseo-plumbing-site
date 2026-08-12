@@ -147,9 +147,9 @@ export function middleware(request) {
 
   // Skip ISR guard for Next.js data/prefetch requests — OpenNext rewrites
   // _next/data/{buildId}/plumber-* to /plumber-* before middleware sees it,
-  // so we check the original URL to detect data requests and let them through.
+  // so we check the original URL and .json suffix to detect data requests.
   const originalUrl = request.url || '';
-  const isDataRequest = originalUrl.includes('/_next/data/');
+  const isDataRequest = originalUrl.includes('/_next/data/') || path.endsWith('.json');
 
   // 1. Fast block for known bad crawlers and HTTP libraries.
   //    Exempt the homepage (static, no ISR cost) to prevent cached
