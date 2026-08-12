@@ -178,6 +178,6 @@ export function middleware(request) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|favicon-|apple-touch-icon|og-image|nationwide-places.json|zcta-search.json|yohomefixindexnow2025|robots.txt|sitemap.xml).*)',
+    '/((?!_next/static|_next/image|_next/data|favicon.ico|favicon-|apple-touch-icon|og-image|nationwide-places.json|zcta-search.json|yohomefixindexnow2025|robots.txt|sitemap.xml).*)',
   ],
 };
