@@ -1,0 +1,2317 @@
+[
+  {
+    "source": "/areas/cambridge/02138/emergency",
+    "destination": "/areas/cambridge-ma/02138/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56160/drain-cleaning",
+    "destination": "/areas/odin-mn/56160/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/white-bird/83530/water-heater-repair",
+    "destination": "/areas/grangeville/83530/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84036/sump-pump-repair",
+    "destination": "/areas/kamas/84036/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arden/19809/water-line-repair",
+    "destination": "/areas/wilmington-de/19809/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-charles-sump-pump-repair",
+    "destination": "/plumber-st-charles-sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-atlanta-sump-pump-repair",
+    "destination": "/plumber-atlanta-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/acworth/30189/faucet-repair",
+    "destination": "/areas/woodstock-ga/30189/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hinckley/55037/faucet-repair",
+    "destination": "/areas/hinckley-mn/55037/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cajah's-mountain-water-line-repair",
+    "destination": "/plumber-cajah-s-mountain-water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mooreton/58081/pipe-burst-repair",
+    "destination": "/areas/wyndmere/58081/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-augusta/55329/garbage-disposal-repair",
+    "destination": "/areas/eden-valley/55329/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/labelle/33905/water-heater-repair",
+    "destination": "/areas/fort-myers/33905/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/smyrna/19938/slab-leak-repair",
+    "destination": "/areas/clayton-de/19938/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-joseph",
+    "destination": "/areas/st-joseph",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/channahon/60404/leak-repair",
+    "destination": "/areas/shorewood/60404/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hartwell-sump-pump-repair",
+    "destination": "/plumber-hartwell-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/center/58571/leak-repair",
+    "destination": "/areas/stanton-nd/58571/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/marion/57043/sump-pump-repair",
+    "destination": "/areas/marion-sd/57043/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hatch/84718/sewer-line-repair",
+    "destination": "/areas/cannonville/84718/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56160/sump-pump-repair",
+    "destination": "/areas/odin-mn/56160/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ansonville/28135/toilet-repair",
+    "destination": "/areas/polkton/28135/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/custer/49449/whole-house-repiping",
+    "destination": "/areas/pentwater/49449/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hollywood/35772/water-heater-repair",
+    "destination": "/areas/stevenson/35772/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oglethorpe/31057/emergency",
+    "destination": "/areas/marshallville/31057/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mandan/58504/drain-cleaning",
+    "destination": "/areas/bismarck/58504/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/harpersville/35147/emergency",
+    "destination": "/areas/westover/35147/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/florala/36420/water-heater-repair",
+    "destination": "/areas/andalusia/36420/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/leamington/84640/sewer-line-repair",
+    "destination": "/areas/lynndyl/84640/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oak-hill/37220/emergency",
+    "destination": "/areas/oak-hill-tn/37220/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lexington/48450/whole-house-repiping",
+    "destination": "/areas/lexington-mi/48450/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/loraine/62349/garbage-disposal-repair",
+    "destination": "/areas/loraine-il/62349/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/marion/57043/sewer-line-repair",
+    "destination": "/areas/marion-sd/57043/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/atlantic-beach/28557/pipe-burst-repair",
+    "destination": "/areas/morehead-city/28557/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lindsay/68644/leak-repair",
+    "destination": "/areas/lindsay-ne/68644/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19716/main-water-shutoff-valve-repair",
+    "destination": "/areas/newark-de/19716/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/waterloo/35634/emergency",
+    "destination": "/areas/st-florian/35634/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/crescent/51526/garbage-disposal-repair",
+    "destination": "/areas/crescent-ia/51526/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/acworth/30064/faucet-repair",
+    "destination": "/areas/marietta/30064/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/crescent/51526/sump-pump-repair",
+    "destination": "/areas/crescent-ia/51526/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oak-hill/37220/drain-cleaning",
+    "destination": "/areas/oak-hill-tn/37220/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wentworth/57075/toilet-repair",
+    "destination": "/areas/wentworth-sd/57075/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mooresboro/28040/garbage-disposal-repair",
+    "destination": "/areas/ellenboro/28040/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-faucet-repair",
+    "destination": "/plumber-east-st-louis-faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/loretto/15940/emergency",
+    "destination": "/areas/loretto-pa/15940/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/stockholm/57263/drain-cleaning",
+    "destination": "/areas/south-shore/57263/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/scotia/12302/water-line-repair",
+    "destination": "/areas/scotia-ny/12302/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lehr/58440/water-heater-repair",
+    "destination": "/areas/fredonia-nd/58440/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/caraway/72354/sewer-line-repair",
+    "destination": "/areas/lepanto/72354/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lindsay/68644/water-heater-repair",
+    "destination": "/areas/lindsay-ne/68644/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oak-hill/37220/water-softener-repair",
+    "destination": "/areas/oak-hill-tn/37220/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/main-water-shutoff-valve-repair",
+    "destination": "/areas/oakley-ut/84055/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cloquet/55711/water-heater-repair",
+    "destination": "/areas/brookston-mn/55711/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/alexandria/56308/main-water-shutoff-valve-repair",
+    "destination": "/areas/alexandria-mn/56308/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/salina/84654/leak-repair",
+    "destination": "/areas/salina-ut/84654/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/atlantic-beach/28512/toilet-repair",
+    "destination": "/areas/atlantic-beach-nc/28512/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/doyline/71024/garbage-disposal-repair",
+    "destination": "/areas/dubberly/71024/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arnold/63053/garbage-disposal-repair",
+    "destination": "/areas/kimmswick/63053/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-carthage-ar-sump-pump-repair",
+    "destination": "/plumber-carthage-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/paris/40361/water-softener-repair",
+    "destination": "/areas/paris-ky/40361/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-jo-water-heater-repair",
+    "destination": "/plumber-st-jo-water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mer-rouge/71220/main-water-shutoff-valve-repair",
+    "destination": "/areas/bastrop-la/71220/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/crescent/51548/drain-cleaning",
+    "destination": "/areas/mcclelland/51548/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mccrory/72074/pipe-burst-repair",
+    "destination": "/areas/hunter-ar/72074/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/willmar/56279/sewer-line-repair",
+    "destination": "/areas/pennock/56279/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/elkton/55977/main-water-shutoff-valve-repair",
+    "destination": "/areas/taopi/55977/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/evergreen/71333/drain-cleaning",
+    "destination": "/areas/evergreen-la/71333/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/north-johns/35111/leak-repair",
+    "destination": "/areas/bessemer/35111/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bridgeport/35740/pipe-burst-repair",
+    "destination": "/areas/bridgeport-al/35740/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-alto-ga-sump-pump-repair",
+    "destination": "/plumber-alto-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-collins-sump-pump-repair",
+    "destination": "/plumber-collins-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lexington/48450/water-softener-repair",
+    "destination": "/areas/lexington-mi/48450/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/dexter/48169/whole-house-repiping",
+    "destination": "/areas/pinckney/48169/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/barry/56210/toilet-repair",
+    "destination": "/areas/barry-mn/56210/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/paris/41031/water-heater-repair",
+    "destination": "/areas/cynthiana/41031/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/athena/97801/drain-cleaning",
+    "destination": "/areas/pendleton-or/97801/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/caraway/72414/sewer-line-repair",
+    "destination": "/areas/black-oak/72414/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cayuga/58013/emergency",
+    "destination": "/areas/cayuga-nd/58013/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/townsend/59644/faucet-repair",
+    "destination": "/areas/townsend-mt/59644/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/atlantic-beach/28512/leak-repair",
+    "destination": "/areas/atlantic-beach-nc/28512/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/spring-city/84667/faucet-repair",
+    "destination": "/areas/wales-ut/84667/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/seguin/78121/emergency",
+    "destination": "/areas/la-vernia/78121/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/page/58064/water-line-repair",
+    "destination": "/areas/page-nd/58064/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/crescent/51503/drain-cleaning",
+    "destination": "/areas/council-bluffs/51503/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/galesburg/49053/water-softener-repair",
+    "destination": "/areas/galesburg-mi/49053/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/dexter/48130/water-line-repair",
+    "destination": "/areas/dexter-mi/48130/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19716/faucet-repair",
+    "destination": "/areas/newark-de/19716/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/delmont/57313/water-heater-repair",
+    "destination": "/areas/armour/57313/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/adamsville/35073/pipe-burst-repair",
+    "destination": "/areas/graysville/35073/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/harpersville/35185/emergency",
+    "destination": "/areas/westover/35185/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/creswell/27928/main-water-shutoff-valve-repair",
+    "destination": "/areas/creswell-nc/27928/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/claremont/62421/garbage-disposal-repair",
+    "destination": "/areas/claremont-il/62421/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cashion/73016/sump-pump-repair",
+    "destination": "/areas/cashion/73016/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/highland/72542/pipe-burst-repair",
+    "destination": "/areas/highland-ar/72542/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/teague/75831/drain-cleaning",
+    "destination": "/areas/buffalo-tx/75831/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/elba/14058/pipe-burst-repair",
+    "destination": "/areas/elba-ny/14058/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/boardman/28438/toilet-repair",
+    "destination": "/areas/boardman-nc/28438/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bondville/61874/drain-cleaning",
+    "destination": "/areas/savoy/61874/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cecil/31627/water-softener-repair",
+    "destination": "/areas/cecil-ga/31627/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/adamsville/35118/leak-repair",
+    "destination": "/areas/sylvan-springs/35118/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cajah's-mountain-sump-pump-repair",
+    "destination": "/plumber-cajah-s-mountain-sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/townsend/59644/pipe-burst-repair",
+    "destination": "/areas/townsend-mt/59644/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eveleth/55751/emergency",
+    "destination": "/areas/mountain-iron/55751/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-mitchellville-ar-sump-pump-repair",
+    "destination": "/plumber-mitchellville-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/loraine/62349/water-softener-repair",
+    "destination": "/areas/loraine-il/62349/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/highland/72532/slab-leak-repair",
+    "destination": "/areas/evening-shade/72532/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/adamsville/35073/leak-repair",
+    "destination": "/areas/graysville/35073/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/underwood/56576/water-line-repair",
+    "destination": "/areas/richville/56576/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/custer/49405/water-line-repair",
+    "destination": "/areas/custer-mi/49405/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/max/58735/sump-pump-repair",
+    "destination": "/areas/douglas-nd/58735/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-daytona-beach-sump-pump-repair",
+    "destination": "/plumber-daytona-beach-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lake-st.-louis-drain-cleaning",
+    "destination": "/plumber-lake-st-louis-drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/townsend/59645/water-heater-repair",
+    "destination": "/areas/white-sulphur-springs-mt/59645/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hamburg/71663/pipe-burst-repair",
+    "destination": "/areas/portland-ar/71663/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/posen/48742/water-softener-repair",
+    "destination": "/areas/lincoln-mi/48742/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pringle/57773/main-water-shutoff-valve-repair",
+    "destination": "/areas/pringle-sd/57773/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/washburn/58577/slab-leak-repair",
+    "destination": "/areas/washburn-nd/58577/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/north-johns/35023/leak-repair",
+    "destination": "/areas/hueytown/35023/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/marion/57043/water-heater-repair",
+    "destination": "/areas/marion-sd/57043/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/tabor-city/28430/garbage-disposal-repair",
+    "destination": "/areas/cerro-gordo/28430/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cajah's-mountain-water-heater-repair",
+    "destination": "/plumber-cajah-s-mountain-water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/spring-city/84662/toilet-repair",
+    "destination": "/areas/spring-city-ut/84662/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/towner/58313/drain-cleaning",
+    "destination": "/areas/balta/58313/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/dayton/99328/toilet-repair",
+    "destination": "/areas/dayton-wa/99328/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bonanza/97623/main-water-shutoff-valve-repair",
+    "destination": "/areas/bonanza-or/97623/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/florala/36455/water-heater-repair",
+    "destination": "/areas/lockhart-al/36455/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilson/72330/slab-leak-repair",
+    "destination": "/areas/dyess/72330/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bowling-green/22580/garbage-disposal-repair",
+    "destination": "/areas/bowling-green-va/22580/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/goldston/27559/sump-pump-repair",
+    "destination": "/areas/pittsboro/27559/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/beresford/57073/emergency",
+    "destination": "/areas/wakonda/57073/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/gunnison/84652/water-heater-repair",
+    "destination": "/areas/redmond-ut/84652/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/dayton/99328/faucet-repair",
+    "destination": "/areas/dayton-wa/99328/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oglethorpe/31711/emergency",
+    "destination": "/areas/andersonville/31711/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/atlantic-beach/28532/pipe-burst-repair",
+    "destination": "/areas/havelock/28532/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lexington/48450/emergency",
+    "destination": "/areas/lexington-mi/48450/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/underwood/56586/emergency",
+    "destination": "/areas/underwood-mn/56586/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bridgeport/35740/toilet-repair",
+    "destination": "/areas/bridgeport-al/35740/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bonanza/97624/emergency",
+    "destination": "/areas/chiloquin/97624/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hanley-falls/56241/slab-leak-repair",
+    "destination": "/areas/granite-falls-mn/56241/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/harrisburg/97327/drain-cleaning",
+    "destination": "/areas/brownsville-or/97327/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/somersworth/03801/drain-cleaning",
+    "destination": "/areas/portsmouth-nh/03801/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-mooresville-al-sump-pump-repair",
+    "destination": "/plumber-mooresville-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/delaware-city/19730/toilet-repair",
+    "destination": "/areas/odessa-de/19730/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hollywood/35768/water-heater-repair",
+    "destination": "/areas/scottsboro/35768/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/balta/58710/drain-cleaning",
+    "destination": "/areas/anamoose/58710/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/elaine/72342/emergency",
+    "destination": "/areas/helena-west-helena/72342/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-kilgore-sump-pump-repair",
+    "destination": "/plumber-kilgore-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bridgeport/35740/sewer-line-repair",
+    "destination": "/areas/bridgeport-al/35740/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cavalier/58262/water-heater-repair",
+    "destination": "/areas/mountain/58262/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-joseph/64506/slab-leak-repair",
+    "destination": "/areas/st-joseph/64506/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/roberts/83444/slab-leak-repair",
+    "destination": "/areas/roberts-id/83444/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/tekamah/68019/drain-cleaning",
+    "destination": "/areas/craig-ne/68019/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/peck/83524/water-line-repair",
+    "destination": "/areas/culdesac/83524/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/new-castle/16159/leak-repair",
+    "destination": "/areas/hermitage/16159/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bonanza/97633/emergency",
+    "destination": "/areas/merrill-or/97633/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arnold/63128/garbage-disposal-repair",
+    "destination": "/areas/sunset-hills/63128/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/melbourne/41085/emergency",
+    "destination": "/areas/silver-grove/41085/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sibley/64088/garbage-disposal-repair",
+    "destination": "/areas/sibley-mo/64088/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/grygla/56763/faucet-repair",
+    "destination": "/areas/warroad/56763/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hollywood/35752/toilet-repair",
+    "destination": "/areas/hollywood-al/35752/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lemmon/57641/leak-repair",
+    "destination": "/areas/mcintosh-sd/57641/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bowdon/58486/water-heater-repair",
+    "destination": "/areas/sykeston/58486/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/toilet-repair",
+    "destination": "/areas/wilmington-de/19801/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wellman/79378/pipe-burst-repair",
+    "destination": "/areas/wellman-tx/79378/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/buxton/58201/leak-repair",
+    "destination": "/areas/grand-forks/58201/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/nashua/59248/sump-pump-repair",
+    "destination": "/areas/nashua-mt/59248/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bonanza/97623/faucet-repair",
+    "destination": "/areas/bonanza-or/97623/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/alpena/49779/drain-cleaning",
+    "destination": "/areas/rogers-city/49779/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mooresboro/28152/garbage-disposal-repair",
+    "destination": "/areas/shelby/28152/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/adamsville/35214/leak-repair",
+    "destination": "/areas/birmingham/35214/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hughes-ar-sump-pump-repair",
+    "destination": "/plumber-hughes-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ruso/58575/leak-repair",
+    "destination": "/areas/turtle-lake-nd/58575/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/montrose/57048/emergency",
+    "destination": "/areas/montrose-sd/57048/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/washburn/58577/leak-repair",
+    "destination": "/areas/washburn-nd/58577/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lockhart/36455/whole-house-repiping",
+    "destination": "/areas/lockhart-al/36455/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/kendleton/77417/pipe-burst-repair",
+    "destination": "/areas/beasley/77417/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-fayetteville-ga-sump-pump-repair",
+    "destination": "/plumber-fayetteville-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lynn-ar-sump-pump-repair",
+    "destination": "/plumber-lynn-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/bonanza/97603/emergency",
+    "destination": "/areas/klamath-falls/97603/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sherman-sump-pump-repair",
+    "destination": "/plumber-sherman-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sparks-ga-sump-pump-repair",
+    "destination": "/plumber-sparks-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19716/sump-pump-repair",
+    "destination": "/areas/newark-de/19716/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-augusta/55320/garbage-disposal-repair",
+    "destination": "/areas/st-augusta/55320/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cairo-sump-pump-repair",
+    "destination": "/plumber-cairo-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cecil/31632/leak-repair",
+    "destination": "/areas/hahira/31632/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/richland/97883/pipe-burst-repair",
+    "destination": "/areas/union-or/97883/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/richland/97907/pipe-burst-repair",
+    "destination": "/areas/huntington-or/97907/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-augusta",
+    "destination": "/areas/st-augusta",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-shiloh-al-sump-pump-repair",
+    "destination": "/plumber-shiloh-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-norwalk-ca-sump-pump-repair",
+    "destination": "/plumber-norwalk-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-union-city-ga-sump-pump-repair",
+    "destination": "/plumber-union-city-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-warrenton-ga-sump-pump-repair",
+    "destination": "/plumber-warrenton-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-bristol-fl-sump-pump-repair",
+    "destination": "/plumber-bristol-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-greenwood-ar-sump-pump-repair",
+    "destination": "/plumber-greenwood-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-wilson-ar-sump-pump-repair",
+    "destination": "/plumber-wilson-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-fairfax-ca-sump-pump-repair",
+    "destination": "/plumber-fairfax-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-washington-ga-sump-pump-repair",
+    "destination": "/plumber-washington-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-claremont-ca-sump-pump-repair",
+    "destination": "/plumber-claremont-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-warren-ar-sump-pump-repair",
+    "destination": "/plumber-warren-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/st.-joseph/64503/whole-house-repiping",
+    "destination": "/areas/st-joseph/64503/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-waterford-ca-sump-pump-repair",
+    "destination": "/plumber-waterford-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/watkins/55353/garbage-disposal-repair",
+    "destination": "/areas/st-augusta/55353/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sardis-ga-sump-pump-repair",
+    "destination": "/plumber-sardis-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-williamson-ga-sump-pump-repair",
+    "destination": "/plumber-williamson-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-san-jose-sump-pump-repair",
+    "destination": "/plumber-san-jose-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-edwardsville-al-sump-pump-repair",
+    "destination": "/plumber-edwardsville-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-rogers-sump-pump-repair",
+    "destination": "/plumber-rogers-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-monroe-ga-sump-pump-repair",
+    "destination": "/plumber-monroe-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/center/58530/main-water-shutoff-valve-repair",
+    "destination": "/areas/center-nd/58530/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-eudora-ar-sump-pump-repair",
+    "destination": "/plumber-eudora-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pindall/72685/faucet-repair",
+    "destination": "/areas/western-grove/72685/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cave-city-ar-sump-pump-repair",
+    "destination": "/plumber-cave-city-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-wooster-ar-sump-pump-repair",
+    "destination": "/plumber-wooster-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-john-sump-pump-repair",
+    "destination": "/plumber-st-john-sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-gonzales-tx-sump-pump-repair",
+    "destination": "/plumber-gonzales-tx-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-fulton-ar-sump-pump-repair",
+    "destination": "/plumber-fulton-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-arkansas-city-ar-sump-pump-repair",
+    "destination": "/plumber-arkansas-city-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-belmont-ca-sump-pump-repair",
+    "destination": "/plumber-belmont-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-vernon-ca-sump-pump-repair",
+    "destination": "/plumber-vernon-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-dodge-city-al-sump-pump-repair",
+    "destination": "/plumber-dodge-city-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-oak-grove-al-sump-pump-repair",
+    "destination": "/plumber-oak-grove-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-brighton-al-sump-pump-repair",
+    "destination": "/plumber-brighton-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-alexander-ar-sump-pump-repair",
+    "destination": "/plumber-alexander-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-roanoke-al-sump-pump-repair",
+    "destination": "/plumber-roanoke-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-moorefield-ar-sump-pump-repair",
+    "destination": "/plumber-moorefield-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lenox-ga-sump-pump-repair",
+    "destination": "/plumber-lenox-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-avalon-ca-sump-pump-repair",
+    "destination": "/plumber-avalon-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hull-ga-sump-pump-repair",
+    "destination": "/plumber-hull-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-zebulon-ga-sump-pump-repair",
+    "destination": "/plumber-zebulon-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-morganton-ga-sump-pump-repair",
+    "destination": "/plumber-morganton-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-greenville-fl-sump-pump-repair",
+    "destination": "/plumber-greenville-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-plymouth-ca-sump-pump-repair",
+    "destination": "/plumber-plymouth-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-rogersville-al-sump-pump-repair",
+    "destination": "/plumber-rogersville-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-summit-ar-sump-pump-repair",
+    "destination": "/plumber-summit-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-la-crosse-fl-sump-pump-repair",
+    "destination": "/plumber-la-crosse-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-providence-al-sump-pump-repair",
+    "destination": "/plumber-providence-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-ardmore-al-sump-pump-repair",
+    "destination": "/plumber-ardmore-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cudahy-ca-sump-pump-repair",
+    "destination": "/plumber-cudahy-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-jennings-fl-sump-pump-repair",
+    "destination": "/plumber-jennings-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-franklin-al-sump-pump-repair",
+    "destination": "/plumber-franklin-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lakewood-ca-sump-pump-repair",
+    "destination": "/plumber-lakewood-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-duncan-az-sump-pump-repair",
+    "destination": "/plumber-duncan-az-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-central-city-ar-sump-pump-repair",
+    "destination": "/plumber-central-city-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/apple-valley/55306/main-water-shutoff-valve-repair",
+    "destination": "/areas/burnsville/55306/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-trenton-ga-sump-pump-repair",
+    "destination": "/plumber-trenton-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-james-main-water-shutoff-valve-repair",
+    "destination": "/plumber-st-james-main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-smyrna-ga-sump-pump-repair",
+    "destination": "/plumber-smyrna-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/willmar/56216/sewer-line-repair",
+    "destination": "/areas/blomkest/56216/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ellendale/56016/leak-repair",
+    "destination": "/areas/clarks-grove/56016/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-arlington-sump-pump-repair",
+    "destination": "/plumber-arlington-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-david-emergency",
+    "destination": "/plumber-st-david-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sigurd/84654/sump-pump-repair",
+    "destination": "/areas/salina-ut/84654/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ogden/71853/leak-repair",
+    "destination": "/areas/ogden-ar/71853/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/houston/19954/sewer-line-repair",
+    "destination": "/areas/houston-de/19954/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84749/sewer-line-repair",
+    "destination": "/areas/lyman-ut/84749/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84061/sump-pump-repair",
+    "destination": "/areas/oakley-ut/84061/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84648/leak-repair",
+    "destination": "/areas/nephi/84648/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/henning/56515/whole-house-repiping",
+    "destination": "/areas/battle-lake/56515/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19717/pipe-burst-repair",
+    "destination": "/areas/newark-de/19717/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odessa/19730/whole-house-repiping",
+    "destination": "/areas/odessa-de/19730/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ogden/71853/faucet-repair",
+    "destination": "/areas/ogden-ar/71853/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84017/sump-pump-repair",
+    "destination": "/areas/coalville/84017/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/parkin/72396/drain-cleaning",
+    "destination": "/areas/wynne/72396/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/potlatch/83871/faucet-repair",
+    "destination": "/areas/troy-id/83871/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/willmar/56288/sewer-line-repair",
+    "destination": "/areas/spicer/56288/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/palisade/56469/pipe-burst-repair",
+    "destination": "/areas/palisade-mn/56469/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ranier/56653/water-heater-repair",
+    "destination": "/areas/littlefork/56653/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84655/leak-repair",
+    "destination": "/areas/genola/84655/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84749/main-water-shutoff-valve-repair",
+    "destination": "/areas/lyman-ut/84749/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84749/water-heater-repair",
+    "destination": "/areas/lyman-ut/84749/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/glyndon/56560/drain-cleaning",
+    "destination": "/areas/moorhead/56560/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/scandia/55074/sewer-line-repair",
+    "destination": "/areas/shafer/55074/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/emergency",
+    "destination": "/areas/wilmington-de/19801/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ada/56545/slab-leak-repair",
+    "destination": "/areas/gary-mn/56545/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pindall/72636/faucet-repair",
+    "destination": "/areas/gilbert-ar/72636/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/smyrna/19734/slab-leak-repair",
+    "destination": "/areas/townsend-de/19734/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greenfield/55357/sump-pump-repair",
+    "destination": "/areas/greenfield-mn/55357/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hallock/56720/main-water-shutoff-valve-repair",
+    "destination": "/areas/donaldson-mn/56720/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sigurd/84652/sump-pump-repair",
+    "destination": "/areas/redmond-ut/84652/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/zimmerman/55308/slab-leak-repair",
+    "destination": "/areas/becker/55308/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/smyrna/19904/slab-leak-repair",
+    "destination": "/areas/dover-de/19904/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/spring-grove/55974/sump-pump-repair",
+    "destination": "/areas/spring-grove-mn/55974/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19805/main-water-shutoff-valve-repair",
+    "destination": "/areas/wilmington-de/19805/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greers-ferry/72088/water-heater-repair",
+    "destination": "/areas/fairfield-bay/72088/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greers-ferry/72153/water-heater-repair",
+    "destination": "/areas/shirley/72153/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/white-bird/83549/water-heater-repair",
+    "destination": "/areas/riggins/83549/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ada/56510/main-water-shutoff-valve-repair",
+    "destination": "/areas/ada-mn/56510/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84628/toilet-repair",
+    "destination": "/areas/eureka-ut/84628/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hatch/84759/sewer-line-repair",
+    "destination": "/areas/panguitch/84759/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/monroe/84724/slab-leak-repair",
+    "destination": "/areas/elsinore/84724/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pindall/72633/faucet-repair",
+    "destination": "/areas/everton/72633/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/spring-grove/55922/water-line-repair",
+    "destination": "/areas/canton-mn/55922/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/emmitsburg/21783/water-line-repair",
+    "destination": "/areas/smithsburg/21783/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hallock/56731/main-water-shutoff-valve-repair",
+    "destination": "/areas/humboldt-mn/56731/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/henning/56527/whole-house-repiping",
+    "destination": "/areas/deer-creek/56527/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56162/sewer-line-repair",
+    "destination": "/areas/ormsby/56162/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/scandia/55038/sewer-line-repair",
+    "destination": "/areas/hugo/55038/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84775/toilet-repair",
+    "destination": "/areas/torrey/84775/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/rockville/20854/sump-pump-repair",
+    "destination": "/areas/rockville-md/20854/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/danville/72833/sewer-line-repair",
+    "destination": "/areas/danville-ar/72833/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sharpsburg-ga-sump-pump-repair",
+    "destination": "/plumber-sharpsburg-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ada/56510/whole-house-repiping",
+    "destination": "/areas/ada-mn/56510/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/henning/56588/whole-house-repiping",
+    "destination": "/areas/vining/56588/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lucas/75002/sump-pump-repair",
+    "destination": "/areas/lucas/75002/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/drain-cleaning",
+    "destination": "/areas/oakley-ut/84055/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84628/water-line-repair",
+    "destination": "/areas/eureka-ut/84628/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84716/toilet-repair",
+    "destination": "/areas/boulder-ut/84716/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84749/pipe-burst-repair",
+    "destination": "/areas/lyman-ut/84749/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/sewer-line-repair",
+    "destination": "/areas/wilmington-de/19801/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mapleton/84663/whole-house-repiping",
+    "destination": "/areas/springville/84663/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greenfield/55357/water-line-repair",
+    "destination": "/areas/greenfield-mn/55357/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/hallock/56734/main-water-shutoff-valve-repair",
+    "destination": "/areas/lake-bronson/56734/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ellendale/56026/main-water-shutoff-valve-repair",
+    "destination": "/areas/ellendale-mn/56026/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/monroe/84754/faucet-repair",
+    "destination": "/areas/monroe-ut/84754/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/parkin/72394/drain-cleaning",
+    "destination": "/areas/widener/72394/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lyman/84749/sump-pump-repair",
+    "destination": "/areas/lyman-ut/84749/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ratcliff/72855/sewer-line-repair",
+    "destination": "/areas/paris-ar/72855/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/houston/19954/water-line-repair",
+    "destination": "/areas/houston-de/19954/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/houston/19954/whole-house-repiping",
+    "destination": "/areas/houston-de/19954/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56120/sewer-line-repair",
+    "destination": "/areas/butterfield-mn/56120/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/independence/55359/main-water-shutoff-valve-repair",
+    "destination": "/areas/independence-mn/55359/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greenfield/55357/water-softener-repair",
+    "destination": "/areas/greenfield-mn/55357/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/emmitsburg/21787/water-line-repair",
+    "destination": "/areas/taneytown/21787/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/houston/19941/pipe-burst-repair",
+    "destination": "/areas/ellendale-de/19941/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/searcy/72178/slab-leak-repair",
+    "destination": "/areas/west-point-ar/72178/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/leamington/84648/sewer-line-repair",
+    "destination": "/areas/nephi/84648/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/brooklyn-center/55432/slab-leak-repair",
+    "destination": "/areas/fridley/55432/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/palisade/55748/drain-cleaning",
+    "destination": "/areas/hill-city-mn/55748/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84628/faucet-repair",
+    "destination": "/areas/eureka-ut/84628/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sigurd/84730/sump-pump-repair",
+    "destination": "/areas/glenwood-ut/84730/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/emmitsburg/21793/water-line-repair",
+    "destination": "/areas/walkersville/21793/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/emmitsburg/21788/water-line-repair",
+    "destination": "/areas/thurmont/21788/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/glyndon/56562/drain-cleaning",
+    "destination": "/areas/moorhead/56562/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/garbage-disposal-repair",
+    "destination": "/areas/oakley-ut/84055/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/sewer-line-repair",
+    "destination": "/areas/oakley-ut/84055/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/whole-house-repiping",
+    "destination": "/areas/oakley-ut/84055/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56160/slab-leak-repair",
+    "destination": "/areas/odin-mn/56160/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sigurd/84711/sump-pump-repair",
+    "destination": "/areas/annabella/84711/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/elaine/72390/emergency",
+    "destination": "/areas/helena-west-helena/72390/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mccrory/72006/pipe-burst-repair",
+    "destination": "/areas/augusta-ar/72006/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-anthony-water-line-repair",
+    "destination": "/plumber-st-anthony-water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-francisville-main-water-shutoff-valve-repair",
+    "destination": "/plumber-st-francisville-main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/parkin/72327/drain-cleaning",
+    "destination": "/areas/jennette/72327/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/willmar/56251/sewer-line-repair",
+    "destination": "/areas/kandiyohi/56251/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19711/sewer-line-repair",
+    "destination": "/areas/newark-de/19711/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/slab-leak-repair",
+    "destination": "/areas/oakley-ut/84055/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84628/sewer-line-repair",
+    "destination": "/areas/eureka-ut/84628/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/spring-grove/55974/water-softener-repair",
+    "destination": "/areas/spring-grove-mn/55974/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ellendale/56026/whole-house-repiping",
+    "destination": "/areas/ellendale-mn/56026/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/millington/21635/water-softener-repair",
+    "destination": "/areas/galena-md/21635/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/palisade/55760/drain-cleaning",
+    "destination": "/areas/mcgregor-mn/55760/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/greers-ferry/72543/water-heater-repair",
+    "destination": "/areas/heber-springs/72543/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ada/56548/slab-leak-repair",
+    "destination": "/areas/halstad/56548/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56160/faucet-repair",
+    "destination": "/areas/odin-mn/56160/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-riverview-al-sump-pump-repair",
+    "destination": "/plumber-riverview-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-maysville-ga-sump-pump-repair",
+    "destination": "/plumber-maysville-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/zimmerman/55303/slab-leak-repair",
+    "destination": "/areas/ramsey/55303/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ellendale/56026/water-line-repair",
+    "destination": "/areas/ellendale-mn/56026/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odessa/19730/slab-leak-repair",
+    "destination": "/areas/odessa-de/19730/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/eureka/84628/emergency",
+    "destination": "/areas/eureka-ut/84628/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mccrory/72169/pipe-burst-repair",
+    "destination": "/areas/tupelo-ar/72169/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odin/56160/leak-repair",
+    "destination": "/areas/odin-mn/56160/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/water-softener-repair",
+    "destination": "/areas/wilmington-de/19801/water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ada/56519/slab-leak-repair",
+    "destination": "/areas/borup/56519/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/independence/55359/whole-house-repiping",
+    "destination": "/areas/independence-mn/55359/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/mccrory/72347/pipe-burst-repair",
+    "destination": "/areas/hickory-ridge/72347/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ogden/71853/whole-house-repiping",
+    "destination": "/areas/ogden-ar/71853/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ogden/71862/faucet-repair",
+    "destination": "/areas/washington-ar/71862/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sigurd/84620/sump-pump-repair",
+    "destination": "/areas/aurora-ut/84620/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/parkin/72324/drain-cleaning",
+    "destination": "/areas/cherry-valley-ar/72324/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/sandstone/55704/leak-repair",
+    "destination": "/areas/askov/55704/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-pipe-burst-repair",
+    "destination": "/plumber-east-st-louis-pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/zimmerman/55309/slab-leak-repair",
+    "destination": "/areas/big-lake/55309/slab-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/palisade/56469/sump-pump-repair",
+    "destination": "/areas/palisade-mn/56469/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pine-bluff/71665/drain-cleaning",
+    "destination": "/areas/rison/71665/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/pindall/72677/faucet-repair",
+    "destination": "/areas/summit-ar/72677/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-port-st.-joe-faucet-repair",
+    "destination": "/plumber-port-st-joe-faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84055/water-line-repair",
+    "destination": "/areas/oakley-ut/84055/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/oakley/84033/sump-pump-repair",
+    "destination": "/areas/henefer/84033/sump-pump-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/palisade/56431/drain-cleaning",
+    "destination": "/areas/aitkin/56431/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19806/main-water-shutoff-valve-repair",
+    "destination": "/areas/wilmington-de/19806/main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-main-water-shutoff-valve-repair",
+    "destination": "/plumber-east-st-louis-main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cheverly/20722/toilet-repair",
+    "destination": "/areas/colmar-manor/20722/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19713/pipe-burst-repair",
+    "destination": "/areas/newark-de/19713/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sunset-ar-sump-pump-repair",
+    "destination": "/plumber-sunset-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-oakley-sump-pump-repair",
+    "destination": "/plumber-oakley-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-john-main-water-shutoff-valve-repair",
+    "destination": "/plumber-st-john-main-water-shutoff-valve-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-san-luis-sump-pump-repair",
+    "destination": "/plumber-san-luis-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/drain-cleaning",
+    "destination": "/areas/wilmington-de/19801/drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/odessa/19709/garbage-disposal-repair",
+    "destination": "/areas/middletown-de/19709/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-john-leak-repair",
+    "destination": "/plumber-st-john-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-john-toilet-repair",
+    "destination": "/plumber-st-john-toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lynn-al-sump-pump-repair",
+    "destination": "/plumber-lynn-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/ogden/71853/water-heater-repair",
+    "destination": "/areas/ogden-ar/71853/water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arden/19802/water-line-repair",
+    "destination": "/areas/wilmington-de/19802/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hayden-az-sump-pump-repair",
+    "destination": "/plumber-hayden-az-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-quincy-fl-sump-pump-repair",
+    "destination": "/plumber-quincy-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19717/sewer-line-repair",
+    "destination": "/areas/newark-de/19717/sewer-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-water-softener-repair",
+    "destination": "/plumber-east-st-louis-water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-water-line-repair",
+    "destination": "/plumber-east-st-louis-water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-danville-ca-sump-pump-repair",
+    "destination": "/plumber-danville-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st-francis-ar-sump-pump-repair",
+    "destination": "/plumber-st-francis-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/independence/55359/pipe-burst-repair",
+    "destination": "/areas/independence-mn/55359/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-florence-sump-pump-repair",
+    "destination": "/plumber-florence-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-islamorada,-village-of-islands-garbage-disposal-repair",
+    "destination": "/plumber-islamorada-village-of-islands-garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-helena-emergency",
+    "destination": "/plumber-st-helena-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/wilmington/19801/leak-repair",
+    "destination": "/areas/wilmington-de/19801/leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-leak-repair",
+    "destination": "/plumber-east-st-louis-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-port-st.-joe-toilet-repair",
+    "destination": "/plumber-port-st-joe-toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-montezuma-sump-pump-repair",
+    "destination": "/plumber-montezuma-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-harrison-ar-sump-pump-repair",
+    "destination": "/plumber-harrison-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/potlatch/83843/faucet-repair",
+    "destination": "/areas/moscow/83843/faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-eagle-lake-sump-pump-repair",
+    "destination": "/plumber-eagle-lake-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-mulberry-sump-pump-repair",
+    "destination": "/plumber-mulberry-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-meridian-sump-pump-repair",
+    "destination": "/plumber-meridian-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-anthony-toilet-repair",
+    "destination": "/plumber-st-anthony-toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-augustine-water-softener-repair",
+    "destination": "/plumber-st-augustine-water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lucas-sump-pump-repair",
+    "destination": "/plumber-lucas-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/delaware-city/19713/toilet-repair",
+    "destination": "/areas/newark-de/19713/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arden/19807/water-line-repair",
+    "destination": "/areas/wilmington-de/19807/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-port-st.-joe-water-heater-repair",
+    "destination": "/plumber-port-st-joe-water-heater-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-bradford-ar-sump-pump-repair",
+    "destination": "/plumber-bradford-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-salem-ar-sump-pump-repair",
+    "destination": "/plumber-salem-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-sedgwick-ar-sump-pump-repair",
+    "destination": "/plumber-sedgwick-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/arden/19703/water-line-repair",
+    "destination": "/areas/ardentown/19703/water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-waldo-sump-pump-repair",
+    "destination": "/plumber-waldo-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-leon-water-softener-repair",
+    "destination": "/plumber-st-leon-water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-bridgeport-al-sump-pump-repair",
+    "destination": "/plumber-bridgeport-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-johns-leak-repair",
+    "destination": "/plumber-st-johns-leak-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-union-grove-al-sump-pump-repair",
+    "destination": "/plumber-union-grove-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-port-st.-joe-pipe-burst-repair",
+    "destination": "/plumber-port-st-joe-pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-cuba-sump-pump-repair",
+    "destination": "/plumber-cuba-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/cheverly/20737/toilet-repair",
+    "destination": "/areas/riverdale-park/20737/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-mckenzie-al-sump-pump-repair",
+    "destination": "/plumber-mckenzie-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-helena-water-softener-repair",
+    "destination": "/plumber-st-helena-water-softener-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-helena-drain-cleaning",
+    "destination": "/plumber-st-helena-drain-cleaning",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/lake-providence/71254/sump-pump-repair",
+    "destination": "/areas/lake-providence/71254/emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/delaware-city/19709/toilet-repair",
+    "destination": "/areas/middletown-de/19709/toilet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-libory-faucet-repair",
+    "destination": "/plumber-st-libory-faucet-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lake-city-sump-pump-repair",
+    "destination": "/plumber-lake-city-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-lowell-ar-sump-pump-repair",
+    "destination": "/plumber-lowell-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hatfield-ar-sump-pump-repair",
+    "destination": "/plumber-hatfield-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-vernon-fl-sump-pump-repair",
+    "destination": "/plumber-vernon-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19711/pipe-burst-repair",
+    "destination": "/areas/newark-de/19711/pipe-burst-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19716/whole-house-repiping",
+    "destination": "/areas/newark-de/19716/whole-house-repiping",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-hampton-ar-sump-pump-repair",
+    "destination": "/plumber-hampton-ar-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-waverly-al-sump-pump-repair",
+    "destination": "/plumber-waverly-al-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-seneca-sump-pump-repair",
+    "destination": "/plumber-seneca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-augustine-garbage-disposal-repair",
+    "destination": "/plumber-st-augustine-garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-plainville-ga-sump-pump-repair",
+    "destination": "/plumber-plainville-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-ellisville-sump-pump-repair",
+    "destination": "/plumber-ellisville-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-robinson-sump-pump-repair",
+    "destination": "/plumber-robinson-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-glencoe-sump-pump-repair",
+    "destination": "/plumber-glencoe-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-climax-ga-sump-pump-repair",
+    "destination": "/plumber-climax-ga-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-bowling-green-fl-sump-pump-repair",
+    "destination": "/plumber-bowling-green-fl-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-port-st.-joe-water-line-repair",
+    "destination": "/plumber-port-st-joe-water-line-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/areas/newark/19716/garbage-disposal-repair",
+    "destination": "/areas/newark-de/19716/garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-chandler-sump-pump-repair",
+    "destination": "/plumber-chandler-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-pleasant-hill-ca-sump-pump-repair",
+    "destination": "/plumber-pleasant-hill-ca-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-emergency",
+    "destination": "/plumber-east-st-louis-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-east-st.-louis-garbage-disposal-repair",
+    "destination": "/plumber-east-st-louis-garbage-disposal-repair",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-bethune-sump-pump-repair",
+    "destination": "/plumber-bethune-emergency",
+    "statusCode": 301
+  },
+  {
+    "source": "/plumber-st.-anthony-water-heater-repair",
+    "destination": "/plumber-st-anthony-water-heater-repair",
+    "statusCode": 301
+  }
+]
