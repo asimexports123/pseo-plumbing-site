@@ -149,7 +149,12 @@ export function middleware(request) {
   // _next/data/{buildId}/plumber-* to /plumber-* before middleware sees it,
   // so we check the original URL and .json suffix to detect data requests.
   const originalUrl = request.url || '';
-  const isDataRequest = originalUrl.includes('/_next/data/') || path.endsWith('.json');
+  const isDataRequest =
+    request.headers.get('x-nextjs-data') === '1' ||
+    request.headers.get('x-middleware-prefetch') === '1' ||
+    request.headers.get('accept')?.includes('application/json') ||
+    originalUrl.includes('/_next/data/') ||
+    path.endsWith('.json');
 
   // 1. Fast block for known bad crawlers and HTTP libraries.
   //    Exempt the homepage (static, no ISR cost) to prevent cached
