@@ -11,5 +11,8 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
-  }
+  },
+  "routes": [
+    { "pattern": "yohomefix.com/*", "custom_domain": false }
+  ]
 }
